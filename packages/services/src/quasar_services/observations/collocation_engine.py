@@ -1,4 +1,4 @@
-﻿"""
+"""
 TASK-14 In-Situ Observation Ingestion & Model-Observation Collocation Engine
 Ingests Argo & Glider profiles, preserves QC flags, and calculates collocation metrics.
 """
@@ -39,26 +39,34 @@ class CollocationEngine:
         lat = obs_profile["latitude"]
         lon = obs_profile["longitude"]
         
-        # Query model profile at collocated coordinates
-        model_thetao = self.analysis.query_vertical_profile("thetao", model_time_idx, lat, lon)["profile"]
-        model_so = self.analysis.query_vertical_profile("so", model_time_idx, lat, lon)["profile"]
+        model_thetao = self.analysis.query_vertical_profile("thetao", model_time_idx, lat, lon)
+        model_so = self.analysis.query_vertical_profile("so", model_time_idx, lat, lon)
         
         # Interpolate model to observation levels
-        m_depths = np.array([p["depth_m"] for p in model_thetao if p["value"] is not None])
-        m_temps = np.array([p["value"] for p in model_thetao if p["value"] is not None])
-        m_sals = np.array([p["value"] for p in model_so if p["value"] is not None])
+        m_depths = np.array(model_thetao["depth_levels_m"])
+        m_temps = np.array(model_thetao["values"], dtype=float)
+        m_sals = np.array(model_so["values"], dtype=float)
+        
+        # Mask out Nones
+        valid_t = ~np.isnan(m_temps)
+        valid_s = ~np.isnan(m_sals)
+        m_depths_t = m_depths[valid_t]
+        m_temps = m_temps[valid_t]
+        m_depths_s = m_depths[valid_s]
+        m_sals = m_sals[valid_s]
         
         collocation_table = []
         temp_diffs = []
         sal_diffs = []
         
         for obs in obs_profile["levels"]:
-            z_obs = obs["depth_m"]
-            t_mod = float(np.interp(z_obs, m_depths, m_temps))
-            s_mod = float(np.interp(z_obs, m_depths, m_sals))
+            z_obs = obs.get("depth_m", obs.get("pressure_dbar"))
+            t_mod = float(np.interp(z_obs, m_depths_t, m_temps))
+            s_mod = float(np.interp(z_obs, m_depths_s, m_sals))
             
             d_temp = float(obs["temp_c"] - t_mod)
-            d_sal = float(obs["psal"] - s_mod)
+            obs_sal = obs.get("psal", obs.get("psal_psu"))
+            d_sal = float(obs_sal - s_mod)
             
             temp_diffs.append(d_temp)
             sal_diffs.append(d_sal)
@@ -68,10 +76,10 @@ class CollocationEngine:
                 "obs_temperature_c": obs["temp_c"],
                 "model_temperature_c": t_mod,
                 "temperature_delta_c": d_temp,
-                "obs_salinity": obs["psal"],
+                "obs_salinity": obs_sal,
                 "model_salinity": s_mod,
                 "salinity_delta": d_sal,
-                "qc_flag": obs["temp_qc"]
+                "qc_flag": obs.get("temp_qc", obs.get("qc_flag"))
             })
             
         return {

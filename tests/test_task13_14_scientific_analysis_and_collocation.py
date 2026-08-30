@@ -1,4 +1,4 @@
-﻿"""
+"""
 TASK-13 & TASK-14 Cross-Subsystem Automated Test Suite (Refined for Real Bathymetry)
 """
 import unittest, os, json
@@ -14,15 +14,15 @@ class TestTask13AndTask14Engines(unittest.TestCase):
 
     def test_point_timeseries_extraction(self):
         res = self.analysis.query_point_timeseries("thetao", 7.5, 64.0, 0.494)
-        self.assertEqual(len(res["times"]), 7)
+        self.assertEqual(len(res["timesteps"]), 7)
         self.assertEqual(len(res["values"]), 7)
         self.assertTrue(all(v is not None for v in res["values"]))
 
     def test_full_depth_50_level_profile(self):
         res = self.analysis.query_vertical_profile("so", 0, 7.5, 64.0)
-        self.assertEqual(res["levels_count"], 50)
+        self.assertEqual(len(res["depth_levels_m"]), 50)
         # Deepest ocean column (at least upper 35 levels valid before bathymetry seabed)
-        valid_count = sum(1 for p in res["profile"] if p["is_valid"])
+        valid_count = sum(1 for v in res["values"] if v is not None)
         self.assertGreater(valid_count, 35)
 
     def test_teos10_derived_soundings(self):

@@ -3,60 +3,27 @@
 **File:** `docs/03-science-data/ObservationModel.md`  
 **Status:** Normative
 
-## Entities
+## Entities & Canonical Schemas
 
-### Platform
+The observation subsystem models in-situ ocean instruments with strict QC and provenance preservation:
 
-Represents an instrument-bearing system:
-
-- Argo float.
-- BGC-Argo float.
-- Glider.
-- Drifter.
-- Mooring.
-- Buoy.
-- Ship.
-- CTD/XBT/XCTD cast.
-- ADCP.
-- HF-radar station or network.
-
-### Deployment
-
-Connects a platform to a mission, owner, deployment time, recovery state, and instrument configuration.
-
-### Profile
-
-A vertical sequence of measurements with profile time, location, cycle, direction, data mode, and vertical coordinate.
-
-### Trajectory
-
-Time-ordered platform positions with optional depth and mission state.
-
-### Time series
-
-Measurements associated with a fixed or moving platform over time.
-
-### Measurement
-
-Required fields:
-
-- Observation ID.
-- Variable registry ID.
-- Source variable.
-- Value.
-- Source and canonical units.
-- Time.
-- Horizontal position.
-- Vertical coordinate.
-- Source QC flag.
-- Normalized QC category.
-- Uncertainty where available.
-- Adjustment state.
-- Provenance ID.
+- **Vertical Profiles (`schemas/canonical/observation_profile.json`):**
+  - Continuous vertical sounding (Argo floats, CTD casts, XBTs, Glider profiles).
+  - Preserves cycle number, direction (Ascending/Descending), data mode (`R` Real-Time, `A` Adjusted, `D` Delayed-Mode).
+  - Depth/Pressure monotonically ordered series with companion measurement QC vectors.
+- **Platform Trajectories (`schemas/canonical/observation_trajectory.json`):**
+  - Lagrangian surface drifters, ship tracks, autonomous glider surfacing paths.
+  - Ordered coordinate series $(lon, lat, time, z)$ with platform speed and heading.
+- **Point Time Series (`schemas/canonical/observation_timeseries.json`):**
+  - Moored buoys (e.g. INCOIS RAMA, NOAA TAO/TRITON), coastal tide gauges, HF-radar current nodes.
+- **Directional Wave Spectra (`schemas/canonical/directional_wave_spectrum.json`):**
+  - 2D frequency-direction variance density $E(f, \theta)$ in $m^2 / (\text{Hz} \cdot \text{rad})$.
+  - Preserves Fourier directional expansion coefficients ($a_1, b_1, a_2, b_2$), peak wave period ($T_p$), mean wave direction ($\theta_m$), and significant wave height ($H_{m0} = 4 \sqrt{m_0}$).
 
 ## Argo requirements
 
 Preserve where present:
+
 
 - Platform number.
 - Cycle number.

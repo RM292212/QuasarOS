@@ -61,6 +61,25 @@ Regional x/y/z coordinates tied to a documented origin and CRS.
 | Unstructured | Deferred unless preprocessed to supported products |
 | Local Cartesian | Supported with explicit georeferencing |
 
+## Canonical Grid Schemas & Staggering Specifications
+
+QuasarOS canonical schemas formally specify grid topologies and staggering in `schemas/canonical/`:
+
+- **Horizontal Grid Metadata (`schemas/canonical/horizontal_grid.json`):**
+  - Grid classification: `RECTILINEAR_GEOGRAPHIC`, `RECTILINEAR_PROJECTED`, `CURVILINEAR_2D`, `TRIPOLAR_ORCA`, `UNSTRUCTURED_FVCOM`, `LOCAL_CARTESIAN`.
+  - 1D coordinate vectors or 2D coordinate matrices (`nav_lon`, `nav_lat` or `lon_rho`, `lat_rho`).
+  - Spatial bounds, resolution, and periodicity (`periodicity_x`, `periodicity_y`).
+- **Arakawa Grid Staggering Model (`schemas/canonical/arakawa_staggering.json`):**
+  - **Arakawa A:** Collocated scalars ($T, S$) and velocity components ($u, v, w$).
+  - **Arakawa B:** Velocity components located at grid cell corners; scalars located at centers.
+  - **Arakawa C (ROMS / NEMO):**
+    - $\rho$-points: Center of cell for density, temperature, salinity, tracer concentrations.
+    - $u$-points: East-West cell faces for zonal velocity components.
+    - $v$-points: North-South cell faces for meridional velocity components.
+    - $\psi$-points: Cell vertices for vorticity and stream functions.
+    - $w$-points: Vertical cell interfaces for vertical velocity.
+  - **Destaggering Invariants:** Scalar product rendering or collocation requires validated spatial interpolation to $\rho$-points before derivative calculations or vector magnitude synthesis ($S = \sqrt{u^2 + v^2}$).
+
 ## Grid identity
 
 A grid identity changes when coordinates, bounds, topology, connectivity, staggering, CRS, or masks change.
@@ -81,3 +100,4 @@ Validate:
 - Vertical association.
 
 Grid transformations shall be recorded in provenance and shall not overwrite source-grid metadata.
+

@@ -3,45 +3,34 @@
 **File:** `docs/03-science-data/MissingDataAndMasks.md`  
 **Status:** Normative
 
-## Missing-data categories
+## Canonical Categorical Codes & Bitmasks
 
-QuasarOS distinguishes:
+Categorical validity masks (`schemas/canonical/missing_data_mask.json`) use the following normative integer codes:
 
-- `VALID`
-- `SOURCE_MISSING`
-- `LAND`
-- `BELOW_SEABED`
-- `OUTSIDE_DOMAIN`
-- `QC_REJECTED`
-- `TEMPORALLY_UNAVAILABLE`
-- `NOT_OBSERVED`
-- `NOT_LOADED`
-- `PROCESSING_FAILED`
-- `UNKNOWN_INVALID`
+| Flag Code | Category Name | Description | Raymarching Treatment |
+|---|---|---|---|
+| `0` | `VALID` | Physical valid sample | Fully rendered via TF |
+| `1` | `SOURCE_MISSING` | Provider `_FillValue` / NaN | 0 opacity ($\alpha=0$) |
+| `2` | `LAND` | Dry land mask / topography | Clipped / 0 opacity |
+| `3` | `BELOW_SEABED` | Depth exceeds bathymetry | Clipped / 0 opacity |
+| `4` | `OUTSIDE_DOMAIN` | Outside spatial bounding box | Clipped / 0 opacity |
+| `5` | `QC_REJECTED` | Failed QC filtering ($QC \ge 3$) | 0 opacity / flag inspect |
+| `6` | `TEMPORALLY_UNAVAILABLE` | Time slice absent | 0 opacity |
+| `7` | `NOT_OBSERVED` | Sparse in-situ unobserved cell | 0 opacity |
+| `8` | `PROCESSING_FAILED` | Ingestion/derivation error | 0 opacity |
 
-These states shall not be collapsed into numeric zero.
+## Normalized Quality Control Scheme
 
-## Source detection
+QuasarOS normalizes diverse provider QC conventions (Argo, Copernicus, WOD, GTSPP) into canonical QC states (`schemas/canonical/quality_control_flag.json`):
 
-Missing values may be identified through:
+- `NO_QC_PERFORMED` (Code 0): Raw unvalidated data.
+- `GOOD` (Code 1): Passed all automated and visual quality tests.
+- `PROBABLY_GOOD` (Code 2): Minor anomalies, acceptable for standard visualization.
+- `PROBABLY_BAD` (Code 3): Suspect values, excluded from default rendering.
+- `BAD` (Code 4): Definite sensor or physical failure, excluded from volume rendering and interpolation.
+- `CHANGED` (Code 5): Value adjusted by post-processing/recalibration.
+- `MISSING_VALUE` (Code 9): Missing observation.
 
-- `_FillValue`.
-- `missing_value`.
-- Valid ranges.
-- NaN.
-- Provider quality flags.
-- Land/sea masks.
-- Bathymetry intersection.
-- Mesh-domain boundaries.
-- Product documentation.
-
-Source encodings shall be preserved in metadata.
-
-## Canonical representation
-
-Canonical floating arrays should use NaN for computational missingness where compatible, plus a categorical validity mask when the missing reason matters.
-
-Categorical masks shall use stable integer codes documented by schema version.
 
 ## Rendering representation
 

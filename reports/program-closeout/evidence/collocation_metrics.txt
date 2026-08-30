@@ -1,0 +1,3 @@
+Samples: 21
+Temp bias: -1.271 C, MAE: 1.362 C, RMSE: 1.980 C
+Sal bias: 0.129 psu, MAE: 0.251 psu, RMSE: 0.335 psu

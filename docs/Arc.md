@@ -204,20 +204,25 @@ Preferred representation: Zarr/NetCDF accessed with xarray.
 
 ### Layer C — Visualization acceleration products
 
-Includes:
+Defined by canonical schema `schemas/canonical/volume_render_manifest.json`:
 
-- Multiresolution scalar bricks.
-- Quantized network encoding.
-- GPU-ready texture values.
-- Occupancy masks.
-- Brick min/max.
-- gradient products.
-- Page-table manifests.
-- Cached geometry.
+- Multiresolution scalar bricks ($64^3$ voxels with 1-voxel filtering halo).
+- Quantized network encoding (`NORM_UINT8` / `NORM_UINT16` with affine scale and offset: $V_{real} = V_{norm} \times \text{scale} + \text{offset}$).
+- Transfer-function-aware occupancy bitmasks and brick min/max scalar metadata for empty-space skipping.
+- Sparse 3D page-table manifests mapping virtual LOD bricks to physical atlas allocations.
+- Cached bathymetry and coastline geometry clipped in local ENU frame.
 
 Rendering products must point back to canonical data and declare precision/error.
 
-### Layer D — Browser cache
+### Layer D — Authoritative query services
+
+Decoupled from GPU rendering:
+
+- Authoritative exact point value query (`schemas/canonical/exact_value_query_request.json` & `exact_value_query_response.json`).
+- Exact vertical-profile sounding and transect extraction from canonical Zarr/NetCDF.
+- Guaranteed unquantized float32/float64 recovery with full provenance and QC state tracking.
+
+### Layer E — Browser cache
 
 Includes:
 
@@ -228,6 +233,7 @@ Includes:
 - Short-lived query results.
 
 All caches must be bounded.
+
 
 ## 5. Rendering architecture
 

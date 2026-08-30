@@ -1,0 +1,15 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Ranji\Downloads\ocanscope3d\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Ranji\Downloads\ocanscope3d
+plugins: anyio-4.14.2, zarr-3.3.0
+collecting ... collected 6 items
+
+tests/test_analysis_router_extensions.py::TestAnalysisRouterExtensions::test_slice_endpoint PASSED [ 16%]
+tests/test_analysis_router_extensions.py::TestAnalysisRouterExtensions::test_transect_endpoint PASSED [ 33%]
+tests/test_task13_14_scientific_analysis_and_collocation.py::TestTask13AndTask14Engines::test_argo_model_collocation PASSED [ 50%]
+tests/test_task13_14_scientific_analysis_and_collocation.py::TestTask13AndTask14Engines::test_full_depth_50_level_profile PASSED [ 66%]
+tests/test_task13_14_scientific_analysis_and_collocation.py::TestTask13AndTask14Engines::test_point_timeseries_extraction PASSED [ 83%]
+tests/test_task13_14_scientific_analysis_and_collocation.py::TestTask13AndTask14Engines::test_teos10_derived_soundings PASSED [100%]
+
+======================== 6 passed, 1 warning in 3.54s =========================
