@@ -1,0 +1,5 @@
+﻿{
+  "report_path": "reports/remediation/remediation_01v_final_evidence_verification_and_release_readiness_report.md",
+  "sha256": "'$reportSha'",
+  "generated_at": "'(Get-Date -Format "yyyy-MM-ddTHH:mm:ssK")'"
+}

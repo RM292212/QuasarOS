@@ -1,0 +1,22 @@
+﻿[
+  {
+    "gap_id": "GAP-V3-01",
+    "task": "TASK-13",
+    "description": "Missing /transect and /slice backend endpoints in analysis API router",
+    "expected_result": "Endpoints exist on FastAPI router",
+    "actual_result": "Endpoints added to analysis_engine.py and router.py and tested in test_analysis_router_extensions.py",
+    "severity": "HIGH",
+    "release_blocking": false,
+    "disposition": "RESOLVED IN COMMIT 4860e67"
+  },
+  {
+    "gap_id": "GAP-V3-02",
+    "task": "TASK-14",
+    "description": "Missing aria-label on ObservationComparisonPanel close button",
+    "expected_result": "WCAG 2.1 AA compliant aria-label on button",
+    "actual_result": "Added aria-label='Close observation comparison panel'",
+    "severity": "LOW",
+    "release_blocking": false,
+    "disposition": "RESOLVED IN COMMIT 4860e67"
+  }
+]
