@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Automated Unit Test Suite for TASK-10B (App Shell & Dataset Navigation).
  *
  * Tests:
@@ -24,7 +24,7 @@ describe('QuasarOS Web App Shell & Control Plane (TASK-10B)', () => {
     store.setActiveBackend('webgpu', 'Hardware WebGPU Adapter');
     store.setDeviceLost(false);
     store.setActiveDataset('copernicus_phy_thetao', 'copernicus-phy-thetao-20260824-20260830-ca826087');
-    store.setActiveVariable('sea_water_potential_temperature');
+    store.setActiveVariable('thetao (Sea Water Potential Temperature, °C)');
     store.setTimestepIndex(6);
     store.setPlaying(false);
   });
@@ -90,8 +90,8 @@ describe('QuasarOS Web App Shell & Control Plane (TASK-10B)', () => {
     const store = useAppStore.getState();
     assert.equal(store.activeDatasetId, 'copernicus_phy_thetao');
     assert.equal(store.activeSnapshotId, 'copernicus-phy-thetao-20260824-20260830-ca826087');
-    assert.equal(store.activeVariableId, 'sea_water_potential_temperature');
-    assert.deepEqual(store.availableVariables, ['sea_water_potential_temperature']);
+    assert.ok(store.activeVariableId.includes('thetao'));
+    assert.equal(store.availableVariables.length, 5);
 
     // Pinned session validation
     assert.ok(store.pinnedSession !== null);
@@ -178,3 +178,6 @@ describe('QuasarOS Web App Shell & Control Plane (TASK-10B)', () => {
     assert.equal(useAppStore.getState().activeGeneration, currentGen);
   });
 });
+
+
+

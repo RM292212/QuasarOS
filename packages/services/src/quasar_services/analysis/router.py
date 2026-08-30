@@ -86,3 +86,14 @@ async def get_teos10(req: TEOS10Request, engine: ScientificAnalysisEngine = Depe
         return engine.compute_teos10_derived_soundings(req.time_index, req.latitude, req.longitude)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+@router.get("/volume-grid")
+def get_volume_grid(
+    variable: str = "thetao",
+    time_index: int = 0,
+    depth_levels: int = 16,
+    lat_res: int = 32,
+    lon_res: int = 32,
+    engine: ScientificAnalysisEngine = Depends(get_engine)
+) -> Dict[str, Any]:
+    return engine.get_volume_slice_grid(variable, time_index, depth_levels, lat_res, lon_res)

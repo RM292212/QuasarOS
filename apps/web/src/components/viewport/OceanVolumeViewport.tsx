@@ -5,9 +5,21 @@ export const OceanVolumeViewport: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { activeBackend, activeVariableId, timestepIndex, spatialBounds } = useAppStore();
   const [fps, setFps] = useState<number>(60);
-  const [activeIsovalue, setActiveIsovalue] = useState<number>(24.5);
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(true);
+  const [dataStats, setDataStats] = useState<{ min: number; max: number; date: string; varCode: string }>({
+    min: 9.37,
+    max: 30.36,
+    date: '2026-08-24',
+    varCode: 'thetao'
+  });
+
+  // Extract pure variable code (thetao, so, uo, vo, zos)
+  const varCode = activeVariableId.split(' ')[0].toLowerCase();
 
   useEffect(() => {
+    let isCancelled = false;
+    setIsLoadingData(true);
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -18,177 +30,239 @@ export const OceanVolumeViewport: React.FC = () => {
     const gl = canvas.getContext('webgl2', { alpha: false, antialias: true });
     if (!gl) return;
 
-    // Compile Vertex Shader
-    const vsSource = `#version 300 es
-      in vec3 position;
-      in vec3 color;
-      out vec3 vColor;
-      uniform mat4 uMatrix;
-      void main() {
-        vColor = color;
-        gl_Position = uMatrix * vec4(position, 1.0);
-      }
-    `;
+    // Fetch Authoritative 3D Scalar Field for the active day and variable
+    fetch(`/api/v1/analysis/volume-grid?variable=${varCode}&time_index=${timestepIndex}&depth_levels=16&lat_res=32&lon_res=32`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((json) => {
+        if (isCancelled || !json) return;
 
-    // Compile Fragment Shader
-    const fsSource = `#version 300 es
-      precision highp float;
-      in vec3 vColor;
-      out vec4 fragColor;
-      uniform float uTime;
-      uniform float uIso;
-      void main() {
-        vec3 col = vColor;
-        float pulse = 0.5 + 0.5 * sin(uTime * 1.5 + vColor.z * 6.28);
-        fragColor = vec4(mix(col, vec3(0.1, 0.8, 0.9), pulse * 0.4), 0.92);
-      }
-    `;
+        setDataStats({
+          min: json.min_val,
+          max: json.max_val,
+          date: json.timestamp_iso,
+          varCode: json.variable
+        });
+        setIsLoadingData(false);
 
-    const createShader = (type: number, src: string) => {
-      const s = gl.createShader(type)!;
-      gl.shaderSource(s, src);
-      gl.compileShader(s);
-      return s;
-    };
+        // Normalize scalar data to 0.0 - 1.0 for texture (and mark NaNs as -1.0)
+        const rawData: number[] = json.data;
+        const dMin = json.min_val;
+        const dMax = json.max_val > json.min_val ? json.max_val : json.min_val + 1.0;
+        
+        const texData = new Uint8Array(rawData.length);
+        for (let i = 0; i < rawData.length; i++) {
+          const val = rawData[i];
+          if (val <= -900.0) {
+            texData[i] = 0; // Land / Missing mask
+          } else {
+            const norm = Math.max(0, Math.min(1, (val - dMin) / (dMax - dMin)));
+            texData[i] = Math.round(norm * 254) + 1; // 1-255 valid ocean
+          }
+        }
 
-    const program = gl.createProgram()!;
-    gl.attachShader(program, createShader(gl.VERTEX_SHADER, vsSource));
-    gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fsSource));
-    gl.linkProgram(program);
-    gl.useProgram(program);
+        // Upload to 3D Texture (16 depth x 32 lat x 32 lon)
+        const [D, H, W] = json.shape.length === 3 ? json.shape : [1, json.shape[0], json.shape[1]];
+        const volTex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_3D, volTex);
+        gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_3D, gl.TEXTURE_WRAP_R, gl.CLAMP_TO_EDGE);
+        gl.texImage3D(gl.TEXTURE_3D, 0, gl.R8, W, H, D, 0, gl.RED, gl.UNSIGNED_BYTE, texData);
 
-    // 3D Volume Cube Box Vertices + Bathymetric Grid
-    const vertices = new Float32Array([
-      // Front face
-      -0.8, -0.6,  0.6,   0.1, 0.4, 0.8,
-       0.8, -0.6,  0.6,   0.2, 0.7, 0.9,
-       0.8,  0.6,  0.6,   0.9, 0.5, 0.2,
-      -0.8,  0.6,  0.6,   0.9, 0.2, 0.2,
-      // Back face
-      -0.8, -0.6, -0.6,   0.0, 0.2, 0.5,
-       0.8, -0.6, -0.6,   0.1, 0.4, 0.6,
-       0.8,  0.6, -0.6,   0.8, 0.4, 0.1,
-      -0.8,  0.6, -0.6,   0.7, 0.1, 0.1,
-    ]);
+        // WebGL2 Vertex Shader: Draws Bounding Box & Ray Direction Vectors
+        const vsSource = `#version 300 es
+          in vec3 aPos;
+          out vec3 vLocalPos;
+          uniform mat4 uMVP;
+          void main() {
+            vLocalPos = aPos;
+            gl_Position = uMVP * vec4(aPos, 1.0);
+          }
+        `;
 
-    const indices = new Uint16Array([
-      0, 1, 2,  0, 2, 3, // front
-      4, 5, 6,  4, 6, 7, // back
-      0, 4, 7,  0, 7, 3, // left
-      1, 5, 6,  1, 6, 2, // right
-      3, 2, 6,  3, 6, 7, // top
-      0, 1, 5,  0, 5, 4  // bottom
-    ]);
+        // WebGL2 Fragment Shader: Real Front-to-Back Volume Raymarching with Transfer Function
+        const fsSource = `#version 300 es
+          precision highp float;
+          precision highp sampler3D;
+          in vec3 vLocalPos;
+          out vec4 fragColor;
+          uniform sampler3D uVolumeTex;
+          uniform mat4 uInvMVP;
+          uniform vec3 uCamPos;
+          uniform float uMinVal;
+          uniform float uMaxVal;
+          uniform float uStepSize;
 
-    const vao = gl.createVertexArray();
-    gl.bindVertexArray(vao);
+          // Perceptually Uniform Thermal / Oceanic Colormap
+          vec4 evaluateTransferFunction(float scalarNorm) {
+            if (scalarNorm <= 0.005) {
+              return vec4(0.0); // Transparent land / missing mask
+            }
+            // Sequential ocean gradient: Deep Blue -> Cyan -> Emerald -> Yellow -> Red
+            float s = clamp(scalarNorm, 0.0, 1.0);
+            vec3 c;
+            if (s < 0.25) {
+              c = mix(vec3(0.05, 0.15, 0.55), vec3(0.1, 0.6, 0.8), s / 0.25);
+            } else if (s < 0.5) {
+              c = mix(vec3(0.1, 0.6, 0.8), vec3(0.1, 0.85, 0.5), (s - 0.25) / 0.25);
+            } else if (s < 0.75) {
+              c = mix(vec3(0.1, 0.85, 0.5), vec3(0.95, 0.8, 0.1), (s - 0.5) / 0.25);
+            } else {
+              c = mix(vec3(0.95, 0.8, 0.1), vec3(0.9, 0.15, 0.15), (s - 0.75) / 0.25);
+            }
+            float alpha = 0.03 + 0.35 * smoothstep(0.1, 0.9, s);
+            return vec4(c, alpha);
+          }
 
-    const vbo = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+          void main() {
+            vec3 rayStart = vLocalPos + 0.5;
+            vec3 rayDir = normalize(vLocalPos - uCamPos);
+            vec3 p = rayStart;
+            vec4 accum = vec4(0.0);
 
-    const ebo = gl.createBuffer();
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+            // Step through 3D volume along view ray
+            for (int i = 0; i < 96; i++) {
+              if (p.x < 0.0 || p.x > 1.0 || p.y < 0.0 || p.y > 1.0 || p.z < 0.0 || p.z > 1.0) {
+                break;
+              }
+              float s = texture(uVolumeTex, p).r;
+              vec4 col = evaluateTransferFunction(s);
+              
+              // Front-to-back compositing
+              accum.rgb += (1.0 - accum.a) * col.rgb * col.a;
+              accum.a += (1.0 - accum.a) * col.a;
+              
+              if (accum.a >= 0.95) break;
+              p += rayDir * uStepSize;
+            }
 
-    const posLoc = gl.getAttribLocation(program, 'position');
-    gl.enableVertexAttribArray(posLoc);
-    gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 24, 0);
+            // Grid coordinate background blend
+            vec3 bg = vec3(0.015, 0.03, 0.06);
+            fragColor = vec4(mix(bg, accum.rgb, accum.a), 1.0);
+          }
+        `;
 
-    const colLoc = gl.getAttribLocation(program, 'color');
-    gl.enableVertexAttribArray(colLoc);
-    gl.vertexAttribPointer(colLoc, 3, gl.FLOAT, false, 24, 12);
+        const createShader = (type: number, src: string) => {
+          const s = gl.createShader(type)!;
+          gl.shaderSource(s, src);
+          gl.compileShader(s);
+          return s;
+        };
 
-    const matrixLoc = gl.getUniformLocation(program, 'uMatrix');
-    const timeLoc = gl.getUniformLocation(program, 'uTime');
+        const program = gl.createProgram()!;
+        gl.attachShader(program, createShader(gl.VERTEX_SHADER, vsSource));
+        gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fsSource));
+        gl.linkProgram(program);
+        gl.useProgram(program);
 
-    gl.enable(gl.DEPTH_TEST);
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        // Cube volume geometry vertices
+        const boxVertices = new Float32Array([
+          -0.5, -0.5, -0.5,   0.5, -0.5, -0.5,   0.5,  0.5, -0.5,  -0.5,  0.5, -0.5,
+          -0.5, -0.5,  0.5,   0.5, -0.5,  0.5,   0.5,  0.5,  0.5,  -0.5,  0.5,  0.5,
+        ]);
+        const boxIndices = new Uint16Array([
+          0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7,
+          0, 4, 7, 0, 7, 3, 1, 5, 6, 1, 6, 2,
+          3, 2, 6, 3, 6, 7, 0, 1, 5, 0, 5, 4
+        ]);
 
-    let angleX = 0.35;
-    let angleY = -0.6;
-    let isDragging = false;
-    let lastMouseX = 0;
-    let lastMouseY = 0;
+        const vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
 
-    const onMouseDown = (e: MouseEvent) => {
-      isDragging = true;
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-    };
+        const vbo = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+        gl.bufferData(gl.ARRAY_BUFFER, boxVertices, gl.STATIC_DRAW);
 
-    const onMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
-      const dx = e.clientX - lastMouseX;
-      const dy = e.clientY - lastMouseY;
-      angleY += dx * 0.008;
-      angleX += dy * 0.008;
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-    };
+        const ebo = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, boxIndices, gl.STATIC_DRAW);
 
-    const onMouseUp = () => {
-      isDragging = false;
-    };
+        const posLoc = gl.getAttribLocation(program, 'aPos');
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 12, 0);
 
-    canvas.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+        const mvpLoc = gl.getUniformLocation(program, 'uMVP');
+        const camLoc = gl.getUniformLocation(program, 'uCamPos');
+        const stepLoc = gl.getUniformLocation(program, 'uStepSize');
+        gl.uniform1f(stepLoc, 0.012);
 
-    const render = (time: number) => {
-      frameCount++;
-      if (time - lastTime >= 1000) {
-        setFps(Math.round((frameCount * 1000) / (time - lastTime)));
-        frameCount = 0;
-        lastTime = time;
-      }
+        let angleX = 0.45;
+        let angleY = -0.5;
+        let isDragging = false;
+        let lastMouseX = 0;
+        let lastMouseY = 0;
 
-      if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
-        gl.viewport(0, 0, canvas.width, canvas.height);
-      }
+        const onMouseDown = (e: MouseEvent) => {
+          isDragging = true;
+          lastMouseX = e.clientX;
+          lastMouseY = e.clientY;
+        };
+        const onMouseMove = (e: MouseEvent) => {
+          if (!isDragging) return;
+          angleY += (e.clientX - lastMouseX) * 0.008;
+          angleX += (e.clientY - lastMouseY) * 0.008;
+          lastMouseX = e.clientX;
+          lastMouseY = e.clientY;
+        };
+        const onMouseUp = () => { isDragging = false; };
 
-      gl.clearColor(0.02, 0.04, 0.08, 1.0);
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        canvas.addEventListener('mousedown', onMouseDown);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
 
-      // Auto-orbit if not actively dragging
-      if (!isDragging) {
-        angleY += 0.003;
-      }
+        const render = (time: number) => {
+          frameCount++;
+          if (time - lastTime >= 1000) {
+            setFps(Math.round((frameCount * 1000) / (time - lastTime)));
+            frameCount = 0;
+            lastTime = time;
+          }
 
-      // Compute Perspective * View Matrix
-      const aspect = canvas.width / canvas.height;
-      const cosY = Math.cos(angleY);
-      const sinY = Math.sin(angleY);
-      const cosX = Math.cos(angleX);
-      const sinX = Math.sin(angleX);
+          if (canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight) {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+          }
 
-      // 4x4 Orthographic Projection + Isometric Rotation Matrix
-      const m = new Float32Array([
-        cosY / aspect, sinY * sinX,  sinY * cosX, 0,
-        0,             cosX,         -sinX,       0,
-        -sinY / aspect, cosY * sinX, cosY * cosX, 0,
-        0,             0,            0,           1.4
-      ]);
+          gl.clearColor(0.015, 0.03, 0.06, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-      gl.uniformMatrix4fv(matrixLoc, false, m);
-      gl.uniform1f(timeLoc, time * 0.001);
+          if (!isDragging) {
+            angleY += 0.002;
+          }
 
-      gl.bindVertexArray(vao);
-      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+          const aspect = canvas.width / canvas.height;
+          const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+          const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
 
-      animId = requestAnimationFrame(render);
-    };
+          const mvp = new Float32Array([
+            cosY / aspect, sinY * sinX,  sinY * cosX, 0,
+            0,             cosX,         -sinX,       0,
+            -sinY / aspect, cosY * sinX, cosY * cosX, 0,
+            0,             0,            0,           1.25
+          ]);
 
-    animId = requestAnimationFrame(render);
+          gl.uniformMatrix4fv(mvpLoc, false, mvp);
+          gl.uniform3f(camLoc, -sinY * 1.5, -sinX * 1.5, cosY * cosX * 1.5);
+
+          gl.bindVertexArray(vao);
+          gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0);
+
+          animId = requestAnimationFrame(render);
+        };
+
+        animId = requestAnimationFrame(render);
+      })
+      .catch((err) => {
+        console.error('Volume texture load error:', err);
+        setIsLoadingData(false);
+      });
 
     return () => {
-      cancelAnimationFrame(animId);
-      canvas.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
+      isCancelled = true;
+      if (animId) cancelAnimationFrame(animId);
     };
   }, [activeVariableId, timestepIndex]);
 
@@ -199,19 +273,34 @@ export const OceanVolumeViewport: React.FC = () => {
         className="w-full h-full block cursor-grab active:cursor-grabbing"
       />
 
+      {/* Loading Indicator */}
+      {isLoadingData && (
+        <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center z-30 pointer-events-none">
+          <div className="flex items-center gap-3 bg-slate-900 border border-slate-700 px-4 py-2 rounded-lg text-cyan-300 font-mono text-xs shadow-2xl">
+            <span className="w-3 h-3 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+            <span>Streaming Authoritative 3D Scalar Field (Day {timestepIndex + 1}/7)...</span>
+          </div>
+        </div>
+      )}
+
       {/* Floating 3D HUD Information Overlay */}
-      <div className="absolute top-4 left-4 z-10 bg-slate-950/85 backdrop-blur border border-slate-800 rounded-lg p-3 text-[11px] font-mono text-slate-300 shadow-2xl pointer-events-none flex flex-col gap-1.5 min-w-[280px]">
+      <div className="absolute top-4 left-4 z-10 bg-slate-950/85 backdrop-blur border border-slate-800 rounded-lg p-3 text-[11px] font-mono text-slate-300 shadow-2xl pointer-events-none flex flex-col gap-1.5 min-w-[300px]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-300 font-bold uppercase">{activeBackend.toUpperCase()} 3D VOLUMETRIC RAYMARCHER</span>
+            <span className="text-emerald-300 font-bold uppercase">{activeBackend.toUpperCase()} 3D OCEAN VOLUME</span>
           </div>
           <span className="text-cyan-300 font-bold px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-800 rounded text-[10px]">{fps} FPS</span>
         </div>
         
         <div className="text-[10px] text-slate-400 flex justify-between border-t border-slate-800/80 pt-1">
           <span>Active Variable:</span>
-          <span className="text-amber-300 font-semibold">{activeVariableId}</span>
+          <span className="text-amber-300 font-semibold">{dataStats.varCode.toUpperCase()} ({activeVariableId.split('(')[0]})</span>
+        </div>
+
+        <div className="text-[10px] text-slate-400 flex justify-between">
+          <span>Observed Range:</span>
+          <span className="text-cyan-300 font-semibold">{dataStats.min.toFixed(3)} → {dataStats.max.toFixed(3)}</span>
         </div>
         
         <div className="text-[10px] text-slate-400 flex justify-between">
@@ -222,6 +311,11 @@ export const OceanVolumeViewport: React.FC = () => {
         <div className="text-[10px] text-slate-400 flex justify-between">
           <span>Vertical Extents:</span>
           <span className="text-emerald-300 font-semibold">0.494 m → 5,727.917 m (50 Levels)</span>
+        </div>
+
+        <div className="text-[10px] text-slate-400 flex justify-between">
+          <span>Timestep:</span>
+          <span className="text-white font-bold">{dataStats.date} (Day {timestepIndex + 1}/7)</span>
         </div>
 
         <div className="text-[9px] text-slate-500 italic mt-0.5">
