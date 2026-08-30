@@ -1,0 +1,9 @@
+﻿{
+  "report_path": "reports/program-closeout/program_closeout_01_quasaros_v1.1.0_final_completion_certification_and_release_readiness_report.md",
+  "sha256": "'$finalReportSha'",
+  "algorithm": "SHA-256",
+  "generated_at_utc": "'$nowIso'",
+  "candidate_commit": "d0b24c3a90bfc302800ae7d24f3360c77334d1d7",
+  "verified_by": "Agent H (Independent Certification Lead)",
+  "verification_status": "AGENT-H APPROVED"
+}

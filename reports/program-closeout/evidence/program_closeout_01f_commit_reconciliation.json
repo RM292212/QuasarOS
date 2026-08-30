@@ -1,0 +1,34 @@
+{
+  "reconciliation_target": "Program Closeout 01F",
+  "commits": {
+    "software_candidate": {
+      "hash": "4860e67d3e3331afdbd44e5fa9ce6c559147f38d",
+      "short_hash": "4860e67",
+      "subject": "fix(remediation): mount transect and slice routes in analysis API and add aria-label to observation UI",
+      "status": "VERIFIED"
+    },
+    "subagent_reports_integration": {
+      "hash": "d0b24c3a90bfc302800ae7d24f3360c77334d1d7",
+      "short_hash": "d0b24c3",
+      "subject": "feat(program-closeout): integrate Wave 1 subagent deliverables and verified reports",
+      "status": "VERIFIED"
+    },
+    "closeout_manifest_integration": {
+      "hash": "9882231c4c1b99aea45a7ffa96a2de25b6fa5c0e",
+      "short_hash": "9882231",
+      "subject": "docs(program-closeout): finalize Master Report, RTM CSV, Gap Register, and SHA-256 manifests",
+      "status": "VERIFIED"
+    }
+  },
+  "secret_scanning": {
+    "status": "COMPLETED",
+    "findings": 0,
+    "credential_rotation": "CONFIRMED ROTATED"
+  },
+  "manifest_verification": {
+    "manifest_file": "quasaros_v1.1.0_release_manifest.json",
+    "status": "VERIFIED",
+    "artifacts_checked": 8,
+    "artifacts_passed": 8
+  }
+}
