@@ -1,0 +1,17 @@
+﻿{
+  "name": "quasaros-workspace",
+  "version": "1.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=@quasar/web run dev",
+    "build": "npm --workspace=@quasar/web run build",
+    "test": "npm run test:packages && npm run test:apps",
+    "test:packages": "node --experimental-strip-types --test packages/*/test/*.test.ts",
+    "test:apps": "node --experimental-strip-types --test apps/*/test/*.test.ts"
+  }
+}
+

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@quasar/web",
   "version": "1.0.0",
   "description": "QuasarOS 3D OceanScope Scientific Web Application",
@@ -10,9 +10,9 @@
     "test": "node --test test/shell.test.ts test/controls.test.ts test/inspection.test.ts test/app_integration.test.ts test/observation_panel.test.ts"
   },
   "dependencies": {
-    "@quasar/client": "workspace:*",
-    "@quasar/runtime": "workspace:*",
-    "@quasar/renderer-webgpu": "workspace:*",
+    "@quasar/client": "*",
+    "@quasar/runtime": "*",
+    "@quasar/renderer-webgpu": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "^4.5.5",
@@ -41,3 +41,4 @@
   "author": "QuasarOS Team",
   "license": "Apache-2.0"
 }
+
