@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useAppStore } from '../../context/app_store.ts';
 
 export const DatasetNavigation: React.FC = () => {
@@ -44,7 +44,7 @@ export const DatasetNavigation: React.FC = () => {
             >
               {availableVariables.map((v) => (
                 <option key={v} value={v}>
-                  {v} (Temperature, °C)
+                  {v} (Temperature, Â°C)
                 </option>
               ))}
             </select>
@@ -71,12 +71,12 @@ export const DatasetNavigation: React.FC = () => {
         >
           <span className="text-scientific-muted">LON:</span>
           <span className="text-sky-300">
-            [{spatialBounds.minLon.toFixed(1)}°E, {spatialBounds.maxLon.toFixed(1)}°E]
+            [{spatialBounds.minLon.toFixed(1)}Â°E, {spatialBounds.maxLon.toFixed(1)}Â°E]
           </span>
           <span className="text-scientific-border">|</span>
           <span className="text-scientific-muted">LAT:</span>
           <span className="text-sky-300">
-            [{spatialBounds.minLat.toFixed(1)}°N, {spatialBounds.maxLat.toFixed(1)}°N]
+            [{spatialBounds.minLat.toFixed(1)}Â°N, {spatialBounds.maxLat.toFixed(1)}Â°N]
           </span>
         </div>
 
@@ -88,7 +88,7 @@ export const DatasetNavigation: React.FC = () => {
         >
           <span className="text-scientific-muted">DEPTH:</span>
           <span className="text-amber-300">
-            {spatialBounds.minDepthM.toFixed(3)} m → {spatialBounds.maxDepthM.toFixed(3)} m
+            {spatialBounds.minDepthM.toFixed(3)} m â†’ {spatialBounds.maxDepthM.toFixed(3)} m
           </span>
           <span className="px-1.5 py-0.2 bg-amber-950/60 text-amber-400 border border-amber-800/60 rounded text-[9px]">
             31 LVLS
@@ -98,3 +98,4 @@ export const DatasetNavigation: React.FC = () => {
     </div>
   );
 };
+

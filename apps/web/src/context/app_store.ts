@@ -1,4 +1,4 @@
-/**
+﻿/**
  * UI Application State Store for QuasarOS Web Client.
  *
  * Conforms strictly to AGENTS.md:
@@ -137,8 +137,8 @@ export const useAppStore = createStore((set, get) => ({
     minDepthM: 0.494,
     maxDepthM: 453.938,
   },
-  activeVariableId: 'sea_water_potential_temperature',
-  availableVariables: ['sea_water_potential_temperature'],
+  activeVariableId: 'thetao (Sea Water Potential Temperature, °C)',
+  availableVariables: ['thetao (Sea Water Potential Temperature, °C)', 'so (Sea Water Salinity, 1e-3)', 'uo (Eastward Ocean Current, m/s)', 'vo (Northward Ocean Current, m/s)', 'zos (Sea Surface Height Above Geoid, m)'],
 
   timestepIndex: 6, // Latest operational timestep (2026-08-30)
   totalTimesteps: 7,
@@ -212,3 +212,4 @@ export const useAppStore = createStore((set, get) => ({
   setPlaying: (playing) => set({ isPlaying: playing }),
   setPlaybackSpeedFps: (fps) => set({ playbackSpeedFps: fps }),
 }));
+

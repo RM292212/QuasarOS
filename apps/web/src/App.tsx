@@ -1,3 +1,4 @@
+﻿import { OceanVolumeViewport } from './components/viewport/OceanVolumeViewport.tsx';
 import React, { useState, useMemo } from 'react';
 import { Header, DatasetNavigation, TimelineController } from './components/shell/index.ts';
 import {
@@ -37,7 +38,7 @@ export const App: React.FC = () => {
         colormapName: 'viridis',
         domainMin: 9.374713,
         domainMax: 30.361834,
-        unit: '°C',
+        unit: 'Â°C',
       }),
     []
   );
@@ -84,7 +85,7 @@ export const App: React.FC = () => {
       visualization_product_id: 'vis_copernicus_thetao_20260824_20260830',
       lod_level: 0,
       approximate_value: 28.452,
-      display_units: '°C',
+      display_units: 'Â°C',
       world_ray_hit_position: [12000, -45000, -15.81],
       estimated_sample_error_bound: 0.05,
       approximation_notice: 'Provisional GPU raymarch sample',
@@ -211,28 +212,7 @@ export const App: React.FC = () => {
             }}
           />
 
-          {/* Central 3D Volume Stage Placeholder */}
-          <div
-            data-testid="viewport-stage"
-            className="relative z-10 text-center max-w-md p-6 bg-scientific-panel/80 border border-scientific-border/80 rounded-xl shadow-2xl backdrop-blur-md"
-          >
-            <div className="w-12 h-12 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-400 mx-auto flex items-center justify-center mb-3">
-              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                <line x1="12" y1="22.08" x2="12" y2="12" />
-              </svg>
-            </div>
-            <h2 className="text-base font-bold text-white tracking-wide">3D Ocean Volume Viewport</h2>
-            <p className="text-xs text-scientific-muted mt-1 leading-relaxed">
-              Babylon.js WebGPU Volume Raymarching engine initialized. Front-to-back compositing active for
-              operational Copernicus ocean potential temperature volume.
-            </p>
-            <div className="mt-4 pt-3 border-t border-scientific-border/60 flex items-center justify-between text-[11px] font-mono text-sky-300/90">
-              <span>BOUNDS: [80°E-88°E, -3°N-12°N]</span>
-              <span>31 NON-UNIFORM LVLS</span>
-            </div>
-          </div>
+          <OceanVolumeViewport />
         </div>
 
         {/* Floating Left Scientific Controls Panel */}
@@ -261,7 +241,7 @@ export const App: React.FC = () => {
                 title="Collapse Pick Panel"
                 aria-label="Collapse Pick Panel"
               >
-                ▼
+                â–¼
               </button>
             </div>
           ) : (
@@ -269,7 +249,7 @@ export const App: React.FC = () => {
               onClick={() => setIsInspectionExpanded(true)}
               className="bg-slate-900/90 border border-slate-700 p-2 rounded text-xs font-mono text-cyan-300 text-left hover:bg-slate-850 transition flex justify-between items-center"
             >
-              <span>▶ Point Pick & Reconciliation</span>
+              <span>â–¶ Point Pick & Reconciliation</span>
             </button>
           )}
 
@@ -283,7 +263,7 @@ export const App: React.FC = () => {
                 title="Collapse Profile Chart"
                 aria-label="Collapse Profile Chart"
               >
-                ▼
+                â–¼
               </button>
             </div>
           ) : (
@@ -291,7 +271,7 @@ export const App: React.FC = () => {
               onClick={() => setIsProfileExpanded(true)}
               className="bg-slate-900/90 border border-slate-700 p-2 rounded text-xs font-mono text-cyan-300 text-left hover:bg-slate-850 transition flex justify-between items-center"
             >
-              <span>▶ Vertical Sounding Profile (31 Lvls)</span>
+              <span>â–¶ Vertical Sounding Profile (31 Lvls)</span>
             </button>
           )}
 
@@ -305,7 +285,7 @@ export const App: React.FC = () => {
               onClick={() => setIsObservationExpanded(true)}
               className="bg-slate-900/90 border border-slate-700 p-2 rounded text-xs font-mono text-emerald-300 text-left hover:bg-slate-850 transition flex justify-between items-center"
             >
-              <span>▶ Observation vs Model</span>
+              <span>â–¶ Observation vs Model</span>
             </button>
           )}
           
@@ -328,3 +308,4 @@ export const App: React.FC = () => {
     </div>
   );
 };
+

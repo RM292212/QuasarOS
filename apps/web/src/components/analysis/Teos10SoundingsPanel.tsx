@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 
 export interface Teos10SoundingsPanelProps {
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
   timeIndex?: number;
 }
 
 export const Teos10SoundingsPanel: React.FC<Teos10SoundingsPanelProps> = ({
-  latitude,
-  longitude,
+  latitude = 6.0,
+  longitude = 64.0,
   timeIndex = 0,
 }) => {
   const [data, setData] = useState<any>(null);
@@ -90,7 +90,7 @@ export const Teos10SoundingsPanel: React.FC<Teos10SoundingsPanelProps> = ({
                   <tr key={idx} className="border-b border-slate-800/50 hover:bg-slate-800/30">
                     <td className="p-1.5 font-mono text-cyan-300">{s.depth_m.toFixed(1)}</td>
                     <td className="p-1.5 font-mono text-slate-300">{s.absolute_salinity_g_kg.toFixed(3)}</td>
-                    <td className="p-1.5 font-mono text-slate-300">{s.conservative_temperature_C.toFixed(3)}</td>
+                    <td className="p-1.5 font-mono text-slate-300">{s.conservative_temp_c ? s.conservative_temp_c.toFixed(3) : (s.conservative_temperature_C?.toFixed(3) ?? '-')}</td>
                     <td className="p-1.5 font-mono text-slate-300">{s.in_situ_density_kg_m3.toFixed(2)}</td>
                     <td className="p-1.5 font-mono text-emerald-300">{s.sound_speed_m_s.toFixed(2)}</td>
                   </tr>
