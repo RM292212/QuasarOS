@@ -1,0 +1,59 @@
+{
+  "$defs": {
+    "AccessRestriction": {
+      "description": "Data access restriction classification.",
+      "enum": [
+        "open_unrestricted",
+        "attribution_required",
+        "non_commercial",
+        "restricted_registration_required",
+        "institutional_only"
+      ],
+      "title": "AccessRestriction",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative licensing terms and terms-of-use contract.",
+  "properties": {
+    "access_restriction": {
+      "$ref": "#/$defs/AccessRestriction",
+      "default": "attribution_required",
+      "description": "Access restriction and registration policy."
+    },
+    "attribution_statement": {
+      "description": "Mandatory user-facing attribution statement that must be rendered in UI.",
+      "title": "Attribution Statement",
+      "type": "string"
+    },
+    "commercial_use_allowed": {
+      "default": true,
+      "description": "Whether commercial exploitation of the data is permissible.",
+      "title": "Commercial Use Allowed",
+      "type": "boolean"
+    },
+    "licence_id": {
+      "description": "Standard license identifier (e.g. 'CC-BY-4.0', 'Copernicus-Marine-Data-License', 'GEBCO-2020-Terms').",
+      "title": "Licence Id",
+      "type": "string"
+    },
+    "licence_name": {
+      "description": "Full human-readable license name.",
+      "title": "Licence Name",
+      "type": "string"
+    },
+    "terms_url": {
+      "description": "Official URL specifying complete legal license terms.",
+      "title": "Terms Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "licence_id",
+    "licence_name",
+    "terms_url",
+    "attribution_statement"
+  ],
+  "title": "LicenceContract",
+  "type": "object"
+}

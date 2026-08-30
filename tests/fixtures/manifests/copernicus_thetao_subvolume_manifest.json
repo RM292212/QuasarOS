@@ -1,0 +1,84 @@
+{
+  "fixture_id": "copernicus_thetao_subvolume",
+  "fixture_filename": "copernicus_thetao_subvolume.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "PRIMARY_SCALAR_VOLUME",
+  "source_asset": {
+    "relative_path": "data/raw/copernicus/physical/copernicus_phy_thetao_20250420_20250426.nc",
+    "sha256": "6b4ce3f47a77add27541ed836870dba9bcd6a2c34d258e6787a542e660627281",
+    "byte_size": 15263241,
+    "provider": "Copernicus Marine Service (E.U. Copernicus Programme / Mercator Ocean)",
+    "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+    "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+    "licence": "E.U. Copernicus Marine Service Free Open Licence (CC-BY-4.0 equivalent)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture primary_scalar_volume",
+    "slicing_bounding_boxes": {
+      "time": {
+        "index_slice": [
+          0,
+          2
+        ],
+        "values": [
+          660072.0,
+          660096.0
+        ],
+        "units": "hours since 1950-01-01 00:00:00"
+      },
+      "depth": {
+        "index_slice": [
+          0,
+          5
+        ],
+        "values": [
+          0.494025,
+          5.078224
+        ],
+        "units": "m"
+      },
+      "latitude": {
+        "index_slice": [
+          96,
+          121
+        ],
+        "bounds": [
+          5.0,
+          7.0
+        ],
+        "units": "degrees_north",
+        "count": 25
+      },
+      "longitude": {
+        "index_slice": [
+          0,
+          25
+        ],
+        "bounds": [
+          80.0,
+          82.0
+        ],
+        "units": "degrees_east",
+        "count": 25
+      }
+    },
+    "variables": [
+      "time",
+      "depth",
+      "latitude",
+      "longitude",
+      "thetao"
+    ],
+    "target_shape": [
+      2,
+      5,
+      25,
+      25
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "418255b0b3df1e40c37ded9b53c5338f2f3a58cd838a8c075db225c259c3f8a9",
+    "byte_size": 50387,
+    "created_at_utc": "2026-08-30T09:35:39.871123+00:00"
+  }
+}

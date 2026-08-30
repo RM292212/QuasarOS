@@ -1,0 +1,256 @@
+{
+  "$defs": {
+    "ROMSSCoordinateParameters": {
+      "description": "Theoretical formulation parameters for ROMS terrain-following s-coordinates.\nSupports Vtransform 1 (Song & Haidvogel 1994) and Vtransform 2 (Shchepetkin & McWilliams 2005).",
+      "properties": {
+        "Cs_r": {
+          "description": "Non-dimensional stretching curves C(s) at RHO points (in [-1.0, 0.0]).",
+          "items": {
+            "type": "number"
+          },
+          "title": "Cs R",
+          "type": "array"
+        },
+        "Cs_w": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stretching curves C(s) at W points (in [-1.0, 0.0]).",
+          "title": "Cs W"
+        },
+        "N": {
+          "description": "Number of vertical terrain-following s-levels.",
+          "exclusiveMinimum": 0,
+          "title": "N",
+          "type": "integer"
+        },
+        "Vstretching": {
+          "default": 1,
+          "description": "Vertical stretching function (1: Song/Haidvogel, 2: A. Shchepetkin 2005, 4: UCLA, 5: Souza).",
+          "enum": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "title": "Vstretching",
+          "type": "integer"
+        },
+        "Vtransform": {
+          "default": 1,
+          "description": "Vertical transformation equation (1: Song & Haidvogel 1994; 2: Shchepetkin & McWilliams 2005).",
+          "enum": [
+            1,
+            2
+          ],
+          "title": "Vtransform",
+          "type": "integer"
+        },
+        "hc": {
+          "description": "Critical depth / thermocline parameter in meters (hc > 0.0).",
+          "exclusiveMinimum": 0.0,
+          "title": "Hc",
+          "type": "number"
+        },
+        "s_rho": {
+          "description": "Fractional non-dimensional vertical coordinates at RHO points (in [-1.0, 0.0]).",
+          "items": {
+            "type": "number"
+          },
+          "title": "S Rho",
+          "type": "array"
+        },
+        "s_w": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fractional vertical coordinates at W points (in [-1.0, 0.0]).",
+          "title": "S W"
+        },
+        "theta_b": {
+          "description": "Bottom stretching parameter (theta_b >= 0.0).",
+          "minimum": 0.0,
+          "title": "Theta B",
+          "type": "number"
+        },
+        "theta_s": {
+          "description": "Surface stretching parameter (theta_s >= 0.0).",
+          "minimum": 0.0,
+          "title": "Theta S",
+          "type": "number"
+        }
+      },
+      "required": [
+        "theta_s",
+        "theta_b",
+        "hc",
+        "N",
+        "s_rho",
+        "Cs_r"
+      ],
+      "title": "ROMSSCoordinateParameters",
+      "type": "object"
+    },
+    "VerticalCoordinateType": {
+      "description": "Classification of vertical coordinate system.",
+      "enum": [
+        "depth",
+        "pressure",
+        "height",
+        "z_level",
+        "sigma",
+        "hybrid_sigma",
+        "terrain_following_s_coordinate",
+        "surface_only"
+      ],
+      "title": "VerticalCoordinateType",
+      "type": "string"
+    },
+    "VerticalDatum": {
+      "description": "Reference vertical datum.",
+      "enum": [
+        "mean_sea_level",
+        "sea_surface",
+        "geoid",
+        "wgs84_ellipsoid"
+      ],
+      "title": "VerticalDatum",
+      "type": "string"
+    },
+    "VerticalDirection": {
+      "description": "Direction of positive vertical coordinate.",
+      "enum": [
+        "down",
+        "up"
+      ],
+      "title": "VerticalDirection",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative contract specifying vertical coordinate definition.",
+  "properties": {
+    "coordinate_type": {
+      "$ref": "#/$defs/VerticalCoordinateType",
+      "description": "Type of vertical coordinate."
+    },
+    "datum": {
+      "$ref": "#/$defs/VerticalDatum",
+      "default": "mean_sea_level",
+      "description": "Reference physical datum."
+    },
+    "is_space_varying": {
+      "default": false,
+      "description": "Whether vertical coordinate physical positions vary horizontally (e.g. s-coords with bathymetry).",
+      "title": "Is Space Varying",
+      "type": "boolean"
+    },
+    "is_time_varying": {
+      "default": false,
+      "description": "Whether vertical coordinate physical positions shift with time (e.g. s-coords with sea surface height).",
+      "title": "Is Time Varying",
+      "type": "boolean"
+    },
+    "is_uniform": {
+      "default": false,
+      "description": "Whether geometric spacing between levels is uniform.",
+      "title": "Is Uniform",
+      "type": "boolean"
+    },
+    "level_count": {
+      "description": "Number of vertical levels.",
+      "exclusiveMinimum": 0,
+      "title": "Level Count",
+      "type": "integer"
+    },
+    "levels": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Discrete nominal coordinate levels (e.g. standard 31 z-levels).",
+      "title": "Levels"
+    },
+    "max_depth_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum geometric depth in meters.",
+      "title": "Max Depth M"
+    },
+    "min_depth_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Minimum geometric depth in meters.",
+      "title": "Min Depth M"
+    },
+    "positive_direction": {
+      "$ref": "#/$defs/VerticalDirection",
+      "default": "down",
+      "description": "Direction of increasing coordinate value."
+    },
+    "roms_params": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ROMSSCoordinateParameters"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ROMS s-coordinate formulation parameters if coordinate_type is terrain_following_s_coordinate."
+    },
+    "units": {
+      "default": "m",
+      "description": "Vertical unit string ('m', 'dbar', '1', 'level').",
+      "title": "Units",
+      "type": "string"
+    }
+  },
+  "required": [
+    "coordinate_type",
+    "level_count"
+  ],
+  "title": "VerticalCoordinateContract",
+  "type": "object"
+}

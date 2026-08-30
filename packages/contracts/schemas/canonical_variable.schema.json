@@ -1,0 +1,497 @@
+{
+  "$defs": {
+    "DisplayRange": {
+      "description": "Default visual range and colormap configuration for rendering.",
+      "properties": {
+        "colormap": {
+          "default": "turbo",
+          "description": "Scientific colormap name ('turbo', 'viridis', 'cmocean_thermal', 'cmocean_haline', 'cmocean_speed').",
+          "title": "Colormap",
+          "type": "string"
+        },
+        "max_value": {
+          "description": "Upper bound of default transfer function or colorbar.",
+          "title": "Max Value",
+          "type": "number"
+        },
+        "min_value": {
+          "description": "Lower bound of default transfer function or colorbar.",
+          "title": "Min Value",
+          "type": "number"
+        },
+        "scale": {
+          "default": "linear",
+          "description": "Color scale transfer function shape.",
+          "enum": [
+            "linear",
+            "logarithmic",
+            "diverging"
+          ],
+          "title": "Scale",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Display unit label rendered in UI colorbar.",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "min_value",
+        "max_value",
+        "unit"
+      ],
+      "title": "DisplayRange",
+      "type": "object"
+    },
+    "ErrorCategory": {
+      "description": "Categorical prefix conforming to ErrorModel.md.",
+      "enum": [
+        "AUTH",
+        "VALIDATION",
+        "CATALOG",
+        "SOURCE",
+        "DATA",
+        "RENDER",
+        "ANALYSIS",
+        "STORAGE",
+        "JOB",
+        "RATE",
+        "INTERNAL"
+      ],
+      "title": "ErrorCategory",
+      "type": "string"
+    },
+    "ErrorSeverity": {
+      "description": "Severity classification.",
+      "enum": [
+        "ERROR",
+        "WARNING",
+        "INFO"
+      ],
+      "title": "ErrorSeverity",
+      "type": "string"
+    },
+    "MissingValueContract": {
+      "description": "Authoritative missing value and valid range specification.\n\nSupports:\n- Provider-declared fill values (int, float, NaN, zero sentinel).\n- Legacy missing_value attribute with structured difference diagnostics.\n- Decoupled missing-value checking on raw stored vs decoded physical values.\n- Explicit type representation checks against stored data types.",
+      "properties": {
+        "diagnostics": {
+          "description": "Scientific diagnostics and warnings regarding fill value definitions.",
+          "items": {
+            "$ref": "#/$defs/ScientificDiagnostic"
+          },
+          "title": "Diagnostics",
+          "type": "array"
+        },
+        "fill_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "CF _FillValue (e.g. -32767.0, -9999.0, 9.96921e+36, 0.0, NaN).",
+          "title": "Fill Value"
+        },
+        "has_nan": {
+          "default": true,
+          "description": "Whether IEEE 754 NaN represents missing data.",
+          "title": "Has Nan",
+          "type": "boolean"
+        },
+        "is_fill_value_raw": {
+          "default": true,
+          "description": "Whether fill_value is compared against raw packed integers before scale/offset decoding.",
+          "title": "Is Fill Value Raw",
+          "type": "boolean"
+        },
+        "missing_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "CF missing_value legacy attribute.",
+          "title": "Missing Value"
+        },
+        "stored_data_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Declared raw storage datatype ('int8', 'int16', 'int32', 'uint16', 'float32', 'float64').",
+          "title": "Stored Data Type"
+        },
+        "valid_max": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Maximum physical threshold above which data are invalid.",
+          "title": "Valid Max"
+        },
+        "valid_min": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimum physical threshold below which data are invalid.",
+          "title": "Valid Min"
+        }
+      },
+      "title": "MissingValueContract",
+      "type": "object"
+    },
+    "PackingMetadata": {
+      "description": "CF-compliant scale_factor and add_offset packing specification.\nFormula: unpacked_value = (packed_value * scale_factor) + add_offset",
+      "properties": {
+        "add_offset": {
+          "default": 0.0,
+          "description": "Linear add offset translation.",
+          "title": "Add Offset",
+          "type": "number"
+        },
+        "packed_data_type": {
+          "default": "int16",
+          "description": "Packed raw integer data type ('int16', 'int32', 'int8', 'uint16', etc.).",
+          "title": "Packed Data Type",
+          "type": "string"
+        },
+        "scale_factor": {
+          "default": 1.0,
+          "description": "Linear scale factor multiplier.",
+          "title": "Scale Factor",
+          "type": "number"
+        },
+        "unpacked_data_type": {
+          "default": "float32",
+          "description": "Unpacked floating point data type ('float32', 'float64').",
+          "title": "Unpacked Data Type",
+          "type": "string"
+        }
+      },
+      "title": "PackingMetadata",
+      "type": "object"
+    },
+    "PhysicalQuantity": {
+      "description": "Authoritative physical quantity taxonomy.",
+      "enum": [
+        "temperature",
+        "practical_salinity",
+        "absolute_salinity",
+        "velocity_component",
+        "velocity_vector",
+        "speed",
+        "surface_elevation",
+        "wave_height",
+        "wave_direction",
+        "wave_period",
+        "bathymetry_elevation",
+        "dissolved_oxygen",
+        "chlorophyll_concentration",
+        "nitrate",
+        "phosphate",
+        "silicate",
+        "density",
+        "sound_speed",
+        "mixed_layer_depth",
+        "quality_flag",
+        "dimensionless"
+      ],
+      "title": "PhysicalQuantity",
+      "type": "string"
+    },
+    "QCScheme": {
+      "description": "Quality control standard taxonomy.",
+      "enum": [
+        "wmo_argo",
+        "ioos_qartod",
+        "gebco_tid",
+        "custom"
+      ],
+      "title": "QCScheme",
+      "type": "string"
+    },
+    "ScientificDiagnostic": {
+      "description": "Structured diagnostic message for validation reports and API error responses.",
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/ErrorCategory",
+          "description": "Functional category."
+        },
+        "code": {
+          "description": "Machine-readable error or warning code.",
+          "title": "Code",
+          "type": "string"
+        },
+        "dataset_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Dataset identifier related to this diagnostic.",
+          "title": "Dataset Id"
+        },
+        "details": {
+          "additionalProperties": true,
+          "description": "Safe structured context attributes.",
+          "title": "Details",
+          "type": "object"
+        },
+        "message": {
+          "description": "Human-readable explanation safe for UI display.",
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/ErrorSeverity",
+          "default": "ERROR",
+          "description": "Severity level."
+        },
+        "suggested_action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actionable suggestion for operator or researcher.",
+          "title": "Suggested Action"
+        },
+        "variable_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Variable identifier related to this diagnostic.",
+          "title": "Variable Id"
+        }
+      },
+      "required": [
+        "code",
+        "category",
+        "message"
+      ],
+      "title": "ScientificDiagnostic",
+      "type": "object"
+    },
+    "Topology": {
+      "description": "Geometric topology of the variable array.",
+      "enum": [
+        "volume_scalar",
+        "volume_vector",
+        "surface_scalar",
+        "surface_vector",
+        "terrain",
+        "profile",
+        "trajectory",
+        "point_timeseries",
+        "mesh",
+        "mask",
+        "uncertainty"
+      ],
+      "title": "Topology",
+      "type": "string"
+    },
+    "VectorConvention": {
+      "description": "Directional convention for vector fields.",
+      "enum": [
+        "oceanographic_to",
+        "meteorological_from",
+        "none"
+      ],
+      "title": "VectorConvention",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative scientific variable contract.",
+  "properties": {
+    "canonical_name": {
+      "description": "Standardized name across all providers.",
+      "title": "Canonical Name",
+      "type": "string"
+    },
+    "canonical_units": {
+      "description": "Standard canonical unit (e.g. 'degree_Celsius', 'm s-1', 'dbar', '1e-3').",
+      "title": "Canonical Units",
+      "type": "string"
+    },
+    "data_type": {
+      "default": "float32",
+      "description": "Canonical storage floating point precision ('float32', 'float64', 'int16').",
+      "title": "Data Type",
+      "type": "string"
+    },
+    "dimensions": {
+      "description": "Ordered list of dimension names (e.g. ['time', 'depth', 'latitude', 'longitude']).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Dimensions",
+      "type": "array"
+    },
+    "display_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DisplayRange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Recommended default visual color mapping."
+    },
+    "is_vector": {
+      "default": false,
+      "description": "Whether this variable forms part of a multi-component vector field.",
+      "title": "Is Vector",
+      "type": "boolean"
+    },
+    "long_name": {
+      "description": "Human-readable descriptive title.",
+      "title": "Long Name",
+      "type": "string"
+    },
+    "missing_value_contract": {
+      "$ref": "#/$defs/MissingValueContract",
+      "description": "Missing and fill value specifications."
+    },
+    "packing": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PackingMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Scale factor and add offset packing metadata if packed in raw source."
+    },
+    "physical_quantity": {
+      "$ref": "#/$defs/PhysicalQuantity",
+      "description": "Physical quantity classification."
+    },
+    "qc_scheme": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/QCScheme"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Quality control standard associated with this variable."
+    },
+    "reference_north": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "geographic_true_north",
+      "description": "Reference North datum for directional angles.",
+      "title": "Reference North"
+    },
+    "source_name": {
+      "description": "Original variable name in source file (e.g. 'thetao', 'water_temp', 'so', 'VHM0').",
+      "title": "Source Name",
+      "type": "string"
+    },
+    "source_units": {
+      "description": "Original unit string recorded in raw source metadata.",
+      "title": "Source Units",
+      "type": "string"
+    },
+    "standard_name": {
+      "description": "CF standard name (e.g. 'sea_water_potential_temperature', 'sea_surface_wave_significant_height').",
+      "title": "Standard Name",
+      "type": "string"
+    },
+    "topology": {
+      "$ref": "#/$defs/Topology",
+      "description": "Geometric rendering topology."
+    },
+    "variable_id": {
+      "description": "Canonical unique variable identifier (e.g. 'sea_water_potential_temperature').",
+      "title": "Variable Id",
+      "type": "string"
+    },
+    "vector_components": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "List of component variable IDs if this is a composite vector.",
+      "title": "Vector Components"
+    },
+    "vector_convention": {
+      "$ref": "#/$defs/VectorConvention",
+      "default": "none",
+      "description": "Direction convention if directional/vector variable."
+    }
+  },
+  "required": [
+    "variable_id",
+    "canonical_name",
+    "source_name",
+    "standard_name",
+    "long_name",
+    "physical_quantity",
+    "canonical_units",
+    "source_units",
+    "topology",
+    "dimensions"
+  ],
+  "title": "CanonicalVariableContract",
+  "type": "object"
+}

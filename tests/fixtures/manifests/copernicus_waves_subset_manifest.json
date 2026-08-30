@@ -1,0 +1,73 @@
+{
+  "fixture_id": "copernicus_waves_subset",
+  "fixture_filename": "copernicus_waves_subset.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "WAVE_GRID",
+  "source_asset": {
+    "relative_path": "data/raw/copernicus/waves/copernicus_waves_20250420_20250426.nc",
+    "sha256": "54794ca103c3f62d94600d8bf683a35cae2c98642352b921e70c8d5ea58f7bc2",
+    "byte_size": 262416504,
+    "provider": "Copernicus Marine Service (Meteo-France)",
+    "product_id": "GLOBAL_ANALYSISFORECAST_WAV_001_027",
+    "dataset_id": "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i",
+    "licence": "E.U. Copernicus Marine Service Free Open Licence (CC-BY-4.0 equivalent)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture wave_grid",
+    "slicing_bounding_boxes": {
+      "time": {
+        "index_slice": [
+          0,
+          4
+        ],
+        "units": "hours since 1950-01-01 00:00:00",
+        "count": 4
+      },
+      "latitude": {
+        "index_slice": [
+          0,
+          20
+        ],
+        "bounds": [
+          0.0,
+          1.58333333
+        ],
+        "units": "degrees_north",
+        "count": 20
+      },
+      "longitude": {
+        "index_slice": [
+          0,
+          20
+        ],
+        "bounds": [
+          40.0,
+          41.58333333
+        ],
+        "units": "degrees_east",
+        "count": 20
+      }
+    },
+    "variables": [
+      "time",
+      "latitude",
+      "longitude",
+      "VHM0",
+      "VMDR",
+      "VTM02",
+      "VTPK",
+      "VPED",
+      "VHM0_WW"
+    ],
+    "target_shape": [
+      4,
+      20,
+      20
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "ff3d5067a3c5b7441c46b0507772921be0ec36d4670a931a756a813f70d669f4",
+    "byte_size": 58662,
+    "created_at_utc": "2026-08-30T09:35:40.468137+00:00"
+  }
+}

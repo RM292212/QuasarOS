@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "DiveSegment": {
+      "description": "Metadata for a single glider dive segment (one descending limb or ascending limb of a yo-yo pattern).\nLinks continuous trajectory time-series to discrete profile casts.",
+      "properties": {
+        "associated_profile_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Identifier of the synthesized ProfileCastContract derived from this segment.",
+          "title": "Associated Profile Id"
+        },
+        "direction": {
+          "$ref": "#/$defs/ProfileDirection",
+          "description": "Descending ('D' for dive) or Ascending ('A' for climb)."
+        },
+        "dive_id": {
+          "description": "Unique identifier for this dive segment (e.g. 'ru29_dive_012_down').",
+          "title": "Dive Id",
+          "type": "string"
+        },
+        "dive_number": {
+          "description": "Glider dive cycle index.",
+          "minimum": 0,
+          "title": "Dive Number",
+          "type": "integer"
+        },
+        "end_latitude": {
+          "description": "End latitude.",
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "End Latitude",
+          "type": "number"
+        },
+        "end_longitude": {
+          "description": "End longitude.",
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "End Longitude",
+          "type": "number"
+        },
+        "end_time_utc": {
+          "description": "End timestamp of the dive limb.",
+          "title": "End Time Utc",
+          "type": "string"
+        },
+        "max_depth_m": {
+          "description": "Maximum depth reached during this segment in meters.",
+          "minimum": 0.0,
+          "title": "Max Depth M",
+          "type": "number"
+        },
+        "sample_count": {
+          "description": "Number of sample points in this segment.",
+          "minimum": 1,
+          "title": "Sample Count",
+          "type": "integer"
+        },
+        "start_latitude": {
+          "description": "Start latitude.",
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "title": "Start Latitude",
+          "type": "number"
+        },
+        "start_longitude": {
+          "description": "Start longitude.",
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "title": "Start Longitude",
+          "type": "number"
+        },
+        "start_time_utc": {
+          "description": "Start timestamp of the dive limb.",
+          "title": "Start Time Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dive_id",
+        "dive_number",
+        "direction",
+        "start_time_utc",
+        "end_time_utc",
+        "start_latitude",
+        "start_longitude",
+        "end_latitude",
+        "end_longitude",
+        "max_depth_m",
+        "sample_count"
+      ],
+      "title": "DiveSegment",
+      "type": "object"
+    },
+    "PlatformType": {
+      "description": "Taxonomy of ocean observation platform types.",
+      "enum": [
+        "argo_float",
+        "bgc_argo_float",
+        "underwater_glider",
+        "moored_buoy",
+        "drifting_buoy",
+        "research_vessel",
+        "coastal_station",
+        "autonomous_surface_vehicle",
+        "animal_borne_sensor",
+        "submersible",
+        "custom"
+      ],
+      "title": "PlatformType",
+      "type": "string"
+    },
+    "ProfileDirection": {
+      "description": "Direction of profile cast sampling.",
+      "enum": [
+        "A",
+        "D",
+        "S"
+      ],
+      "title": "ProfileDirection",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative scientific contract for an in-situ trajectory mission (e.g. RU29 glider transect).\nIncludes platform metadata, spatio-temporal mission bounds, waypoints, and discrete dive segmentation.",
+  "properties": {
+    "dive_segments": {
+      "description": "List of discrete dive / climb segments comprising the yo-yo mission.",
+      "items": {
+        "$ref": "#/$defs/DiveSegment"
+      },
+      "title": "Dive Segments",
+      "type": "array"
+    },
+    "end_time_utc": {
+      "description": "ISO 8601 UTC end of trajectory track.",
+      "title": "End Time Utc",
+      "type": "string"
+    },
+    "max_latitude": {
+      "description": "Northernmost latitude bound.",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Max Latitude",
+      "type": "number"
+    },
+    "max_longitude": {
+      "description": "Easternmost longitude bound.",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Max Longitude",
+      "type": "number"
+    },
+    "min_latitude": {
+      "description": "Southernmost latitude bound.",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Min Latitude",
+      "type": "number"
+    },
+    "min_longitude": {
+      "description": "Westernmost longitude bound.",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Min Longitude",
+      "type": "number"
+    },
+    "mission_name": {
+      "description": "Name of the mission / scientific campaign.",
+      "title": "Mission Name",
+      "type": "string"
+    },
+    "platform_id": {
+      "description": "Platform identifier (e.g. 'glider_ru29').",
+      "title": "Platform Id",
+      "type": "string"
+    },
+    "platform_type": {
+      "$ref": "#/$defs/PlatformType",
+      "default": "underwater_glider",
+      "description": "Platform type classification."
+    },
+    "start_time_utc": {
+      "description": "ISO 8601 UTC start of trajectory track.",
+      "title": "Start Time Utc",
+      "type": "string"
+    },
+    "total_waypoints_count": {
+      "description": "Total count of trajectory sample points.",
+      "minimum": 0,
+      "title": "Total Waypoints Count",
+      "type": "integer"
+    },
+    "trajectory_id": {
+      "description": "Canonical unique identifier for the trajectory (e.g. 'glider_ru29_mission_2025').",
+      "title": "Trajectory Id",
+      "type": "string"
+    },
+    "variables_measured": {
+      "description": "List of measured canonical variables along the track.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Variables Measured",
+      "type": "array"
+    }
+  },
+  "required": [
+    "trajectory_id",
+    "platform_id",
+    "mission_name",
+    "start_time_utc",
+    "end_time_utc",
+    "min_latitude",
+    "max_latitude",
+    "min_longitude",
+    "max_longitude",
+    "total_waypoints_count",
+    "variables_measured"
+  ],
+  "title": "TrajectoryContract",
+  "type": "object"
+}

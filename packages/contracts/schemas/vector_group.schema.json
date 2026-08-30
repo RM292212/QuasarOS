@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "RotationMetadata": {
+      "description": "Metadata required for converting between grid-relative and true Earth-relative vector components.\nFormula:\n  u_earth = u_grid * cos(angle) - v_grid * sin(angle)\n  v_earth = u_grid * sin(angle) + v_grid * cos(angle)",
+      "properties": {
+        "angle_units": {
+          "default": "radians",
+          "description": "Units of the rotation angle array.",
+          "enum": [
+            "radians",
+            "degrees"
+          ],
+          "title": "Angle Units",
+          "type": "string"
+        },
+        "angle_variable_name": {
+          "default": "angle",
+          "description": "Dataset variable name containing grid rotation angle in radians between xi-axis and true East.",
+          "title": "Angle Variable Name",
+          "type": "string"
+        },
+        "source_reference_frame": {
+          "$ref": "#/$defs/VectorReferenceFrame",
+          "default": "grid_relative",
+          "description": "Original frame in the source dataset."
+        },
+        "target_reference_frame": {
+          "$ref": "#/$defs/VectorReferenceFrame",
+          "default": "earth_relative",
+          "description": "Target reference frame for scientific visualization and analysis."
+        }
+      },
+      "title": "RotationMetadata",
+      "type": "object"
+    },
+    "VectorConvention": {
+      "description": "Directional convention for vector fields.",
+      "enum": [
+        "oceanographic_to",
+        "meteorological_from",
+        "none"
+      ],
+      "title": "VectorConvention",
+      "type": "string"
+    },
+    "VectorGroupType": {
+      "description": "Taxonomy of scientific vector fields.",
+      "enum": [
+        "ocean_velocity_3d",
+        "ocean_surface_velocity_2d",
+        "wind_stress_2d",
+        "stokes_drift_3d",
+        "stokes_drift_2d",
+        "wave_propagation_vector"
+      ],
+      "title": "VectorGroupType",
+      "type": "string"
+    },
+    "VectorReferenceFrame": {
+      "description": "Reference coordinate frame for vector components.",
+      "enum": [
+        "earth_relative",
+        "grid_relative",
+        "instrument_relative"
+      ],
+      "title": "VectorReferenceFrame",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative contract defining a grouped physical vector field and its components.",
+  "properties": {
+    "direction_var": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Precomputed direction variable name in degrees.",
+      "title": "Direction Var"
+    },
+    "directional_convention": {
+      "$ref": "#/$defs/VectorConvention",
+      "default": "oceanographic_to",
+      "description": "Directional convention: 'oceanographic_to' (currents) or 'meteorological_from' (waves/wind)."
+    },
+    "group_id": {
+      "description": "Unique identifier for the vector group (e.g. 'ocean_current_vector').",
+      "title": "Group Id",
+      "type": "string"
+    },
+    "group_type": {
+      "$ref": "#/$defs/VectorGroupType",
+      "description": "Taxonomy classification of the vector field."
+    },
+    "magnitude_var": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Precomputed scalar magnitude / speed variable name (e.g. 'speed').",
+      "title": "Magnitude Var"
+    },
+    "reference_frame": {
+      "$ref": "#/$defs/VectorReferenceFrame",
+      "default": "earth_relative",
+      "description": "Reference frame convention of the stored components."
+    },
+    "rotation_metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RotationMetadata"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Rotation parameters if components require grid-to-earth transformation."
+    },
+    "u_component_var": {
+      "description": "Zonal / along-xi component variable name (e.g. 'u', 'uo', 'u_eastward').",
+      "title": "U Component Var",
+      "type": "string"
+    },
+    "v_component_var": {
+      "description": "Meridional / along-eta component variable name (e.g. 'v', 'vo', 'v_northward').",
+      "title": "V Component Var",
+      "type": "string"
+    },
+    "w_component_var": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Vertical component variable name (e.g. 'w', 'wo') if 3D vector.",
+      "title": "W Component Var"
+    }
+  },
+  "required": [
+    "group_id",
+    "group_type",
+    "u_component_var",
+    "v_component_var"
+  ],
+  "title": "VectorGroupContract",
+  "type": "object"
+}

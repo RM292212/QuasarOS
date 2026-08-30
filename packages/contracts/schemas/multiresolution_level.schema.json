@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "AggregationMethod": {
+      "description": "Statistical aggregation applied to construct multiresolution LOD levels.",
+      "enum": [
+        "average_2x2x2",
+        "subsample_stride_2",
+        "area_weighted_average",
+        "max_magnitude",
+        "median"
+      ],
+      "title": "AggregationMethod",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract defining a specific Level of Detail (LOD) in the multiresolution hierarchy.\nLOD 0 is the finest native grid resolution.",
+  "properties": {
+    "aggregation_method": {
+      "$ref": "#/$defs/AggregationMethod",
+      "default": "average_2x2x2",
+      "description": "Method used to compute coarser LOD levels from finer levels."
+    },
+    "brick_grid_shape": {
+      "description": "[num_bricks_x, num_bricks_y, num_bricks_z] grid layout of bricks.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Brick Grid Shape",
+      "type": "array"
+    },
+    "brick_shape": {
+      "default": [
+        32,
+        32,
+        32
+      ],
+      "description": "[bx, by, bz] standard sub-volume brick dimensions.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Brick Shape",
+      "type": "array"
+    },
+    "grid_shape": {
+      "description": "[nx, ny, nz] spatial dimensions at this LOD.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Grid Shape",
+      "type": "array"
+    },
+    "lod_level": {
+      "description": "LOD index (0 = native/finest, higher indices = coarser resolutions).",
+      "minimum": 0,
+      "title": "Lod Level",
+      "type": "integer"
+    },
+    "sample_data_type": {
+      "default": "float32",
+      "description": "Data type of uncompressed voxels at this LOD.",
+      "title": "Sample Data Type",
+      "type": "string"
+    },
+    "total_brick_count": {
+      "description": "Total number of sub-volume bricks in this LOD.",
+      "exclusiveMinimum": 0,
+      "title": "Total Brick Count",
+      "type": "integer"
+    },
+    "voxel_resolution_x_deg": {
+      "description": "Effective spatial voxel resolution in longitude (degrees).",
+      "exclusiveMinimum": 0.0,
+      "title": "Voxel Resolution X Deg",
+      "type": "number"
+    },
+    "voxel_resolution_y_deg": {
+      "description": "Effective spatial voxel resolution in latitude (degrees).",
+      "exclusiveMinimum": 0.0,
+      "title": "Voxel Resolution Y Deg",
+      "type": "number"
+    }
+  },
+  "required": [
+    "lod_level",
+    "grid_shape",
+    "brick_grid_shape",
+    "total_brick_count",
+    "voxel_resolution_x_deg",
+    "voxel_resolution_y_deg"
+  ],
+  "title": "MultiresolutionLevelContract",
+  "type": "object"
+}

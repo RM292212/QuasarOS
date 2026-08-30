@@ -1,0 +1,43 @@
+{
+  "name": "@quasar/web",
+  "version": "1.0.0",
+  "description": "QuasarOS 3D OceanScope Scientific Web Application",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "node --test test/shell.test.ts test/controls.test.ts test/inspection.test.ts test/app_integration.test.ts test/observation_panel.test.ts"
+  },
+  "dependencies": {
+    "@quasar/client": "workspace:*",
+    "@quasar/runtime": "workspace:*",
+    "@quasar/renderer-webgpu": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@types/node": "^22.5.4",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tailwindcss": "^3.4.10",
+    "postcss": "^8.4.45",
+    "autoprefixer": "^10.4.20"
+  },
+  "keywords": [
+    "oceanography",
+    "scientific-visualization",
+    "webgpu",
+    "webgl2",
+    "react",
+    "quasar"
+  ],
+  "author": "QuasarOS Team",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@quasar/client",
+  "version": "1.0.0",
+  "description": "QuasarOS Typed Browser Catalog, Discovery, and Authoritative Query Client",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "oceanography",
+    "scientific-visualization",
+    "webgpu",
+    "webgl2",
+    "quasar"
+  ],
+  "author": "QuasarOS Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "fzstd": "^0.1.1"
+  }
+}

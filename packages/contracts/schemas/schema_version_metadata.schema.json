@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "ChangeClassification": {
+      "description": "Classification of changes between canonical schema versions.",
+      "enum": [
+        "PATCH",
+        "ADDITIVE",
+        "BREAKING"
+      ],
+      "title": "ChangeClassification",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Metadata tracking schema version and compatibility classification.",
+  "properties": {
+    "change_classification": {
+      "$ref": "#/$defs/ChangeClassification",
+      "default": "PATCH",
+      "description": "Change classification relative to preceding schema iteration."
+    },
+    "min_compatible_version": {
+      "default": "1.0.0",
+      "description": "Minimum client / reader schema version required to deserialize this contract.",
+      "title": "Min Compatible Version",
+      "type": "string"
+    },
+    "schema_target": {
+      "default": "QuasarOS Canonical Scientific Schema",
+      "description": "Target domain and scope of the schema.",
+      "title": "Schema Target",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "1.0.0",
+      "description": "Authoritative semantic version of this canonical contract.",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "title": "SchemaVersionMetadata",
+  "type": "object"
+}

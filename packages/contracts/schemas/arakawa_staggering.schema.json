@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "StaggeringType": {
+      "description": "Arakawa grid staggering convention.",
+      "enum": [
+        "none",
+        "arakawa_a",
+        "arakawa_b",
+        "arakawa_c_rho",
+        "arakawa_c_u",
+        "arakawa_c_v",
+        "arakawa_c_psi"
+      ],
+      "title": "StaggeringType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract defining Arakawa grid staggering geometry and spatial alignment of variables.",
+  "properties": {
+    "psi_grid_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "psi_grid",
+      "description": "Identifier for psi / vorticity corner points.",
+      "title": "Psi Grid Name"
+    },
+    "psi_offset_eta": {
+      "default": -0.5,
+      "description": "Offset in eta-index for psi corner relative to rho.",
+      "title": "Psi Offset Eta",
+      "type": "number"
+    },
+    "psi_offset_xi": {
+      "default": -0.5,
+      "description": "Offset in xi-index for psi corner relative to rho.",
+      "title": "Psi Offset Xi",
+      "type": "number"
+    },
+    "rho_grid_name": {
+      "default": "rho_grid",
+      "description": "Identifier for scalar / density / tracer center points.",
+      "title": "Rho Grid Name",
+      "type": "string"
+    },
+    "staggering_type": {
+      "$ref": "#/$defs/StaggeringType",
+      "description": "Arakawa staggering classification (A, B, C-rho, C-u, C-v, C-psi)."
+    },
+    "u_grid_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "u_grid",
+      "description": "Identifier for u-momentum western/eastern face points.",
+      "title": "U Grid Name"
+    },
+    "u_offset_eta": {
+      "default": 0.0,
+      "description": "Offset in eta-index for u relative to rho.",
+      "title": "U Offset Eta",
+      "type": "number"
+    },
+    "u_offset_xi": {
+      "default": -0.5,
+      "description": "Offset in xi-index for u relative to rho (-0.5 cell face).",
+      "title": "U Offset Xi",
+      "type": "number"
+    },
+    "v_grid_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "v_grid",
+      "description": "Identifier for v-momentum southern/northern face points.",
+      "title": "V Grid Name"
+    },
+    "v_offset_eta": {
+      "default": -0.5,
+      "description": "Offset in eta-index for v relative to rho (-0.5 cell face).",
+      "title": "V Offset Eta",
+      "type": "number"
+    },
+    "v_offset_xi": {
+      "default": 0.0,
+      "description": "Offset in xi-index for v relative to rho.",
+      "title": "V Offset Xi",
+      "type": "number"
+    }
+  },
+  "required": [
+    "staggering_type"
+  ],
+  "title": "ArakawaStaggeringContract",
+  "type": "object"
+}

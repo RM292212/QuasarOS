@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "CalendarType": {
+      "description": "CF-compliant calendar taxonomy.",
+      "enum": [
+        "gregorian",
+        "standard",
+        "proleptic_gregorian",
+        "julian",
+        "noleap",
+        "360_day",
+        "all_leap"
+      ],
+      "title": "CalendarType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative time and forecast semantics specification.",
+  "properties": {
+    "calendar": {
+      "$ref": "#/$defs/CalendarType",
+      "default": "gregorian",
+      "description": "Underlying CF calendar type."
+    },
+    "climatology_period": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Climatological baseline period description (e.g. '1991-2020 August decadal mean').",
+      "title": "Climatology Period"
+    },
+    "lead_time_seconds": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Forecast lead time offset tau in seconds (>= 0).",
+      "title": "Lead Time Seconds"
+    },
+    "observation_time_utc": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Exact in-situ measurement or satellite pass timestamp (ISO 8601 UTC).",
+      "title": "Observation Time Utc"
+    },
+    "reference_time_utc": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Forecast analysis / model cycle initialization time (ISO 8601 UTC e.g. '2026-08-30T00:00:00Z').",
+      "title": "Reference Time Utc"
+    },
+    "source_time_string": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Original provider time encoding string (e.g. 'hours since 1950-01-01 00:00:00').",
+      "title": "Source Time String"
+    },
+    "time_bounds_utc": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "[start_time_utc, end_time_utc] interval bounds for time-averaged data (e.g. daily mean).",
+      "title": "Time Bounds Utc"
+    },
+    "timestep_index": {
+      "default": 0,
+      "description": "Zero-based timestep index in the temporal sequence.",
+      "minimum": 0,
+      "title": "Timestep Index",
+      "type": "integer"
+    },
+    "valid_time_utc": {
+      "description": "Authoritative physical valid time of the field state (ISO 8601 UTC).",
+      "title": "Valid Time Utc",
+      "type": "string"
+    }
+  },
+  "required": [
+    "valid_time_utc"
+  ],
+  "title": "TimeSemanticsContract",
+  "type": "object"
+}

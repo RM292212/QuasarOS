@@ -1,0 +1,121 @@
+{
+  "$defs": {
+    "ArtifactClassification": {
+      "description": "Functional role of the artifact in the QuasarOS data architecture.",
+      "enum": [
+        "raw_source",
+        "intermediate_normalized",
+        "canonical_zarr",
+        "rendering_brick",
+        "observation_index",
+        "metadata_manifest"
+      ],
+      "title": "ArtifactClassification",
+      "type": "string"
+    },
+    "AssetFormat": {
+      "description": "Physical storage and serialization format of the asset.",
+      "enum": [
+        "netcdf4_classic",
+        "netcdf4_enhanced",
+        "netcdf3_64bit_offset",
+        "netcdf3_classic",
+        "parquet",
+        "json_manifest",
+        "zarr_v2",
+        "zarr_v3",
+        "geotiff",
+        "dhi_dfsu",
+        "dhi_dfs2"
+      ],
+      "title": "AssetFormat",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Immutable asset record tracking raw or processed file on disk / storage.",
+  "properties": {
+    "artifact_classification": {
+      "$ref": "#/$defs/ArtifactClassification",
+      "description": "Role of this asset in the scientific data plane."
+    },
+    "asset_id": {
+      "description": "Unique identifier for this specific physical file or object.",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "dataset_id": {
+      "description": "Reference to the parent dataset identity.",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "format": {
+      "$ref": "#/$defs/AssetFormat",
+      "description": "Underlying serialization format."
+    },
+    "is_immutable": {
+      "default": true,
+      "description": "Flag certifying asset immutability. Overwriting is strictly prohibited.",
+      "title": "Is Immutable",
+      "type": "boolean"
+    },
+    "local_relative_path": {
+      "description": "Repository-relative or storage-relative path to the asset.",
+      "title": "Local Relative Path",
+      "type": "string"
+    },
+    "media_type": {
+      "description": "Standard MIME type (e.g. 'application/x-netcdf4', 'application/json').",
+      "title": "Media Type",
+      "type": "string"
+    },
+    "provider_filename": {
+      "description": "Original authoritative filename as distributed by provider.",
+      "title": "Provider Filename",
+      "type": "string"
+    },
+    "retrieval_timestamp_utc": {
+      "description": "ISO 8601 UTC timestamp recording exact acquisition time.",
+      "title": "Retrieval Timestamp Utc",
+      "type": "string"
+    },
+    "sha256_checksum": {
+      "description": "Bitwise SHA-256 hexadecimal checksum (64 lowercase hex characters).",
+      "title": "Sha256 Checksum",
+      "type": "string"
+    },
+    "size_bytes": {
+      "description": "Exact bitwise file size in bytes (must be > 0).",
+      "exclusiveMinimum": 0,
+      "title": "Size Bytes",
+      "type": "integer"
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Direct upstream download or API endpoint URL where asset was fetched.",
+      "title": "Source Url"
+    }
+  },
+  "required": [
+    "asset_id",
+    "dataset_id",
+    "provider_filename",
+    "local_relative_path",
+    "media_type",
+    "format",
+    "artifact_classification",
+    "size_bytes",
+    "sha256_checksum",
+    "retrieval_timestamp_utc"
+  ],
+  "title": "ImmutableSourceAsset",
+  "type": "object"
+}

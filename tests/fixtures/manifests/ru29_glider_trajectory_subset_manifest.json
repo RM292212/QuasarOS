@@ -1,0 +1,58 @@
+{
+  "fixture_id": "ru29_glider_trajectory_subset",
+  "fixture_filename": "ru29_glider_trajectory_subset.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "TRAJECTORY_OBSERVATION",
+  "source_asset": {
+    "relative_path": "data/raw/gliders/ru29_20180812T0220_north_indian_ocean.nc",
+    "sha256": "3f762a21d8f34fedce0ce010c8d5f68d1a7b51cf38fb127a5121919ec420b060",
+    "byte_size": 9264720,
+    "provider": "IOOS / Rutgers University COOL / IMOS",
+    "glider_id": "ru29",
+    "mission": "Challenger Glider Mission (Indian Ocean Segment)",
+    "licence": "Creative Commons Attribution 4.0 (CC-BY-4.0) / IOOS DAC Open Data"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture trajectory_observation",
+    "slicing_bounding_boxes": {
+      "row": {
+        "index_slice": [
+          0,
+          50
+        ],
+        "count": 50,
+        "profile_ids": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    "variables": [
+      "trajectory",
+      "wmo_id",
+      "profile_id",
+      "time",
+      "latitude",
+      "longitude",
+      "depth",
+      "pressure",
+      "temperature",
+      "salinity",
+      "density",
+      "conductivity",
+      "temperature_qc",
+      "salinity_qc",
+      "pressure_qc"
+    ],
+    "target_shape": [
+      50
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "5d745d277fd9c714f06879152479a16150ed7d0cc8a77a4d65c99ffcc4a23cf0",
+    "byte_size": 110323,
+    "created_at_utc": "2026-08-30T09:35:40.709145+00:00"
+  }
+}

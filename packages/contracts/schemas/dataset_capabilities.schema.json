@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Explicit capability declarations for renderer routing and analytical tools.",
+  "properties": {
+    "can_collocate_with_profiles": {
+      "default": false,
+      "description": "Dataset supports automated 4D spatiotemporal collocation with in-situ profiles.",
+      "title": "Can Collocate With Profiles",
+      "type": "boolean"
+    },
+    "can_exact_query": {
+      "default": true,
+      "description": "Dataset supports exact quantitative cell inspection from canonical arrays.",
+      "title": "Can Exact Query",
+      "type": "boolean"
+    },
+    "can_extract_isosurface": {
+      "default": false,
+      "description": "Dataset supports 3D Marching Cubes / GPU isosurface polygonization.",
+      "title": "Can Extract Isosurface",
+      "type": "boolean"
+    },
+    "can_horizontal_slice": {
+      "default": false,
+      "description": "Dataset supports arbitrary horizontal depth plane slicing.",
+      "title": "Can Horizontal Slice",
+      "type": "boolean"
+    },
+    "can_render_bathymetry_terrain": {
+      "default": false,
+      "description": "Dataset contains digital bathymetry elevation eligible for 3D seafloor mesh clipping.",
+      "title": "Can Render Bathymetry Terrain",
+      "type": "boolean"
+    },
+    "can_render_observation_profiles": {
+      "default": false,
+      "description": "Dataset contains in-situ 1D vertical profile casts (Argo, CTD).",
+      "title": "Can Render Observation Profiles",
+      "type": "boolean"
+    },
+    "can_render_observation_trajectories": {
+      "default": false,
+      "description": "Dataset contains 4D moving observation paths (Glider yo-yo dives, drifters).",
+      "title": "Can Render Observation Trajectories",
+      "type": "boolean"
+    },
+    "can_render_streamlines": {
+      "default": false,
+      "description": "Dataset supports streamline or particle flow integration.",
+      "title": "Can Render Streamlines",
+      "type": "boolean"
+    },
+    "can_render_vector_glyphs": {
+      "default": false,
+      "description": "Dataset contains vector components (u, v, w) eligible for 2D/3D arrow glyph rendering.",
+      "title": "Can Render Vector Glyphs",
+      "type": "boolean"
+    },
+    "can_surface_render_2d": {
+      "default": false,
+      "description": "Dataset contains 2D surface raster eligible for georeferenced surface mapping.",
+      "title": "Can Surface Render 2D",
+      "type": "boolean"
+    },
+    "can_vertical_slice": {
+      "default": false,
+      "description": "Dataset supports arbitrary vertical transect slicing.",
+      "title": "Can Vertical Slice",
+      "type": "boolean"
+    },
+    "can_volume_render_3d": {
+      "default": false,
+      "description": "Dataset contains 3D/4D depth-resolved scalar field eligible for volume raymarching.",
+      "title": "Can Volume Render 3D",
+      "type": "boolean"
+    }
+  },
+  "title": "DatasetCapabilitiesContract",
+  "type": "object"
+}

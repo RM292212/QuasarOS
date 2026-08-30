@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "ErrorCategory": {
+      "description": "Categorical prefix conforming to ErrorModel.md.",
+      "enum": [
+        "AUTH",
+        "VALIDATION",
+        "CATALOG",
+        "SOURCE",
+        "DATA",
+        "RENDER",
+        "ANALYSIS",
+        "STORAGE",
+        "JOB",
+        "RATE",
+        "INTERNAL"
+      ],
+      "title": "ErrorCategory",
+      "type": "string"
+    },
+    "ErrorSeverity": {
+      "description": "Severity classification.",
+      "enum": [
+        "ERROR",
+        "WARNING",
+        "INFO"
+      ],
+      "title": "ErrorSeverity",
+      "type": "string"
+    },
+    "ScientificDiagnostic": {
+      "description": "Structured diagnostic message for validation reports and API error responses.",
+      "properties": {
+        "category": {
+          "$ref": "#/$defs/ErrorCategory",
+          "description": "Functional category."
+        },
+        "code": {
+          "description": "Machine-readable error or warning code.",
+          "title": "Code",
+          "type": "string"
+        },
+        "dataset_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Dataset identifier related to this diagnostic.",
+          "title": "Dataset Id"
+        },
+        "details": {
+          "additionalProperties": true,
+          "description": "Safe structured context attributes.",
+          "title": "Details",
+          "type": "object"
+        },
+        "message": {
+          "description": "Human-readable explanation safe for UI display.",
+          "title": "Message",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/ErrorSeverity",
+          "default": "ERROR",
+          "description": "Severity level."
+        },
+        "suggested_action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Actionable suggestion for operator or researcher.",
+          "title": "Suggested Action"
+        },
+        "variable_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Variable identifier related to this diagnostic.",
+          "title": "Variable Id"
+        }
+      },
+      "required": [
+        "code",
+        "category",
+        "message"
+      ],
+      "title": "ScientificDiagnostic",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative missing value and valid range specification.\n\nSupports:\n- Provider-declared fill values (int, float, NaN, zero sentinel).\n- Legacy missing_value attribute with structured difference diagnostics.\n- Decoupled missing-value checking on raw stored vs decoded physical values.\n- Explicit type representation checks against stored data types.",
+  "properties": {
+    "diagnostics": {
+      "description": "Scientific diagnostics and warnings regarding fill value definitions.",
+      "items": {
+        "$ref": "#/$defs/ScientificDiagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "fill_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "CF _FillValue (e.g. -32767.0, -9999.0, 9.96921e+36, 0.0, NaN).",
+      "title": "Fill Value"
+    },
+    "has_nan": {
+      "default": true,
+      "description": "Whether IEEE 754 NaN represents missing data.",
+      "title": "Has Nan",
+      "type": "boolean"
+    },
+    "is_fill_value_raw": {
+      "default": true,
+      "description": "Whether fill_value is compared against raw packed integers before scale/offset decoding.",
+      "title": "Is Fill Value Raw",
+      "type": "boolean"
+    },
+    "missing_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "CF missing_value legacy attribute.",
+      "title": "Missing Value"
+    },
+    "stored_data_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Declared raw storage datatype ('int8', 'int16', 'int32', 'uint16', 'float32', 'float64').",
+      "title": "Stored Data Type"
+    },
+    "valid_max": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum physical threshold above which data are invalid.",
+      "title": "Valid Max"
+    },
+    "valid_min": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Minimum physical threshold below which data are invalid.",
+      "title": "Valid Min"
+    }
+  },
+  "title": "MissingValueContract",
+  "type": "object"
+}

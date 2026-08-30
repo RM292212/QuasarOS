@@ -1,0 +1,123 @@
+{
+  "$defs": {
+    "OutOfRangeRenderingPolicy": {
+      "description": "Behavior when physical values fall outside transfer function bounds.",
+      "enum": [
+        "clamp_to_edge_color",
+        "discard_transparent",
+        "render_alert_color"
+      ],
+      "title": "OutOfRangeRenderingPolicy",
+      "type": "string"
+    },
+    "TransferFunctionControlPoint": {
+      "description": "A single normalized control point on a 1D color/opacity transfer function.",
+      "properties": {
+        "blue": {
+          "description": "Normalized Blue component [0.0, 1.0].",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Blue",
+          "type": "number"
+        },
+        "green": {
+          "description": "Normalized Green component [0.0, 1.0].",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Green",
+          "type": "number"
+        },
+        "normalized_position": {
+          "description": "Position along normalized domain [0.0, 1.0].",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Normalized Position",
+          "type": "number"
+        },
+        "opacity": {
+          "description": "Normalized Opacity/Alpha component [0.0, 1.0].",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Opacity",
+          "type": "number"
+        },
+        "red": {
+          "description": "Normalized Red component [0.0, 1.0].",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Red",
+          "type": "number"
+        }
+      },
+      "required": [
+        "normalized_position",
+        "red",
+        "green",
+        "blue",
+        "opacity"
+      ],
+      "title": "TransferFunctionControlPoint",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract defining scientific transfer function curves, colormaps, opacity mappings,\nand out-of-bounds/missing value policies.",
+  "properties": {
+    "colormap_preset_name": {
+      "description": "Standard ocean colormap preset name (e.g. 'cmocean_thermal', 'cmocean_haline', 'viridis', 'turbo').",
+      "title": "Colormap Preset Name",
+      "type": "string"
+    },
+    "control_points": {
+      "description": "Ordered sequence of color and opacity control points.",
+      "items": {
+        "$ref": "#/$defs/TransferFunctionControlPoint"
+      },
+      "title": "Control Points",
+      "type": "array"
+    },
+    "missing_value_color_rgba": {
+      "default": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "description": "RGBA color assigned to missing, land, or QC-rejected samples.",
+      "items": {
+        "type": "number"
+      },
+      "title": "Missing Value Color Rgba",
+      "type": "array"
+    },
+    "out_of_range_policy": {
+      "$ref": "#/$defs/OutOfRangeRenderingPolicy",
+      "default": "discard_transparent",
+      "description": "Visual behavior when physical values fall outside [min, max]."
+    },
+    "physical_domain_max": {
+      "description": "Physical quantity value corresponding to normalized position 1.0.",
+      "title": "Physical Domain Max",
+      "type": "number"
+    },
+    "physical_domain_min": {
+      "description": "Physical quantity value corresponding to normalized position 0.0.",
+      "title": "Physical Domain Min",
+      "type": "number"
+    },
+    "physical_units": {
+      "description": "Physical units of the transfer function domain (e.g. 'degree_Celsius', 'PSU').",
+      "title": "Physical Units",
+      "type": "string"
+    }
+  },
+  "required": [
+    "colormap_preset_name",
+    "physical_domain_min",
+    "physical_domain_max",
+    "physical_units",
+    "control_points"
+  ],
+  "title": "TransferFunctionContract",
+  "type": "object"
+}

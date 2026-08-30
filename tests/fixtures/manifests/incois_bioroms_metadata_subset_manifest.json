@@ -1,0 +1,82 @@
+{
+  "fixture_id": "incois_bioroms_metadata_subset",
+  "fixture_filename": "incois_bioroms_metadata_subset.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "ROMS_S_COORDINATE_METADATA",
+  "source_asset": {
+    "relative_path": "data/raw/roms/incois_bio_roms_north_indian_ocean.nc",
+    "sha256": "972aa075c9b061391b6772a4fcf9eb862049c67a13bfcfd0bff750fd327a3f4c",
+    "byte_size": 3700318,
+    "provider": "Indian National Centre for Ocean Information Services (INCOIS)",
+    "doi": "10.5281/zenodo.11670413",
+    "model_framework": "Regional Ocean Modeling System (ROMS)",
+    "licence": "Creative Commons Attribution 4.0 International (CC-BY-4.0)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture roms_metadata",
+    "slicing_bounding_boxes": {
+      "time": {
+        "index_slice": [
+          0,
+          2
+        ],
+        "count": 2
+      },
+      "lat": {
+        "index_slice": [
+          0,
+          20
+        ],
+        "bounds": [
+          9.81,
+          11.41
+        ],
+        "units": "degrees_north",
+        "count": 20
+      },
+      "lon": {
+        "index_slice": [
+          0,
+          20
+        ],
+        "bounds": [
+          59.5,
+          61.16
+        ],
+        "units": "degrees_east",
+        "count": 20
+      }
+    },
+    "s_coordinate_parameters": {
+      "N": 32,
+      "theta_s": 6.0,
+      "theta_b": 0.4,
+      "hc": 100.0,
+      "Vtransform": 2,
+      "Vstretching": 4
+    },
+    "variables": [
+      "time",
+      "lat",
+      "lon",
+      "s_rho",
+      "Cs_r",
+      "hc",
+      "Vtransform",
+      "Vstretching",
+      "temp",
+      "salt",
+      "pH"
+    ],
+    "target_shape": [
+      2,
+      20,
+      20
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "12df018f1004354ae22c17f89646f7c64bc2bb579f9bd9b3bbbcd98368242c0d",
+    "byte_size": 31424,
+    "created_at_utc": "2026-08-30T09:35:40.910161+00:00"
+  }
+}

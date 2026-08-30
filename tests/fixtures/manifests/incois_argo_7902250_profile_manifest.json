@@ -1,0 +1,44 @@
+{
+  "fixture_id": "incois_argo_7902250_profile",
+  "fixture_filename": "incois_argo_7902250_profile.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "PROFILE_OBSERVATION",
+  "source_asset": {
+    "relative_path": "data/raw/argo-gdac/D1902669_012.nc",
+    "sha256": "1c4592fce455fa56a92680fc9dc0ba7eec9754921953f65edf42d0104f682759",
+    "byte_size": 22408,
+    "provider": "International Argo Program / Coriolis GDAC / INCOIS",
+    "platform_number": "1902669",
+    "cycle_number": 12,
+    "data_mode": "D (Delayed Mode)",
+    "licence": "Open Access (Argo Data Management Team Free Exchange Policy)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture profile_observation",
+    "cast_details": {
+      "wmo_id": "1902669",
+      "cycle": 12,
+      "levels_count": 103,
+      "variables": [
+        "PRES",
+        "TEMP",
+        "PSAL",
+        "PRES_QC",
+        "TEMP_QC",
+        "PSAL_QC",
+        "PRES_ADJUSTED",
+        "TEMP_ADJUSTED",
+        "PSAL_ADJUSTED"
+      ]
+    },
+    "target_shape": {
+      "N_PROF": 1,
+      "N_LEVELS": 103
+    }
+  },
+  "fixture_artifact": {
+    "sha256": "672ba4f55287aa60f5ee4928c19796a4251b69150419e07be7aa3539d0d3214f",
+    "byte_size": 71402,
+    "created_at_utc": "2026-08-30T09:35:40.595541+00:00"
+  }
+}

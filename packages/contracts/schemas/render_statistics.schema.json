@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive statistical summaries used for dynamic transfer function histogramming,\ncontrast stretching, and empty-space skipping bounds.",
+  "properties": {
+    "histogram_bin_edges": {
+      "description": "List of N+1 bin edge values defining the histogram partition.",
+      "items": {
+        "type": "number"
+      },
+      "title": "Histogram Bin Edges",
+      "type": "array"
+    },
+    "histogram_counts": {
+      "description": "List of N sample counts per bin.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Histogram Counts",
+      "type": "array"
+    },
+    "mean_value": {
+      "description": "Mean physical value across valid ocean samples.",
+      "title": "Mean Value",
+      "type": "number"
+    },
+    "missing_sample_fraction": {
+      "default": 0.0,
+      "description": "Fraction of total voxels classified as missing, land, or QC-rejected [0.0, 1.0].",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Missing Sample Fraction",
+      "type": "number"
+    },
+    "percentile_01": {
+      "description": "1st percentile physical value for robust visual contrast scaling.",
+      "title": "Percentile 01",
+      "type": "number"
+    },
+    "percentile_50": {
+      "description": "50th percentile (median) physical value.",
+      "title": "Percentile 50",
+      "type": "number"
+    },
+    "percentile_99": {
+      "description": "99th percentile physical value for robust visual contrast scaling.",
+      "title": "Percentile 99",
+      "type": "number"
+    },
+    "std_dev_value": {
+      "description": "Standard deviation of valid ocean samples.",
+      "title": "Std Dev Value",
+      "type": "number"
+    },
+    "valid_max": {
+      "description": "Global maximum physical value across valid (non-missing) samples.",
+      "title": "Valid Max",
+      "type": "number"
+    },
+    "valid_min": {
+      "description": "Global minimum physical value across valid (non-missing) samples.",
+      "title": "Valid Min",
+      "type": "number"
+    }
+  },
+  "required": [
+    "valid_min",
+    "valid_max",
+    "percentile_01",
+    "percentile_50",
+    "percentile_99",
+    "mean_value",
+    "std_dev_value"
+  ],
+  "title": "RenderStatisticsContract",
+  "type": "object"
+}

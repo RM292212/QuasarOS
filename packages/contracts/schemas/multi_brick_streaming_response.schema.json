@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "StreamingManifestEntry": {
+      "description": "Manifest item for a single streaming brick payload.",
+      "properties": {
+        "brick_key": {
+          "description": "Deterministic brick composite key.",
+          "title": "Brick Key",
+          "type": "string"
+        },
+        "byte_length": {
+          "description": "Byte size of the chunk payload.",
+          "exclusiveMinimum": 0,
+          "title": "Byte Length",
+          "type": "integer"
+        },
+        "byte_offset": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Byte range start if chunk is part of a bundled container.",
+          "title": "Byte Offset"
+        },
+        "is_empty": {
+          "default": false,
+          "description": "If True, brick is completely empty/masked and does not need network transfer.",
+          "title": "Is Empty",
+          "type": "boolean"
+        },
+        "sha256_checksum": {
+          "description": "Payload SHA-256 checksum.",
+          "title": "Sha256 Checksum",
+          "type": "string"
+        },
+        "storage_object_url": {
+          "description": "Relative or CDN URL path to download the compressed brick payload.",
+          "title": "Storage Object Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "brick_key",
+        "storage_object_url",
+        "byte_length",
+        "sha256_checksum"
+      ],
+      "title": "StreamingManifestEntry",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Response contract delivering a manifest of available sub-volume bricks\nmatching a StreamingChunkRequest.",
+  "properties": {
+    "lod_level": {
+      "description": "LOD level.",
+      "title": "Lod Level",
+      "type": "integer"
+    },
+    "manifest_entries": {
+      "description": "List of manifest entries for all requested bricks.",
+      "items": {
+        "$ref": "#/$defs/StreamingManifestEntry"
+      },
+      "title": "Manifest Entries",
+      "type": "array"
+    },
+    "timestep_index": {
+      "description": "Timestep index.",
+      "title": "Timestep Index",
+      "type": "integer"
+    },
+    "total_payload_bytes": {
+      "description": "Total transfer byte size across all non-empty bricks in this manifest.",
+      "minimum": 0,
+      "title": "Total Payload Bytes",
+      "type": "integer"
+    },
+    "visualization_product_id": {
+      "description": "Visual product identifier.",
+      "title": "Visualization Product Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "visualization_product_id",
+    "lod_level",
+    "timestep_index",
+    "manifest_entries",
+    "total_payload_bytes"
+  ],
+  "title": "MultiBrickStreamingResponse",
+  "type": "object"
+}

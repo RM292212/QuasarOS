@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract for 3D or surface wave-induced Stokes drift velocity vector.",
+  "properties": {
+    "depth_decay_scale_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Characteristic exponential decay depth scale in meters (2 * k_p).",
+      "title": "Depth Decay Scale M"
+    },
+    "is_surface_only": {
+      "default": true,
+      "description": "Whether Stokes drift represents surface value (z=0) or full 3D profile.",
+      "title": "Is Surface Only",
+      "type": "boolean"
+    },
+    "u_stokes_var": {
+      "description": "Zonal eastward Stokes drift velocity variable name (m/s).",
+      "title": "U Stokes Var",
+      "type": "string"
+    },
+    "v_stokes_var": {
+      "description": "Meridional northward Stokes drift velocity variable name (m/s).",
+      "title": "V Stokes Var",
+      "type": "string"
+    },
+    "w_stokes_var": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Vertical Stokes drift velocity variable name (m/s).",
+      "title": "W Stokes Var"
+    }
+  },
+  "required": [
+    "u_stokes_var",
+    "v_stokes_var"
+  ],
+  "title": "StokesDriftContract",
+  "type": "object"
+}

@@ -1,0 +1,387 @@
+{
+  "$defs": {
+    "AccessRestriction": {
+      "description": "Data access restriction classification.",
+      "enum": [
+        "open_unrestricted",
+        "attribution_required",
+        "non_commercial",
+        "restricted_registration_required",
+        "institutional_only"
+      ],
+      "title": "AccessRestriction",
+      "type": "string"
+    },
+    "Citation": {
+      "description": "Scientific bibliographic citation record.",
+      "properties": {
+        "bibtex": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Raw BibTeX citation record.",
+          "title": "Bibtex"
+        },
+        "citation_text": {
+          "description": "Full text bibliographic citation string (APA / BibTeX compatible).",
+          "title": "Citation Text",
+          "type": "string"
+        },
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Digital Object Identifier (e.g. '10.5281/zenodo.11670413').",
+          "title": "Doi"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Direct persistent link to publication or data landing page.",
+          "title": "Url"
+        }
+      },
+      "required": [
+        "citation_text"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "DataClassDiscriminator": {
+      "description": "Discriminator classifying the fundamental scientific structure and rendering path.\nEnforces typed discriminated unions across all dataset representations.",
+      "enum": [
+        "model_volume",
+        "wave_grid",
+        "satellite_grid",
+        "profile_observations",
+        "trajectory_observations",
+        "time_series_observations",
+        "bathymetry_grid",
+        "climatology_grid",
+        "visualization_product",
+        "derived_product"
+      ],
+      "title": "DataClassDiscriminator",
+      "type": "string"
+    },
+    "LicenceContract": {
+      "description": "Authoritative licensing terms and terms-of-use contract.",
+      "properties": {
+        "access_restriction": {
+          "$ref": "#/$defs/AccessRestriction",
+          "default": "attribution_required",
+          "description": "Access restriction and registration policy."
+        },
+        "attribution_statement": {
+          "description": "Mandatory user-facing attribution statement that must be rendered in UI.",
+          "title": "Attribution Statement",
+          "type": "string"
+        },
+        "commercial_use_allowed": {
+          "default": true,
+          "description": "Whether commercial exploitation of the data is permissible.",
+          "title": "Commercial Use Allowed",
+          "type": "boolean"
+        },
+        "licence_id": {
+          "description": "Standard license identifier (e.g. 'CC-BY-4.0', 'Copernicus-Marine-Data-License', 'GEBCO-2020-Terms').",
+          "title": "Licence Id",
+          "type": "string"
+        },
+        "licence_name": {
+          "description": "Full human-readable license name.",
+          "title": "Licence Name",
+          "type": "string"
+        },
+        "terms_url": {
+          "description": "Official URL specifying complete legal license terms.",
+          "title": "Terms Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "licence_id",
+        "licence_name",
+        "terms_url",
+        "attribution_statement"
+      ],
+      "title": "LicenceContract",
+      "type": "object"
+    },
+    "OperationalStatus": {
+      "description": "Operational maturity and release qualification status.",
+      "enum": [
+        "operational",
+        "pre_operational",
+        "research",
+        "demonstration",
+        "retired",
+        "synthetic"
+      ],
+      "title": "OperationalStatus",
+      "type": "string"
+    },
+    "ProcessingLevel": {
+      "description": "Standard processing level classification (NASA / CEOS / Operational standard).",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "ANALYSIS_FORECAST",
+        "REANALYSIS",
+        "CLIMATOLOGY",
+        "TERRAIN_MODEL",
+        "DERIVED_DIAGNOSTIC"
+      ],
+      "title": "ProcessingLevel",
+      "type": "string"
+    },
+    "ProviderIdentity": {
+      "description": "Authoritative provider and institution identity.",
+      "properties": {
+        "country": {
+          "description": "Country or international jurisdiction code/name.",
+          "title": "Country",
+          "type": "string"
+        },
+        "institution_url": {
+          "description": "Primary official portal URL.",
+          "title": "Institution Url",
+          "type": "string"
+        },
+        "name": {
+          "description": "Full organizational or programme name.",
+          "title": "Name",
+          "type": "string"
+        },
+        "provider_id": {
+          "description": "Machine-readable provider identifier (e.g. 'copernicus_marine', 'incois', 'noaa_ncei', 'argo_gdac').",
+          "title": "Provider Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "name",
+        "country",
+        "institution_url"
+      ],
+      "title": "ProviderIdentity",
+      "type": "object"
+    },
+    "ScientificRole": {
+      "description": "Authoritative scientific role of the dataset in QuasarOS.",
+      "enum": [
+        "model",
+        "observation",
+        "climatology",
+        "bathymetry",
+        "satellite",
+        "derived",
+        "rendering_acceleration",
+        "test_fixture"
+      ],
+      "title": "ScientificRole",
+      "type": "string"
+    },
+    "ValidationCheckResult": {
+      "description": "Result of an individual scientific, coordinate, or metadata check.",
+      "properties": {
+        "check_name": {
+          "description": "Machine-readable name of the validation check.",
+          "title": "Check Name",
+          "type": "string"
+        },
+        "message": {
+          "description": "Human-readable diagnostics explaining the check result.",
+          "title": "Message",
+          "type": "string"
+        },
+        "passed": {
+          "description": "True if check passed; False if failed.",
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "severity": {
+          "default": "INFO",
+          "description": "Severity level if check triggered.",
+          "enum": [
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "timestamp_utc": {
+          "description": "ISO 8601 UTC timestamp when check executed.",
+          "title": "Timestamp Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "check_name",
+        "passed",
+        "message",
+        "timestamp_utc"
+      ],
+      "title": "ValidationCheckResult",
+      "type": "object"
+    },
+    "ValidationReport": {
+      "description": "Comprehensive validation report certifying contract compliance.",
+      "properties": {
+        "checks": {
+          "description": "Detailed list of check results.",
+          "items": {
+            "$ref": "#/$defs/ValidationCheckResult"
+          },
+          "title": "Checks",
+          "type": "array"
+        },
+        "state": {
+          "$ref": "#/$defs/ValidationState",
+          "description": "Overall validation state certification."
+        },
+        "validated_at_utc": {
+          "description": "ISO 8601 UTC timestamp of certification.",
+          "title": "Validated At Utc",
+          "type": "string"
+        },
+        "validator_version": {
+          "default": "1.0.0",
+          "description": "Version of validation engine executing rules.",
+          "title": "Validator Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "state",
+        "validated_at_utc"
+      ],
+      "title": "ValidationReport",
+      "type": "object"
+    },
+    "ValidationState": {
+      "description": "Lifecycle validation status of a dataset or canonical product.",
+      "enum": [
+        "valid",
+        "valid_with_warnings",
+        "invalid",
+        "catalog_only",
+        "discovery_only",
+        "blocked"
+      ],
+      "title": "ValidationState",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative scientific dataset identity specification.",
+  "properties": {
+    "citations": {
+      "description": "Bibliographic citations and persistent DOIs.",
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "data_class": {
+      "$ref": "#/$defs/DataClassDiscriminator",
+      "description": "Core scientific data class discriminator for rendering and analysis."
+    },
+    "dataset_id": {
+      "description": "Unique, stable machine-readable identifier for this dataset product.",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "dataset_version": {
+      "description": "Version string of the provider product or canonical snapshot.",
+      "title": "Dataset Version",
+      "type": "string"
+    },
+    "description": {
+      "description": "Detailed oceanographic and technical description of the product.",
+      "title": "Description",
+      "type": "string"
+    },
+    "licence": {
+      "$ref": "#/$defs/LicenceContract",
+      "description": "Licence terms and attribution obligations."
+    },
+    "operational_status": {
+      "$ref": "#/$defs/OperationalStatus",
+      "description": "Operational maturity status."
+    },
+    "processing_level": {
+      "$ref": "#/$defs/ProcessingLevel",
+      "description": "Processing level (L0 to L4, ANALYSIS_FORECAST, CLIMATOLOGY, etc.)."
+    },
+    "product_id": {
+      "description": "Provider-specific product or catalog identifier.",
+      "title": "Product Id",
+      "type": "string"
+    },
+    "provider": {
+      "$ref": "#/$defs/ProviderIdentity",
+      "description": "Authoritative data provider and origin."
+    },
+    "scientific_role": {
+      "$ref": "#/$defs/ScientificRole",
+      "description": "Scientific role (model, observation, climatology, bathymetry, etc.)."
+    },
+    "snapshot_id": {
+      "description": "Immutable snapshot identifier or cryptographic hash ensuring dataset reproducibility.",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "Human-readable title of the scientific product.",
+      "title": "Title",
+      "type": "string"
+    },
+    "validation_report": {
+      "$ref": "#/$defs/ValidationReport",
+      "description": "Formal validation and certification report."
+    }
+  },
+  "required": [
+    "dataset_id",
+    "dataset_version",
+    "snapshot_id",
+    "title",
+    "description",
+    "provider",
+    "product_id",
+    "scientific_role",
+    "data_class",
+    "processing_level",
+    "operational_status",
+    "licence",
+    "validation_report"
+  ],
+  "title": "DatasetIdentity",
+  "type": "object"
+}

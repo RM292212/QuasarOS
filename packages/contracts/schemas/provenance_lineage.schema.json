@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Immutable provenance record connecting derived or normalized data to source assets.",
+  "properties": {
+    "comments": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Additional scientific context or execution notes.",
+      "title": "Comments"
+    },
+    "completed_at_utc": {
+      "description": "ISO 8601 UTC timestamp of operation completion.",
+      "title": "Completed At Utc",
+      "type": "string"
+    },
+    "dataset_id": {
+      "description": "Dataset identifier associated with this transformation.",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "lineage_id": {
+      "description": "Unique lineage identifier (UUID or hash).",
+      "title": "Lineage Id",
+      "type": "string"
+    },
+    "operation": {
+      "description": "Scientific or ingestion operation name (e.g. 'cf_normalization', 'teos10_density').",
+      "title": "Operation",
+      "type": "string"
+    },
+    "operator": {
+      "description": "Identity of the service, agent, or researcher initiating the transformation.",
+      "title": "Operator",
+      "type": "string"
+    },
+    "parameters": {
+      "additionalProperties": true,
+      "description": "Execution parameters, thresholds, and mathematical settings.",
+      "title": "Parameters",
+      "type": "object"
+    },
+    "software_name": {
+      "default": "quasar_contracts",
+      "description": "Name of software package or module executing the operation.",
+      "title": "Software Name",
+      "type": "string"
+    },
+    "software_version": {
+      "default": "1.0.0",
+      "description": "Exact software version.",
+      "title": "Software Version",
+      "type": "string"
+    },
+    "source_asset_ids": {
+      "description": "List of input asset IDs consumed by the operation.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Asset Ids",
+      "type": "array"
+    },
+    "source_checksums": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Cryptographic SHA-256 hashes of input assets at execution time.",
+      "title": "Source Checksums",
+      "type": "object"
+    },
+    "started_at_utc": {
+      "description": "ISO 8601 UTC timestamp of operation start.",
+      "title": "Started At Utc",
+      "type": "string"
+    },
+    "target_asset_ids": {
+      "description": "List of output asset IDs produced by the operation.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Target Asset Ids",
+      "type": "array"
+    },
+    "validation_passed": {
+      "default": true,
+      "description": "Whether post-operation validation checks succeeded.",
+      "title": "Validation Passed",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "lineage_id",
+    "dataset_id",
+    "operation",
+    "operator",
+    "started_at_utc",
+    "completed_at_utc"
+  ],
+  "title": "LineageRecord",
+  "type": "object"
+}

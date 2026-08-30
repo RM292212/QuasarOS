@@ -1,0 +1,206 @@
+{
+  "$defs": {
+    "NormalizedQCState": {
+      "description": "Canonical normalized QC category.",
+      "enum": [
+        "good",
+        "probably_good",
+        "suspect",
+        "bad",
+        "missing",
+        "not_evaluated"
+      ],
+      "title": "NormalizedQCState",
+      "type": "string"
+    },
+    "ProfileQCGrade": {
+      "description": "Overall profile quality grade (e.g. Argo profile-level flag 'A', 'B', 'C', 'D', 'E', 'F').",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "NOT_RATED"
+      ],
+      "title": "ProfileQCGrade",
+      "type": "string"
+    },
+    "QCDerivationSource": {
+      "description": "Source of the quality control flags and evaluation.",
+      "enum": [
+        "provider_supplied",
+        "locally_derived_quasar"
+      ],
+      "title": "QCDerivationSource",
+      "type": "string"
+    },
+    "QCScheme": {
+      "description": "Quality control standard taxonomy.",
+      "enum": [
+        "wmo_argo",
+        "ioos_qartod",
+        "gebco_tid",
+        "custom"
+      ],
+      "title": "QCScheme",
+      "type": "string"
+    },
+    "VariableQCRecord": {
+      "description": "Quality control record for a single variable along a vertical profile or trajectory segment.\nStores raw integer QC flags, normalized QC states, and statistical summary.",
+      "properties": {
+        "derivation_method_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Version/identifier of the QC derivation pipeline or algorithm applied (e.g. 'Argo-QC-Manual-v3.4', 'Quasar-QARTOD-v1.0.0').",
+          "title": "Derivation Method Version"
+        },
+        "good_levels_count": {
+          "default": 0,
+          "description": "Number of levels classified as good / probably_good.",
+          "title": "Good Levels Count",
+          "type": "integer"
+        },
+        "is_valid_for_collocation": {
+          "default": true,
+          "description": "Whether this variable profile meets QC thresholds to be collocated with model fields.",
+          "title": "Is Valid For Collocation",
+          "type": "boolean"
+        },
+        "level_qc_flags": {
+          "description": "Per-level raw integer QC flags along the vertical axis.",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Level Qc Flags",
+          "type": "array"
+        },
+        "profile_qc_flag": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Profile-level aggregate QC flag for this specific variable (e.g. WMO Argo 1=good, 4=bad).",
+          "title": "Profile Qc Flag"
+        },
+        "qc_derivation_source": {
+          "$ref": "#/$defs/QCDerivationSource",
+          "default": "provider_supplied",
+          "description": "Provenance of the QC flags: provider-supplied or locally derived by QuasarOS."
+        },
+        "qc_scheme": {
+          "$ref": "#/$defs/QCScheme",
+          "default": "wmo_argo",
+          "description": "Governing QC scheme standard."
+        },
+        "total_levels_count": {
+          "default": 0,
+          "description": "Total number of levels evaluated.",
+          "title": "Total Levels Count",
+          "type": "integer"
+        },
+        "variable_name": {
+          "description": "Canonical or source variable identifier (e.g. 'TEMP', 'PSAL', 'DOXY').",
+          "title": "Variable Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variable_name"
+      ],
+      "title": "VariableQCRecord",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive QC evaluation report for an individual observation cast or trajectory segment.",
+  "properties": {
+    "derivation_method_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Version/name of the QC evaluation algorithm.",
+      "title": "Derivation Method Version"
+    },
+    "is_fully_certified": {
+      "default": true,
+      "description": "True if position, time, and all primary variables have passed quality standards.",
+      "title": "Is Fully Certified",
+      "type": "boolean"
+    },
+    "position_qc_flag": {
+      "default": 1,
+      "description": "Position QC flag (1=good, 2=probably good, 3=suspect, 4=bad, 9=missing).",
+      "title": "Position Qc Flag",
+      "type": "integer"
+    },
+    "position_qc_state": {
+      "$ref": "#/$defs/NormalizedQCState",
+      "default": "good",
+      "description": "Normalized position QC state."
+    },
+    "profile_grade": {
+      "$ref": "#/$defs/ProfileQCGrade",
+      "default": "A",
+      "description": "Overall profile QC grade."
+    },
+    "qartod_tests_executed": {
+      "description": "List of specific QARTOD or Argo automated tests executed (e.g. 'syntax_check', 'gross_range_test', 'spike_test', 'density_inversion_test').",
+      "items": {
+        "type": "string"
+      },
+      "title": "Qartod Tests Executed",
+      "type": "array"
+    },
+    "qc_derivation_source": {
+      "$ref": "#/$defs/QCDerivationSource",
+      "default": "provider_supplied",
+      "description": "Provenance of the QC evaluation: provider-supplied or locally derived by QuasarOS."
+    },
+    "qc_scheme": {
+      "$ref": "#/$defs/QCScheme",
+      "default": "wmo_argo",
+      "description": "Governing QC scheme."
+    },
+    "time_qc_flag": {
+      "default": 1,
+      "description": "Time QC flag (1=good, 2=probably good, 3=suspect, 4=bad, 9=missing).",
+      "title": "Time Qc Flag",
+      "type": "integer"
+    },
+    "time_qc_state": {
+      "$ref": "#/$defs/NormalizedQCState",
+      "default": "good",
+      "description": "Normalized time QC state."
+    },
+    "variable_qc": {
+      "additionalProperties": {
+        "$ref": "#/$defs/VariableQCRecord"
+      },
+      "description": "QC records keyed by variable name.",
+      "title": "Variable Qc",
+      "type": "object"
+    }
+  },
+  "title": "ObservationQCReport",
+  "type": "object"
+}

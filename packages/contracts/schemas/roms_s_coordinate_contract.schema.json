@@ -1,0 +1,189 @@
+{
+  "$defs": {
+    "ROMSFormulaTerms": {
+      "description": "CF-compliant formula_terms metadata referencing standard variables in NetCDF.",
+      "properties": {
+        "a": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Critical depth hc parameter variable or constant.",
+          "title": "A"
+        },
+        "b": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stretching function Cs_r variable.",
+          "title": "B"
+        },
+        "depth": {
+          "default": "h",
+          "description": "Name of resting bathymetry variable.",
+          "title": "Depth",
+          "type": "string"
+        },
+        "depth_c": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "hc",
+          "description": "Critical depth hc parameter variable.",
+          "title": "Depth C"
+        },
+        "eta": {
+          "default": "zeta",
+          "description": "Name of free sea surface elevation variable.",
+          "title": "Eta",
+          "type": "string"
+        },
+        "s": {
+          "default": "s_rho",
+          "description": "Name of fractional vertical coordinate variable.",
+          "title": "S",
+          "type": "string"
+        }
+      },
+      "title": "ROMSFormulaTerms",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative scientific contract for ROMS generalized terrain-following s-coordinates.\nEncapsulates stretching parameters, grid layer counts, non-dimensional curves, and formula terms.",
+  "properties": {
+    "Cs_r": {
+      "description": "Non-dimensional stretching function C(s) at RHO points in [-1.0, 0.0].",
+      "items": {
+        "type": "number"
+      },
+      "title": "Cs R",
+      "type": "array"
+    },
+    "Cs_w": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Non-dimensional stretching function C(s) at W points in [-1.0, 0.0].",
+      "title": "Cs W"
+    },
+    "N": {
+      "description": "Number of vertical terrain-following layers (N >= 1).",
+      "exclusiveMinimum": 0,
+      "title": "N",
+      "type": "integer"
+    },
+    "Vstretching": {
+      "default": 4,
+      "description": "Vertical stretching function (1: Song/Haidvogel, 2: Shchepetkin, 4: UCLA, 5: Souza).",
+      "enum": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "title": "Vstretching",
+      "type": "integer"
+    },
+    "Vtransform": {
+      "default": 2,
+      "description": "Vertical transformation equation (1: Song & Haidvogel 1994, 2: Shchepetkin & McWilliams 2005).",
+      "enum": [
+        1,
+        2
+      ],
+      "title": "Vtransform",
+      "type": "integer"
+    },
+    "formula_terms": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ROMSFormulaTerms"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "CF standard formula_terms mapping for ocean_s_coordinate."
+    },
+    "hc": {
+      "description": "Critical depth / thermocline scale parameter hc in meters (hc > 0.0).",
+      "exclusiveMinimum": 0.0,
+      "title": "Hc",
+      "type": "number"
+    },
+    "s_rho": {
+      "description": "Non-dimensional vertical coordinate at RHO points in [-1.0, 0.0].",
+      "items": {
+        "type": "number"
+      },
+      "title": "S Rho",
+      "type": "array"
+    },
+    "s_w": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Non-dimensional vertical coordinate at W points in [-1.0, 0.0].",
+      "title": "S W"
+    },
+    "theta_b": {
+      "description": "Bottom stretching control parameter theta_b in [0.0, 4.0].",
+      "maximum": 4.0,
+      "minimum": 0.0,
+      "title": "Theta B",
+      "type": "number"
+    },
+    "theta_s": {
+      "description": "Surface stretching control parameter theta_s in [0.0, 10.0].",
+      "maximum": 10.0,
+      "minimum": 0.0,
+      "title": "Theta S",
+      "type": "number"
+    }
+  },
+  "required": [
+    "theta_s",
+    "theta_b",
+    "hc",
+    "N",
+    "s_rho",
+    "Cs_r"
+  ],
+  "title": "ROMSSCoordinateContract",
+  "type": "object"
+}

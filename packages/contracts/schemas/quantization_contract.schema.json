@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Metadata governing linear integer quantization for GPU texture memory packing.\nEnforces documented error bounds and strictly flags data as non-authoritative.",
+  "properties": {
+    "add_offset": {
+      "description": "Additive offset applied during quantization.",
+      "title": "Add Offset",
+      "type": "number"
+    },
+    "is_eligible_for_exact_query": {
+      "default": false,
+      "description": "MANDATORY FALSE: Quantized render textures must NEVER be queried as authoritative scientific values.",
+      "title": "Is Eligible For Exact Query",
+      "type": "boolean"
+    },
+    "quantized_data_type": {
+      "default": "uint16",
+      "description": "Quantized integer type (e.g. 'uint8', 'uint16', 'uint32').",
+      "title": "Quantized Data Type",
+      "type": "string"
+    },
+    "reserved_missing_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": 65535,
+      "description": "Dedicated discrete integer code reserved for missing / masked / invalid samples.",
+      "title": "Reserved Missing Code"
+    },
+    "scale_factor": {
+      "description": "Multiplicative scale factor applied during quantization: float_val = int_val * scale_factor + add_offset.",
+      "title": "Scale Factor",
+      "type": "number"
+    },
+    "theoretical_max_quantization_error": {
+      "description": "Maximum absolute error introduced by quantization: 0.5 * scale_factor.",
+      "title": "Theoretical Max Quantization Error",
+      "type": "number"
+    },
+    "unquantized_data_type": {
+      "default": "float32",
+      "description": "Source unquantized floating point type.",
+      "title": "Unquantized Data Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "scale_factor",
+    "add_offset",
+    "theoretical_max_quantization_error"
+  ],
+  "title": "QuantizationContract",
+  "type": "object"
+}

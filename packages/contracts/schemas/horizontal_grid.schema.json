@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "GridType": {
+      "description": "Classification of the horizontal grid topology.",
+      "enum": [
+        "rectilinear",
+        "curvilinear",
+        "staggered",
+        "unstructured",
+        "point_collection",
+        "trajectory"
+      ],
+      "title": "GridType",
+      "type": "string"
+    },
+    "SpatialBoundingBox": {
+      "description": "2D spatial bounding box in geographic coordinates.",
+      "properties": {
+        "max_latitude": {
+          "description": "Northernmost latitude in degrees.",
+          "title": "Max Latitude",
+          "type": "number"
+        },
+        "max_longitude": {
+          "description": "Easternmost longitude in degrees.",
+          "title": "Max Longitude",
+          "type": "number"
+        },
+        "min_latitude": {
+          "description": "Southernmost latitude in degrees.",
+          "title": "Min Latitude",
+          "type": "number"
+        },
+        "min_longitude": {
+          "description": "Westernmost longitude in degrees.",
+          "title": "Min Longitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "min_longitude",
+        "min_latitude",
+        "max_longitude",
+        "max_latitude"
+      ],
+      "title": "SpatialBoundingBox",
+      "type": "object"
+    },
+    "StaggeringType": {
+      "description": "Arakawa grid staggering convention.",
+      "enum": [
+        "none",
+        "arakawa_a",
+        "arakawa_b",
+        "arakawa_c_rho",
+        "arakawa_c_u",
+        "arakawa_c_v",
+        "arakawa_c_psi"
+      ],
+      "title": "StaggeringType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative contract specifying the horizontal grid representation.",
+  "properties": {
+    "crs": {
+      "default": "EPSG:4326",
+      "description": "Coordinate Reference System string (e.g. 'EPSG:4326').",
+      "title": "Crs",
+      "type": "string"
+    },
+    "dimension_names": {
+      "description": "Names of the horizontal dimensions (e.g. ['latitude', 'longitude']).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Dimension Names",
+      "type": "array"
+    },
+    "element_count": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of polygonal elements (for unstructured mesh).",
+      "title": "Element Count"
+    },
+    "grid_id": {
+      "description": "Unique identifier for the horizontal grid configuration.",
+      "title": "Grid Id",
+      "type": "string"
+    },
+    "grid_type": {
+      "$ref": "#/$defs/GridType",
+      "description": "Fundamental topology of the horizontal grid."
+    },
+    "is_periodic_longitude": {
+      "default": false,
+      "description": "Whether the grid wraps 360 degrees around the globe.",
+      "title": "Is Periodic Longitude",
+      "type": "boolean"
+    },
+    "node_count": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of nodes (for unstructured mesh).",
+      "title": "Node Count"
+    },
+    "resolution_description": {
+      "description": "Human-readable description of grid resolution (e.g. '0.08333_degree_equirectangular').",
+      "title": "Resolution Description",
+      "type": "string"
+    },
+    "resolution_x_deg": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Zonal grid resolution in degrees (for rectilinear grids).",
+      "title": "Resolution X Deg"
+    },
+    "resolution_y_deg": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Meridional grid resolution in degrees (for rectilinear grids).",
+      "title": "Resolution Y Deg"
+    },
+    "shape": {
+      "description": "Array shape along horizontal dimensions [ny, nx] or [n_points].",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Shape",
+      "type": "array"
+    },
+    "spatial_bounds": {
+      "$ref": "#/$defs/SpatialBoundingBox",
+      "description": "Geographic bounding box enclosing all valid grid cells."
+    },
+    "staggering": {
+      "$ref": "#/$defs/StaggeringType",
+      "default": "none",
+      "description": "Grid staggering classification if Arakawa staggered."
+    }
+  },
+  "required": [
+    "grid_id",
+    "grid_type",
+    "spatial_bounds",
+    "resolution_description",
+    "shape",
+    "dimension_names"
+  ],
+  "title": "HorizontalGridContract",
+  "type": "object"
+}

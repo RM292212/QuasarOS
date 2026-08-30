@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "NormalizedQCState": {
+      "description": "Canonical normalized QC category.",
+      "enum": [
+        "good",
+        "probably_good",
+        "suspect",
+        "bad",
+        "missing",
+        "not_evaluated"
+      ],
+      "title": "NormalizedQCState",
+      "type": "string"
+    },
+    "QCFlagDefinition": {
+      "description": "Individual QC flag mapping rule.",
+      "properties": {
+        "accepted_for_analysis": {
+          "description": "Whether this flag is admitted for scientific calculations by default.",
+          "title": "Accepted For Analysis",
+          "type": "boolean"
+        },
+        "flag_value": {
+          "description": "Raw integer flag value in source file.",
+          "title": "Flag Value",
+          "type": "integer"
+        },
+        "meaning": {
+          "description": "Human-readable description according to governing standard.",
+          "title": "Meaning",
+          "type": "string"
+        },
+        "normalized_state": {
+          "$ref": "#/$defs/NormalizedQCState",
+          "description": "Canonical normalized QC classification."
+        }
+      },
+      "required": [
+        "flag_value",
+        "meaning",
+        "normalized_state",
+        "accepted_for_analysis"
+      ],
+      "title": "QCFlagDefinition",
+      "type": "object"
+    },
+    "QCScheme": {
+      "description": "Quality control standard taxonomy.",
+      "enum": [
+        "wmo_argo",
+        "ioos_qartod",
+        "gebco_tid",
+        "custom"
+      ],
+      "title": "QCScheme",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative quality control scheme contract.",
+  "properties": {
+    "default_accepted_states": {
+      "default": [
+        "good",
+        "probably_good"
+      ],
+      "description": "Normalized states accepted by default in scientific comparison.",
+      "items": {
+        "$ref": "#/$defs/NormalizedQCState"
+      },
+      "title": "Default Accepted States",
+      "type": "array"
+    },
+    "description": {
+      "description": "Detailed description of the QC scheme and application rules.",
+      "title": "Description",
+      "type": "string"
+    },
+    "flag_mappings": {
+      "description": "Complete list of flag mappings from raw integers to normalized states.",
+      "items": {
+        "$ref": "#/$defs/QCFlagDefinition"
+      },
+      "title": "Flag Mappings",
+      "type": "array"
+    },
+    "scheme": {
+      "$ref": "#/$defs/QCScheme",
+      "description": "QC standard governing the flags."
+    }
+  },
+  "required": [
+    "scheme",
+    "description",
+    "flag_mappings"
+  ],
+  "title": "QualityControlContract",
+  "type": "object"
+}

@@ -1,0 +1,85 @@
+{
+  "fixture_id": "woa23_salinity_oxygen_subset",
+  "fixture_filename": "woa23_salinity_oxygen_subset.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "CLIMATOLOGY_GRID",
+  "source_asset": {
+    "relative_paths": [
+      "data/raw/woa23/multivariable/woa23_august_salinity_north_indian_ocean.nc",
+      "data/raw/woa23/multivariable/woa23_august_oxygen_north_indian_ocean.nc"
+    ],
+    "sha256_salinity": "434f134f01d3d8b0590f40b11ca6acfb7621d959b99bb58ec3c3fc8e3d3b8cbd",
+    "sha256_oxygen": "7857718e3ae0b5a7636c05c20a5950699a7c0231034bc2f704fc8e6f0ae6da8c",
+    "provider": "NOAA / NCEI / Ocean Climate Laboratory",
+    "product_id": "WORLD_OCEAN_ATLAS_2023",
+    "dataset_id": "woa23_decav_august",
+    "licence": "NOAA Open Access Public Data (Open Government Work / CC0 equivalent)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture climatology_grid",
+    "slicing_bounding_boxes": {
+      "time": {
+        "index_slice": [
+          0,
+          1
+        ],
+        "count": 1
+      },
+      "depth": {
+        "index_slice": [
+          0,
+          5
+        ],
+        "values": [
+          0.0,
+          20.0
+        ],
+        "units": "m",
+        "count": 5
+      },
+      "lat": {
+        "index_slice": [
+          0,
+          15
+        ],
+        "bounds": [
+          0.125,
+          3.625
+        ],
+        "units": "degrees_north",
+        "count": 15
+      },
+      "lon": {
+        "index_slice": [
+          0,
+          15
+        ],
+        "bounds": [
+          40.125,
+          43.625
+        ],
+        "units": "degrees_east",
+        "count": 15
+      }
+    },
+    "variables": [
+      "time",
+      "depth",
+      "lat",
+      "lon",
+      "s_an",
+      "o_an"
+    ],
+    "target_shape": [
+      1,
+      5,
+      15,
+      15
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "ed04f175c5f769f84e17086d65e1250217916e5d544ba9d386a480b2257cf64a",
+    "byte_size": 37724,
+    "created_at_utc": "2026-08-30T09:35:40.826778+00:00"
+  }
+}

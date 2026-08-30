@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Discriminator: 'approximate_render_sample'.\nReturned during live 3D viewport raycast hover/click interactions.\nExplicitly carries an approximation warning and error confidence bounds.",
+  "properties": {
+    "approximate_value": {
+      "description": "Value sampled from GPU texture or quantized buffer.",
+      "title": "Approximate Value",
+      "type": "number"
+    },
+    "approximation_notice": {
+      "default": "PROVISIONAL VALUE: Interpolated from GPU rendering volume. Query /queries/value for authoritative scientific data.",
+      "description": "Mandatory user-facing scientific notice.",
+      "title": "Approximation Notice",
+      "type": "string"
+    },
+    "display_units": {
+      "description": "Display units corresponding to the current transfer function.",
+      "title": "Display Units",
+      "type": "string"
+    },
+    "estimated_sample_error_bound": {
+      "description": "Theoretical error bound based on LOD downsampling and texture quantization.",
+      "title": "Estimated Sample Error Bound",
+      "type": "number"
+    },
+    "lod_level": {
+      "description": "LOD level of the sampled brick.",
+      "title": "Lod Level",
+      "type": "integer"
+    },
+    "response_type": {
+      "default": "approximate_render_sample",
+      "description": "Discriminator identifying this as an approximate rendering texture sample.",
+      "title": "Response Type",
+      "type": "string"
+    },
+    "visualization_product_id": {
+      "description": "ID of the visual product under the raycast cursor.",
+      "title": "Visualization Product Id",
+      "type": "string"
+    },
+    "world_ray_hit_position": {
+      "description": "[x, y, z] position in 3D Volume Lab world space where ray intersection occurred.",
+      "items": {
+        "type": "number"
+      },
+      "title": "World Ray Hit Position",
+      "type": "array"
+    }
+  },
+  "required": [
+    "visualization_product_id",
+    "lod_level",
+    "approximate_value",
+    "display_units",
+    "world_ray_hit_position",
+    "estimated_sample_error_bound"
+  ],
+  "title": "ProvisionalRenderPickResponse",
+  "type": "object"
+}

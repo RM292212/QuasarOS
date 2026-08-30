@@ -1,0 +1,59 @@
+{
+  "fixture_id": "gebco_2026_elevation_subset",
+  "fixture_filename": "gebco_2026_elevation_subset.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "BATHYMETRY_GRID",
+  "source_asset": {
+    "relative_path": "data/raw/gebco/gebco-2026/gebco_2026_north_indian_ocean.nc",
+    "sha256": "ad95fb942b87eaceab8e5b9ad51262a57096acdb7cb2bad8aaaffd09925544a1",
+    "byte_size": 387971,
+    "provider": "GEBCO Sub-Committee on Undersea Feature Names / BODC",
+    "product_id": "GEBCO_2026_GRID",
+    "dataset_id": "gebco_2026_sub_ice_topo",
+    "licence": "Public Domain / CC0 equivalent with attribution (GEBCO Open Data Licence)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture bathymetry_grid",
+    "slicing_bounding_boxes": {
+      "lat": {
+        "index_slice": [
+          0,
+          30
+        ],
+        "bounds": [
+          0.00208333,
+          2.90208333
+        ],
+        "units": "degrees_north",
+        "count": 30
+      },
+      "lon": {
+        "index_slice": [
+          0,
+          30
+        ],
+        "bounds": [
+          40.00208333,
+          42.90208333
+        ],
+        "units": "degrees_east",
+        "count": 30
+      }
+    },
+    "variables": [
+      "lat",
+      "lon",
+      "crs",
+      "elevation"
+    ],
+    "target_shape": [
+      30,
+      30
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "d82efea85ba2af53273d4dc154d651e71c318775db6ec76394fb0257ea81c30a",
+    "byte_size": 24555,
+    "created_at_utc": "2026-08-30T09:35:40.738826+00:00"
+  }
+}

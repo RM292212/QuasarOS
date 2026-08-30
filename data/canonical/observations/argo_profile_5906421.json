@@ -1,0 +1,67 @@
+{
+  "platform_id": "5906421",
+  "cycle_number": 42,
+  "timestamp": "2026-08-26T08:30:00Z",
+  "latitude": 7.452,
+  "longitude": 64.12,
+  "data_mode": "D",
+  "qc_summary": "All levels passed RTQC and DMQC tests (QC=1)",
+  "levels": [
+    {
+      "pressure_dbar": 5.0,
+      "depth_m": 4.96,
+      "temp_c": 28.85,
+      "psal": 35.82,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 25.0,
+      "depth_m": 24.81,
+      "temp_c": 28.82,
+      "psal": 35.84,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 50.0,
+      "depth_m": 49.63,
+      "temp_c": 27.1,
+      "psal": 36.12,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 100.0,
+      "depth_m": 99.25,
+      "temp_c": 22.4,
+      "psal": 35.75,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 200.0,
+      "depth_m": 198.5,
+      "temp_c": 14.8,
+      "psal": 35.2,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 500.0,
+      "depth_m": 496.2,
+      "temp_c": 10.2,
+      "psal": 35.05,
+      "temp_qc": 1,
+      "psal_qc": 1
+    },
+    {
+      "pressure_dbar": 1000.0,
+      "depth_m": 992.3,
+      "temp_c": 7.1,
+      "psal": 34.9,
+      "temp_qc": 1,
+      "psal_qc": 1
+    }
+  ]
+}

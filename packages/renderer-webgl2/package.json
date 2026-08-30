@@ -1,0 +1,32 @@
+{
+  "name": "@quasar/renderer-webgl2",
+  "version": "1.0.0",
+  "description": "QuasarOS WebGL2 Scientific Volume Raymarching Renderer, Resource Manager, and Texture Pipeline",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "oceanography",
+    "scientific-visualization",
+    "webgl2",
+    "glsl",
+    "raymarching",
+    "volume-rendering",
+    "quasar"
+  ],
+  "author": "QuasarOS Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@quasar/client": "workspace:*",
+    "@quasar/runtime": "workspace:*"
+  }
+}

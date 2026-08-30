@@ -1,0 +1,92 @@
+{
+  "$defs": {
+    "CoordinateSpace": {
+      "description": "Coordinate frames across the scientific and visualization pipeline.",
+      "enum": [
+        "native_grid_indices",
+        "geographic_wgs84",
+        "local_enu",
+        "normalized_texture_coordinates",
+        "brick_local_sample_space",
+        "display_volume_lab"
+      ],
+      "title": "CoordinateSpace",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Formal mapping contract between native source coordinates, WGS84 geographic,\nlocal East-North-Up (ENU), Volume Lab rendering space, and GPU texture coordinates.",
+  "properties": {
+    "depth_lut_entries_m": {
+      "description": "Discrete vertical depth values in meters for non-uniform level lookup.",
+      "items": {
+        "type": "number"
+      },
+      "title": "Depth Lut Entries M",
+      "type": "array"
+    },
+    "origin_depth_m": {
+      "default": 0.0,
+      "description": "Reference vertical depth in meters (positive down).",
+      "title": "Origin Depth M",
+      "type": "number"
+    },
+    "origin_latitude_deg": {
+      "description": "Center latitude of the volume rendering domain.",
+      "title": "Origin Latitude Deg",
+      "type": "number"
+    },
+    "origin_longitude_deg": {
+      "description": "Center longitude of the volume rendering domain.",
+      "title": "Origin Longitude Deg",
+      "type": "number"
+    },
+    "scale_x_meters": {
+      "default": 1.0,
+      "description": "Scaling factor along X axis.",
+      "title": "Scale X Meters",
+      "type": "number"
+    },
+    "scale_y_meters": {
+      "default": 1.0,
+      "description": "Scaling factor along Y axis.",
+      "title": "Scale Y Meters",
+      "type": "number"
+    },
+    "scale_z_meters": {
+      "default": 1.0,
+      "description": "Scaling factor along Z axis.",
+      "title": "Scale Z Meters",
+      "type": "number"
+    },
+    "source_coordinate_space": {
+      "$ref": "#/$defs/CoordinateSpace",
+      "default": "geographic_wgs84",
+      "description": "Starting coordinate frame."
+    },
+    "target_coordinate_space": {
+      "$ref": "#/$defs/CoordinateSpace",
+      "default": "display_volume_lab",
+      "description": "Destination coordinate frame."
+    },
+    "uses_non_uniform_depth_lut": {
+      "default": true,
+      "description": "Whether non-uniform vertical z-levels require a 1D lookup texture/LUT.",
+      "title": "Uses Non Uniform Depth Lut",
+      "type": "boolean"
+    },
+    "vertical_exaggeration_factor": {
+      "default": 100.0,
+      "description": "Visual vertical exaggeration multiplier applied ONLY in display space.",
+      "exclusiveMinimum": 0.0,
+      "title": "Vertical Exaggeration Factor",
+      "type": "number"
+    }
+  },
+  "required": [
+    "origin_longitude_deg",
+    "origin_latitude_deg"
+  ],
+  "title": "CoordinateTransformContract",
+  "type": "object"
+}

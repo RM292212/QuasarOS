@@ -1,0 +1,81 @@
+{
+  "fixture_id": "hycom_water_temp_subvolume",
+  "fixture_filename": "hycom_water_temp_subvolume.nc",
+  "task_id": "TASK-02F",
+  "fixture_family": "SECONDARY_SCALAR_VOLUME",
+  "source_asset": {
+    "relative_path": "data/raw/hycom/hycom_espc_d_v02_temp3d_7day.nc",
+    "sha256": "a763811d5fd6c7560c9484c9d4fe0d76c7f0c0285b7b29b1835fe58521c58eee",
+    "byte_size": 1802987,
+    "provider": "Naval Research Laboratory / HYCOM Consortium",
+    "product_id": "HYCOM_ESPC-D-V02",
+    "dataset_id": "GLBv0.08/expt_02.2",
+    "licence": "Public Domain / Open Access (US Government Work)"
+  },
+  "extraction_spec": {
+    "extraction_command": "python scripts/extract_real_fixtures.py --fixture secondary_scalar_volume",
+    "slicing_bounding_boxes": {
+      "time": {
+        "index_slice": [
+          0,
+          2
+        ],
+        "units": "hours since 2000-01-01 00:00:00"
+      },
+      "depth": {
+        "index_slice": [
+          0,
+          6
+        ],
+        "values": [
+          0.0,
+          10.0
+        ],
+        "units": "m"
+      },
+      "lat": {
+        "index_slice": [
+          0,
+          16
+        ],
+        "bounds": [
+          5.0,
+          5.6
+        ],
+        "units": "degrees_north",
+        "count": 16
+      },
+      "lon": {
+        "index_slice": [
+          0,
+          16
+        ],
+        "bounds": [
+          65.04,
+          66.24
+        ],
+        "units": "degrees_east",
+        "count": 16
+      }
+    },
+    "variables": [
+      "time",
+      "depth",
+      "lat",
+      "lon",
+      "tau",
+      "water_temp"
+    ],
+    "target_shape": [
+      2,
+      6,
+      16,
+      16
+    ]
+  },
+  "fixture_artifact": {
+    "sha256": "07e0695eedc926a9771358a731343d39eb92be26c2746b5961f59185163b0668",
+    "byte_size": 33034,
+    "created_at_utc": "2026-08-30T09:35:39.912175+00:00"
+  }
+}

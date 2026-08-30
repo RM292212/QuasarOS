@@ -1,0 +1,101 @@
+{
+  "$defs": {
+    "DeduplicationResolution": {
+      "description": "Policy action for handling duplicates during ingestion and rendering.",
+      "enum": [
+        "prefer_primary",
+        "prefer_secondary",
+        "merge_provenance",
+        "reject_duplicate",
+        "retain_both"
+      ],
+      "title": "DeduplicationResolution",
+      "type": "string"
+    },
+    "DuplicateRelationshipType": {
+      "description": "Classification of duplicate or mirror relationships between observation records.",
+      "enum": [
+        "exact_mirror",
+        "provider_mirror",
+        "probable_duplicate",
+        "same_platform_different_processing",
+        "raw_and_adjusted_pair",
+        "distinct_observation"
+      ],
+      "title": "DuplicateRelationshipType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative relationship contract between two observation records (e.g. profiles or trajectories).\nQuantifies spatio-temporal delta, relationship type, and match confidence score.",
+  "properties": {
+    "confidence_score": {
+      "description": "Calculated match confidence score in range [0.0, 1.0].",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence Score",
+      "type": "number"
+    },
+    "matching_criteria": {
+      "description": "List of criteria that matched (e.g. 'wmo_id_match', 'cycle_number_match', 'exact_timestamp_match', 'identical_profile_checksum').",
+      "items": {
+        "type": "string"
+      },
+      "title": "Matching Criteria",
+      "type": "array"
+    },
+    "primary_record_id": {
+      "description": "Identifier of the primary authoritative record (e.g. 'incois_argo_7902250_042_D').",
+      "title": "Primary Record Id",
+      "type": "string"
+    },
+    "recommended_resolution": {
+      "$ref": "#/$defs/DeduplicationResolution",
+      "default": "prefer_primary",
+      "description": "Recommended resolution strategy for data ingestion and rendering."
+    },
+    "relationship_id": {
+      "description": "Unique identifier for this duplicate match relation.",
+      "title": "Relationship Id",
+      "type": "string"
+    },
+    "relationship_type": {
+      "$ref": "#/$defs/DuplicateRelationshipType",
+      "description": "Classification of the relationship."
+    },
+    "resolution_rationale": {
+      "description": "Human-readable scientific rationale for the classification and resolution.",
+      "title": "Resolution Rationale",
+      "type": "string"
+    },
+    "secondary_record_id": {
+      "description": "Identifier of the duplicate or secondary candidate record (e.g. 'coriolis_argo_7902250_042_R').",
+      "title": "Secondary Record Id",
+      "type": "string"
+    },
+    "spatial_distance_km": {
+      "description": "Calculated great-circle spatial separation in kilometers.",
+      "minimum": 0.0,
+      "title": "Spatial Distance Km",
+      "type": "number"
+    },
+    "time_delta_seconds": {
+      "description": "Absolute time difference between the two observations in seconds.",
+      "minimum": 0.0,
+      "title": "Time Delta Seconds",
+      "type": "number"
+    }
+  },
+  "required": [
+    "relationship_id",
+    "primary_record_id",
+    "secondary_record_id",
+    "relationship_type",
+    "spatial_distance_km",
+    "time_delta_seconds",
+    "confidence_score",
+    "resolution_rationale"
+  ],
+  "title": "DuplicateRelationshipContract",
+  "type": "object"
+}

@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "SpatialBoundingBox": {
+      "description": "2D spatial bounding box in geographic coordinates.",
+      "properties": {
+        "max_latitude": {
+          "description": "Northernmost latitude in degrees.",
+          "title": "Max Latitude",
+          "type": "number"
+        },
+        "max_longitude": {
+          "description": "Easternmost longitude in degrees.",
+          "title": "Max Longitude",
+          "type": "number"
+        },
+        "min_latitude": {
+          "description": "Southernmost latitude in degrees.",
+          "title": "Min Latitude",
+          "type": "number"
+        },
+        "min_longitude": {
+          "description": "Westernmost longitude in degrees.",
+          "title": "Min Longitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "min_longitude",
+        "min_latitude",
+        "max_longitude",
+        "max_latitude"
+      ],
+      "title": "SpatialBoundingBox",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Defines spatial boundaries, sample shapes, padding/halos, and valid ranges for a 3D brick.",
+  "properties": {
+    "brick_key": {
+      "description": "Deterministic brick composite key.",
+      "title": "Brick Key",
+      "type": "string"
+    },
+    "halo_padding": {
+      "default": [
+        1,
+        1,
+        1
+      ],
+      "description": "[pad_x, pad_y, pad_z] boundary halo overlap in voxels to eliminate interpolation seams.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Halo Padding",
+      "type": "array"
+    },
+    "interior_valid_shape": {
+      "description": "[nx, ny, nz] dimensions excluding boundary halo/padding.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Interior Valid Shape",
+      "type": "array"
+    },
+    "is_empty_or_masked": {
+      "default": false,
+      "description": "Whether this brick contains 100% missing/masked samples (eligible for empty-space skipping).",
+      "title": "Is Empty Or Masked",
+      "type": "boolean"
+    },
+    "max_depth_m": {
+      "description": "Maximum physical depth in meters for this brick.",
+      "title": "Max Depth M",
+      "type": "number"
+    },
+    "max_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum valid physical value within this brick (excluding missing).",
+      "title": "Max Value"
+    },
+    "min_depth_m": {
+      "description": "Minimum physical depth in meters for this brick.",
+      "title": "Min Depth M",
+      "type": "number"
+    },
+    "min_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Minimum valid physical value within this brick (excluding missing).",
+      "title": "Min Value"
+    },
+    "payload_sha256": {
+      "description": "SHA-256 checksum of the uncompressed brick payload.",
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "sample_origin": {
+      "description": "[x, y, z] origin offset in full-volume sample coordinates.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Sample Origin",
+      "type": "array"
+    },
+    "sample_shape": {
+      "description": "[nx, ny, nz] sample dimensions including boundary padding/halo.",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Sample Shape",
+      "type": "array"
+    },
+    "spatial_bounds": {
+      "$ref": "#/$defs/SpatialBoundingBox",
+      "description": "Geographic bounding box for this sub-volume brick."
+    }
+  },
+  "required": [
+    "brick_key",
+    "sample_origin",
+    "sample_shape",
+    "interior_valid_shape",
+    "spatial_bounds",
+    "min_depth_m",
+    "max_depth_m",
+    "payload_sha256"
+  ],
+  "title": "BrickGeometryContract",
+  "type": "object"
+}
