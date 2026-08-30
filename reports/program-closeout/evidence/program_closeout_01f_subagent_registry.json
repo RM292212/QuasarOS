@@ -1,0 +1,38 @@
+﻿[
+  {
+    "agent_id": "373c8bf2-ac94-4504-9e82-e8e4f5efc06e",
+    "role": "Agent F1 (Git, Security, and Manifest Repair)",
+    "status": "AGENT-F1 COMPLETE",
+    "report_path": "reports/program-closeout/program_closeout_01f_git_manifest_security_and_candidate_reconciliation.md"
+  },
+  {
+    "agent_id": "7d262111-fab3-4f9d-b110-cf90fe09d6e6",
+    "role": "Agent F2 (TASK-12 Scientific Evidence Completion)",
+    "status": "AGENT-F2 COMPLETE WITH LIMITATIONS",
+    "report_path": "reports/program-closeout/program_closeout_01f_task12_scientific_evidence_completion.md"
+  },
+  {
+    "agent_id": "e2a75c4c-a684-4714-9e8c-56138efa153a",
+    "role": "Agent F3 (Backend and Live API Verification)",
+    "status": "AGENT-F3 COMPLETE",
+    "report_path": "reports/program-closeout/program_closeout_01f_backend_and_live_api_verification.md"
+  },
+  {
+    "agent_id": "80f37331-dca2-4f76-967b-2ff67615d909",
+    "role": "Agent F4 (Frontend, Browser, and Accessibility)",
+    "status": "AGENT-F4 COMPLETE",
+    "report_path": "reports/program-closeout/program_closeout_01f_frontend_browser_gpu_and_accessibility_verification.md"
+  },
+  {
+    "agent_id": "0c12e858-2f83-4762-ae40-88a6f92b7969",
+    "role": "Agent F5 (Reproducibility and Operations)",
+    "status": "AGENT-F5 COMPLETE",
+    "report_path": "reports/program-closeout/program_closeout_01f_reproducibility_build_and_operations_verification.md"
+  },
+  {
+    "agent_id": "7c6783e9-3031-401f-bcf8-a17e9595e1d9",
+    "role": "Agent F6 (Independent Final Auditor)",
+    "status": "AGENT-F6 APPROVED",
+    "report_path": "reports/program-closeout/program_closeout_01f_independent_final_audit.md"
+  }
+]

@@ -1,0 +1,16 @@
+﻿{
+  "candidate_commit": "ea4e497f29023f378b8dfa6a8b9b586ca7def9dd",
+  "backend_command": "powershell -ExecutionPolicy Bypass -File scripts/start_local_stack.ps1",
+  "frontend_command": "npx vite --host 127.0.0.1 --port 5173",
+  "backend_url": "http://127.0.0.1:8000",
+  "frontend_url": "http://127.0.0.1:5173",
+  "api_docs_url": "http://127.0.0.1:8000/docs",
+  "liveness_url": "http://127.0.0.1:8000/health/live",
+  "readiness_url": "http://127.0.0.1:8000/health/ready",
+  "environment_persistence": "PERSISTENT SCRIPT LAUNCHER (scripts/start_local_stack.ps1)",
+  "local_runtime_status": "READY FOR LOCAL OPERATOR STARTUP",
+  "backend_log": "reports/program-closeout/evidence/runtime/backend.log",
+  "frontend_log": "reports/program-closeout/evidence/runtime/frontend.log",
+  "start_command": "powershell -ExecutionPolicy Bypass -File scripts/start_local_stack.ps1",
+  "stop_command": "powershell -ExecutionPolicy Bypass -File scripts/stop_local_stack.ps1"
+}

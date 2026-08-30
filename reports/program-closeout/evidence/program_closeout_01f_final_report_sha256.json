@@ -1,0 +1,10 @@
+﻿{
+  "report_path": "reports/program-closeout/program_closeout_01f_quasaros_v1.1.0_final_correction_completion_and_local_runtime_report.md",
+  "sha256": "'$reportSha'",
+  "algorithm": "SHA-256",
+  "generated_at_utc": "'$nowIso'",
+  "software_candidate_commit": "4860e67d3e3331afdbd44e5fa9ce6c559147f38d",
+  "evidence_commit": "ea4e497f29023f378b8dfa6a8b9b586ca7def9dd",
+  "verified_by": "Agent F6 (Independent Final Auditor)",
+  "verification_status": "AGENT-F6 APPROVED"
+}
