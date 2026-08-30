@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ObservationComparisonModel } from './ObservationComparisonLogic.ts';
 
 export interface ObservationComparisonPanelProps {
