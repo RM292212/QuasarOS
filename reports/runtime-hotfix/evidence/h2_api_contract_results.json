@@ -1,0 +1,21 @@
+﻿{
+    "status":  "H2 COMPLETE",
+    "readiness":  {
+                      "argo_external_not_blocking":  true,
+                      "essential_data_probe":  true
+                  },
+    "agent":  "H2",
+    "structured_errors":  {
+                              "data_unavailable_503":  true,
+                              "validation_400":  true,
+                              "internal_500_sanitised":  true,
+                              "correlation_id":  true
+                          },
+    "teos10_400_root_cause":  "Frontend default longitude=64.0 is outside Copernicus regional domain [80,88]deg E; backend correctly rejected it as invalid. Fix: updated default to 84.0 and added domain-gating validation before any fetch",
+    "frontend_gating":  {
+                            "stale_rejection":  true,
+                            "debounce_ms":  500,
+                            "domain_check":  true,
+                            "abort_controller":  true
+                        }
+}

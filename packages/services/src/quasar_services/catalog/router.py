@@ -68,8 +68,45 @@ async def health_live(service: CatalogService = Depends(get_catalog_service)) ->
     tags=["Health"],
 )
 async def health_ready(service: CatalogService = Depends(get_catalog_service)) -> HealthStatus:
-    """Return readiness status including cryptographic SHA-256 integrity verification."""
-    return service.get_health_ready()
+    """
+    Readiness probe — verifies:
+    1. Manifest checksums (catalog layer).
+    2. Essential local scientific data accessible (analysis layer) — RUNTIME-HOTFIX-03.
+
+    Returns 200 only when BOTH checks pass.
+    Returns 503 when the scientific data source is inaccessible.
+    Argo/ERDDAP external providers are optional and do NOT affect readiness.
+    """
+    from quasar_services.analysis.analysis_engine import ScientificAnalysisEngine
+    from fastapi.responses import JSONResponse
+
+    ok, _errors = service.loader.verify_all_manifest_checksums()
+    status_obj = service.get_health_ready()
+
+    # Probe the essential scientific data source (bounded — reads only time coord)
+    engine = ScientificAnalysisEngine()
+    probe = engine.probe_essential_data()
+    data_ok = probe.get("status") == "ok"
+
+    if not data_ok:
+        # Scientific data inaccessible → not ready
+        import logging
+        logging.getLogger("quasar.services").error(
+            "Readiness probe failed: essential scientific data unavailable — %s", probe
+        )
+        from quasar_services.catalog.models import HealthStatus as HS
+        degraded = HS(
+            status="degraded",
+            service="quasar-catalog-service",
+            version="1.0.0",
+            activeSnapshotsCount=status_obj.activeSnapshotsCount,
+            historicalSnapshotsCount=status_obj.historicalSnapshotsCount,
+            visualizationProductsCount=status_obj.visualizationProductsCount,
+            integrityVerified=False,
+        )
+        return JSONResponse(status_code=503, content=degraded.model_dump())
+
+    return status_obj
 
 
 # -----------------------------------------------------------------------------

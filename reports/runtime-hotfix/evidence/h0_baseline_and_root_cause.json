@@ -1,0 +1,20 @@
+﻿{
+    "packages":  {
+                     "argopy":  "1.4.0",
+                     "pandas":  "2.3.3",
+                     "starlette":  "1.6.0",
+                     "numpy":  "2.5.2",
+                     "fsspec":  "2026.7.0",
+                     "erddapy":  "2.3.0",
+                     "uvicorn":  "0.52.4",
+                     "netCDF4":  "1.7.4",
+                     "xarray":  "2025.9.0",
+                     "fastapi":  "0.141.1"
+                 },
+    "root_cause_identified":  "Shared xr.Dataset objects cached in singleton _engine._datasets dict, accessed concurrently by AnyIO thread-pool workers, causing RuntimeError: NetCDF: Not a valid ID when one thread invalidated a handle held by another",
+    "strategy_selected":  "Strategy A: Per-request open+materialise+close with xr.open_dataset context manager; no lazy DataArray escapes the with block",
+    "git_commit":  "87637dec924f6b606686b2397360b84e38e9fb2d",
+    "wave":  "H0",
+    "recorded_at":  "2026-08-31T02:49:30+05:30",
+    "python_version":  "3.12.10"
+}

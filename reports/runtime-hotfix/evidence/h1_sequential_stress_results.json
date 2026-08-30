@@ -1,0 +1,41 @@
+﻿{
+    "status":  "H1 COMPLETE",
+    "agent":  "H1",
+    "timestamp_matrix":  {
+                             "pass":  true,
+                             "all_7_distinct":  true
+                         },
+    "concurrent_20_threads":  {
+                                  "pass":  true,
+                                  "elapsed_sec":  7.24
+                              },
+    "variable_matrix":  {
+                            "so":  {
+                                       "surface_only":  false,
+                                       "pass":  true
+                                   },
+                            "uo":  {
+                                       "surface_only":  false,
+                                       "pass":  true
+                                   },
+                            "vo":  {
+                                       "surface_only":  false,
+                                       "pass":  true
+                                   },
+                            "zos":  {
+                                        "surface_only":  true,
+                                        "pass":  true
+                                    },
+                            "thetao":  {
+                                           "surface_only":  false,
+                                           "pass":  true
+                                       }
+                        },
+    "sequential_requests":  {
+                                "success":  100,
+                                "elapsed_sec":  80.07,
+                                "fail":  0,
+                                "count":  100
+                            },
+    "netcdf_not_valid_id_reproducible":  false
+}

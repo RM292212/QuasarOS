@@ -1,0 +1,9 @@
+﻿{
+    "agent":  "H3",
+    "quote_string_constraints_error":  "RESOLVED - pinned erddapy==2.3.0",
+    "argopy_version":  "1.4.0",
+    "erddapy_version":  "2.3.0",
+    "argo_startup_network":  "argopy contacts GitHub ERDDAP registry on import as a module-level side-effect; this is inherent to argopy 1.4.0 and cannot be removed without forking. Mitigation: core data endpoints (analysis engine) do NOT depend on argopy; Argo failure does not affect volume-grid, TEOS-10, or health/ready",
+    "status":  "H3 COMPLETE",
+    "pandas_version":  "2.3.3"
+}
