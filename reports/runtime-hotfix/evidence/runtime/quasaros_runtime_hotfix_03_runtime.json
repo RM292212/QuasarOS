@@ -1,0 +1,15 @@
+﻿{
+    "final_commit":  "d353a9f33581e90beace57d0d22dc21007ce6c38",
+    "frontend_url":  "http://127.0.0.1:5173",
+    "backend_pid":  6432,
+    "recorded_at":  "2026-08-31T03:04:00+05:30",
+    "backend_log":  "reports/runtime-hotfix/evidence/runtime/backend.log",
+    "readiness_url":  "http://127.0.0.1:8000/health/ready",
+    "frontend_pid":  5016,
+    "frontend_log":  "reports/runtime-hotfix/evidence/runtime/frontend.log",
+    "api_docs_url":  "http://127.0.0.1:8000/api/v1/docs",
+    "backend_start_cmd":  "python -m uvicorn quasar_services.app:app --host 127.0.0.1 --port 8000 --log-level info",
+    "liveness_url":  "http://127.0.0.1:8000/health/live",
+    "frontend_start_cmd":  "npx vite --host 127.0.0.1 --port 5173 (run from apps/web)",
+    "backend_url":  "http://127.0.0.1:8000"
+}
