@@ -31,7 +31,7 @@ from quasar_services.analysis.router import router as analysis_router
 LOG_LEVEL = os.environ.get("QUASAR_LOG_LEVEL", "INFO").upper()
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL, logging.INFO),
-    format="%(asctime)s [%(levelname)s] [req_id=%(request_id)s] %(name)s: %(message)s",
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     datefmt="%Y-%m-%dT%H:%M:%S%z",
 )
 logger = logging.getLogger("quasar.services")
@@ -190,6 +190,7 @@ def create_app(static_dir: Optional[Path] = None) -> FastAPI:
 
 
 app = create_app()
+
 
 
 

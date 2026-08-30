@@ -44,7 +44,7 @@ export const DatasetNavigation: React.FC = () => {
             >
               {availableVariables.map((v) => (
                 <option key={v} value={v}>
-                  {v} (Temperature, Â°C)
+                  {v}
                 </option>
               ))}
             </select>
@@ -71,12 +71,12 @@ export const DatasetNavigation: React.FC = () => {
         >
           <span className="text-scientific-muted">LON:</span>
           <span className="text-sky-300">
-            [{spatialBounds.minLon.toFixed(1)}Â°E, {spatialBounds.maxLon.toFixed(1)}Â°E]
+            [{spatialBounds.minLon.toFixed(1)}°E, {spatialBounds.maxLon.toFixed(1)}°E]
           </span>
           <span className="text-scientific-border">|</span>
           <span className="text-scientific-muted">LAT:</span>
           <span className="text-sky-300">
-            [{spatialBounds.minLat.toFixed(1)}Â°N, {spatialBounds.maxLat.toFixed(1)}Â°N]
+            [{spatialBounds.minLat.toFixed(1)}°N, {spatialBounds.maxLat.toFixed(1)}°N]
           </span>
         </div>
 
@@ -84,18 +84,17 @@ export const DatasetNavigation: React.FC = () => {
         <div
           data-testid="depth-extents-pill"
           className="flex items-center gap-2 bg-scientific-card px-2.5 py-1 rounded border border-scientific-border"
-          title="Vertical Depth Range (31 Non-Uniform Levels)"
+          title="Vertical Depth Range (50 Non-Uniform Levels)"
         >
           <span className="text-scientific-muted">DEPTH:</span>
           <span className="text-amber-300">
-            {spatialBounds.minDepthM.toFixed(3)} m â†’ {spatialBounds.maxDepthM.toFixed(3)} m
+            {spatialBounds.minDepthM.toFixed(3)} m → 5727.917 m
           </span>
           <span className="px-1.5 py-0.2 bg-amber-950/60 text-amber-400 border border-amber-800/60 rounded text-[9px]">
-            31 LVLS
+            50 LVLS
           </span>
         </div>
       </div>
     </div>
   );
 };
-
