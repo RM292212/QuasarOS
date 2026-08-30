@@ -1,0 +1,13 @@
+{
+  "all_ready": true,
+  "checks": [
+    "quasaros_v1.1.0_rc_artifact_manifest.json: hash_match=True, size_match=True",
+    "data/manifests/certification/task_12_multivariable_certification_manifest.json: hash_match=True, size_match=True",
+    "data/manifests/certification/task_13_14_analysis_and_observation_certification_manifest.json: hash_match=True, size_match=True",
+    "examples/reproducible_figures/reproducible_experiment_bundle.json: hash_match=True, size_match=True",
+    "program_02_task_12_14_parallel_execution_final_report.md: hash_match=True, size_match=True",
+    "program_02r_independent_release_handoff_report.md: hash_match=True, size_match=True",
+    "release_02e_v1.1.0_independent_release_approval_report.md: hash_match=True, size_match=True",
+    "task_15_reproducible_research_and_publication_final_report.md: hash_match=True, size_match=True"
+  ]
+}

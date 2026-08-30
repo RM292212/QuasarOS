@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { ObservationComparisonModel } from './ObservationComparisonLogic.ts';
 
 export interface ObservationComparisonPanelProps {
@@ -15,18 +15,18 @@ export const ObservationComparisonPanel: React.FC<ObservationComparisonPanelProp
           <p className="text-[10px] text-slate-400">Argo Float: {model.argoProfileId}</p>
         </div>
         {onClose && (
-          <button onClick={onClose} className="text-slate-500 hover:text-slate-300">✕</button>
+          <button aria-label="Close observation comparison panel" onClick={onClose} className="text-slate-500 hover:text-slate-300">âœ•</button>
         )}
       </div>
 
       <div className="grid grid-cols-2 gap-2 mb-4">
         <div className="bg-slate-950 p-2 rounded border border-slate-800">
           <div className="text-[10px] text-slate-500">RMSE</div>
-          <div className="text-lg font-mono text-amber-300" data-testid="rmse-value">{model.rmse.toFixed(3)} °C</div>
+          <div className="text-lg font-mono text-amber-300" data-testid="rmse-value">{model.rmse.toFixed(3)} Â°C</div>
         </div>
         <div className="bg-slate-950 p-2 rounded border border-slate-800">
           <div className="text-[10px] text-slate-500">Mean Bias</div>
-          <div className="text-lg font-mono text-cyan-300" data-testid="bias-value">{model.meanBias > 0 ? '+' : ''}{model.meanBias.toFixed(3)} °C</div>
+          <div className="text-lg font-mono text-cyan-300" data-testid="bias-value">{model.meanBias > 0 ? '+' : ''}{model.meanBias.toFixed(3)} Â°C</div>
         </div>
         <div className="col-span-2 text-[10px] text-slate-400 text-center">
           Based on <span className="text-slate-200 font-bold" data-testid="sample-size">{model.samplesCount}</span> collocated depth samples
@@ -40,7 +40,7 @@ export const ObservationComparisonPanel: React.FC<ObservationComparisonPanelProp
               <th className="p-1.5 font-medium text-slate-400 border-b border-slate-800">Depth (m)</th>
               <th className="p-1.5 font-medium text-slate-400 border-b border-slate-800">Argo</th>
               <th className="p-1.5 font-medium text-slate-400 border-b border-slate-800">Model</th>
-              <th className="p-1.5 font-medium text-slate-400 border-b border-slate-800">Δ</th>
+              <th className="p-1.5 font-medium text-slate-400 border-b border-slate-800">Î”</th>
             </tr>
           </thead>
           <tbody>
@@ -60,3 +60,4 @@ export const ObservationComparisonPanel: React.FC<ObservationComparisonPanelProp
     </div>
   );
 };
+

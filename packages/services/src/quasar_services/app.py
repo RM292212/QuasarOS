@@ -1,4 +1,4 @@
-"""
+﻿"""
 QuasarOS FastAPI Application Entrypoint.
 
 Configures global exception handlers according to docs/02-architecture/ErrorModel.md,
@@ -25,6 +25,7 @@ from quasar_services.catalog.errors import (
 )
 from quasar_services.catalog.router import router as catalog_router
 from quasar_services.query.router import router as query_router
+from quasar_services.analysis.router import router as analysis_router
 
 # Logging Configuration
 LOG_LEVEL = os.environ.get("QUASAR_LOG_LEVEL", "INFO").upper()
@@ -166,6 +167,7 @@ def create_app(static_dir: Optional[Path] = None) -> FastAPI:
     # Include REST routers
     app.include_router(catalog_router)
     app.include_router(query_router)
+    app.include_router(analysis_router)
 
     # Static Asset Delivery for apps/web/ UI if configured or present
     static_asset_path = static_dir or os.environ.get("QUASAR_STATIC_DIR")
@@ -188,4 +190,6 @@ def create_app(static_dir: Optional[Path] = None) -> FastAPI:
 
 
 app = create_app()
+
+
 

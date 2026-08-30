@@ -1,0 +1,1 @@
+Inspected packages/services/src/quasar_services/analysis/router.py. Found routes: /timeseries, /profile, /teos10-soundings. Missing: /transect, /slice.

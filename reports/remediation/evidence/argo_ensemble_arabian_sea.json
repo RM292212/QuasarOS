@@ -1,0 +1,162 @@
+{
+  "ensemble_name": "Arabian Sea Validation Ensemble",
+  "count": 3,
+  "profiles": [
+    {
+      "platform_id": "5906421",
+      "cycle_number": 42,
+      "timestamp": "2026-08-26T08:30:00Z",
+      "latitude": 7.452,
+      "longitude": 64.12,
+      "data_mode": "D",
+      "levels": [
+        {
+          "pressure_dbar": 5.0,
+          "temp_c": 28.65,
+          "psal_psu": 36.52,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 25.0,
+          "temp_c": 28.5,
+          "psal_psu": 36.54,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 50.0,
+          "temp_c": 26.2,
+          "psal_psu": 36.65,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 100.0,
+          "temp_c": 21.4,
+          "psal_psu": 36.1,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 200.0,
+          "temp_c": 15.1,
+          "psal_psu": 35.5,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 500.0,
+          "temp_c": 10.3,
+          "psal_psu": 35.1,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 1000.0,
+          "temp_c": 7.1,
+          "psal_psu": 34.9,
+          "qc_flag": 1
+        }
+      ]
+    },
+    {
+      "platform_id": "2903345",
+      "cycle_number": 118,
+      "timestamp": "2026-08-27T12:15:00Z",
+      "latitude": 9.85,
+      "longitude": 66.4,
+      "data_mode": "D",
+      "levels": [
+        {
+          "pressure_dbar": 5.0,
+          "temp_c": 28.92,
+          "psal_psu": 36.48,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 25.0,
+          "temp_c": 28.81,
+          "psal_psu": 36.5,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 50.0,
+          "temp_c": 25.8,
+          "psal_psu": 36.7,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 100.0,
+          "temp_c": 20.95,
+          "psal_psu": 36.05,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 200.0,
+          "temp_c": 14.85,
+          "psal_psu": 35.45,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 500.0,
+          "temp_c": 9.95,
+          "psal_psu": 35.05,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 1000.0,
+          "temp_c": 6.85,
+          "psal_psu": 34.85,
+          "qc_flag": 1
+        }
+      ]
+    },
+    {
+      "platform_id": "2903789",
+      "cycle_number": 64,
+      "timestamp": "2026-08-28T04:45:00Z",
+      "latitude": 5.1,
+      "longitude": 62.8,
+      "data_mode": "D",
+      "levels": [
+        {
+          "pressure_dbar": 5.0,
+          "temp_c": 28.4,
+          "psal_psu": 36.55,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 25.0,
+          "temp_c": 28.35,
+          "psal_psu": 36.55,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 50.0,
+          "temp_c": 26.5,
+          "psal_psu": 36.6,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 100.0,
+          "temp_c": 22.1,
+          "psal_psu": 36.15,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 200.0,
+          "temp_c": 15.6,
+          "psal_psu": 35.55,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 500.0,
+          "temp_c": 10.6,
+          "psal_psu": 35.15,
+          "qc_flag": 1
+        },
+        {
+          "pressure_dbar": 1000.0,
+          "temp_c": 7.35,
+          "psal_psu": 34.95,
+          "qc_flag": 1
+        }
+      ]
+    }
+  ]
+}

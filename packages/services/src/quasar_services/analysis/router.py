@@ -3,11 +3,13 @@ TASK-13 REST API Router
 Mounts:
 - POST /api/v1/analysis/timeseries
 - POST /api/v1/analysis/profile
+- POST /api/v1/analysis/transect
+- POST /api/v1/analysis/slice
 - POST /api/v1/analysis/teos10-soundings
 """
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
-from typing import Optional, List, Dict, Any, Tuple
+from typing import Optional, List, Dict, Any
 from quasar_services.analysis.analysis_engine import ScientificAnalysisEngine
 
 router = APIRouter(prefix="/api/v1/analysis", tags=["Scientific Analysis"])
@@ -31,6 +33,20 @@ class VerticalProfileRequest(BaseModel):
     latitude: float = Field(..., ge=-90.0, le=90.0)
     longitude: float = Field(..., ge=-180.0, le=180.0)
 
+class TransectRequest(BaseModel):
+    variable: str = Field(..., description="Variable identifier: thetao, so, uo, vo, zos")
+    time_index: int = Field(0, ge=0, le=6)
+    start_latitude: float = Field(..., ge=-90.0, le=90.0)
+    start_longitude: float = Field(..., ge=-180.0, le=180.0)
+    end_latitude: float = Field(..., ge=-90.0, le=90.0)
+    end_longitude: float = Field(..., ge=-180.0, le=180.0)
+    num_samples: int = Field(10, ge=2, le=100)
+
+class SliceRequest(BaseModel):
+    variable: str = Field(..., description="Variable identifier: thetao, so, uo, vo, zos")
+    time_index: int = Field(0, ge=0, le=6)
+    depth_m: float = Field(0.494, ge=0.0, le=6000.0)
+
 class TEOS10Request(BaseModel):
     time_index: int = Field(0, ge=0, le=6)
     latitude: float = Field(..., ge=-90.0, le=90.0)
@@ -47,6 +63,20 @@ async def get_timeseries(req: PointTimeseriesRequest, engine: ScientificAnalysis
 async def get_profile(req: VerticalProfileRequest, engine: ScientificAnalysisEngine = Depends(get_engine)):
     try:
         return engine.query_vertical_profile(req.variable, req.time_index, req.latitude, req.longitude)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/transect")
+async def get_transect(req: TransectRequest, engine: ScientificAnalysisEngine = Depends(get_engine)):
+    try:
+        return engine.query_transect(req.variable, req.time_index, req.start_latitude, req.start_longitude, req.end_latitude, req.end_longitude, req.num_samples)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/slice")
+async def get_slice(req: SliceRequest, engine: ScientificAnalysisEngine = Depends(get_engine)):
+    try:
+        return engine.query_horizontal_slice(req.variable, req.time_index, req.depth_m)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
