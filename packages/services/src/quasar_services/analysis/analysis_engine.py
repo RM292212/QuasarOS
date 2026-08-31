@@ -53,11 +53,13 @@ def _resolve_nc_path(variable: str, raw_base_dir: str = "data/raw/copernicus/phy
         if variable in _path_cache:
             return _path_cache[variable]
 
-    # Search patterns in priority order
+    # Search patterns in priority order (multivariable 5-variable dataset first)
     search_roots = [raw_base_dir, "data/raw/copernicus/physical"]
     matches: List[str] = []
     for root in search_roots:
         for pattern in [
+            os.path.join(root, "*multivariable*", "**", variable, f"*{variable}*.nc"),
+            os.path.join(root, "*multivariable*", "**", f"*{variable}*.nc"),
             os.path.join(root, f"*{variable}*", "**", "*.nc"),
             os.path.join(root, f"*{variable}*.nc"),
             os.path.join(root, "**", f"*{variable}*.nc"),
@@ -300,7 +302,7 @@ class ScientificAnalysisEngine:
                 prof = da.sel(
                     latitude=pt["latitude"], longitude=pt["longitude"], method="nearest"
                 )
-                vals = prof.values.tolist()
+                vals = [None if np.isnan(v) else float(v) for v in prof.values.tolist()]
                 transect_soundings.append(
                     {
                         "latitude": pt["latitude"],
@@ -312,8 +314,80 @@ class ScientificAnalysisEngine:
         return {
             "variable": variable,
             "time_index": time_index,
+            "num_samples": len(points),
+            "samples": transect_soundings,
             "soundings": transect_soundings,
-            "depths_m": depths.tolist(),
+            "depths_m": [float(d) for d in depths.tolist()],
+            "authority": "authoritative native-source value under ADR-0005",
+        }
+
+    # ------------------------------------------------------------------
+    # Point Time Series & Vertical Profile (TASK-13 / TASK-14 compatibility)
+    # ------------------------------------------------------------------
+
+    def query_point_timeseries(
+        self,
+        variable: str,
+        lat: float,
+        lon: float,
+        depth_m: Optional[float] = None,
+    ) -> Dict[str, Any]:
+        if variable not in _ALLOWED_VARIABLES:
+            raise ValueError(f"Variable '{variable}' not in allowlist")
+        if err := self._validate_spatial(lat, lon):
+            raise ValueError(err)
+
+        path = _resolve_nc_path(variable, self.raw_base_dir)
+        with xr.open_dataset(path, mask_and_scale=True) as ds:
+            var_name = next(iter(ds.data_vars))
+            da = ds[var_name]
+            if "depth" in da.dims and depth_m is not None:
+                da_pt = da.sel(latitude=lat, longitude=lon, depth=depth_m, method="nearest")
+            else:
+                da_pt = da.sel(latitude=lat, longitude=lon, method="nearest")
+
+            times = [str(t)[:10] for t in ds.time.values]
+            vals = da_pt.values.copy()
+
+        # Clean NaNs to None for clean JSON serialization
+        clean_vals = [None if np.isnan(v) else float(v) for v in vals]
+        return {
+            "variable": variable,
+            "latitude": lat,
+            "longitude": lon,
+            "depth_m": depth_m,
+            "timesteps": times,
+            "values": clean_vals,
+        }
+
+    def query_vertical_profile(
+        self,
+        variable: str,
+        time_index: int,
+        lat: float,
+        lon: float,
+    ) -> Dict[str, Any]:
+        if variable not in _ALLOWED_VARIABLES:
+            raise ValueError(f"Variable '{variable}' not in allowlist")
+        if err := self._validate_spatial(lat, lon):
+            raise ValueError(err)
+
+        path = _resolve_nc_path(variable, self.raw_base_dir)
+        with xr.open_dataset(path, mask_and_scale=True) as ds:
+            var_name = next(iter(ds.data_vars))
+            t_idx = min(time_index, len(ds.time) - 1)
+            da = ds[var_name].isel(time=t_idx).sel(latitude=lat, longitude=lon, method="nearest")
+            depths = ds["depth"].values.copy() if "depth" in ds.dims else np.array([0.0])
+            vals = da.values.copy()
+
+        clean_vals = [None if np.isnan(v) else float(v) for v in vals]
+        return {
+            "variable": variable,
+            "time_index": t_idx,
+            "latitude": lat,
+            "longitude": lon,
+            "depth_levels_m": [float(d) for d in depths],
+            "values": clean_vals,
         }
 
     # ------------------------------------------------------------------
@@ -363,7 +437,7 @@ class ScientificAnalysisEngine:
         try:
             path = _resolve_nc_path("thetao", self.raw_base_dir)
             with xr.open_dataset(path, mask_and_scale=False, decode_times=False) as ds:
-                n_times = int(ds.dims.get("time", 0))
+                n_times = int(ds.sizes.get("time", 0))
             return {
                 "status": "ok",
                 "thetao_file": os.path.basename(path),

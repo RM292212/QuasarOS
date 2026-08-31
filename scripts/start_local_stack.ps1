@@ -1,28 +1,104 @@
-﻿# QuasarOS Local Full-Stack Launcher
-# Starts Backend (FastAPI on 127.0.0.1:8000) and Frontend (Vite on 127.0.0.1:5173) in dedicated interactive windows
+# QuasarOS Robust Local Full-Stack Orchestrator — RUNTIME-STABILITY-04
+# Starts Backend (FastAPI on 127.0.0.1:8000), polls /health/ready with bounded timeout,
+# and starts Frontend (Vite on 127.0.0.1:5173) ONLY after backend readiness succeeds.
+
+param(
+    [int]$TimeoutSeconds = 45,
+    [switch]$NoBrowser
+)
 
 $root = (Get-Location).Path
 $backendPath = Join-Path $root "packages\services\src"
 $contractsPath = Join-Path $root "packages\contracts\src"
+$logDir = Join-Path $root "reports\runtime-stability\evidence\logs"
+if (-not (Test-Path $logDir)) {
+    New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+}
+$launcherLog = Join-Path $logDir "launcher.log"
 
-Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "        Launching QuasarOS v1.1.0 Full-Stack           " -ForegroundColor Cyan
-Write-Host "========================================================" -ForegroundColor Cyan
+function Log-Message([string]$msg, [string]$color = "White") {
+    $timestamp = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+    $logLine = "[$timestamp] $msg"
+    Write-Host $msg -ForegroundColor $color
+    Add-Content -Path $launcherLog -Value $logLine -Encoding UTF8
+}
 
-# 1. Start FastAPI Backend in new window (with -NoExit so it never closes if there is any message)
-Write-Host "1. Launching Backend Window (http://127.0.0.1:8000)..." -ForegroundColor Green
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "Write-Host 'Starting QuasarOS FastAPI Backend...' -ForegroundColor Cyan; `$env:PYTHONPATH = '$backendPath;$contractsPath'; python -m uvicorn quasar_services.app:app --host 127.0.0.1 --port 8000 --reload"
+Log-Message "========================================================" "Cyan"
+Log-Message "    QuasarOS Robust Full-Stack Launcher (STABILITY-04)   " "Yellow"
+Log-Message "========================================================" "Cyan"
 
-# 2. Start Vite Frontend in new window (with -NoExit)
-Write-Host "2. Launching Frontend Window (http://127.0.0.1:5173)..." -ForegroundColor Green
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "Write-Host 'Starting QuasarOS Vite Frontend...' -ForegroundColor Cyan; Set-Location '$root\apps\web'; npx vite --host 127.0.0.1 --port 5173"
+# 1. Clean any stale processes on ports 8000 and 5173
+Log-Message "[1/4] Checking ports 8000 and 5173..." "Gray"
+$ports = @(8000, 5173)
+foreach ($p in $ports) {
+    $netstat = Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue
+    if ($netstat) {
+        foreach ($conn in $netstat) {
+            $pidToKill = $conn.OwningProcess
+            if ($pidToKill -gt 0) {
+                Log-Message "  Releasing occupied port $p (PID: $pidToKill)..." "Yellow"
+                Stop-Process -Id $pidToKill -Force -ErrorAction SilentlyContinue
+            }
+        }
+    }
+}
 
-Write-Host ""
-Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "Both Backend & Frontend windows have been launched!" -ForegroundColor Green
-Write-Host "  • Frontend Web App:     http://127.0.0.1:5173" -ForegroundColor Yellow
-Write-Host "  • FastAPI Backend:      http://127.0.0.1:8000" -ForegroundColor Yellow
-Write-Host "  • Swagger/OpenAPI Docs: http://127.0.0.1:8000/docs" -ForegroundColor Yellow
-Write-Host "  • Health Liveness:      http://127.0.0.1:8000/health/live" -ForegroundColor Yellow
-Write-Host "========================================================" -ForegroundColor Cyan
-Write-Host "To stop the stack: powershell -ExecutionPolicy Bypass -File scripts\stop_local_stack.ps1" -ForegroundColor Gray
+# 2. Launch FastAPI Backend in interactive window
+Log-Message "[2/4] Starting FastAPI Backend (http://127.0.0.1:8000)..." "Green"
+$backendCmd = "`$env:PYTHONPATH = '$backendPath;$contractsPath'; python -m uvicorn quasar_services.app:app --host 127.0.0.1 --port 8000 --workers 1 --log-level info"
+$bProc = Start-Process powershell -ArgumentList "-NoExit", "-Command", "Write-Host '=========================================' -ForegroundColor Cyan; Write-Host '   QuasarOS FastAPI Backend Server' -ForegroundColor Yellow; Write-Host '=========================================' -ForegroundColor Cyan; $backendCmd" -PassThru
+
+Log-Message "  Backend process spawned (PID: $($bProc.Id))." "Gray"
+
+# 3. Poll /health/ready with bounded exponential backoff
+Log-Message "[3/4] Waiting for Backend /health/ready probe..." "Cyan"
+$startTime = Get-Date
+$isReady = $false
+$pollDelay = 1.0
+$elapsed = 0
+
+while ($elapsed -lt $TimeoutSeconds) {
+    Start-Sleep -Seconds $pollDelay
+    $elapsed = ((Get-Date) - $startTime).TotalSeconds
+
+    try {
+        $res = Invoke-RestMethod -Uri "http://127.0.0.1:8000/health/ready" -Method Get -TimeoutSec 3 -ErrorAction Stop
+        if ($res.status -eq "ok" -or $res.integrityVerified -eq $true) {
+            $isReady = $true
+            Log-Message "  âœ“ Backend is READY (elapsed: $([Math]::Round($elapsed, 1))s)!" "Green"
+            break
+        } else {
+            Log-Message "  ... Backend responding with degraded state ($($res.status)), retrying ($([Math]::Round($elapsed, 1))s)..." "Yellow"
+        }
+    } catch {
+        Log-Message "  ... Waiting for backend socket to accept connections ($([Math]::Round($elapsed, 1))s)..." "Gray"
+    }
+
+    $pollDelay = [Math]::Min(3.0, $pollDelay * 1.3)
+}
+
+if (-not $isReady) {
+    Log-Message "ERROR: Backend failed to report ready within $TimeoutSeconds seconds." "Red"
+    Log-Message "Check backend window or logs at reports/runtime-stability/evidence/logs/" "Red"
+    exit 1
+}
+
+# 4. Start Vite Frontend in new window
+Log-Message "[4/4] Starting Vite Frontend (http://127.0.0.1:5173)..." "Green"
+$webDir = Join-Path $root "apps\web"
+$frontendCmd = "Set-Location '$webDir'; npx vite --host 127.0.0.1 --port 5173"
+$fProc = Start-Process powershell -ArgumentList "-NoExit", "-Command", "Write-Host '=========================================' -ForegroundColor Cyan; Write-Host '   QuasarOS Vite Frontend Server' -ForegroundColor Yellow; Write-Host '=========================================' -ForegroundColor Cyan; $frontendCmd" -PassThru
+
+Log-Message "  Frontend process spawned (PID: $($fProc.Id))." "Gray"
+
+Log-Message "" "White"
+Log-Message "========================================================" "Cyan"
+Log-Message " QuasarOS v1.1.0 Full-Stack is ACTIVE & RUNNING! " "Green"
+Log-Message "========================================================" "Cyan"
+Log-Message "  â€¢ Frontend Web App:     http://127.0.0.1:5173" "Yellow"
+Log-Message "  â€¢ FastAPI Backend:      http://127.0.0.1:8000" "Yellow"
+Log-Message "  â€¢ Swagger/OpenAPI Docs: http://127.0.0.1:8000/docs" "Yellow"
+Log-Message "  â€¢ Liveness Probe:      http://127.0.0.1:8000/health/live" "Yellow"
+Log-Message "  â€¢ Readiness Probe:     http://127.0.0.1:8000/health/ready" "Yellow"
+Log-Message "========================================================" "Cyan"
+Log-Message "To stop the stack at any time: powershell -ExecutionPolicy Bypass -File scripts\stop_local_stack.ps1" "Gray"

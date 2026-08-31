@@ -1,0 +1,8 @@
+{
+  "total_requests": 100,
+  "success_count": 100,
+  "failure_count": 0,
+  "elapsed_sec": 112.99229383468628,
+  "zero_netcdf_invalid_ids": true,
+  "status": "PASSED"
+}

@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-08-31T19:58:30+05:30",
+  "git_commit": "52ce53e021ca10074a495650181c19f9444c88c7",
+  "python_tests": {
+    "discovered": 401,
+    "passed": 401,
+    "failed": 0,
+    "errors": 0,
+    "status": "PASSED"
+  },
+  "typescript_web_tests": {
+    "discovered": 39,
+    "passed": 39,
+    "failed": 0,
+    "suites": 13,
+    "status": "PASSED"
+  },
+  "typescript_runtime_tests": {
+    "discovered": 42,
+    "passed": 42,
+    "failed": 0,
+    "suites": 16,
+    "status": "PASSED"
+  },
+  "frontend_production_build": {
+    "tool": "vite v5.4.21",
+    "duration_sec": 2.74,
+    "js_bundle_size_kb": 245.61,
+    "gzip_kb": 73.21,
+    "status": "PASSED"
+  },
+  "matrix_acceptance_checks": {
+    "backend_starts_before_frontend": "PASSED",
+    "frontend_starts_before_backend_recovers": "PASSED",
+    "backend_startup_delayed_polling": "PASSED",
+    "bounded_exponential_backoff": "PASSED",
+    "single_in_flight_abort_controller": "PASSED",
+    "health_live_100x_no_data_scans": "PASSED",
+    "health_ready_100x_cached_bounded": "PASSED",
+    "dataset_dims_future_warning_eliminated": "PASSED",
+    "volume_grid_100x_zero_invalid_netcdf_ids": "PASSED",
+    "seven_day_data_matrix_distinct": "PASSED",
+    "teos10_valid_payload_200": "PASSED",
+    "teos10_invalid_payload_422": "PASSED",
+    "argopy_erddapy_compatibility": "PASSED",
+    "supervised_windows_start_stop_scripts": "PASSED"
+  },
+  "overall_decision": "ALL_TESTS_PASS"
+}

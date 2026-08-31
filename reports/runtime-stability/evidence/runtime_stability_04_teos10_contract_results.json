@@ -1,0 +1,7 @@
+{
+  "valid_payload_status": 200,
+  "valid_soundings_count": 47,
+  "valid_mld_m": 7.92956018447876,
+  "invalid_payload_status": 422,
+  "status": "PASSED"
+}

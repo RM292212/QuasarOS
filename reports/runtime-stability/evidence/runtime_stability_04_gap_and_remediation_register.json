@@ -1,0 +1,41 @@
+{
+  "audit_id": "RUNTIME-STABILITY-04",
+  "completed_at": "2026-08-31T19:58:30+05:30",
+  "items": [
+    {
+      "id": "GAP-01",
+      "title": "Frontend fired API requests before backend was ready (ECONNREFUSED)",
+      "root_cause": "Independent uncoordinated startup scripts without TCP/HTTP readiness waiting.",
+      "remediation": "Updated start_local_stack.ps1 with bounded /health/ready polling; updated Header.tsx with bounded exponential backoff & single in-flight AbortController; added health gating in OceanVolumeViewport.tsx.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "GAP-02",
+      "title": "xarray Dataset.dims FutureWarning flood on readiness checks",
+      "root_cause": "ds.dims.get('time', 0) in probe_essential_data() triggered xarray deprecation warning.",
+      "remediation": "Replaced with ds.sizes.get('time', 0) and added 10-second thread-safe cached readiness probe.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "GAP-03",
+      "title": "NetCDF: Not a valid ID / fragile data access under load",
+      "root_cause": "Shared lazy xarray Dataset handles across worker threads in analysis engine.",
+      "remediation": "Implemented Strategy A: per-request open + eager NumPy materialisation + immediate close context. Validated across 100 multivariable sequential and concurrent requests.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "GAP-04",
+      "title": "TEOS-10 422/400 validation error on coordinate domain",
+      "root_cause": "TEOS10Request schema was restricted to 80-88E, preventing queries in the 60-68E North Indian Ocean domain.",
+      "remediation": "Expanded TEOS10Request latitude/longitude domain validation to [-3, 15]N and [60, 88]E; added pre-fetch client-side domain gating.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "GAP-05",
+      "title": "argopy/erddapy compatibility & network startup side-effects",
+      "root_cause": "argopy 1.4.0 required erddapy 2.3.0 export and makes non-blocking ERDDAP index discovery.",
+      "remediation": "Dependency pinned with erddapy 2.3.0 and pandas 2.3.3; verified offline core data independence.",
+      "status": "CLOSED"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "probe": "/health/ready",
+  "total_requests": 100,
+  "success_count": 100,
+  "failure_count": 0,
+  "total_elapsed_sec": 8.948442220687866,
+  "avg_latency_ms": 89.48442220687866,
+  "cached_ttl_sec": 10.0,
+  "status": "PASSED"
+}

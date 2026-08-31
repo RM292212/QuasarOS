@@ -5,7 +5,9 @@ Exposes REST endpoints under /health and /api/v1/ conforming to OpenAPI 3.1.
 """
 
 import uuid
-from typing import List, Optional
+import time as _time
+import threading as _threading
+from typing import List, Optional, Tuple, Any
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response, status
 from fastapi.responses import JSONResponse
 
@@ -33,8 +35,11 @@ from quasar_services.catalog.models import (
     VisualizationProductSummary,
 )
 
-# Global service instance
+# Global service instance and readiness cache
 _catalog_service: Optional[CatalogService] = None
+_readiness_cache_lock = _threading.Lock()
+_last_readiness_check_time: float = 0.0
+_cached_readiness_result: Optional[Tuple[bool, Any, Any]] = None
 
 
 def get_catalog_service() -> CatalogService:
@@ -71,30 +76,54 @@ async def health_ready(service: CatalogService = Depends(get_catalog_service)) -
     """
     Readiness probe — verifies:
     1. Manifest checksums (catalog layer).
-    2. Essential local scientific data accessible (analysis layer) — RUNTIME-HOTFIX-03.
+    2. Essential local scientific data accessible (analysis layer).
 
+    Features bounded 10-second cache to prevent file-handle and NetCDF I/O storms
+    under rapid health polling from multiple UI components or orchestrators.
     Returns 200 only when BOTH checks pass.
     Returns 503 when the scientific data source is inaccessible.
     Argo/ERDDAP external providers are optional and do NOT affect readiness.
     """
+    global _last_readiness_check_time, _cached_readiness_result
     from quasar_services.analysis.analysis_engine import ScientificAnalysisEngine
     from fastapi.responses import JSONResponse
+    from quasar_services.catalog.models import HealthStatus as HS
 
+    now = _time.time()
+    with _readiness_cache_lock:
+        if _cached_readiness_result is not None and (now - _last_readiness_check_time) < 10.0:
+            data_ok, status_obj, probe = _cached_readiness_result
+            if not data_ok:
+                degraded = HS(
+                    status="degraded",
+                    service="quasar-catalog-service",
+                    version="1.0.0",
+                    activeSnapshotsCount=status_obj.activeSnapshotsCount,
+                    historicalSnapshotsCount=status_obj.historicalSnapshotsCount,
+                    visualizationProductsCount=status_obj.visualizationProductsCount,
+                    integrityVerified=False,
+                )
+                return JSONResponse(status_code=503, content=degraded.model_dump())
+            return status_obj
+
+    # Cache expired or first check — perform live checks
     ok, _errors = service.loader.verify_all_manifest_checksums()
     status_obj = service.get_health_ready()
 
-    # Probe the essential scientific data source (bounded — reads only time coord)
+    # Probe the essential scientific data source (bounded — reads only time coord via ds.sizes)
     engine = ScientificAnalysisEngine()
     probe = engine.probe_essential_data()
     data_ok = probe.get("status") == "ok"
 
+    with _readiness_cache_lock:
+        _last_readiness_check_time = now
+        _cached_readiness_result = (data_ok, status_obj, probe)
+
     if not data_ok:
-        # Scientific data inaccessible → not ready
         import logging
         logging.getLogger("quasar.services").error(
             "Readiness probe failed: essential scientific data unavailable — %s", probe
         )
-        from quasar_services.catalog.models import HealthStatus as HS
         degraded = HS(
             status="degraded",
             service="quasar-catalog-service",

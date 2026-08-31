@@ -117,10 +117,10 @@ class SliceRequest(BaseModel):
 
 class TEOS10Request(BaseModel):
     time_index: int = Field(0, ge=0, le=6)
-    latitude: float = Field(..., ge=-3.0, le=12.0,
-                            description="Latitude within Arabian Sea domain [-3, 12]°N")
-    longitude: float = Field(..., ge=80.0, le=88.0,
-                             description="Longitude within Arabian Sea domain [80, 88]°E")
+    latitude: float = Field(..., ge=-3.0, le=15.0,
+                            description="Latitude within regional domain [-3, 15]°N")
+    longitude: float = Field(..., ge=60.0, le=88.0,
+                             description="Longitude within regional domain [60, 88]°E")
 
 
 # ---------------------------------------------------------------------------

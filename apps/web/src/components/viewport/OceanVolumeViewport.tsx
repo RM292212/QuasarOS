@@ -1,11 +1,13 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useAppStore } from '../../context/app_store.ts';
 
 export const OceanVolumeViewport: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { activeBackend, activeVariableId, timestepIndex, spatialBounds } = useAppStore();
+  const { activeBackend, activeVariableId, timestepIndex, spatialBounds, healthProbeState } = useAppStore();
   const [fps, setFps] = useState<number>(60);
-  const [isLoadingData, setIsLoadingData] = useState<boolean>(true);
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
+  const [isStaleFrame, setIsStaleFrame] = useState<boolean>(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [dataStats, setDataStats] = useState<{ min: number; max: number; date: string; varCode: string }>({
     min: 9.37,
     max: 30.36,
@@ -15,10 +17,23 @@ export const OceanVolumeViewport: React.FC = () => {
 
   // Extract pure variable code (thetao, so, uo, vo, zos)
   const varCode = activeVariableId.split(' ')[0].toLowerCase();
+  const activeFetchAbortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    let isCancelled = false;
+    // If backend is known to be offline, mark as stale and avoid immediate fetch until reconnected
+    if (healthProbeState === 'offline') {
+      setIsStaleFrame(true);
+      return;
+    }
+
+    if (activeFetchAbortRef.current) {
+      activeFetchAbortRef.current.abort();
+    }
+    const abortCtrl = new AbortController();
+    activeFetchAbortRef.current = abortCtrl;
+
     setIsLoadingData(true);
+    setLoadError(null);
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -31,10 +46,17 @@ export const OceanVolumeViewport: React.FC = () => {
     if (!gl) return;
 
     // Fetch Authoritative 3D Scalar Field for the active day and variable
-    fetch(`/api/v1/analysis/volume-grid?variable=${varCode}&time_index=${timestepIndex}&depth_levels=16&lat_res=32&lon_res=32`)
-      .then((res) => (res.ok ? res.json() : null))
+    fetch(`/api/v1/analysis/volume-grid?variable=${varCode}&time_index=${timestepIndex}&depth_levels=16&lat_res=32&lon_res=32`, {
+      signal: abortCtrl.signal,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then((json) => {
-        if (isCancelled || !json) return;
+        if (abortCtrl.signal.aborted || !json) return;
 
         setDataStats({
           min: json.min_val,
@@ -43,6 +65,7 @@ export const OceanVolumeViewport: React.FC = () => {
           varCode: json.variable
         });
         setIsLoadingData(false);
+        setIsStaleFrame(false);
 
         // Normalize scalar data to 0.0 - 1.0 for texture (and mark NaNs as -1.0)
         const rawData: number[] = json.data;
@@ -255,16 +278,21 @@ export const OceanVolumeViewport: React.FC = () => {
 
         animId = requestAnimationFrame(render);
       })
-      .catch((err) => {
-        console.error('Volume texture load error:', err);
+      .catch((err: any) => {
+        if (err?.name === 'AbortError') return; // Cancelled intentionally
+        console.warn('Volume texture load error:', err?.message || err);
         setIsLoadingData(false);
+        setIsStaleFrame(true);
+        setLoadError(err?.message || 'Failed to load volume grid');
       });
 
     return () => {
-      isCancelled = true;
+      if (activeFetchAbortRef.current) {
+        activeFetchAbortRef.current.abort();
+      }
       if (animId) cancelAnimationFrame(animId);
     };
-  }, [activeVariableId, timestepIndex]);
+  }, [activeVariableId, timestepIndex, healthProbeState]);
 
   return (
     <div className="relative w-full h-full flex items-center justify-center bg-slate-950 overflow-hidden" data-testid="ocean-volume-viewport">
@@ -287,8 +315,10 @@ export const OceanVolumeViewport: React.FC = () => {
       <div className="absolute top-4 left-4 z-10 bg-slate-950/85 backdrop-blur border border-slate-800 rounded-lg p-3 text-[11px] font-mono text-slate-300 shadow-2xl pointer-events-none flex flex-col gap-1.5 min-w-[300px]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-300 font-bold uppercase">{activeBackend.toUpperCase()} 3D OCEAN VOLUME</span>
+            <span className={`w-2.5 h-2.5 rounded-full ${isStaleFrame ? 'bg-amber-400' : 'bg-emerald-400 animate-pulse'}`} />
+            <span className={`${isStaleFrame ? 'text-amber-300' : 'text-emerald-300'} font-bold uppercase`}>
+              {activeBackend.toUpperCase()} 3D OCEAN VOLUME {isStaleFrame ? '(STALE / RECONNECTING)' : ''}
+            </span>
           </div>
           <span className="text-cyan-300 font-bold px-1.5 py-0.5 bg-cyan-950/60 border border-cyan-800 rounded text-[10px]">{fps} FPS</span>
         </div>

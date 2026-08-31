@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-08-31T19:58:30+05:30",
+  "initial_state": "offline_recovery_ready",
+  "backoff_initial_ms": 2000,
+  "backoff_max_ms": 15000,
+  "in_flight_deduplication": true,
+  "stale_request_cancellation": true,
+  "trace_samples": [
+    {
+      "event": "mount",
+      "action": "poll_health",
+      "status": "200_OK"
+    },
+    {
+      "event": "ready",
+      "action": "fetch_volume_grid_t6",
+      "status": "200_OK"
+    },
+    {
+      "event": "timestep_change_t3",
+      "action": "abort_previous_fetch_volume_grid_t3",
+      "status": "200_OK"
+    }
+  ]
+}

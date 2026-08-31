@@ -1,0 +1,14 @@
+Requirement_ID,Description,Verification_Layer,Test_Artifact,Status
+REQ-01,Windows startup reliability without port collisions,Launcher,"scripts/start_local_stack.ps1",PASSED
+REQ-02,Single launcher waits for readiness before starting frontend,Launcher,"scripts/start_local_stack.ps1",PASSED
+REQ-03,Frontend recovers automatically if started before backend,Frontend UI,"Header.tsx, shell.test.ts",PASSED
+REQ-04,Bounded exponential backoff on health polling (2-15s),Frontend UI,"Header.tsx",PASSED
+REQ-05,Single in-flight health poll with AbortController,Frontend UI,"Header.tsx",PASSED
+REQ-06,Stale request aborting on time/var switch in viewport,Frontend UI,"OceanVolumeViewport.tsx",PASSED
+REQ-07,Elimination of xarray Dataset.dims FutureWarnings,Backend Services,"analysis_engine.py, test_*.py",PASSED
+REQ-08,Stateless Strategy A per-request NetCDF access,Backend Services,"analysis_engine.py",PASSED
+REQ-09,100x volume-grid stress with zero NetCDF invalid IDs,Backend Services,"runtime_stability_04_volume_grid_stress_results.json",PASSED
+REQ-10,7-day data matrix with distinct daily Copernicus fields,Scientific Data,"runtime_stability_04_seven_day_data_matrix.json",PASSED
+REQ-11,TEOS-10 contract validation and domain handling,Backend Services,"router.py, runtime_stability_04_teos10_contract_results.json",PASSED
+REQ-12,argopy and erddapy dependency compatibility,Dependencies,"runtime_stability_04_dependency_inventory.json",PASSED
+REQ-13,Clean stop and port release scripts,Operations,"scripts/stop_local_stack.ps1",PASSED

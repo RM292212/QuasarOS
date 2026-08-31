@@ -1,0 +1,45 @@
+﻿{
+  "wave": "R0",
+  "recorded_at": "2026-08-31T19:47:00+05:30",
+  "git_commit": "52ce53e021ca10074a495650181c19f9444c88c7",
+  "python_version": "3.12.10",
+  "node_version": "v24.18.0",
+  "active_subagents": [
+    {
+      "agent_id": "S1",
+      "role": "Startup ordering, launch scripts, and process supervision",
+      "status": "IN_PROGRESS",
+      "assigned_requirements": ["STARTUP-ORCHESTRATION", "HEALTH-WAIT", "WINDOWS-LAUNCHERS"]
+    },
+    {
+      "agent_id": "S2",
+      "role": "FastAPI health, readiness, and startup lifecycle",
+      "status": "IN_PROGRESS",
+      "assigned_requirements": ["DATASET-SIZES-FIX", "BOUNDED-HEALTH-PROBE", "CACHED-READINESS"]
+    },
+    {
+      "agent_id": "S3",
+      "role": "NetCDF/xarray lifecycle and analysis API stability",
+      "status": "IN_PROGRESS",
+      "assigned_requirements": ["STRATEGY-A-LIFECYCLE", "SEVEN-DAY-VALIDATION", "MULTIVARIABLE-GRID"]
+    },
+    {
+      "agent_id": "S4",
+      "role": "Frontend API retry state, recovery, and request deduplication",
+      "status": "IN_PROGRESS",
+      "assigned_requirements": ["FRONTEND-RETRY-BACKOFF", "REQUEST-GATING", "ABORT-CONTROLLER"]
+    },
+    {
+      "agent_id": "S5",
+      "role": "Dependency compatibility and external-provider resilience",
+      "status": "IN_PROGRESS",
+      "assigned_requirements": ["ARGOPY-ERDDAPY-PIN", "OFFLINE-RESILIENCE", "ISOLATION"]
+    },
+    {
+      "agent_id": "S6",
+      "role": "Independent final verification",
+      "status": "PENDING_INTEGRATION",
+      "assigned_requirements": ["ACCEPTANCE-AUDIT", "FULL-REGRESSION", "BROWSER-E2E"]
+    }
+  ]
+}

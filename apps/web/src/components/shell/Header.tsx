@@ -17,46 +17,62 @@ export const Header: React.FC = () => {
 
   const [isBackendMenuOpen, setIsBackendMenuOpen] = useState(false);
 
-  // Periodic health check simulation / poll
+  // Bounded exponential backoff health polling with single in-flight AbortController
   useEffect(() => {
     let mounted = true;
-    const probe = async () => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let abortCtrl: AbortController | null = null;
+    let currentDelayMs = 2000; // Start with 2s initial delay when checking/reconnecting
+    const maxDelayMs = 15000;  // Cap at 15s steady-state
+
+    const pollHealth = async () => {
+      if (!mounted) return;
+
+      if (abortCtrl) {
+        abortCtrl.abort();
+      }
+      abortCtrl = new AbortController();
+
       try {
-        const res = await fetch('/health/ready');
+        const res = await fetch('/health/ready', {
+          signal: abortCtrl.signal,
+          headers: { 'Accept': 'application/json' },
+        });
+
         if (res.ok) {
           const data = await res.json();
           if (mounted) {
             setHealthStatus(data, 'healthy');
+            currentDelayMs = maxDelayMs; // Reset backoff to steady-state 15s on success
           }
         } else {
           if (mounted) {
             setHealthStatus(null, 'degraded');
+            currentDelayMs = Math.min(maxDelayMs, currentDelayMs * 1.5);
           }
         }
-      } catch {
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return; // Cancelled
         if (mounted) {
-          // If server is not yet reachable via localhost, maintain standard healthy status if baseline initialized
-          setHealthStatus(
-            {
-              status: 'ok',
-              service: 'quasar-catalog-service',
-              version: '1.0.0',
-              activeSnapshotsCount: 1,
-              historicalSnapshotsCount: 0,
-              visualizationProductsCount: 1,
-              integrityVerified: true,
-            },
-            'healthy'
-          );
+          // Genuinely offline - update status honestly
+          setHealthStatus(null, 'offline');
+          // Exponential backoff with small random jitter
+          const jitter = Math.random() * 500;
+          currentDelayMs = Math.min(maxDelayMs, (currentDelayMs * 1.8) + jitter);
+        }
+      } finally {
+        if (mounted) {
+          timeoutId = setTimeout(pollHealth, currentDelayMs);
         }
       }
     };
 
-    probe();
-    const interval = setInterval(probe, 15000);
+    pollHealth();
+
     return () => {
       mounted = false;
-      clearInterval(interval);
+      if (timeoutId) clearTimeout(timeoutId);
+      if (abortCtrl) abortCtrl.abort();
     };
   }, [setHealthStatus]);
 

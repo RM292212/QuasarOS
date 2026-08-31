@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-08-31T19:58:00+05:30",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "packages": {
+    "argopy": "1.4.0",
+    "erddapy": "2.3.0",
+    "xarray": "2025.9.0",
+    "netCDF4": "1.7.4",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "fastapi": "0.141.1",
+    "uvicorn": "0.52.4",
+    "httpx": "0.28.1"
+  },
+  "argopy_erddapy_compatibility": "VERIFIED_COMPATIBLE",
+  "notes": "erddapy 2.3.0 exports _quote_string_constraints required by argopy 1.4.0 without error."
+}
