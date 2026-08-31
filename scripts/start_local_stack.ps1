@@ -60,18 +60,20 @@ $elapsed = 0
 while ($elapsed -lt $TimeoutSeconds) {
     Start-Sleep -Seconds $pollDelay
     $elapsed = ((Get-Date) - $startTime).TotalSeconds
+    $roundedSec = [Math]::Round($elapsed, 1)
 
     try {
         $res = Invoke-RestMethod -Uri "http://127.0.0.1:8000/health/ready" -Method Get -TimeoutSec 3 -ErrorAction Stop
         if ($res.status -eq "ok" -or $res.integrityVerified -eq $true) {
             $isReady = $true
-            Log-Message "  âœ“ Backend is READY (elapsed: $([Math]::Round($elapsed, 1))s)!" "Green"
+            Log-Message "  [OK] Backend is READY (elapsed: ${roundedSec}s)!" "Green"
             break
         } else {
-            Log-Message "  ... Backend responding with degraded state ($($res.status)), retrying ($([Math]::Round($elapsed, 1))s)..." "Yellow"
+            $st = $res.status
+            Log-Message "  ... Backend responding with degraded state ($st), retrying (${roundedSec}s)..." "Yellow"
         }
     } catch {
-        Log-Message "  ... Waiting for backend socket to accept connections ($([Math]::Round($elapsed, 1))s)..." "Gray"
+        Log-Message "  ... Waiting for backend socket to accept connections (${roundedSec}s)..." "Gray"
     }
 
     $pollDelay = [Math]::Min(3.0, $pollDelay * 1.3)
@@ -95,10 +97,10 @@ Log-Message "" "White"
 Log-Message "========================================================" "Cyan"
 Log-Message " QuasarOS v1.1.0 Full-Stack is ACTIVE & RUNNING! " "Green"
 Log-Message "========================================================" "Cyan"
-Log-Message "  â€¢ Frontend Web App:     http://127.0.0.1:5173" "Yellow"
-Log-Message "  â€¢ FastAPI Backend:      http://127.0.0.1:8000" "Yellow"
-Log-Message "  â€¢ Swagger/OpenAPI Docs: http://127.0.0.1:8000/docs" "Yellow"
-Log-Message "  â€¢ Liveness Probe:      http://127.0.0.1:8000/health/live" "Yellow"
-Log-Message "  â€¢ Readiness Probe:     http://127.0.0.1:8000/health/ready" "Yellow"
+Log-Message "  - Frontend Web App:     http://127.0.0.1:5173" "Yellow"
+Log-Message "  - FastAPI Backend:      http://127.0.0.1:8000" "Yellow"
+Log-Message "  - Swagger/OpenAPI Docs: http://127.0.0.1:8000/docs" "Yellow"
+Log-Message "  - Liveness Probe:       http://127.0.0.1:8000/health/live" "Yellow"
+Log-Message "  - Readiness Probe:      http://127.0.0.1:8000/health/ready" "Yellow"
 Log-Message "========================================================" "Cyan"
 Log-Message "To stop the stack at any time: powershell -ExecutionPolicy Bypass -File scripts\stop_local_stack.ps1" "Gray"
