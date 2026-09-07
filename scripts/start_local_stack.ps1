@@ -31,17 +31,31 @@ Log-Message "========================================================" "Cyan"
 Log-Message "[1/4] Checking ports 8000 and 5173..." "Gray"
 $ports = @(8000, 5173)
 foreach ($p in $ports) {
-    $netstat = Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue
-    if ($netstat) {
-        foreach ($conn in $netstat) {
-            $pidToKill = $conn.OwningProcess
-            if ($pidToKill -gt 0) {
-                Log-Message "  Releasing occupied port $p (PID: $pidToKill)..." "Yellow"
-                Stop-Process -Id $pidToKill -Force -ErrorAction SilentlyContinue
+    try {
+        $netstat = Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue
+        if ($netstat) {
+            foreach ($conn in $netstat) {
+                $pidToKill = $conn.OwningProcess
+                if ($pidToKill -gt 0) {
+                    Log-Message "  Releasing occupied port $p (PID: $pidToKill)..." "Yellow"
+                    Stop-Process -Id $pidToKill -Force -ErrorAction SilentlyContinue
+                }
+            }
+        }
+    } catch {
+        # Fallback using netstat / taskkill
+        $netstatLines = netstat -ano | Select-String ":$p\s+"
+        foreach ($line in $netstatLines) {
+            $parts = $line.ToString().Trim() -split '\s+'
+            $pidToKill = $parts[-1]
+            if ($pidToKill -as [int] -and [int]$pidToKill -gt 0) {
+                Log-Message "  Force killing port $p owner (PID: $pidToKill)..." "Yellow"
+                Stop-Process -Id ([int]$pidToKill) -Force -ErrorAction SilentlyContinue
             }
         }
     }
 }
+Start-Sleep -Seconds 1
 
 # 2. Launch FastAPI Backend in interactive window
 Log-Message "[2/4] Starting FastAPI Backend (http://127.0.0.1:8000)..." "Green"
