@@ -317,7 +317,7 @@ describe('TASK-10E: Comprehensive Failure-Injection & Resiliency Testing', () =>
       response_type: 'authoritative_scientific_value',
       dataset_id: 'cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m',
       variable_id: 'sea_water_potential_temperature',
-      scientific_value: null,
+      scientific_value: undefined,
       canonical_units: 'degree_Celsius',
       value_state: 'below_seafloor',
       requested_latitude_deg: 6.2,

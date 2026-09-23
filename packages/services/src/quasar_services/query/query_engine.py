@@ -77,22 +77,22 @@ def convert_units(val_celsius: Optional[float], requested_units: Optional[str]) 
 class ExactQueryEngine:
     """
     Authoritative scientific query engine reading directly from native NetCDF-4 assets.
+    Implements Strategy A: opens fresh dataset context per query and materialises values eagerly,
+    leaving zero persistent open file descriptors on Windows.
     """
 
     def __init__(self, repo_root: Optional[Path] = None):
         self.repo_root = Path(repo_root) if repo_root else ManifestLoader(None).repo_root
-        self.resolver = CoordinateResolver()
         self.cache = QueryCache(max_size=10000)
 
-        # Thread-safe NetCDF dataset management
         self._nc_lock = threading.Lock()
-        self._nc_dataset: Optional[netCDF4.Dataset] = None
         self._nc_path: Optional[Path] = None
+        self.resolver: Optional[CoordinateResolver] = None
 
         self._initialize_source_dataset()
 
     def _initialize_source_dataset(self) -> None:
-        """Locate and open native NetCDF source dataset."""
+        """Locate native NetCDF source dataset and inspect coordinates using safe context manager."""
         rel_path = f"data/raw/copernicus/physical/{DEFAULT_SNAPSHOT_ID}/copernicus_phy_thetao_20260824_20260830.nc"
         abs_path = self.repo_root / rel_path
 
@@ -100,9 +100,24 @@ class ExactQueryEngine:
             raise FileNotFoundError(f"Authoritative native NetCDF source file missing: {rel_path}")
 
         self._nc_path = abs_path
-        with self._nc_lock:
-            # Open in read-only mode
-            self._nc_dataset = netCDF4.Dataset(str(abs_path), mode="r")
+        # Inspect coordinates under safe temporary context without keeping handle open
+        with netCDF4.Dataset(str(abs_path), mode="r") as ds:
+            depth_vals = [float(d) for d in ds.variables["depth"][:]] if "depth" in ds.variables else None
+            lat_vals = [float(l) for l in ds.variables["latitude"][:]] if "latitude" in ds.variables else None
+            lon_vals = [float(l) for l in ds.variables["longitude"][:]] if "longitude" in ds.variables else None
+
+        if depth_vals and lat_vals and lon_vals:
+            self.resolver = CoordinateResolver(
+                depth_lut=depth_vals,
+                min_lat=float(lat_vals[0]),
+                max_lat=float(lat_vals[-1]),
+                min_lon=float(lon_vals[0]),
+                max_lon=float(lon_vals[-1]),
+                lat_points=len(lat_vals),
+                lon_points=len(lon_vals),
+            )
+        else:
+            self.resolver = CoordinateResolver()
 
     def validate_identifier(self, identifier: str, param_name: str = "identifier") -> str:
         """Sanitize identifiers against path traversal attacks."""
@@ -115,30 +130,19 @@ class ExactQueryEngine:
             )
         return identifier
 
-    def _get_nc_variable(self, variable_id: str, dataset_id: str):
-        """Map canonical variable ID to NetCDF variable object."""
-        self.validate_identifier(variable_id, "variable_id")
-        self.validate_identifier(dataset_id, "dataset_id")
-
-        if dataset_id not in [DEFAULT_DATASET_ID, "GLOBAL_ANALYSISFORECAST_PHY_001_024", DEFAULT_SNAPSHOT_ID]:
-            raise DatasetNotFoundException(dataset_id)
-
-        valid_var_names = [DEFAULT_VARIABLE_ID, "thetao", "temperature", "sea_water_potential_temperature"]
-        if variable_id not in valid_var_names:
-            raise VariableNotFoundException(variable_id, dataset_id)
-
-        if self._nc_dataset is None or not self._nc_dataset.isopen():
-            with self._nc_lock:
-                self._nc_dataset = netCDF4.Dataset(str(self._nc_path), mode="r")
-
-        return self._nc_dataset.variables[RAW_NC_VARIABLE_NAME]
-
     def execute_exact_point_query(self, request: ExactValueQueryRequest) -> ExactValueQueryResponse:
         """
         Execute an authoritative exact-value point query directly from native NetCDF source array.
         """
         self.validate_identifier(request.dataset_id, "dataset_id")
         self.validate_identifier(request.variable_id, "variable_id")
+
+        if request.dataset_id not in [DEFAULT_DATASET_ID, "GLOBAL_ANALYSISFORECAST_PHY_001_024", DEFAULT_SNAPSHOT_ID]:
+            raise DatasetNotFoundException(request.dataset_id)
+
+        valid_var_names = [DEFAULT_VARIABLE_ID, "thetao", "temperature", "sea_water_potential_temperature"]
+        if request.variable_id not in valid_var_names:
+            raise VariableNotFoundException(request.variable_id, request.dataset_id)
 
         # Cache key for idempotent point queries
         cache_key = (
@@ -169,29 +173,32 @@ class ExactQueryEngine:
             time_selector_mode=request.time_selector_mode,
         )
 
-        # 2. Extract authoritative raw scalar from NetCDF
-        var = self._get_nc_variable(request.variable_id, request.dataset_id)
-        with self._nc_lock:
-            try:
+        # 2. Extract authoritative raw scalar from NetCDF using safe context manager
+        try:
+            with netCDF4.Dataset(str(self._nc_path), mode="r") as ds:
+                var = ds.variables[RAW_NC_VARIABLE_NAME]
                 raw_cell = var[time_idx, depth_idx, lat_idx, lon_idx]
-            except Exception as e:
-                raise QueryExecutionException(
-                    f"Failed to read native NetCDF voxel at index [{time_idx}, {depth_idx}, {lat_idx}, {lon_idx}]: {str(e)}"
-                )
+                if (
+                    isinstance(raw_cell, np.ma.core.MaskedConstant)
+                    or np.ma.is_masked(raw_cell)
+                    or math.isnan(raw_cell)
+                    or float(raw_cell) > 1e30
+                    or math.isclose(float(raw_cell), NC_FILL_VALUE, rel_tol=1e-3)
+                ):
+                    is_missing = True
+                    raw_val = None
+                else:
+                    is_missing = False
+                    raw_val = float(raw_cell)
+        except Exception as e:
+            raise QueryExecutionException(
+                f"Failed to read native NetCDF voxel at index [{time_idx}, {depth_idx}, {lat_idx}, {lon_idx}]: {str(e)}"
+            )
 
         # 3. Evaluate PhysicalCellState and strict missing value preservation
-        is_missing = False
-        if isinstance(raw_cell, np.ma.core.MaskedConstant) or np.ma.is_masked(raw_cell):
-            is_missing = True
-        elif math.isnan(raw_cell) or math.isclose(float(raw_cell), NC_FILL_VALUE, rel_tol=1e-3):
-            is_missing = True
-
         if is_missing:
-            raw_val = None
-            # Differentiate land vs general missing
             value_state = PhysicalCellState.masked
         else:
-            raw_val = float(raw_cell)
             value_state = PhysicalCellState.valid
 
         # 4. Units conversion
@@ -209,7 +216,7 @@ class ExactQueryEngine:
             },
             "horizontal_distance_delta_km": round(dist_km, 4),
             "depth_delta_m": round(depth_delta_m, 4),
-            "native_shape": [7, 31, 181, 97],
+            "native_shape": [7, len(self.resolver.depth_lut), self.resolver.lat_points, self.resolver.lon_points],
             "is_authoritative_source_of_truth": True,
         }
 
@@ -238,10 +245,17 @@ class ExactQueryEngine:
 
     def execute_vertical_profile_query(self, request: VerticalProfileQueryRequest) -> VerticalProfileQueryResponse:
         """
-        Execute an authoritative 1D vertical profile query extracting the entire column across all 31 levels.
+        Execute an authoritative 1D vertical profile query extracting the entire column across all levels.
         """
         self.validate_identifier(request.dataset_id, "dataset_id")
         self.validate_identifier(request.variable_id, "variable_id")
+
+        if request.dataset_id not in [DEFAULT_DATASET_ID, "GLOBAL_ANALYSISFORECAST_PHY_001_024", DEFAULT_SNAPSHOT_ID]:
+            raise DatasetNotFoundException(request.dataset_id)
+
+        valid_var_names = [DEFAULT_VARIABLE_ID, "thetao", "temperature", "sea_water_potential_temperature"]
+        if request.variable_id not in valid_var_names:
+            raise VariableNotFoundException(request.variable_id, request.dataset_id)
 
         # Cache key for profile queries
         cache_key = (
@@ -264,15 +278,15 @@ class ExactQueryEngine:
             time_selector_mode=request.time_selector_mode,
         )
 
-        # 2. Extract complete 1D column from native NetCDF array
-        var = self._get_nc_variable(request.variable_id, request.dataset_id)
-        with self._nc_lock:
-            try:
-                col_data = var[time_idx, :, lat_idx, lon_idx]
-            except Exception as e:
-                raise QueryExecutionException(
-                    f"Failed to read vertical column at index [{time_idx}, :, {lat_idx}, {lon_idx}]: {str(e)}"
-                )
+        # 2. Extract complete 1D column from native NetCDF array using safe context manager
+        try:
+            with netCDF4.Dataset(str(self._nc_path), mode="r") as ds:
+                var = ds.variables[RAW_NC_VARIABLE_NAME]
+                col_data = np.array(var[time_idx, :, lat_idx, lon_idx])
+        except Exception as e:
+            raise QueryExecutionException(
+                f"Failed to read vertical column at index [{time_idx}, :, {lat_idx}, {lon_idx}]: {str(e)}"
+            )
 
         samples: List[VerticalProfileLevelSample] = []
         valid_count = 0
@@ -283,9 +297,13 @@ class ExactQueryEngine:
             raw_cell = col_data[k]
 
             is_missing = False
-            if isinstance(raw_cell, np.ma.core.MaskedConstant) or np.ma.is_masked(raw_cell):
-                is_missing = True
-            elif math.isnan(raw_cell) or math.isclose(float(raw_cell), NC_FILL_VALUE, rel_tol=1e-3):
+            if (
+                isinstance(raw_cell, np.ma.core.MaskedConstant)
+                or np.ma.is_masked(raw_cell)
+                or math.isnan(raw_cell)
+                or float(raw_cell) > 1e30
+                or math.isclose(float(raw_cell), NC_FILL_VALUE, rel_tol=1e-3)
+            ):
                 is_missing = True
 
             if is_missing:
@@ -361,12 +379,12 @@ class ExactQueryEngine:
             pos = pick.world_ray_hit_position
             if len(pos) >= 3:
                 x, y, z = pos[0], pos[1], pos[2]
-                # Check whether x is longitude [80..88] and y is latitude [-3..12]
-                if 70.0 <= x <= 95.0 and -10.0 <= y <= 20.0:
+                # Check whether x is longitude [80..88] or [60..68]
+                if (70.0 <= x <= 95.0 or 55.0 <= x <= 75.0) and -10.0 <= y <= 25.0:
                     lon = lon if lon is not None else float(x)
                     lat = lat if lat is not None else float(y)
                     depth = depth if depth is not None else float(abs(z))
-                elif 70.0 <= y <= 95.0 and -10.0 <= x <= 20.0:
+                elif (70.0 <= y <= 95.0 or 55.0 <= y <= 75.0) and -10.0 <= x <= 25.0:
                     lat = lat if lat is not None else float(x)
                     lon = lon if lon is not None else float(y)
                     depth = depth if depth is not None else float(abs(z))
@@ -427,8 +445,5 @@ class ExactQueryEngine:
         )
 
     def close(self) -> None:
-        """Close open NetCDF file descriptors."""
-        with self._nc_lock:
-            if self._nc_dataset is not None and self._nc_dataset.isopen():
-                self._nc_dataset.close()
-                self._nc_dataset = None
+        """Clear query cache and ensure all resources are released."""
+        self.cache.clear()

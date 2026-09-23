@@ -1,0 +1,156 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01D",
+  "provider": "Copernicus Marine Service / ACRI-ST / GlobColour (E.U. Copernicus Programme)",
+  "product_id": "OCEANCOLOUR_GLO_BGC_L4_NRT_009_102",
+  "dataset_id": "cmems_obs-oc_glo_bgc-plankton_nrt_l4-gapfree-multi-4km_P1D",
+  "product_title": "Global Ocean Colour Bio-Geo-Chemical L4 Plankton (Chlorophyll-a) Gap-Free Multi-Sensor 4km Daily NRT",
+  "scientific_role": "SATELLITE_SURFACE_CHLOROPHYLL_OBSERVATION",
+  "source_url": "https://data.marine.copernicus.eu/product/OCEANCOLOUR_GLO_BGC_L4_NRT_009_102/description",
+  "retrieval_timestamp_utc": "2026-08-30T07:34:50.957244+00:00",
+  "geographic_bounds": {
+    "region_description": "North Indian Ocean / Arabian Sea / Bay of Bengal",
+    "minimum_latitude": 0.020830651745200157,
+    "maximum_latitude": 29.979164123535156,
+    "latitude_grid_points": 720,
+    "minimum_longitude": 40.02083969116211,
+    "maximum_longitude": 99.97917175292969,
+    "longitude_grid_points": 1440,
+    "spatial_resolution_km": 4.0,
+    "crs": "EPSG:4326"
+  },
+  "vertical_bounds": {
+    "vertical_layer": "sea_surface",
+    "depth_m": 0.0,
+    "coordinate_name": null,
+    "notes": "Satellite optical observation representing the upper optical penetration layer of the water column (surface field)"
+  },
+  "temporal_bounds": {
+    "start_datetime_utc": "2026-08-22T00:00:00Z",
+    "end_datetime_utc": "2026-08-28T00:00:00Z",
+    "time_steps_count": 7,
+    "temporal_resolution": "P1D (Daily)",
+    "time_units": "days since 1900-01-01",
+    "time_values": [
+      46254.0,
+      46255.0,
+      46256.0,
+      46257.0,
+      46258.0,
+      46259.0,
+      46260.0
+    ],
+    "iso_timestamps": [
+      "2026-08-22T00:00:00Z",
+      "2026-08-23T00:00:00Z",
+      "2026-08-24T00:00:00Z",
+      "2026-08-25T00:00:00Z",
+      "2026-08-26T00:00:00Z",
+      "2026-08-27T00:00:00Z",
+      "2026-08-28T00:00:00Z"
+    ]
+  },
+  "variables": [
+    {
+      "name": "CHL",
+      "canonical_name": "chlorophyll_a",
+      "standard_name": "mass_concentration_of_chlorophyll_a_in_sea_water",
+      "long_name": "Chlorophyll-a concentration - Mean of the binned pixels",
+      "units": "milligram m-3",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        7,
+        720,
+        1440
+      ],
+      "min_value_mg_m3": 0.05433490872383118,
+      "max_value_mg_m3": 65.0,
+      "mean_value_mg_m3": 0.5903732180595398,
+      "total_cells": 7257600,
+      "valid_cells": 3997343,
+      "non_negative_confirmed": true,
+      "plausible_ocean_range_confirmed": true
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/copernicus/ocean-colour/copernicus_ocean_colour_chl_l4_7day.nc",
+      "filename": "copernicus_ocean_colour_chl_l4_7day.nc",
+      "byte_size": 29074902,
+      "sha256": "c1a5f160782ddd5c3ef8f9e32a30ce260e1c5df5cf60b30ec7e4b3b201110922",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 7,
+        "latitude": 720,
+        "longitude": 1440
+      },
+      "variables_metadata": {
+        "CHL": {
+          "dimensions": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            720,
+            1440
+          ],
+          "dtype": "float32",
+          "units": "milligram m-3",
+          "standard_name": "mass_concentration_of_chlorophyll_a_in_sea_water",
+          "long_name": "Chlorophyll-a concentration - Mean of the binned pixels",
+          "fill_value": -999.0
+        },
+        "latitude": {
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            720
+          ],
+          "dtype": "float32",
+          "units": "degrees_north",
+          "standard_name": "latitude",
+          "long_name": "latitude",
+          "fill_value": null
+        },
+        "longitude": {
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            1440
+          ],
+          "dtype": "float32",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "long_name": "longitude",
+          "fill_value": null
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            7
+          ],
+          "dtype": "float32",
+          "units": "days since 1900-01-01",
+          "standard_name": "time",
+          "long_name": "Time",
+          "fill_value": null
+        }
+      }
+    }
+  ],
+  "licence": "Copernicus Sentinel Data / E.U. Open Data Policy",
+  "attribution": "E.U. Copernicus Marine Service Information; GlobColour; https://doi.org/10.48670/moi-00281",
+  "validation_status": "VALIDATED",
+  "notes": "Regional 4km daily multi-sensor gap-free L4 surface chlorophyll-a satellite product for QuasarOS surface biological / bio-optical visualization and comparison against BGC-Argo floats in the North Indian Ocean domain (Lat 0-30N, Lon 40-100E, 7-day daily time series)."
+}

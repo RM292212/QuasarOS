@@ -1,0 +1,97 @@
+{
+  "audit_id": "EVID-COPERNICUS-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:18:00Z",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "temporal_domain": {
+    "timesteps": [
+      "2026-08-24T00:00:00Z",
+      "2026-08-25T00:00:00Z",
+      "2026-08-26T00:00:00Z",
+      "2026-08-27T00:00:00Z",
+      "2026-08-28T00:00:00Z",
+      "2026-08-29T00:00:00Z",
+      "2026-08-30T00:00:00Z"
+    ]
+  },
+  "spatial_domain": {
+    "geographic_region": "North Indian Ocean / Arabian Sea",
+    "latitude": { "min_deg": 0.0, "max_deg": 15.0, "points_count": 181, "step_deg": 0.083333333 },
+    "longitude": { "min_deg": 60.0, "max_deg": 68.0, "points_count": 97, "step_deg": 0.083333333 },
+    "vertical_depth": {
+      "levels_count": 50,
+      "min_depth_m": 0.494025,
+      "max_depth_m": 5727.917,
+      "sample_levels_m": [0.494, 1.541, 2.646, 3.819, 5.078, 6.441, 7.930, 9.573, 11.405, 13.467, 100.0, 500.0, 1000.0, 3282.8, 5727.917]
+    }
+  },
+  "variables": {
+    "thetao": {
+      "standard_name": "sea_water_potential_temperature",
+      "canonical_units": "degrees_C",
+      "dimensions": ["time", "depth", "latitude", "longitude"],
+      "shape": [7, 50, 181, 97],
+      "total_voxels": 6144950,
+      "valid_voxels": 5583466,
+      "valid_percentage": 90.86,
+      "fill_value": 9.969209968386869e+36,
+      "observed_min": 1.0419,
+      "observed_max": 30.7924
+    },
+    "so": {
+      "standard_name": "sea_water_practical_salinity",
+      "canonical_units": "1e-3 (PSU)",
+      "dimensions": ["time", "depth", "latitude", "longitude"],
+      "shape": [7, 50, 181, 97],
+      "total_voxels": 6144950,
+      "valid_voxels": 5583466,
+      "valid_percentage": 90.86,
+      "fill_value": 9.969209968386869e+36,
+      "observed_min": 34.6117,
+      "observed_max": 36.6462
+    },
+    "uo": {
+      "standard_name": "eastward_sea_water_velocity",
+      "canonical_units": "m s-1",
+      "dimensions": ["time", "depth", "latitude", "longitude"],
+      "shape": [7, 50, 181, 97],
+      "total_voxels": 6144950,
+      "valid_voxels": 5583466,
+      "valid_percentage": 90.86,
+      "fill_value": 9.969209968386869e+36,
+      "observed_min": -0.7812,
+      "observed_max": 1.1380
+    },
+    "vo": {
+      "standard_name": "northward_sea_water_velocity",
+      "canonical_units": "m s-1",
+      "dimensions": ["time", "depth", "latitude", "longitude"],
+      "shape": [7, 50, 181, 97],
+      "total_voxels": 6144950,
+      "valid_voxels": 5583466,
+      "valid_percentage": 90.86,
+      "fill_value": 9.969209968386869e+36,
+      "observed_min": -0.7082,
+      "observed_max": 1.0275
+    },
+    "zos": {
+      "standard_name": "sea_surface_height_above_geoid",
+      "canonical_units": "m",
+      "dimensions": ["time", "latitude", "longitude"],
+      "shape": [7, 181, 97],
+      "total_voxels": 122899,
+      "valid_voxels": 122899,
+      "valid_percentage": 100.00,
+      "fill_value": 9.969209968386869e+36,
+      "observed_min": 0.3322,
+      "observed_max": 0.6380
+    }
+  },
+  "bathymetry_context": {
+    "source_file": "data/raw/gebco/gebco-2026/gebco_2026_north_indian_ocean.nc",
+    "latitude_bounds": [-5.0, 25.0, 301],
+    "longitude_bounds": [50.0, 100.0, 601],
+    "elevation_min_m": -5405.0,
+    "elevation_max_m": 7401.0
+  }
+}

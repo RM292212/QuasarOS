@@ -66,6 +66,52 @@ describe('TASK-10C: Scientific Colormaps & Interpolation', () => {
     assert.equal(cOver.g, c1.g);
     assert.equal(cOver.b, c1.b);
   });
+
+  it('should auto-configure transfer function presets for ocean variables thetao, so, uo, vo, speed, zos', () => {
+    const model = new TransferFunctionModel();
+
+    // Thetao (Temperature)
+    model.configureForVariable('thetao');
+    assert.equal(model.colormapName, 'thermal');
+    assert.equal(model.unit, '°C');
+    assert.ok(model.domainMin <= 1.0);
+    assert.ok(model.domainMax >= 30.0);
+    assert.ok(model.state.opacityControlPoints.length >= 4);
+    assert.ok(model.evaluateOpacity(0.0) <= 0.05); // Low temperature transparency
+
+    // So (Salinity)
+    model.configureForVariable('so');
+    assert.equal(model.colormapName, 'coolwarm');
+    assert.equal(model.unit, 'PSU');
+    assert.equal(model.domainMin, 34.5);
+    assert.equal(model.domainMax, 36.8);
+
+    // Speed / Velocity Magnitude (Paper-aligned Yu et al. 2025)
+    model.configureForVariable('speed');
+    assert.equal(model.colormapName, 'turbo');
+    assert.equal(model.unit, 'm/s');
+    assert.equal(model.domainMin, 0.0);
+    assert.equal(model.domainMax, 1.5);
+    // Quiescent water (< 0.1 m/s, i.e. normalized < 0.0667) opacity <= 0.02
+    assert.ok(model.evaluateOpacity(0.0) <= 0.02);
+    assert.ok(model.evaluateOpacity(0.05 / 1.5) <= 0.02);
+    assert.ok(model.evaluateOpacity(0.10 / 1.5) <= 0.02);
+    // Jet core (> 0.7 m/s, i.e. normalized > 0.4667) opacity >= 0.85
+    assert.ok(model.evaluateOpacity(0.70 / 1.5) >= 0.85);
+    assert.ok(model.evaluateOpacity(1.0 / 1.5) >= 0.85);
+    assert.ok(model.evaluateOpacity(1.5 / 1.5) >= 0.85);
+
+    // Current velocity (uo / vo)
+    model.configureForVariable('uo');
+    assert.equal(model.colormapName, 'turbo');
+    assert.equal(model.unit, 'm/s');
+    assert.ok(model.evaluateOpacity(0.5) <= 0.10); // Quiescent velocity near 0 is transparent
+
+    // Sea Surface Height (zos)
+    model.configureForVariable('zos');
+    assert.equal(model.colormapName, 'plasma');
+    assert.equal(model.unit, 'm');
+  });
 });
 
 describe('TASK-10C: Transfer Function Model & Evaluation', () => {
@@ -98,6 +144,37 @@ describe('TASK-10C: Transfer Function Model & Evaluation', () => {
     assert.throws(() => {
       model.setClamps(15.0, 35.0);
     });
+  });
+
+  it('should support scalar clamps for non-temperature variables (speed, so, uo, zos) without errors', () => {
+    const model = new TransferFunctionModel();
+
+    // 1. Test Speed Clamps (0.0 to 1.5 m/s)
+    model.configureForVariable('speed (Velocity Magnitude, m/s)', 0.05, 1.25);
+    assert.equal(model.varCode, 'speed');
+    assert.equal(model.unit, 'm/s');
+    assert.equal(model.clampedMin, 0.05);
+    assert.equal(model.clampedMax, 1.25);
+    // User adjusts clamp to highlight high-velocity currents between 0.4 m/s and 1.1 m/s
+    model.setClamps(0.40, 1.10);
+    assert.equal(model.clampedMin, 0.40);
+    assert.equal(model.clampedMax, 1.10);
+
+    // 2. Test Salinity Clamps (34.0 to 37.0 PSU)
+    model.configureForVariable('so (Sea Water Salinity, 1e-3)', 33.5, 37.2);
+    assert.equal(model.varCode, 'so');
+    assert.equal(model.unit, 'PSU');
+    model.setClamps(34.2, 36.5);
+    assert.equal(model.clampedMin, 34.2);
+    assert.equal(model.clampedMax, 36.5);
+
+    // 3. Test Sea Surface Height Clamps (0.2 to 0.8 m)
+    model.configureForVariable('zos (Sea Surface Height Above Geoid, m)', 0.25, 0.75);
+    assert.equal(model.varCode, 'zos');
+    assert.equal(model.unit, 'm');
+    model.setClamps(0.30, 0.70);
+    assert.equal(model.clampedMin, 0.30);
+    assert.equal(model.clampedMax, 0.70);
   });
 
   it('should evaluate piecewise linear opacity and colormap along physical values', () => {

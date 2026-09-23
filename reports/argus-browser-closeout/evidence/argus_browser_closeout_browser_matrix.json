@@ -1,0 +1,45 @@
+{
+  "tested_viewports": [
+    {
+      "resolution": "1366x768",
+      "zoom": "100%",
+      "overlap_detected": false,
+      "status": "PASS"
+    },
+    {
+      "resolution": "1440x900",
+      "zoom": "100%",
+      "overlap_detected": false,
+      "status": "PASS"
+    },
+    {
+      "resolution": "1920x1080",
+      "zoom": "100%",
+      "overlap_detected": false,
+      "status": "PASS"
+    },
+    {
+      "resolution": "2560x1440",
+      "zoom": "100%",
+      "overlap_detected": false,
+      "status": "PASS"
+    },
+    {
+      "resolution": "1920x1080",
+      "zoom": "200%",
+      "overlap_detected": false,
+      "status": "PASS"
+    },
+    {
+      "resolution": "1920x1080",
+      "zoom": "80%",
+      "overlap_detected": false,
+      "status": "PASS"
+    }
+  ],
+  "accessibility": {
+    "wcag_contrast_passed": true,
+    "keyboard_navigation_passed": true,
+    "aria_labels_present": true
+  }
+}

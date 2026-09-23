@@ -1,0 +1,67 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "provider": "Copernicus Marine Service (E.U. Copernicus Programme)",
+  "temporal_coverage": {
+    "start": "2026-08-24T00:00:00Z",
+    "end": "2026-08-30T23:59:59Z",
+    "timesteps_count": 7
+  },
+  "spatial_domain": {
+    "lon_min": 60.0,
+    "lon_max": 68.0,
+    "lat_min": 0.0,
+    "lat_max": 15.0
+  },
+  "depth_coverage": {
+    "levels_count": 50,
+    "depth_min_m": 0.494025,
+    "depth_max_m": 5727.917
+  },
+  "authority": "authoritative native-source value under ADR-0005",
+  "is_real_data": true,
+  "is_synthetic_for_development": false,
+  "variables": {
+    "thetao": {
+      "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+      "units": "degrees_C",
+      "standard_name": "sea_water_potential_temperature",
+      "sha256": "44786949946780c68b31b08e301239b27170b2086bf04ae433a35b06af7aef97",
+      "byte_size": 24603646,
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao/copernicus_phy_thetao_20260824_20260830.nc"
+    },
+    "so": {
+      "dataset_id": "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m",
+      "units": "1e-3",
+      "standard_name": "sea_water_salinity",
+      "sha256": "2863f5b72ab5eab6f65900c2f0be38764f3664035b276f01b77961957a2b9a8b",
+      "byte_size": 24603646,
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/so/copernicus_phy_so_20260824_20260830.nc"
+    },
+    "uo": {
+      "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+      "units": "m s-1",
+      "standard_name": "eastward_sea_water_velocity",
+      "sha256": "1be3458f8c53b2fe6af941fce389f8c44e5167d70617265d7b1a4e38c034ed21",
+      "byte_size": 24603646,
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/uo/copernicus_phy_uo_20260824_20260830.nc"
+    },
+    "vo": {
+      "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+      "units": "m s-1",
+      "standard_name": "northward_sea_water_velocity",
+      "sha256": "47a84e0908c1bef39f6c72c323c8fa7a84089aefff4bf9b1b838c7fd1321a74f",
+      "byte_size": 24603646,
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo/copernicus_phy_vo_20260824_20260830.nc"
+    },
+    "zos": {
+      "dataset_id": "cmems_mod_glo_phy_anfc_0.083deg_P1D-m",
+      "units": "m",
+      "standard_name": "sea_surface_height_above_geoid",
+      "sha256": "3a329f8b571ec902220bc98e47748d310da70a9c88e7b951b3c4e39baab3d2a5",
+      "byte_size": 512512,
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos/copernicus_phy_zos_20260824_20260830.nc"
+    }
+  }
+}

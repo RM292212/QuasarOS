@@ -1,4 +1,4 @@
-﻿"""
+"""
 QuasarOS FastAPI Application Entrypoint.
 
 Configures global exception handlers according to docs/02-architecture/ErrorModel.md,
@@ -59,7 +59,16 @@ def create_app(static_dir: Optional[Path] = None) -> FastAPI:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
-        expose_headers=["X-Request-ID", "X-Response-Time-Ms", "X-Payload-SHA256", "ETag", "Content-Length"],
+        expose_headers=[
+            "X-Request-ID",
+            "X-Response-Time-Ms",
+            "X-Payload-SHA256",
+            "ETag",
+            "Content-Length",
+            "x-volume-metadata",
+            "x-trace-id",
+            "x-generation",
+        ],
     )
 
     # Tracing, Latency, and Security Headers Middleware

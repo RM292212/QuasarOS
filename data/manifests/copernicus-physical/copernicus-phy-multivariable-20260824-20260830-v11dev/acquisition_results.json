@@ -1,0 +1,38 @@
+{
+  "acquired_at": "2026-08-30T18:48:09.168917+00:00",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "is_real_data": true,
+  "variables": {
+    "thetao": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao/copernicus_phy_thetao_20260824_20260830.nc",
+      "sha256": "44786949946780c68b31b08e301239b27170b2086bf04ae433a35b06af7aef97",
+      "size_bytes": 24603646,
+      "status": "ok"
+    },
+    "so": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/so/copernicus_phy_so_20260824_20260830.nc",
+      "sha256": "2863f5b72ab5eab6f65900c2f0be38764f3664035b276f01b77961957a2b9a8b",
+      "size_bytes": 24603646,
+      "status": "ok"
+    },
+    "uo": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/uo/copernicus_phy_uo_20260824_20260830.nc",
+      "sha256": "1be3458f8c53b2fe6af941fce389f8c44e5167d70617265d7b1a4e38c034ed21",
+      "size_bytes": 24603646,
+      "status": "ok"
+    },
+    "vo": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo/copernicus_phy_vo_20260824_20260830.nc",
+      "sha256": "47a84e0908c1bef39f6c72c323c8fa7a84089aefff4bf9b1b838c7fd1321a74f",
+      "size_bytes": 24603646,
+      "status": "ok"
+    },
+    "zos": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos/copernicus_phy_zos_20260824_20260830.nc",
+      "sha256": "3a329f8b571ec902220bc98e47748d310da70a9c88e7b951b3c4e39baab3d2a5",
+      "size_bytes": 512512,
+      "status": "ok"
+    }
+  },
+  "all_ok": true
+}

@@ -1,0 +1,333 @@
+{
+  "$defs": {
+    "ForecastCycleContract": {
+      "description": "Authoritative operational model forecast cycle contract.",
+      "properties": {
+        "assimilation_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Data assimilation scheme (e.g. '3DVar', '4DVar', 'EnOI', 'NCODA').",
+          "title": "Assimilation Method"
+        },
+        "cycle_reference_time_utc": {
+          "description": "Model initialization / cycle reference time T_ref (ISO 8601 UTC).",
+          "title": "Cycle Reference Time Utc",
+          "type": "string"
+        },
+        "ensemble_member_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Ensemble member identifier if ensemble run (e.g. 'ctrl', 'mem01').",
+          "title": "Ensemble Member Id"
+        },
+        "forecast_horizon_hours": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Maximum operational forecast horizon in hours (e.g. 120h / 5 days).",
+          "title": "Forecast Horizon Hours"
+        },
+        "lead_time_hours": {
+          "description": "Forecast lead time offset tau in hours (tau = T_valid - T_ref >= 0).",
+          "minimum": 0.0,
+          "title": "Lead Time Hours",
+          "type": "number"
+        },
+        "model_class": {
+          "$ref": "#/$defs/ModelClass",
+          "description": "Underlying hydrodynamic model family."
+        },
+        "run_type": {
+          "$ref": "#/$defs/ModelRunType",
+          "description": "Operational run mode (forecast, reanalysis, hindcast, etc.)."
+        },
+        "valid_time_utc": {
+          "description": "Physical validity time T_valid (ISO 8601 UTC).",
+          "title": "Valid Time Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_class",
+        "run_type",
+        "cycle_reference_time_utc",
+        "valid_time_utc",
+        "lead_time_hours"
+      ],
+      "title": "ForecastCycleContract",
+      "type": "object"
+    },
+    "HYCOMModelContract": {
+      "description": "Specialized contract for HYCOM (Hybrid Coordinate Ocean Model) datasets.\nDistinguishes OPeNDAP-served z-levels vs native hybrid coordinate layers.",
+      "properties": {
+        "experiment_id": {
+          "description": "HYCOM operational experiment ID (e.g. 'GLBy0.08/expt_93.0', 'ESPC-D-V02', 'GOFS3.1').",
+          "title": "Experiment Id",
+          "type": "string"
+        },
+        "native_layer_count": {
+          "default": 41,
+          "description": "Number of vertical coordinate layers in native hybrid system (default 41 for modern GOFS/ESPC).",
+          "minimum": 1,
+          "title": "Native Layer Count",
+          "type": "integer"
+        },
+        "served_depth_levels_count": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Number of standard depth levels if served as interpolated z-levels (e.g. 40 levels).",
+          "title": "Served Depth Levels Count"
+        },
+        "surface_salinity_reference": {
+          "default": 35.0,
+          "description": "Reference salinity for equation of state.",
+          "title": "Surface Salinity Reference",
+          "type": "number"
+        },
+        "uses_fast_thermodynamics": {
+          "default": true,
+          "description": "Indicates whether 17-term polynomial equation of state is employed.",
+          "title": "Uses Fast Thermodynamics",
+          "type": "boolean"
+        },
+        "vertical_representation": {
+          "$ref": "#/$defs/HYCOMVerticalRepresentation",
+          "description": "Classification of vertical coordinate output structure."
+        }
+      },
+      "required": [
+        "vertical_representation",
+        "experiment_id"
+      ],
+      "title": "HYCOMModelContract",
+      "type": "object"
+    },
+    "HYCOMVerticalRepresentation": {
+      "description": "HYCOM vertical coordinate output classification.",
+      "enum": [
+        "served_z_level",
+        "native_hybrid",
+        "surface_2d"
+      ],
+      "title": "HYCOMVerticalRepresentation",
+      "type": "string"
+    },
+    "ModelClass": {
+      "description": "Hydrodynamic ocean model architecture classification.",
+      "enum": [
+        "ROMS",
+        "HYCOM",
+        "MOM",
+        "NEMO",
+        "WW3",
+        "WAM",
+        "MIKE21",
+        "unspecified"
+      ],
+      "title": "ModelClass",
+      "type": "string"
+    },
+    "ModelMaskContract": {
+      "description": "Model land-sea mask and wet/dry boundary definitions.",
+      "properties": {
+        "has_dynamic_wetting_drying": {
+          "default": false,
+          "description": "Whether dynamic wetting and drying is simulated.",
+          "title": "Has Dynamic Wetting Drying",
+          "type": "boolean"
+        },
+        "has_land_mask": {
+          "default": true,
+          "description": "Whether static land-sea mask is present.",
+          "title": "Has Land Mask",
+          "type": "boolean"
+        },
+        "land_value": {
+          "default": 0.0,
+          "description": "Numerical value representing dry land cells.",
+          "title": "Land Value",
+          "type": "number"
+        },
+        "mask_variable_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of mask variable in raw dataset (e.g. 'mask_rho', 'land_mask').",
+          "title": "Mask Variable Name"
+        },
+        "sea_value": {
+          "default": 1.0,
+          "description": "Numerical value representing active water cells.",
+          "title": "Sea Value",
+          "type": "number"
+        },
+        "wet_dry_threshold_meters": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Critical water depth threshold in meters for wet/dry activation.",
+          "title": "Wet Dry Threshold Meters"
+        }
+      },
+      "title": "ModelMaskContract",
+      "type": "object"
+    },
+    "ModelRunType": {
+      "description": "Operational simulation cycle type.",
+      "enum": [
+        "forecast",
+        "reanalysis",
+        "hindcast",
+        "analysis",
+        "climatology"
+      ],
+      "title": "ModelRunType",
+      "type": "string"
+    },
+    "OperationalStatus": {
+      "description": "Operational maturity and release qualification status.",
+      "enum": [
+        "operational",
+        "pre_operational",
+        "research",
+        "demonstration",
+        "retired",
+        "synthetic"
+      ],
+      "title": "OperationalStatus",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive authoritative contract for general ocean hydrodynamic models.",
+  "properties": {
+    "atmospheric_forcing_source": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Source of atmospheric forcing (e.g. 'ECMWF IFS 0.1 deg', 'GFS 0.25 deg', 'NCMRWF Unified Model').",
+      "title": "Atmospheric Forcing Source"
+    },
+    "bathymetry_source": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Source of model bathymetry (e.g. 'GEBCO 2024', 'ETOPO 2022', 'SRTM30_PLUS').",
+      "title": "Bathymetry Source"
+    },
+    "forecast_cycle": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ForecastCycleContract"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Forecast cycle timing parameters if operational forecast."
+    },
+    "hycom_metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HYCOMModelContract"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "HYCOM-specific vertical coordinate metadata."
+    },
+    "mask_contract": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelMaskContract"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Model land/sea masking contract."
+    },
+    "model_class": {
+      "$ref": "#/$defs/ModelClass",
+      "description": "Underlying model numerical architecture."
+    },
+    "model_name": {
+      "description": "Operational model name (e.g. 'INCOIS-BioROMS', 'HYCOM-ESPC-D-V02', 'CMEMS-GLOBAL-ANALYSIS-FORECAST-PHY-001-024').",
+      "title": "Model Name",
+      "type": "string"
+    },
+    "operational_status": {
+      "$ref": "#/$defs/OperationalStatus",
+      "default": "operational",
+      "description": "Operational service status."
+    },
+    "tidal_forcing_included": {
+      "default": false,
+      "description": "Whether explicit tidal constituent forcing is applied.",
+      "title": "Tidal Forcing Included",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "model_name",
+    "model_class"
+  ],
+  "title": "OceanHydrodynamicModelContract",
+  "type": "object"
+}

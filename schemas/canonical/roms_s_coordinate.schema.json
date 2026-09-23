@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Theoretical formulation parameters for ROMS terrain-following s-coordinates.\nSupports Vtransform 1 (Song & Haidvogel 1994) and Vtransform 2 (Shchepetkin & McWilliams 2005).",
+  "properties": {
+    "Cs_r": {
+      "description": "Non-dimensional stretching curves C(s) at RHO points (in [-1.0, 0.0]).",
+      "items": {
+        "type": "number"
+      },
+      "title": "Cs R",
+      "type": "array"
+    },
+    "Cs_w": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Stretching curves C(s) at W points (in [-1.0, 0.0]).",
+      "title": "Cs W"
+    },
+    "N": {
+      "description": "Number of vertical terrain-following s-levels.",
+      "exclusiveMinimum": 0,
+      "title": "N",
+      "type": "integer"
+    },
+    "Vstretching": {
+      "default": 1,
+      "description": "Vertical stretching function (1: Song/Haidvogel, 2: A. Shchepetkin 2005, 4: UCLA, 5: Souza).",
+      "enum": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "title": "Vstretching",
+      "type": "integer"
+    },
+    "Vtransform": {
+      "default": 1,
+      "description": "Vertical transformation equation (1: Song & Haidvogel 1994; 2: Shchepetkin & McWilliams 2005).",
+      "enum": [
+        1,
+        2
+      ],
+      "title": "Vtransform",
+      "type": "integer"
+    },
+    "hc": {
+      "description": "Critical depth / thermocline parameter in meters (hc > 0.0).",
+      "exclusiveMinimum": 0.0,
+      "title": "Hc",
+      "type": "number"
+    },
+    "s_rho": {
+      "description": "Fractional non-dimensional vertical coordinates at RHO points (in [-1.0, 0.0]).",
+      "items": {
+        "type": "number"
+      },
+      "title": "S Rho",
+      "type": "array"
+    },
+    "s_w": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Fractional vertical coordinates at W points (in [-1.0, 0.0]).",
+      "title": "S W"
+    },
+    "theta_b": {
+      "description": "Bottom stretching parameter (theta_b >= 0.0).",
+      "minimum": 0.0,
+      "title": "Theta B",
+      "type": "number"
+    },
+    "theta_s": {
+      "description": "Surface stretching parameter (theta_s >= 0.0).",
+      "minimum": 0.0,
+      "title": "Theta S",
+      "type": "number"
+    }
+  },
+  "required": [
+    "theta_s",
+    "theta_b",
+    "hc",
+    "N",
+    "s_rho",
+    "Cs_r"
+  ],
+  "title": "ROMSSCoordinateParameters",
+  "type": "object"
+}

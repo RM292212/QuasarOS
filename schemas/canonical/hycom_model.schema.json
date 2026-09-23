@@ -1,0 +1,66 @@
+{
+  "$defs": {
+    "HYCOMVerticalRepresentation": {
+      "description": "HYCOM vertical coordinate output classification.",
+      "enum": [
+        "served_z_level",
+        "native_hybrid",
+        "surface_2d"
+      ],
+      "title": "HYCOMVerticalRepresentation",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Specialized contract for HYCOM (Hybrid Coordinate Ocean Model) datasets.\nDistinguishes OPeNDAP-served z-levels vs native hybrid coordinate layers.",
+  "properties": {
+    "experiment_id": {
+      "description": "HYCOM operational experiment ID (e.g. 'GLBy0.08/expt_93.0', 'ESPC-D-V02', 'GOFS3.1').",
+      "title": "Experiment Id",
+      "type": "string"
+    },
+    "native_layer_count": {
+      "default": 41,
+      "description": "Number of vertical coordinate layers in native hybrid system (default 41 for modern GOFS/ESPC).",
+      "minimum": 1,
+      "title": "Native Layer Count",
+      "type": "integer"
+    },
+    "served_depth_levels_count": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of standard depth levels if served as interpolated z-levels (e.g. 40 levels).",
+      "title": "Served Depth Levels Count"
+    },
+    "surface_salinity_reference": {
+      "default": 35.0,
+      "description": "Reference salinity for equation of state.",
+      "title": "Surface Salinity Reference",
+      "type": "number"
+    },
+    "uses_fast_thermodynamics": {
+      "default": true,
+      "description": "Indicates whether 17-term polynomial equation of state is employed.",
+      "title": "Uses Fast Thermodynamics",
+      "type": "boolean"
+    },
+    "vertical_representation": {
+      "$ref": "#/$defs/HYCOMVerticalRepresentation",
+      "description": "Classification of vertical coordinate output structure."
+    }
+  },
+  "required": [
+    "vertical_representation",
+    "experiment_id"
+  ],
+  "title": "HYCOMModelContract",
+  "type": "object"
+}

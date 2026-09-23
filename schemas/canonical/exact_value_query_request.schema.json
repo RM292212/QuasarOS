@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "SelectionInterpolationContract": {
+      "description": "Formal specification of mathematical selection and spatial/temporal interpolation methods.",
+      "properties": {
+        "allows_extrapolation": {
+          "default": false,
+          "description": "Whether extrapolation beyond the convex hull of valid native grid points is permitted.",
+          "title": "Allows Extrapolation",
+          "type": "boolean"
+        },
+        "interpolation_weights_provenance": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Recorded weights of surrounding grid points used during interpolation.",
+          "title": "Interpolation Weights Provenance"
+        },
+        "max_horizontal_extrapolation_deg": {
+          "default": 0.0,
+          "description": "Maximum allowed distance in degrees for horizontal extrapolation (0.0 = none).",
+          "minimum": 0.0,
+          "title": "Max Horizontal Extrapolation Deg",
+          "type": "number"
+        },
+        "max_vertical_extrapolation_m": {
+          "default": 0.0,
+          "description": "Maximum allowed vertical extrapolation in meters (0.0 = none).",
+          "minimum": 0.0,
+          "title": "Max Vertical Extrapolation M",
+          "type": "number"
+        },
+        "method": {
+          "$ref": "#/$defs/SelectionMethod",
+          "default": "nearest_native_sample",
+          "description": "Governing coordinate selection/interpolation algorithm."
+        }
+      },
+      "title": "SelectionInterpolationContract",
+      "type": "object"
+    },
+    "SelectionMethod": {
+      "description": "Scientific coordinate resolution and selection method.",
+      "enum": [
+        "nearest_native_sample",
+        "exact_grid_index",
+        "trilinear_interpolation",
+        "bilinear_horizontal_nearest_vertical",
+        "native_level_horizontal_interpolation"
+      ],
+      "title": "SelectionMethod",
+      "type": "string"
+    },
+    "TimeSelectorMode": {
+      "description": "Time selection mode.",
+      "enum": [
+        "exact_utc_timestamp",
+        "nearest_available_timestep",
+        "forecast_reference_and_lead"
+      ],
+      "title": "TimeSelectorMode",
+      "type": "string"
+    },
+    "VerticalSelectorType": {
+      "description": "Vertical coordinate selection mode.",
+      "enum": [
+        "physical_depth_meters",
+        "pressure_dbar",
+        "grid_level_index",
+        "sea_surface",
+        "sea_floor"
+      ],
+      "title": "VerticalSelectorType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative request contract for point or profile scientific queries.\nBypasses visual GPU buffers and directly targets canonical gridded data.",
+  "properties": {
+    "dataset_id": {
+      "description": "Canonical dataset identifier (e.g. 'copernicus_phy_thetao').",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "dataset_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "1.0.0",
+      "description": "Semantic version of the dataset.",
+      "title": "Dataset Version"
+    },
+    "forecast_lead_time_seconds": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Lead time seconds from cycle reference time if querying forecast cycle.",
+      "title": "Forecast Lead Time Seconds"
+    },
+    "latitude_deg": {
+      "description": "Target latitude in degrees North [-90, 90].",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Latitude Deg",
+      "type": "number"
+    },
+    "longitude_deg": {
+      "description": "Target longitude in degrees East [-180, 180] or [0, 360].",
+      "maximum": 360.0,
+      "minimum": -180.0,
+      "title": "Longitude Deg",
+      "type": "number"
+    },
+    "requested_units": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Preferred scientific units (if conversion requested).",
+      "title": "Requested Units"
+    },
+    "selection_interpolation": {
+      "$ref": "#/$defs/SelectionInterpolationContract",
+      "description": "Interpolation policy and tolerances."
+    },
+    "snapshot_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Specific snapshot ID for immutable reproducible queries.",
+      "title": "Snapshot Id"
+    },
+    "target_time_utc": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ISO 8601 UTC timestamp.",
+      "title": "Target Time Utc"
+    },
+    "time_selector_mode": {
+      "$ref": "#/$defs/TimeSelectorMode",
+      "default": "exact_utc_timestamp",
+      "description": "Temporal selection mode."
+    },
+    "variable_id": {
+      "description": "Canonical variable identifier (e.g. 'sea_water_potential_temperature').",
+      "title": "Variable Id",
+      "type": "string"
+    },
+    "vertical_selector_type": {
+      "$ref": "#/$defs/VerticalSelectorType",
+      "default": "physical_depth_meters",
+      "description": "Mode of vertical coordinate specification."
+    },
+    "vertical_target_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": 0.0,
+      "description": "Target vertical coordinate value (e.g. 50.0 meters depth, 100.0 dbar pressure, or level index).",
+      "title": "Vertical Target Value"
+    }
+  },
+  "required": [
+    "dataset_id",
+    "variable_id",
+    "latitude_deg",
+    "longitude_deg"
+  ],
+  "title": "ExactValueQueryRequest",
+  "type": "object"
+}

@@ -6,6 +6,7 @@ import {
   VolumeQualityModel,
   COLORMAP_REGISTRY,
 } from './index.ts';
+import { VolumeQualityControls } from './VolumeQualityControls.tsx';
 import type { TransferFunctionContract } from '../../../../../packages/contracts/types/quasar_contracts.d.ts';
 
 export interface TransferFunctionLegendControlsProps {
@@ -24,12 +25,19 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
   onOpenProvenance,
 }) => {
   const [tfContract, setTfContract] = useState<TransferFunctionContract>(() => tfModel.toContract());
+  const [tfDomain, setTfDomain] = useState<{ min: number; max: number }>(() => ({
+    min: tfModel.domainMin,
+    max: tfModel.domainMax,
+  }));
   const [qualitySettings, setQualitySettings] = useState(() => qualityModel.settings);
   const [clippingState, setClippingState] = useState(() => clippingModel?.state);
   const [activeTab, setActiveTab] = useState<'tf' | 'clip' | 'quality'>('tf');
 
   useEffect(() => {
-    const unsubTf = tfModel.subscribe((contract) => setTfContract(contract));
+    const unsubTf = tfModel.subscribe((contract) => {
+      setTfContract(contract);
+      setTfDomain({ min: tfModel.domainMin, max: tfModel.domainMax });
+    });
     const unsubQ = qualityModel.subscribe((q) => setQualitySettings(q));
     const unsubClip = clippingModel?.subscribe((c) => setClippingState(c));
     return () => {
@@ -121,7 +129,7 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
             <select
               id="colormap-select"
               data-testid="colormap-select"
-              value={tfModel.colormapName}
+              value={tfContract.colormap_preset_name}
               onChange={(e) => tfModel.setColormap(e.target.value)}
               className="bg-slate-950 border border-slate-700 rounded px-2 py-0.5 text-xs font-mono text-cyan-300 focus:outline-none focus:border-cyan-500"
             >
@@ -155,30 +163,38 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
             <div className="flex justify-between text-slate-400">
               <span>Scalar Clamps:</span>
               <span className="font-mono text-sky-300 font-medium">
-                {tfModel.clampedMin.toFixed(2)} {tfModel.unit} — {tfModel.clampedMax.toFixed(2)} {tfModel.unit}
+                {tfContract.physical_domain_min.toFixed(Math.abs(tfDomain.max - tfDomain.min) < 2 ? 3 : 2)} {tfContract.physical_units} — {tfContract.physical_domain_max.toFixed(Math.abs(tfDomain.max - tfDomain.min) < 2 ? 3 : 2)} {tfContract.physical_units}
               </span>
             </div>
             <div className="flex items-center gap-2">
               <input
                 type="range"
                 data-testid="slider-clamp-min"
-                min={tfModel.domainMin}
-                max={tfModel.clampedMax - 0.5}
-                step={0.1}
-                value={tfModel.clampedMin}
+                min={tfDomain.min}
+                max={Math.max(tfDomain.min, tfContract.physical_domain_max - (tfDomain.max - tfDomain.min) * 0.005)}
+                step={Math.max(0.0001, (tfDomain.max - tfDomain.min) / 200)}
+                value={tfContract.physical_domain_min}
                 aria-label="Scalar clamp minimum"
-                onChange={(e) => tfModel.setClamps(parseFloat(e.target.value), tfModel.clampedMax)}
+                onChange={(e) => {
+                  const rawVal = parseFloat(e.target.value);
+                  const val = Math.max(tfDomain.min, Math.min(rawVal, tfContract.physical_domain_max));
+                  tfModel.setClamps(val, tfContract.physical_domain_max);
+                }}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
               />
               <input
                 type="range"
                 data-testid="slider-clamp-max"
-                min={tfModel.clampedMin + 0.5}
-                max={tfModel.domainMax}
-                step={0.1}
-                value={tfModel.clampedMax}
+                min={Math.min(tfDomain.max, tfContract.physical_domain_min + (tfDomain.max - tfDomain.min) * 0.005)}
+                max={tfDomain.max}
+                step={Math.max(0.0001, (tfDomain.max - tfDomain.min) / 200)}
+                value={tfContract.physical_domain_max}
                 aria-label="Scalar clamp maximum"
-                onChange={(e) => tfModel.setClamps(tfModel.clampedMin, parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const rawVal = parseFloat(e.target.value);
+                  const val = Math.min(tfDomain.max, Math.max(rawVal, tfContract.physical_domain_min));
+                  tfModel.setClamps(tfContract.physical_domain_min, val);
+                }}
                 className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
               />
             </div>
@@ -241,7 +257,7 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
             </div>
           </div>
 
-          {/* Longitude / Latitude Slices */}
+          {/* Longitude Slices */}
           <div className="flex flex-col gap-1 bg-slate-950/60 p-2 rounded border border-slate-800 text-[11px]">
             <div className="flex justify-between text-slate-400">
               <span>Longitude Bounds:</span>
@@ -275,6 +291,40 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
             </div>
           </div>
 
+          {/* Latitude Slices */}
+          <div className="flex flex-col gap-1 bg-slate-950/60 p-2 rounded border border-slate-800 text-[11px]">
+            <div className="flex justify-between text-slate-400">
+              <span>Latitude Bounds:</span>
+              <span className="font-mono text-emerald-300">
+                {clippingState.limits.minLatDeg.toFixed(1)}°N — {clippingState.limits.maxLatDeg.toFixed(1)}°N
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="range"
+                data-testid="slider-clip-lat-min"
+                min={clippingState.domain.minLatDeg}
+                max={clippingState.limits.maxLatDeg - 0.5}
+                step={0.5}
+                value={clippingState.limits.minLatDeg}
+                aria-label="Clipping minimum latitude"
+                onChange={(e) => clippingModel.setLatitudeRange(parseFloat(e.target.value), clippingState.limits.maxLatDeg)}
+                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+              />
+              <input
+                type="range"
+                data-testid="slider-clip-lat-max"
+                min={clippingState.limits.minLatDeg + 0.5}
+                max={clippingState.domain.maxLatDeg}
+                step={0.5}
+                value={clippingState.limits.maxLatDeg}
+                aria-label="Clipping maximum latitude"
+                onChange={(e) => clippingModel.setLatitudeRange(clippingState.limits.minLatDeg, parseFloat(e.target.value))}
+                className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+              />
+            </div>
+          </div>
+
           {/* Reset & Invert Actions */}
           <div className="flex gap-2 pt-1">
             <button
@@ -302,59 +352,7 @@ export const TransferFunctionLegendControls: React.FC<TransferFunctionLegendCont
       {/* Tab Content: Volume Quality & Raymarching Settings */}
       {activeTab === 'quality' && (
         <div className="flex flex-col gap-2.5" data-testid="tab-content-quality">
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400 text-[11px] font-medium uppercase">Sampling Step Multiplier:</span>
-            <span className="font-mono text-cyan-300 text-[11px]">
-              {qualitySettings.stepSizeMultiplier.toFixed(2)}x (Step: {qualityModel.effectiveStepSize.toFixed(4)})
-            </span>
-          </div>
-          <input
-            type="range"
-            data-testid="slider-quality-step"
-            min={0.25}
-            max={4.0}
-            step={0.25}
-            value={qualitySettings.stepSizeMultiplier}
-            aria-label="Sampling density step multiplier"
-            onChange={(e) => qualityModel.setStepSizeMultiplier(parseFloat(e.target.value))}
-            className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
-          />
-
-          <div className="flex items-center justify-between">
-            <span className="text-slate-400 text-[11px] font-medium uppercase">Opacity Multiplier:</span>
-            <span className="font-mono text-cyan-300 text-[11px]">{qualitySettings.opacityMultiplier.toFixed(1)}x</span>
-          </div>
-          <input
-            type="range"
-            data-testid="slider-quality-opacity"
-            min={0.1}
-            max={5.0}
-            step={0.1}
-            value={qualitySettings.opacityMultiplier}
-            aria-label="Opacity density multiplier"
-            onChange={(e) => qualityModel.setOpacityMultiplier(parseFloat(e.target.value))}
-            className="w-full h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
-          />
-
-          <div className="flex items-center justify-between pt-1 border-t border-slate-800">
-            <label className="flex items-center gap-2 cursor-pointer text-[11px] text-slate-300">
-              <input
-                type="checkbox"
-                data-testid="checkbox-bounding-box"
-                checked={qualitySettings.showBoundingBox}
-                onChange={(e) => qualityModel.setBoundingBoxVisible(e.target.checked)}
-                className="rounded bg-slate-950 border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer"
-              />
-              Show 3D Spatial Bounding Wireframe
-            </label>
-            <button
-              onClick={() => qualityModel.resetDefaults()}
-              data-testid="btn-quality-reset"
-              className="text-[10px] text-slate-400 hover:text-slate-200 underline"
-            >
-              Reset Defaults
-            </button>
-          </div>
+          <VolumeQualityControls qualityModel={qualityModel} />
         </div>
       )}
     </div>

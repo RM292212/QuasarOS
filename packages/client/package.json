@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@quasar/client",
   "version": "1.0.0",
   "description": "QuasarOS Typed Browser Catalog, Discovery, and Authoritative Query Client",
@@ -27,3 +27,4 @@
     "fzstd": "^0.1.1"
   }
 }
+

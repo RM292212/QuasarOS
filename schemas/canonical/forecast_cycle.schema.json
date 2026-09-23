@@ -1,0 +1,108 @@
+{
+  "$defs": {
+    "ModelClass": {
+      "description": "Hydrodynamic ocean model architecture classification.",
+      "enum": [
+        "ROMS",
+        "HYCOM",
+        "MOM",
+        "NEMO",
+        "WW3",
+        "WAM",
+        "MIKE21",
+        "unspecified"
+      ],
+      "title": "ModelClass",
+      "type": "string"
+    },
+    "ModelRunType": {
+      "description": "Operational simulation cycle type.",
+      "enum": [
+        "forecast",
+        "reanalysis",
+        "hindcast",
+        "analysis",
+        "climatology"
+      ],
+      "title": "ModelRunType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative operational model forecast cycle contract.",
+  "properties": {
+    "assimilation_method": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Data assimilation scheme (e.g. '3DVar', '4DVar', 'EnOI', 'NCODA').",
+      "title": "Assimilation Method"
+    },
+    "cycle_reference_time_utc": {
+      "description": "Model initialization / cycle reference time T_ref (ISO 8601 UTC).",
+      "title": "Cycle Reference Time Utc",
+      "type": "string"
+    },
+    "ensemble_member_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Ensemble member identifier if ensemble run (e.g. 'ctrl', 'mem01').",
+      "title": "Ensemble Member Id"
+    },
+    "forecast_horizon_hours": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum operational forecast horizon in hours (e.g. 120h / 5 days).",
+      "title": "Forecast Horizon Hours"
+    },
+    "lead_time_hours": {
+      "description": "Forecast lead time offset tau in hours (tau = T_valid - T_ref >= 0).",
+      "minimum": 0.0,
+      "title": "Lead Time Hours",
+      "type": "number"
+    },
+    "model_class": {
+      "$ref": "#/$defs/ModelClass",
+      "description": "Underlying hydrodynamic model family."
+    },
+    "run_type": {
+      "$ref": "#/$defs/ModelRunType",
+      "description": "Operational run mode (forecast, reanalysis, hindcast, etc.)."
+    },
+    "valid_time_utc": {
+      "description": "Physical validity time T_valid (ISO 8601 UTC).",
+      "title": "Valid Time Utc",
+      "type": "string"
+    }
+  },
+  "required": [
+    "model_class",
+    "run_type",
+    "cycle_reference_time_utc",
+    "valid_time_utc",
+    "lead_time_hours"
+  ],
+  "title": "ForecastCycleContract",
+  "type": "object"
+}

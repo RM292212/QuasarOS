@@ -1,0 +1,55 @@
+{
+  "task_id": "TASK-03S-C",
+  "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "source_file": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+  "sha256_verified": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+  "shape": {
+    "time": 7,
+    "depth": 31,
+    "latitude": 181,
+    "longitude": 97
+  },
+  "dimension_order": [
+    "time",
+    "depth",
+    "latitude",
+    "longitude"
+  ],
+  "variable": "thetao",
+  "standard_name": "sea_water_potential_temperature",
+  "units": "degrees_C",
+  "temporal_classification": "OPERATIONAL_CURRENT_SNAPSHOT",
+  "timestamps": [
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30"
+  ],
+  "acquisition_time_utc": "2026-08-30T12:57:44.550082+00:00",
+  "latest_valid_time": "2026-08-30T00:00:00Z",
+  "lat_range": [
+    -3.0,
+    12.0
+  ],
+  "lon_range": [
+    80.0,
+    88.0
+  ],
+  "depth_range": [
+    0.49402499198913574,
+    453.9377136230469
+  ],
+  "depth_level_count": 31,
+  "depth_classification": "UPPER_OCEAN_OPERATIONAL_VOLUME",
+  "temperature_min_degc": 9.374712944030762,
+  "temperature_max_degc": 30.361833572387695,
+  "temperature_mean_degc": 24.20624351501465,
+  "finite_voxel_count": 3618944,
+  "missing_voxel_count": 190925,
+  "fill_value": "NOT SET",
+  "validation_passed": true,
+  "not_historical_2025_confirmed": true
+}

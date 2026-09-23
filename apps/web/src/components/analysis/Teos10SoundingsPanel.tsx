@@ -2,23 +2,23 @@
  * TEOS-10 Soundings Panel — RUNTIME-HOTFIX-03
  *
  * Request gating rules (prevents avoidable 400 errors during page initialisation):
- * - Latitude must be within the Arabian Sea domain: [-3, 12]°N
- * - Longitude must be within the Arabian Sea domain: [80, 88]°E
+ * - Latitude must be within the Arabian Sea domain: [0, 15]°N
+ * - Longitude must be within the Arabian Sea domain: [60, 68]°E
  * - time_index must be 0-6
  * - All three values must be finite numbers before any request is fired
  * - A new AbortController cancels in-flight requests when props change
  * - Stale responses (from a cancelled fetch) are silently ignored
  *
- * The default coordinates (6.0°N, 84.0°E) are valid ocean cells within the domain.
+ * The default coordinates (7.5°N, 64.0°E) are valid ocean cells within the domain (50 depth levels).
  * A 500 ms debounce prevents request storms on rapid prop changes.
  */
 import React, { useState, useEffect, useRef } from 'react';
 
 // Arabian Sea domain — matches backend TEOS10Request field constraints
-const LAT_MIN = -3.0;
-const LAT_MAX = 12.0;
-const LON_MIN = 80.0;
-const LON_MAX = 88.0;
+const LAT_MIN = 0.0;
+const LAT_MAX = 15.0;
+const LON_MIN = 60.0;
+const LON_MAX = 68.0;
 
 function isValidDomain(lat: number, lon: number): boolean {
   return (
@@ -36,8 +36,8 @@ export interface Teos10SoundingsPanelProps {
 }
 
 export const Teos10SoundingsPanel: React.FC<Teos10SoundingsPanelProps> = ({
-  latitude = 6.0,
-  longitude = 84.0,  // Default corrected to valid ocean domain
+  latitude = 7.5,
+  longitude = 64.0,  // Default corrected to valid ocean domain
   timeIndex = 0,
 }) => {
   const [data, setData] = useState<any>(null);

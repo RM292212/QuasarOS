@@ -1,0 +1,30 @@
+{"command": "GET /health/live [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.66, "exit_code": 0, "timestamp": "2026-09-06T09:12:52Z"}
+{"command": "GET /health/ready [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.77, "exit_code": 0, "timestamp": "2026-09-06T09:12:52Z"}
+{"command": "GET /health/live [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.87, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /health/ready [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.42, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /api/v1/capabilities [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.79, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /api/v1/catalog [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.49, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /api/v1/visualization-products [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 3.35, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /api/v1/analysis/coastlines [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 4.37, "exit_code": 0, "timestamp": "2026-09-06T09:13:35Z"}
+{"command": "GET /api/v1/analysis/essential-data-probe [x10]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 319.27, "exit_code": 0, "timestamp": "2026-09-06T09:13:39Z"}
+{"command": "Timeline Day 0 (2026-08-24) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2021.97, "exit_code": 0, "timestamp": "2026-09-06T09:13:48Z"}
+{"command": "Timeline Day 1 (2026-08-25) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2153.79, "exit_code": 0, "timestamp": "2026-09-06T09:13:59Z"}
+{"command": "Timeline Day 2 (2026-08-26) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2127.71, "exit_code": 0, "timestamp": "2026-09-06T09:14:10Z"}
+{"command": "Timeline Day 3 (2026-08-27) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2106.99, "exit_code": 0, "timestamp": "2026-09-06T09:14:20Z"}
+{"command": "Timeline Day 4 (2026-08-28) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2122.47, "exit_code": 0, "timestamp": "2026-09-06T09:14:30Z"}
+{"command": "Timeline Day 5 (2026-08-29) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2089.7, "exit_code": 0, "timestamp": "2026-09-06T09:14:40Z"}
+{"command": "Timeline Day 6 (2026-08-30) [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1991.96, "exit_code": 0, "timestamp": "2026-09-06T09:14:50Z"}
+{"command": "Variable thetao [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1012.83, "exit_code": 0, "timestamp": "2026-09-06T09:14:56Z"}
+{"command": "Variable speed [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1997.97, "exit_code": 0, "timestamp": "2026-09-06T09:15:06Z"}
+{"command": "Variable so [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1060.02, "exit_code": 0, "timestamp": "2026-09-06T09:15:11Z"}
+{"command": "Variable uo [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1071.1, "exit_code": 0, "timestamp": "2026-09-06T09:15:16Z"}
+{"command": "Variable vo [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1095.7, "exit_code": 0, "timestamp": "2026-09-06T09:15:22Z"}
+{"command": "Variable zos [x5]", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 307.38, "exit_code": 0, "timestamp": "2026-09-06T09:15:23Z"}
+{"command": "LOD preview", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 1038.67, "exit_code": 0, "timestamp": "2026-09-06T09:15:26Z"}
+{"command": "LOD interactive", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 2845.68, "exit_code": 0, "timestamp": "2026-09-06T09:15:35Z"}
+{"command": "LOD high_quality", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 630.55, "exit_code": 0, "timestamp": "2026-09-06T09:15:38Z"}
+{"command": "Analytics vertical_profile", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 0, "exit_code": 0, "timestamp": "2026-09-06T09:15:38Z"}
+{"command": "Analytics teos10_soundings", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 0, "exit_code": 0, "timestamp": "2026-09-06T09:15:38Z"}
+{"command": "Analytics transect", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 0, "exit_code": 0, "timestamp": "2026-09-06T09:15:38Z"}
+{"command": "Analytics depth_slice", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 0, "exit_code": 0, "timestamp": "2026-09-06T09:15:38Z"}
+{"command": "Analytics bathymetry_grid", "working_directory": "C:\\Users\\Ranji\\Downloads\\ocanscope3d", "duration_ms": 371.09, "exit_code": 0, "timestamp": "2026-09-06T09:15:40Z"}

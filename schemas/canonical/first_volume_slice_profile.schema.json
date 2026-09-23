@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "TextureSampleFormat": {
+      "description": "GPU texture and buffer storage sample formats.",
+      "enum": [
+        "r16float",
+        "r32float",
+        "rgba8unorm",
+        "r8unorm",
+        "r16unorm",
+        "r16uint"
+      ],
+      "title": "TextureSampleFormat",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Profile definition for the canonical First 3D Volume Rendering Slice\nas decided in TASK-02A (Copernicus PHY `thetao` and HYCOM `water_temp`).",
+  "properties": {
+    "dataset_identifier": {
+      "description": "Dataset identifier (e.g. 'GLOBAL_ANALYSISFORECAST_PHY_001_024').",
+      "title": "Dataset Identifier",
+      "type": "string"
+    },
+    "depth_extent_m": {
+      "description": "Tuple of (min_depth, max_depth) in meters (e.g. (0.494, 453.938) for 31 upper levels, or (0.494, 5727.9) for full 50-level ocean depth).",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Depth Extent M",
+      "type": "array"
+    },
+    "grid_dimensions": {
+      "description": "[n_lon, n_lat, n_depth] logical grid dimensions (e.g. [97, 181, 31]).",
+      "items": {
+        "type": "integer"
+      },
+      "title": "Grid Dimensions",
+      "type": "array"
+    },
+    "is_primary_selection": {
+      "default": true,
+      "description": "Whether this is the primary selected slice (Copernicus) or secondary benchmark (HYCOM).",
+      "title": "Is Primary Selection",
+      "type": "boolean"
+    },
+    "physical_range_deg_c": {
+      "description": "Expected valid physical temperature range in degrees Celsius (e.g. (9.55, 31.85)).",
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Physical Range Deg C",
+      "type": "array"
+    },
+    "profile_name": {
+      "description": "Name of first slice profile (e.g. 'copernicus_first_volume_slice_thetao').",
+      "title": "Profile Name",
+      "type": "string"
+    },
+    "recommended_texture_format": {
+      "$ref": "#/$defs/TextureSampleFormat",
+      "default": "r16float",
+      "description": "GPU texture format for raymarching."
+    },
+    "spatial_resolution_deg": {
+      "description": "Nominal horizontal grid spacing in degrees (e.g. 0.0833 for 1/12 deg).",
+      "title": "Spatial Resolution Deg",
+      "type": "number"
+    },
+    "target_variable": {
+      "description": "Canonical variable visualized (e.g. 'sea_water_potential_temperature').",
+      "title": "Target Variable",
+      "type": "string"
+    },
+    "z_levels_count": {
+      "description": "Number of standard vertical levels (e.g. 31).",
+      "title": "Z Levels Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "profile_name",
+    "dataset_identifier",
+    "target_variable",
+    "grid_dimensions",
+    "z_levels_count",
+    "spatial_resolution_deg",
+    "depth_extent_m",
+    "physical_range_deg_c"
+  ],
+  "title": "FirstVolumeSliceProfile",
+  "type": "object"
+}

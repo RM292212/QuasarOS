@@ -1,0 +1,506 @@
+{
+  "$defs": {
+    "DataMode": {
+      "description": "Argo and oceanographic data processing mode.\nR: Real-Time mode (immediate transmission, automated QC only).\nA: Real-Time Adjusted mode (real-time data with sensor drift correction or automated adjustment applied).\nD: Delayed-Mode (expert scientific validation, rigorous calibration against climatology/reference data).",
+      "enum": [
+        "R",
+        "A",
+        "D"
+      ],
+      "title": "DataMode",
+      "type": "string"
+    },
+    "NormalizedQCState": {
+      "description": "Canonical normalized QC category.",
+      "enum": [
+        "good",
+        "probably_good",
+        "suspect",
+        "bad",
+        "missing",
+        "not_evaluated"
+      ],
+      "title": "NormalizedQCState",
+      "type": "string"
+    },
+    "ObservationQCReport": {
+      "description": "Comprehensive QC evaluation report for an individual observation cast or trajectory segment.",
+      "properties": {
+        "derivation_method_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Version/name of the QC evaluation algorithm.",
+          "title": "Derivation Method Version"
+        },
+        "is_fully_certified": {
+          "default": true,
+          "description": "True if position, time, and all primary variables have passed quality standards.",
+          "title": "Is Fully Certified",
+          "type": "boolean"
+        },
+        "position_qc_flag": {
+          "default": 1,
+          "description": "Position QC flag (1=good, 2=probably good, 3=suspect, 4=bad, 9=missing).",
+          "title": "Position Qc Flag",
+          "type": "integer"
+        },
+        "position_qc_state": {
+          "$ref": "#/$defs/NormalizedQCState",
+          "default": "good",
+          "description": "Normalized position QC state."
+        },
+        "profile_grade": {
+          "$ref": "#/$defs/ProfileQCGrade",
+          "default": "A",
+          "description": "Overall profile QC grade."
+        },
+        "qartod_tests_executed": {
+          "description": "List of specific QARTOD or Argo automated tests executed (e.g. 'syntax_check', 'gross_range_test', 'spike_test', 'density_inversion_test').",
+          "items": {
+            "type": "string"
+          },
+          "title": "Qartod Tests Executed",
+          "type": "array"
+        },
+        "qc_derivation_source": {
+          "$ref": "#/$defs/QCDerivationSource",
+          "default": "provider_supplied",
+          "description": "Provenance of the QC evaluation: provider-supplied or locally derived by QuasarOS."
+        },
+        "qc_scheme": {
+          "$ref": "#/$defs/QCScheme",
+          "default": "wmo_argo",
+          "description": "Governing QC scheme."
+        },
+        "time_qc_flag": {
+          "default": 1,
+          "description": "Time QC flag (1=good, 2=probably good, 3=suspect, 4=bad, 9=missing).",
+          "title": "Time Qc Flag",
+          "type": "integer"
+        },
+        "time_qc_state": {
+          "$ref": "#/$defs/NormalizedQCState",
+          "default": "good",
+          "description": "Normalized time QC state."
+        },
+        "variable_qc": {
+          "additionalProperties": {
+            "$ref": "#/$defs/VariableQCRecord"
+          },
+          "description": "QC records keyed by variable name.",
+          "title": "Variable Qc",
+          "type": "object"
+        }
+      },
+      "title": "ObservationQCReport",
+      "type": "object"
+    },
+    "PlatformType": {
+      "description": "Taxonomy of ocean observation platform types.",
+      "enum": [
+        "argo_float",
+        "bgc_argo_float",
+        "underwater_glider",
+        "moored_buoy",
+        "drifting_buoy",
+        "research_vessel",
+        "coastal_station",
+        "autonomous_surface_vehicle",
+        "animal_borne_sensor",
+        "submersible",
+        "custom"
+      ],
+      "title": "PlatformType",
+      "type": "string"
+    },
+    "ProfileDirection": {
+      "description": "Direction of profile cast sampling.",
+      "enum": [
+        "A",
+        "D",
+        "S"
+      ],
+      "title": "ProfileDirection",
+      "type": "string"
+    },
+    "ProfileQCGrade": {
+      "description": "Overall profile quality grade (e.g. Argo profile-level flag 'A', 'B', 'C', 'D', 'E', 'F').",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "NOT_RATED"
+      ],
+      "title": "ProfileQCGrade",
+      "type": "string"
+    },
+    "ProfileVariableEntry": {
+      "description": "Metadata describing an individual variable measured along a vertical profile,\nexplicitly distinguishing raw vs adjusted variable references and units.",
+      "properties": {
+        "adjusted_variable_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Adjusted variable name in source file if available (e.g. 'TEMP_ADJUSTED', 'PSAL_ADJUSTED').",
+          "title": "Adjusted Variable Name"
+        },
+        "canonical_variable_id": {
+          "description": "Canonical variable identifier (e.g. 'sea_water_temperature', 'sea_water_salinity', 'dissolved_oxygen').",
+          "title": "Canonical Variable Id",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode",
+          "default": "R",
+          "description": "Data mode applied to this specific variable ('R', 'A', 'D')."
+        },
+        "error_variable_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Error/uncertainty variable name in source file (e.g. 'TEMP_ADJUSTED_ERROR').",
+          "title": "Error Variable Name"
+        },
+        "has_adjusted_values": {
+          "default": false,
+          "description": "Whether adjusted values are present and should be preferred over raw data.",
+          "title": "Has Adjusted Values",
+          "type": "boolean"
+        },
+        "levels_count": {
+          "description": "Number of measured vertical levels.",
+          "minimum": 1,
+          "title": "Levels Count",
+          "type": "integer"
+        },
+        "max_pressure_dbar": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Deepest measured pressure in dbar.",
+          "title": "Max Pressure Dbar"
+        },
+        "min_pressure_dbar": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Shallowest measured pressure in dbar.",
+          "title": "Min Pressure Dbar"
+        },
+        "qc_variable_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "QC flag variable name in source file (e.g. 'TEMP_QC', 'TEMP_ADJUSTED_QC').",
+          "title": "Qc Variable Name"
+        },
+        "raw_variable_name": {
+          "description": "Raw variable name in source file (e.g. 'TEMP', 'PSAL', 'DOXY').",
+          "title": "Raw Variable Name",
+          "type": "string"
+        },
+        "units": {
+          "description": "Canonical measurement units (e.g. 'degree_Celsius', 'psu', 'micromole/kg').",
+          "title": "Units",
+          "type": "string"
+        }
+      },
+      "required": [
+        "canonical_variable_id",
+        "raw_variable_name",
+        "units",
+        "levels_count"
+      ],
+      "title": "ProfileVariableEntry",
+      "type": "object"
+    },
+    "QCDerivationSource": {
+      "description": "Source of the quality control flags and evaluation.",
+      "enum": [
+        "provider_supplied",
+        "locally_derived_quasar"
+      ],
+      "title": "QCDerivationSource",
+      "type": "string"
+    },
+    "QCScheme": {
+      "description": "Quality control standard taxonomy.",
+      "enum": [
+        "wmo_argo",
+        "ioos_qartod",
+        "gebco_tid",
+        "custom"
+      ],
+      "title": "QCScheme",
+      "type": "string"
+    },
+    "VariableQCRecord": {
+      "description": "Quality control record for a single variable along a vertical profile or trajectory segment.\nStores raw integer QC flags, normalized QC states, and statistical summary.",
+      "properties": {
+        "derivation_method_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Version/identifier of the QC derivation pipeline or algorithm applied (e.g. 'Argo-QC-Manual-v3.4', 'Quasar-QARTOD-v1.0.0').",
+          "title": "Derivation Method Version"
+        },
+        "good_levels_count": {
+          "default": 0,
+          "description": "Number of levels classified as good / probably_good.",
+          "title": "Good Levels Count",
+          "type": "integer"
+        },
+        "is_valid_for_collocation": {
+          "default": true,
+          "description": "Whether this variable profile meets QC thresholds to be collocated with model fields.",
+          "title": "Is Valid For Collocation",
+          "type": "boolean"
+        },
+        "level_qc_flags": {
+          "description": "Per-level raw integer QC flags along the vertical axis.",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Level Qc Flags",
+          "type": "array"
+        },
+        "profile_qc_flag": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Profile-level aggregate QC flag for this specific variable (e.g. WMO Argo 1=good, 4=bad).",
+          "title": "Profile Qc Flag"
+        },
+        "qc_derivation_source": {
+          "$ref": "#/$defs/QCDerivationSource",
+          "default": "provider_supplied",
+          "description": "Provenance of the QC flags: provider-supplied or locally derived by QuasarOS."
+        },
+        "qc_scheme": {
+          "$ref": "#/$defs/QCScheme",
+          "default": "wmo_argo",
+          "description": "Governing QC scheme standard."
+        },
+        "total_levels_count": {
+          "default": 0,
+          "description": "Total number of levels evaluated.",
+          "title": "Total Levels Count",
+          "type": "integer"
+        },
+        "variable_name": {
+          "description": "Canonical or source variable identifier (e.g. 'TEMP', 'PSAL', 'DOXY').",
+          "title": "Variable Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variable_name"
+      ],
+      "title": "VariableQCRecord",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative scientific contract for an individual vertical observation cast / profile.\nCaptures platform identity, cycle index, spatio-temporal coordinates, direction,\ndata modes, raw/adjusted variable references, and QC report.",
+  "properties": {
+    "cycle_number": {
+      "description": "Observation cycle number / cast index (0-indexed or 1-indexed according to provider).",
+      "minimum": 0,
+      "title": "Cycle Number",
+      "type": "integer"
+    },
+    "data_mode": {
+      "$ref": "#/$defs/DataMode",
+      "default": "R",
+      "description": "Overall profile data mode ('R', 'A', 'D')."
+    },
+    "direction": {
+      "$ref": "#/$defs/ProfileDirection",
+      "default": "A",
+      "description": "Ascending ('A') or Descending ('D') cast."
+    },
+    "is_bgc": {
+      "default": false,
+      "description": "True if this cast contains Biogeochemical (BGC) variables (e.g. DOXY, CHLA, NITRATE, BBP700, PH_IN_SITU_TOTAL).",
+      "title": "Is Bgc",
+      "type": "boolean"
+    },
+    "latitude": {
+      "description": "Profile latitude in degrees North [-90, 90].",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Latitude",
+      "type": "number"
+    },
+    "level_count": {
+      "description": "Number of vertical levels sampled in the profile.",
+      "minimum": 1,
+      "title": "Level Count",
+      "type": "integer"
+    },
+    "longitude": {
+      "description": "Profile longitude in degrees East [-180, 180].",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Longitude",
+      "type": "number"
+    },
+    "max_depth_m": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum physical depth reached in meters.",
+      "title": "Max Depth M"
+    },
+    "max_pressure_dbar": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum pressure reached in dbar.",
+      "title": "Max Pressure Dbar"
+    },
+    "observation_time_utc": {
+      "description": "ISO 8601 UTC timestamp of profile observation.",
+      "title": "Observation Time Utc",
+      "type": "string"
+    },
+    "platform_id": {
+      "description": "Platform identifier (e.g. 'incois_argo_7902250').",
+      "title": "Platform Id",
+      "type": "string"
+    },
+    "platform_type": {
+      "$ref": "#/$defs/PlatformType",
+      "default": "argo_float",
+      "description": "Type of observation platform."
+    },
+    "position_qc": {
+      "default": 1,
+      "description": "Raw position QC flag (1=good, 2=probably good, 3=suspect, 4=bad).",
+      "title": "Position Qc",
+      "type": "integer"
+    },
+    "profile_id": {
+      "description": "Unique identifier for this profile cast (e.g. 'incois_argo_7902250_cycle_042_A').",
+      "title": "Profile Id",
+      "type": "string"
+    },
+    "qc_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ObservationQCReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Structured quality control report for this profile cast."
+    },
+    "time_qc": {
+      "default": 1,
+      "description": "Raw time QC flag (1=good, 2=probably good, 3=suspect, 4=bad).",
+      "title": "Time Qc",
+      "type": "integer"
+    },
+    "variables": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ProfileVariableEntry"
+      },
+      "description": "Dictionary of measured variables keyed by canonical variable id.",
+      "title": "Variables",
+      "type": "object"
+    },
+    "wmo_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "WMO float identifier.",
+      "title": "Wmo Id"
+    }
+  },
+  "required": [
+    "profile_id",
+    "platform_id",
+    "cycle_number",
+    "observation_time_utc",
+    "latitude",
+    "longitude",
+    "level_count",
+    "variables"
+  ],
+  "title": "ProfileCastContract",
+  "type": "object"
+}

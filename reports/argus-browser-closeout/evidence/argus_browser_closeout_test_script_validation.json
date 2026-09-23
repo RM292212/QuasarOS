@@ -1,0 +1,21 @@
+{
+  "audit_id": "argus-browser-closeout-v1.1.0",
+  "timestamp_utc": "2026-08-31T16:55:00Z",
+  "validation_fingerprint": "c368f4bf00fa5913529abe5a39a73b011a30c2c7aaa7a062a6c501bcf528a0f4",
+  "decision": "VALIDATION_REUSED_AND_REVERIFIED",
+  "python_tests": {
+    "expected": 602,
+    "collected": 602,
+    "passed": 602,
+    "failed": 0,
+    "skipped": 0
+  },
+  "node_tests": {
+    "expected": 203,
+    "collected": 203,
+    "passed": 203,
+    "failed": 0,
+    "skipped": 0
+  },
+  "total_tests": 805
+}

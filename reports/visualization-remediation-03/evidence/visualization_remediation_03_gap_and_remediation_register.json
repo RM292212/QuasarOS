@@ -1,0 +1,29 @@
+{
+  "campaign": "VISUALIZATION-REMEDIATION-03",
+  "gaps_resolved": [
+    {
+      "gap_id": "GAP-01",
+      "severity": "CRITICAL",
+      "symptom": "Viewport displayed procedural rainbow-colored proxy box faces rather than internal volume.",
+      "root_cause": "Shader sampled proxy mesh vertex UVs instead of raymarching through 3D scalar texture.",
+      "resolution": "Replaced vertex-color shader with raymarching WGSL/GLSL sampler evaluating 3D transfer function LUT and wet mask.",
+      "status": "CLOSED"
+    },
+    {
+      "gap_id": "GAP-02",
+      "severity": "CRITICAL",
+      "symptom": "All 7 timeline days displayed identical frame or stuck in PROBING.",
+      "root_cause": "Cache key omitted time_index and readiness probe poll handler lacked transition dispatch.",
+      "resolution": "Added time_index and generation tokens to cache invalidation and updated AppStore state machine.",
+      "status": "CLOSED"
+    },
+    {
+      "gap_id": "GAP-03",
+      "severity": "MAJOR",
+      "symptom": "UI panels overlapped central viewport and obscured interactive controls.",
+      "root_cause": "Absolute positioning without container min-width and conflicting z-index hierarchy.",
+      "resolution": "Refactored App.tsx layout to CSS Grid with collapsible drawers and responsive breakout rules.",
+      "status": "CLOSED"
+    }
+  ]
+}

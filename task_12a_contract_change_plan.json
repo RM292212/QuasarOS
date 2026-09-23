@@ -1,0 +1,89 @@
+﻿{
+  "schema_version": "1.0",
+  "task": "TASK-12A",
+  "note": "This is an intentional versioned schema evolution, NOT schema drift. All changes listed here must be implemented in TASK-12D with full regeneration of JSON Schema, TypeScript declarations, and OpenAPI artifacts.",
+  "frozen_v1_contracts": [
+    "packages/contracts/src/quasar_contracts/exact_value_contracts.py (thetao query interface frozen; extend with new variable parameter only)",
+    "packages/contracts/src/quasar_contracts/visualization_contracts.py (brick payload format frozen; extend with new variable field only)",
+    "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/ (ALL files frozen, immutable)",
+    "quasaros_v1.0.0_release_manifest.json (frozen)",
+    "quasaros_v1.0.0_checksums.sha256 (frozen)"
+  ],
+  "contracts_requiring_extension": [
+    {
+      "file": "packages/contracts/src/quasar_contracts/variables.py",
+      "current_variables": ["thetao"],
+      "new_variables": ["thetao", "so", "uo", "vo", "zos"],
+      "changes": [
+        "Add VariableType enum values: SALINITY, EASTWARD_VELOCITY, NORTHWARD_VELOCITY, SEA_SURFACE_HEIGHT",
+        "Add FieldDimensionality enum: SCALAR_3D, VECTOR_COMPONENT_3D, SURFACE_2D",
+        "Add VectorComponentRelationship model linking uo <-> vo",
+        "Add VariableMetadata model with: variable_id, cf_standard_name, long_name, units (exact provider string), valid_range, fill_value, field_dimensionality, vector_partner",
+        "Schema version: 1.0 -> 1.1"
+      ]
+    },
+    {
+      "file": "packages/contracts/src/quasar_contracts/visualization_contracts.py",
+      "changes": [
+        "Add variable_id field to BrickKey and BrickManifest",
+        "Add SnapshotFamily model linking multiple synchronized per-variable snapshots",
+        "Add VerticalSlabIndex field to BrickKey for multi-slab support",
+        "Add SurfaceProductManifest model for 2D zos product",
+        "Schema version: 1.0 -> 1.1"
+      ]
+    },
+    {
+      "file": "packages/contracts/src/quasar_contracts/exact_value_contracts.py",
+      "changes": [
+        "Add variable_id parameter to ExactValueRequest (was implicitly thetao only)",
+        "Add SurfaceValueRequest for zos (no depth parameter)",
+        "Add VectorValueRequest for uo/vo returning both components with shared validity",
+        "Add ProfileRequest.variable_id field",
+        "Schema version: 1.0 -> 1.1"
+      ]
+    },
+    {
+      "file": "packages/contracts/src/quasar_contracts/canonical_dataset.py",
+      "changes": [
+        "Add SnapshotFamilyManifest model linking all synchronized variable snapshots",
+        "Add VariableProvenance model with: provider, product_id, dataset_id, variable_name, acquisition_sha256, acquisition_timestamp, analysis_forecast_per_timestep",
+        "Schema version: 1.0 -> 1.1"
+      ]
+    },
+    {
+      "file": "packages/contracts/types/quasar_contracts.d.ts",
+      "changes": [
+        "Regenerate from updated Pydantic models after all Python contract changes are complete",
+        "Add SnapshotFamily, VariableMetadata, VectorComponentRelationship, SurfaceProductManifest TypeScript interfaces",
+        "All changes must be backwards-compatible additions; no removal of existing v1.0.0 fields"
+      ]
+    },
+    {
+      "file": "schemas/openapi/openapi_v1.json",
+      "changes": [
+        "Add /catalog/variables endpoint returning available variables for a snapshot family",
+        "Add variable_id query parameter to /queries/value, /queries/profile",
+        "Add /queries/surface-value endpoint for 2D zos queries",
+        "Add /queries/vector-value endpoint for uo+vo joint queries",
+        "Add /catalog/families endpoint for snapshot family discovery",
+        "Version: 1.0.0 -> 1.1.0"
+      ]
+    }
+  ],
+  "new_contracts_required": [
+    {
+      "file": "packages/contracts/src/quasar_contracts/multivariable_contracts.py (NEW)",
+      "contents": [
+        "SnapshotFamilyContract: synchronized 7-day window, list of per-variable snapshots, acquisition timestamps",
+        "MultiVariableResidencyPolicy: max simultaneous variables, memory warning thresholds",
+        "VectorPairContract: enforces uo+vo joint validity, forbids partial vector computation",
+        "SurfaceFieldContract: 2D surface product format, no fake extrusion"
+      ]
+    }
+  ],
+  "schema_regeneration_required": [
+    "python scripts/generate_schemas.py (must be run after all Pydantic models updated)",
+    "Verify 0 drift after generation",
+    "Run all contract tests"
+  ]
+}

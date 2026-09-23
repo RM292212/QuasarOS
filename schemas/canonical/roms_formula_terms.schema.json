@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "CF-compliant formula_terms metadata referencing standard variables in NetCDF.",
+  "properties": {
+    "a": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Critical depth hc parameter variable or constant.",
+      "title": "A"
+    },
+    "b": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Stretching function Cs_r variable.",
+      "title": "B"
+    },
+    "depth": {
+      "default": "h",
+      "description": "Name of resting bathymetry variable.",
+      "title": "Depth",
+      "type": "string"
+    },
+    "depth_c": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "hc",
+      "description": "Critical depth hc parameter variable.",
+      "title": "Depth C"
+    },
+    "eta": {
+      "default": "zeta",
+      "description": "Name of free sea surface elevation variable.",
+      "title": "Eta",
+      "type": "string"
+    },
+    "s": {
+      "default": "s_rho",
+      "description": "Name of fractional vertical coordinate variable.",
+      "title": "S",
+      "type": "string"
+    }
+  },
+  "title": "ROMSFormulaTerms",
+  "type": "object"
+}

@@ -1,0 +1,6 @@
+packages\ingestion\src\quasar_ingestion\adapters\copernicus_phy_adapter.py:605: unused variable 'exc_tb' (100% confidence)
+packages\ingestion\src\quasar_ingestion\adapters\copernicus_phy_adapter.py:605: unused variable 'exc_type' (100% confidence)
+packages\ingestion\src\quasar_ingestion\adapters\copernicus_phy_adapter.py:605: unused variable 'exc_val' (100% confidence)
+
+C:\Users\Ranji\Downloads\ocanscope3d\tests\e2e\test_e2e_tier1_features.py:404: SyntaxWarning: invalid escape sequence '\i'
+  """Verify vertical exaggeration scale factor $s_z \in [1, 50]$ expands depth axis linearly."""

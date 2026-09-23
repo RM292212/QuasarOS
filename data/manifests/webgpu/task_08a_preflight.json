@@ -1,0 +1,129 @@
+{
+  "schema_version": "2.0.0",
+  "task_id": "TASK-08A",
+  "task_title": "WebGPU Architecture and Capability Preflight",
+  "status": "APPROVED",
+  "evaluated_at_utc": "2026-08-30T22:18:00Z",
+  "baseline": {
+    "active_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087",
+    "product_version": "v1",
+    "target_variable": "sea_water_potential_temperature",
+    "canonical_units": "degree_Celsius",
+    "grid": {
+      "allocated_shape": [66, 66, 32],
+      "interior_valid_shape": [64, 64, 31],
+      "halo_padding": [1, 1, 0],
+      "depth_levels_count": 31,
+      "depth_min_m": 0.49402499198913574,
+      "depth_max_m": 453.9377136230469,
+      "uses_non_uniform_lut": true
+    },
+    "spatial_extents": {
+      "longitude_min_deg": 80.0,
+      "longitude_max_deg": 88.0,
+      "latitude_min_deg": -3.0,
+      "latitude_max_deg": 12.0
+    },
+    "scalar_domain": {
+      "min_value": 9.3747,
+      "max_value": 30.3618
+    }
+  },
+  "package_architecture": {
+    "package_name": "@quasar/renderer-webgpu",
+    "location": "packages/renderer-webgpu/",
+    "dependencies": {
+      "@quasar/client": "workspace:*",
+      "@quasar/runtime": "workspace:*"
+    },
+    "peer_or_external_dependencies": {
+      "@webgpu/types": "^0.1.40"
+    },
+    "modules": [
+      {
+        "name": "resources",
+        "path": "src/resources/",
+        "responsibility": "WebGPU device adapter, 3D texture atlas allocation, buffer pool management, 256-byte bytesPerRow copy layout repacking, and lifetime management."
+      },
+      {
+        "name": "shaders",
+        "path": "src/shaders/",
+        "responsibility": "WGSL raymarching volume shaders, transfer function evaluation, non-uniform depth LUT sampling, empty-space skipping, analytical clipping, and GPU picking raycasting."
+      },
+      {
+        "name": "pipeline",
+        "path": "src/pipeline/",
+        "responsibility": "Render and compute pipeline creation, bind group caching, uniform updates, and frame pass execution."
+      },
+      {
+        "name": "picking",
+        "path": "src/picking/",
+        "responsibility": "Provisional GPU raycast picking pass with 1x1 readback buffer and coordinate/scalar extraction."
+      }
+    ]
+  },
+  "webgpu_capability_audit": {
+    "texture_formats": {
+      "r16float": {
+        "format": "r16float",
+        "bytes_per_voxel": 2,
+        "filterable_native": true,
+        "wgsl_type": "texture_3d<f32>",
+        "role": "Primary scientific scalar volume texture for normalized/unquantized float data. Enables hardware trilinear filtering where supported; manual trilinear interpolation in WGSL provided as universal fallback."
+      },
+      "r16uint": {
+        "format": "r16uint",
+        "bytes_per_voxel": 2,
+        "filterable_native": false,
+        "wgsl_type": "texture_3d<u32>",
+        "role": "Quantized 16-bit integer scalar texture ([0, 65534] valid, 65535 reserved missing). Requires manual de-quantization and software trilinear filtering in WGSL."
+      },
+      "r8uint": {
+        "format": "r8uint",
+        "bytes_per_voxel": 1,
+        "filterable_native": false,
+        "wgsl_type": "texture_3d<u32>",
+        "role": "Categorical validity mask (1 = valid ocean including 0.0°C, 0 = masked/land). Point-sampled in WGSL for zero-cost empty-space skipping before transfer function evaluation."
+      }
+    },
+    "copy_alignment_requirements": {
+      "standard_bytes_per_row_alignment": 256,
+      "standard_rows_per_image_alignment": 1,
+      "brick_allocated_dimensions": [66, 66, 32],
+      "unpadded_row_bytes_u16_f16": 132,
+      "padded_bytes_per_row_u16_f16": 256,
+      "padding_bytes_per_row_u16_f16": 124,
+      "unpadded_slice_bytes_u16_f16": 8712,
+      "padded_slice_bytes_u16_f16": 16896,
+      "unpadded_row_bytes_u8": 66,
+      "padded_bytes_per_row_u8": 256,
+      "padding_bytes_per_row_u8": 190,
+      "staging_buffer_repacking_strategy": "Dedicated staging repacker copying contiguous brick slices with stride-pitch expansion from 132/66 bytes to 256 bytes per row before GPUQueue.writeTexture / copyBufferToTexture."
+    }
+  },
+  "wgsl_raymarching_architecture": {
+    "volume_space": "Normalized volume coordinates [u, v, w] in [0, 1]^3",
+    "aabb_intersection": "Smits-Kay ray-AABB slab method returning t_entry and t_exit clipped to camera near plane",
+    "depth_lut_sampling": "Piece-wise continuous interpolation between 31 non-uniform depth levels (0.494m to 453.938m) via 1D LUT storage buffer / texture_1d",
+    "empty_space_skipping": "Point sample validityMaskTexture at current ray sample position; skip transfer function evaluation and ray step advance when mask == 0u",
+    "compositing": {
+      "order": "Front-to-back",
+      "opacity_correction_formula": "alpha_corrected = 1.0 - pow(1.0 - alpha_sample, dt / dt_ref)",
+      "color_accumulation": "accum_color += (1.0 - accum_alpha) * alpha_corrected * color_rgb",
+      "alpha_accumulation": "accum_alpha += (1.0 - accum_alpha) * alpha_corrected",
+      "early_ray_termination_threshold": 0.99
+    },
+    "analytical_clipping": {
+      "plane_count": 6,
+      "box_definition": "[clipMinU, clipMaxU, clipMinV, clipMaxV, clipMinW, clipMaxW]",
+      "evaluation": "Discard ray segment outside clipping box during marching or clamp ray entry/exit intervals"
+    }
+  },
+  "gpu_picking_architecture": {
+    "picking_pass": "1x1 raycasting pass against viewport cursor position (mouseX, mouseY)",
+    "output_buffer_format": "vec4<f32> containing [normU, normV, normW, sampledScalar]",
+    "readback_mechanism": "Staging GPUBuffer mapped asynchronously (mapAsync(GPUMapMode.READ)) with immediate unmap",
+    "reconciliation_flow": "Map [normU, normV, normW, scalar] via ProvisionalPickMapper to ProvisionalRenderPickResponse and ReconcilePickRequest for TASK-05 authoritative exact query"
+  }
+}

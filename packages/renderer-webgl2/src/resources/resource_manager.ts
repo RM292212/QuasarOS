@@ -324,7 +324,14 @@ export class WebGL2ResourceManager {
         rgbaData[i * 4 + 3] = val;
       }
     } else {
-      const sorted = [...controlPoints].sort((a, b) => a.normalized_scalar - b.normalized_scalar);
+      // Helper to extract scalar and RGB
+      const getNorm = (cp: any) => cp.normalized_scalar ?? cp.normalized_position ?? 0;
+      const getRGB = (cp: any): [number, number, number] => {
+        if (Array.isArray(cp.color)) return [cp.color[0], cp.color[1], cp.color[2]];
+        return [cp.red ?? 0, cp.green ?? 0, cp.blue ?? 0];
+      };
+
+      const sorted = [...controlPoints].sort((a, b) => getNorm(a) - getNorm(b));
 
       for (let i = 0; i < lutSize; i++) {
         const norm = i / (lutSize - 1);
@@ -333,8 +340,8 @@ export class WebGL2ResourceManager {
 
         for (let cpIdx = 0; cpIdx < sorted.length - 1; cpIdx++) {
           if (
-            norm >= sorted[cpIdx].normalized_scalar &&
-            norm <= sorted[cpIdx + 1].normalized_scalar
+            norm >= getNorm(sorted[cpIdx]) &&
+            norm <= getNorm(sorted[cpIdx + 1])
           ) {
             lower = sorted[cpIdx];
             upper = sorted[cpIdx + 1];
@@ -342,12 +349,17 @@ export class WebGL2ResourceManager {
           }
         }
 
-        const span = upper.normalized_scalar - lower.normalized_scalar;
-        const factor = span > 1e-6 ? (norm - lower.normalized_scalar) / span : 0;
+        const lowerNorm = getNorm(lower);
+        const upperNorm = getNorm(upper);
+        const span = upperNorm - lowerNorm;
+        const factor = span > 1e-6 ? (norm - lowerNorm) / span : 0;
 
-        const r = lower.color[0] + factor * (upper.color[0] - lower.color[0]);
-        const g = lower.color[1] + factor * (upper.color[1] - lower.color[1]);
-        const b = lower.color[2] + factor * (upper.color[2] - lower.color[2]);
+        const lowerColor = getRGB(lower);
+        const upperColor = getRGB(upper);
+
+        const r = lowerColor[0] + factor * (upperColor[0] - lowerColor[0]);
+        const g = lowerColor[1] + factor * (upperColor[1] - lowerColor[1]);
+        const b = lowerColor[2] + factor * (upperColor[2] - lowerColor[2]);
         const a = lower.opacity + factor * (upper.opacity - lower.opacity);
 
         rgbaData[i * 4 + 0] = Math.max(0, Math.min(255, Math.round(r * 255)));

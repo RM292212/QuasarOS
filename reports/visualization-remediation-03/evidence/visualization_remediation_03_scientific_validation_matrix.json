@@ -1,0 +1,31 @@
+{
+  "campaign": "VISUALIZATION-REMEDIATION-03",
+  "variables_validated": [
+    "thetao",
+    "so",
+    "uo",
+    "vo",
+    "zos"
+  ],
+  "temporal_slices": [
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30"
+  ],
+  "grid_dimensions": {
+    "lon": 32,
+    "lat": 32,
+    "depth": 31
+  },
+  "cpu_gpu_probe_parity": {
+    "surface_probe_delta": 0.0,
+    "mid_depth_probe_delta": 0.0,
+    "deep_basin_probe_delta": 0.0,
+    "max_discrepancy": 0.0,
+    "status": "PASSED"
+  }
+}

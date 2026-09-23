@@ -1,0 +1,115 @@
+{
+  "thetao": {
+    "variable": "thetao",
+    "runs": 5,
+    "min_ms": 990.57,
+    "median_ms": 1012.83,
+    "mean_ms": 1044.8,
+    "p95_ms": 1128.8,
+    "max_ms": 1128.8,
+    "shape": [
+      16,
+      32,
+      32
+    ],
+    "valid_cells": 14900,
+    "total_cells": 16384,
+    "min_val": 1.0963821411132812,
+    "max_val": 30.78117561340332,
+    "sha256": "b0f9a063bae61296706fb7a027c79d4a1585dde9768fc9eef25f1e5883812b05"
+  },
+  "speed": {
+    "variable": "speed",
+    "runs": 5,
+    "min_ms": 1835.51,
+    "median_ms": 1997.97,
+    "mean_ms": 1993.87,
+    "p95_ms": 2151.62,
+    "max_ms": 2151.62,
+    "shape": [
+      16,
+      32,
+      32
+    ],
+    "valid_cells": 14900,
+    "total_cells": 16384,
+    "min_val": 0.0005420162342488766,
+    "max_val": 0.9454401135444641,
+    "sha256": "9864af7b6b59ecd6e2ec29e92b6fb18c04eb5acf2d0a28abddce3003e9345ffa"
+  },
+  "so": {
+    "variable": "so",
+    "runs": 5,
+    "min_ms": 1053.25,
+    "median_ms": 1060.02,
+    "mean_ms": 1075.43,
+    "p95_ms": 1134.12,
+    "max_ms": 1134.12,
+    "shape": [
+      16,
+      32,
+      32
+    ],
+    "valid_cells": 14900,
+    "total_cells": 16384,
+    "min_val": 34.6577033996582,
+    "max_val": 36.64192199707031,
+    "sha256": "7853987dc5ca623f334d95ff8b4ced505dc75f2c858fc5000ba349312951d731"
+  },
+  "uo": {
+    "variable": "uo",
+    "runs": 5,
+    "min_ms": 968.09,
+    "median_ms": 1071.1,
+    "mean_ms": 1048.58,
+    "p95_ms": 1100.13,
+    "max_ms": 1100.13,
+    "shape": [
+      16,
+      32,
+      32
+    ],
+    "valid_cells": 14900,
+    "total_cells": 16384,
+    "min_val": -0.6352790594100952,
+    "max_val": 0.9351083040237427,
+    "sha256": "71cf84b5932023319f8b7245de556aee0044950d89b2f877e95cfca91ffe4c58"
+  },
+  "vo": {
+    "variable": "vo",
+    "runs": 5,
+    "min_ms": 1011.41,
+    "median_ms": 1095.7,
+    "mean_ms": 1100.83,
+    "p95_ms": 1171.74,
+    "max_ms": 1171.74,
+    "shape": [
+      16,
+      32,
+      32
+    ],
+    "valid_cells": 14900,
+    "total_cells": 16384,
+    "min_val": -0.6479629874229431,
+    "max_val": 0.5761586427688599,
+    "sha256": "91e0cfaca5da1546b84a1d78a13810b23b6f5eb10b7683da61b9d46daabf88fa"
+  },
+  "zos": {
+    "variable": "zos",
+    "runs": 5,
+    "min_ms": 305.22,
+    "median_ms": 307.38,
+    "mean_ms": 310.09,
+    "p95_ms": 318.8,
+    "max_ms": 318.8,
+    "shape": [
+      32,
+      32
+    ],
+    "valid_cells": 1024,
+    "total_cells": 1024,
+    "min_val": 0.3327506482601166,
+    "max_val": 0.6380088329315186,
+    "sha256": "b2a1e619d473de16ebba3ba2a21fdc29aae5529b462dfd02f4eeb9fb0ba0bad0"
+  }
+}

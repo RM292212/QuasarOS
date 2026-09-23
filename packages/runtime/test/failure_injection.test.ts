@@ -37,7 +37,9 @@ import {
   ClippingRangeError,
 } from '../src/index.ts';
 
-const RUNTIME_SRC_DIR = path.resolve(process.cwd(), 'src');
+const RUNTIME_SRC_DIR = fs.existsSync(path.join(process.cwd(), 'packages', 'runtime', 'src'))
+  ? path.join(process.cwd(), 'packages', 'runtime', 'src')
+  : path.resolve(process.cwd(), 'src');
 
 describe('TASK-07D Failure Injection: Coordinate & Depth LUT Constraints', () => {
   it('should reject DepthLookupTable with fewer than 2 levels', () => {

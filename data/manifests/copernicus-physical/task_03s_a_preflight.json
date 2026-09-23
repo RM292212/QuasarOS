@@ -1,0 +1,26 @@
+{
+  "acquisition_time_utc": "2026-08-30T12:32:56.894954+00:00",
+  "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "variable": "thetao",
+  "timestamps_selected": [
+    "2026-08-24T00:00:00Z",
+    "2026-08-25T00:00:00Z",
+    "2026-08-26T00:00:00Z",
+    "2026-08-27T00:00:00Z",
+    "2026-08-28T00:00:00Z",
+    "2026-08-29T00:00:00Z",
+    "2026-08-30T00:00:00Z"
+  ],
+  "temporal_classification": "analysis",
+  "shape": [
+    7,
+    31,
+    181,
+    97
+  ],
+  "estimated_size_bytes": 15239476,
+  "estimated_size_mb": 14.533496856689453,
+  "disk_free_bytes": 409631137792,
+  "disk_sufficient": true
+}

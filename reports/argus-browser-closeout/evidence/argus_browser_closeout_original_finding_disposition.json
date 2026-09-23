@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "total_analyzed": 1844,
+    "fixed": 4,
+    "false_positive_or_rule_policy": 1755,
+    "accepted_non_blocking_with_justification": 85,
+    "blocking_open": 0
+  },
+  "rules": {
+    "copernicus_phy_adapter_exit_signature": {
+      "disposition": "FIXED",
+      "detail": "Prefixed protocol params with _ to preserve signature while satisfying unused variable lint"
+    },
+    "test_e2e_tier1_features_latex_escape": {
+      "disposition": "FIXED",
+      "detail": "Added raw string r prefix to LaTeX docstring"
+    },
+    "ocean_volume_viewport_erasing_op": {
+      "disposition": "FIXED",
+      "detail": "Removed 0.00 * f multiplication in colormap piecewise branch"
+    },
+    "picking_reconciliation_test_this_alias": {
+      "disposition": "FIXED",
+      "detail": "Replaced const dev = this with direct lexical this usage"
+    },
+    "fallow_types_ts": {
+      "disposition": "ACCEPTED_NON_BLOCKING_WITH_JUSTIFICATION",
+      "detail": "Authoritative canonical TypeScript schema export file maintained for external type consumers"
+    },
+    "fallow_zustand_clsx_tailwind_merge": {
+      "disposition": "ACCEPTED_NON_BLOCKING_WITH_JUSTIFICATION",
+      "detail": "Retained in apps/web package.json for standard UI toolchain compatibility without bundling regressions"
+    },
+    "fallow_unused_class_members": {
+      "disposition": "ACCEPTED_NON_BLOCKING_WITH_JUSTIFICATION",
+      "detail": "Domain and UI model methods designed for full API lifecycle and component subscription patterns"
+    },
+    "starlette_httpx2_warning": {
+      "disposition": "FALSE_POSITIVE_PROVEN",
+      "detail": "httpx2 recommendation is a known upstream Starlette testclient placeholder deprecation warning; standard httpx is the authoritative current package"
+    }
+  }
+}

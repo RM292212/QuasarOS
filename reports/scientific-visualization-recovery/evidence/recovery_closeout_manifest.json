@@ -1,0 +1,31 @@
+{
+  "audit_id": "quasaraos-scientific-visualization-recovery-closeout",
+  "timestamp_utc": "2026-08-31T17:35:00Z",
+  "status": "REPAIRED_AND_VERIFIED",
+  "paper_alignment": {
+    "paper": "Yu et al., Applied Sciences 2025, 15, 2782",
+    "equations_implemented": [
+      "Eq. 3 (Discrete raymarching & sampling delta t)",
+      "Eq. 4 (Front-to-back compositing & Beer-Lambert opacity correction)"
+    ],
+    "figures_reproduced": [
+      "Figure 3 (Temperature & velocity scalar volume rendering)",
+      "Figure 5 (6-Plane clipping & bounding box wireframe overlay)"
+    ]
+  },
+  "automated_test_results": {
+    "python_pytest_tests_passed": 602,
+    "python_pytest_tests_failed": 0,
+    "node_tests_passed": 203,
+    "node_tests_failed": 0,
+    "total_passing_tests": 805
+  },
+  "remediation_summary": [
+    "Eliminated static dummy colormap generation in OceanVolumeViewport.tsx",
+    "Connected TransferFunctionModel to dynamically upload 256x1 RGBA textures on slider/preset changes",
+    "Connected PhysicalClippingModel normalized bounds directly into packet.clippingBox shader uniform",
+    "Connected VolumeQualityModel step density, opacity multiplier, and bounding box toggle",
+    "Implemented 3D spatial wireframe bounding box overlay in WebGL2 viewport",
+    "Added auto-configuration presets with non-saturating transparency curves for thetao, so, uo, vo, zos"
+  ]
+}

@@ -317,6 +317,7 @@ describe('QuasarOS WebGPU Resource Manager & Uploads', () => {
     assert.equal(tfTexture.height, 1);
     assert.equal(tfTexture.format, 'rgba8unorm');
     assert.equal(tfTexture.sizeInBytes, 256 * 4); // 1024 bytes (multiple of 256)
+    assert.equal(mockDevice.createdTextures[0].dimension, '2d');
 
     assert.equal(mockDevice.queue.writeTextureCalls.length, 1);
     const call = mockDevice.queue.writeTextureCalls[0];

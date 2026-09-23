@@ -1,0 +1,13 @@
+{
+  "gsw_version": "3.6.23",
+  "center_lat": 7.5,
+  "center_lon": 64.0,
+  "surface_potential_temp_c": 28.876806259155273,
+  "surface_practical_salinity": 36.39885711669922,
+  "surface_absolute_salinity_g_kg": 36.57078790035107,
+  "surface_conservative_temp_c": 28.825438129129004,
+  "surface_in_situ_density_kg_m3": 1023.158174740926,
+  "surface_sound_speed_m_s": 1544.456883274396,
+  "mixed_layer_depth_m": 29.444730758666992,
+  "authority": "authoritative derived TEOS-10 calculation under ADR-0005"
+}

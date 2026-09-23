@@ -28,6 +28,7 @@
   "author": "QuasarOS Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@quasar/client": "workspace:*"
+    "@quasar/client": "*"
   }
 }
+

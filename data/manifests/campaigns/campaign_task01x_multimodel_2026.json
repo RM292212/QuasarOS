@@ -1,0 +1,174 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "campaign_id": "TASK-01X-MULTIMODEL-WAVE-2026",
+  "campaign_title": "QuasarOS V1 Master Multi-Model & Wave Real-Data Extension Snapshot",
+  "compiled_at_utc": "2026-08-30T08:10:28.043853+00:00",
+  "geographic_domain": {
+    "region": "North Indian Ocean (Arabian Sea, Bay of Bengal, Equatorial Indian Ocean)",
+    "latitude_bounds": [
+      -5.0,
+      30.0
+    ],
+    "longitude_bounds": [
+      32.0,
+      100.0
+    ],
+    "crs": "EPSG:4326"
+  },
+  "campaign_statistics": {
+    "total_datasets_integrated": 10,
+    "total_raw_files_managed": 15,
+    "total_raw_volume_bytes": 376488876,
+    "total_raw_volume_mb": 359.05,
+    "status": "TASK-01/TASK-01X COMPLETE WITH DOCUMENTED ACCESS GAPS — CANONICALIZATION READY"
+  },
+  "model_and_observational_sources": [
+    {
+      "task_id": "TASK-01X-B",
+      "name": "Copernicus Marine Global Wave Analysis and Forecast",
+      "manifest_relative_path": "data/manifests/copernicus-waves/copernicus_waves_manifest.json",
+      "scientific_role": "OPERATIONAL_WAVE_ANALYSIS_AND_FORECAST",
+      "model_framework": "Meteo-France MFWAM (WAVEWATCH III Core)",
+      "provider": "Copernicus Marine Service / Meteo-France (E.U. Copernicus Programme)",
+      "dataset_id": "cmems_mod_glo_wav_anfc_0.083deg_PT3H-i",
+      "validation_status": "VALIDATED",
+      "file_count": 1,
+      "total_bytes": 262416504,
+      "doi": null,
+      "licence": "Copernicus Sentinel Data / E.U. Open Data Policy"
+    },
+    {
+      "task_id": "TASK-01X-C",
+      "name": "NOAA PacIOOS WAVEWATCH III Global Wave Model",
+      "manifest_relative_path": "data/manifests/noaa-ww3/noaa_ww3_manifest.json",
+      "scientific_role": "INDEPENDENT_WAVE_MODEL_VALIDATION",
+      "model_framework": "NOAA NCEP WAVEWATCH III (WW3)",
+      "provider": "NOAA / PacIOOS / University of Hawaii",
+      "dataset_id": "NWW3_Global_Best",
+      "validation_status": "VALIDATED",
+      "file_count": 1,
+      "total_bytes": 2490496,
+      "doi": null,
+      "licence": "Open Access / Public Domain / Free redistribution with attribution (PacIOOS / NOAA / NCEP)"
+    },
+    {
+      "task_id": "TASK-01X-D",
+      "name": "INCOIS RSMC Operational WAVEWATCH III Multi-Grid Forecast",
+      "manifest_relative_path": "data/manifests/incois-waves/incois_waves_manifest.json",
+      "scientific_role": "REGIONAL_OPERATIONAL_WAVE_FORECAST",
+      "model_framework": "INCOIS WW3 V6.07 / SWAN",
+      "provider": "Indian National Centre for Ocean Information Services (INCOIS), MoES, Govt. of India",
+      "dataset_id": "INCOIS_RSMC_NIO_WW3_OPERATIONAL",
+      "validation_status": "VALIDATED",
+      "file_count": 1,
+      "total_bytes": 99382977,
+      "doi": null,
+      "licence": "INCOIS Open Access / Free Redistribution with Attribution"
+    },
+    {
+      "task_id": "TASK-01X-E",
+      "name": "INCOIS-GODAS / MOM Ocean Data Assimilation System",
+      "manifest_relative_path": "data/manifests/incois-godas-mom/incois_godas_mom_manifest.json",
+      "scientific_role": "3D_OCEAN_CIRCULATION_ASSIMILATION_MODEL",
+      "model_framework": "GFDL Modular Ocean Model (MOM4p1/MOM5) + GODAS 3D-Var",
+      "provider": "Indian National Centre for Ocean Information Services (INCOIS), Ministry of Earth Sciences (MoES), Govt. of India",
+      "dataset_id": "INCOIS-GODAS-MOM",
+      "validation_status": "EVALUATED_CATALOG_VERIFIED",
+      "file_count": 0,
+      "total_bytes": 0,
+      "doi": null,
+      "licence": "INCOIS Ocean Data Policy / Ministry of Earth Sciences (MoES), Government of India"
+    },
+    {
+      "task_id": "TASK-01X-F",
+      "name": "HYCOM ESPC-D-V02 Expanded Physical Fields (Salinity, Currents, SSH)",
+      "manifest_relative_path": "data/manifests/hycom-expanded/hycom_expanded_manifest.json",
+      "scientific_role": "3D_OCEAN_CIRCULATION_DYNAMICS",
+      "model_framework": "HYCOM (Hybrid Coordinate Ocean Model) ESPC-D-V02",
+      "provider": "HYCOM / FNMOC (Fleet Numerical Meteorology and Oceanography Center)",
+      "dataset_id": "N/A",
+      "validation_status": "VALIDATED",
+      "file_count": 4,
+      "total_bytes": 5491326,
+      "doi": null,
+      "licence": "Approved for public release; distribution unlimited."
+    },
+    {
+      "task_id": "TASK-01X-G",
+      "name": "INCOIS-BIO-ROMS Coupled Ocean-Ecosystem Model",
+      "manifest_relative_path": "data/manifests/roms/roms_manifest.json",
+      "scientific_role": "REGIONAL_OCEAN_AND_ECOSYSTEM_MODELING",
+      "model_framework": "Regional Ocean Modeling System (ROMS)",
+      "provider": "Indian National Centre for Ocean Information Services (INCOIS)",
+      "dataset_id": "INCOIS-BIO-ROMS-NIO",
+      "validation_status": "VALIDATED",
+      "file_count": 1,
+      "total_bytes": 3700318,
+      "doi": "10.5281/zenodo.11670413",
+      "licence": "Creative Commons Attribution 4.0 International (CC-BY-4.0)"
+    },
+    {
+      "task_id": "TASK-01X-H",
+      "name": "DHI MIKE 21 SW Spectral Wave Discovery & Boundary Registry",
+      "manifest_relative_path": "data/manifests/mike21sw/mike21sw_manifest.json",
+      "scientific_role": "COMMERCIAL_COASTAL_WAVE_DISCOVERY",
+      "model_framework": "DHI MIKE 21 Spectral Wave (SW)",
+      "provider": "DHI (Danish Hydraulic Institute) / DHI Group",
+      "dataset_id": "N/A",
+      "validation_status": "DISCOVERY_RECORDED",
+      "file_count": 0,
+      "total_bytes": 0,
+      "doi": null,
+      "licence": "Open Data"
+    },
+    {
+      "task_id": "TASK-01X-I",
+      "name": "GEBCO 2026 Global Bathymetry & Type Identifier (TID) Grid",
+      "manifest_relative_path": "data/manifests/gebco-2026/gebco_2026_manifest.json",
+      "scientific_role": "HIGH_RESOLUTION_BATHYMETRY_AND_SOUNDING_LINEAGE",
+      "model_framework": "Direct Sounding + Satellite Altimetry Gravimetry Assimilation",
+      "provider": "GEBCO / BODC (British Oceanographic Data Centre) / CEDA",
+      "dataset_id": "GEBCO_2026",
+      "validation_status": "VALIDATED",
+      "file_count": 2,
+      "total_bytes": 595346,
+      "doi": "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+      "licence": "GEBCO Open Access / Public Domain with Attribution"
+    },
+    {
+      "task_id": "TASK-01X-J",
+      "name": "NOAA NCEI WOA23 Multivariable Climatology (Salinity, O2, Nutrients)",
+      "manifest_relative_path": "data/manifests/woa23-multivariable/woa23_multivariable_manifest.json",
+      "scientific_role": "BASIN_SCALE_BIOGEOCHEMICAL_CLIMATOLOGY",
+      "model_framework": "World Ocean Atlas (WOA23) Objective Analysis",
+      "provider": "NOAA NCEI (National Centers for Environmental Information)",
+      "dataset_id": "WOA23-MULTIVARIABLE",
+      "validation_status": "VALIDATED",
+      "file_count": 5,
+      "total_bytes": 2411909,
+      "doi": null,
+      "licence": "Open Access / Creative Commons CC0 / US Public Domain (NOAA NCEI)"
+    },
+    {
+      "task_id": "TASK-01-BASELINE",
+      "name": "QuasarOS V1 Master Baseline Campaign Snapshot",
+      "manifest_relative_path": "data/manifests/campaigns/campaign_north_indian_ocean_2026.json",
+      "scientific_role": "IMMUTABLE_HISTORICAL_BASELINE",
+      "model_framework": "Multi-Source Observational & Hydrodynamic Baseline",
+      "provider": "Unknown",
+      "dataset_id": "N/A",
+      "validation_status": "VALIDATED",
+      "file_count": 0,
+      "total_bytes": 0,
+      "doi": null,
+      "licence": "Open Data"
+    }
+  ],
+  "governance_and_compliance": {
+    "scientific_correctness": "Zero synthetic, mocked, or fabricated physical values.",
+    "coordinate_discipline": "All vertical coordinates preserve rigorous vertical physics (terrain-following s-levels separate from z-levels; CF-compliant coordinate dimensions).",
+    "directional_conventions": "Circular directions rigorously distinguished (direction_from meteorological vs direction_to oceanographic).",
+    "credential_security": "Zero credentials stored in repo/manifests.",
+    "historical_immutability": "TASK-01 baseline snapshot preserved unmodified."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "preview": {
+    "mode": "preview",
+    "requested_shape": [
+      16,
+      32,
+      32
+    ],
+    "returned_shape": [
+      16,
+      32,
+      32
+    ],
+    "voxel_count": 16384,
+    "payload_bytes": 575614,
+    "vram_footprint_mb": 0.078,
+    "median_ms": 1038.67,
+    "range_ms": [
+      864.55,
+      1109.22
+    ]
+  },
+  "interactive": {
+    "mode": "interactive",
+    "requested_shape": [
+      24,
+      48,
+      48
+    ],
+    "returned_shape": [
+      24,
+      48,
+      48
+    ],
+    "voxel_count": 55296,
+    "payload_bytes": 1945923,
+    "vram_footprint_mb": 0.264,
+    "median_ms": 2845.68,
+    "range_ms": [
+      2650.51,
+      2877.57
+    ]
+  },
+  "high_quality": {
+    "mode": "high_quality",
+    "requested_shape": [
+      50,
+      181,
+      97
+    ],
+    "returned_shape": [
+      50,
+      181,
+      97
+    ],
+    "voxel_count": 877850,
+    "payload_bytes": 30725334,
+    "vram_footprint_mb": 4.186,
+    "median_ms": 630.55,
+    "range_ms": [
+      554.29,
+      742.4
+    ]
+  }
+}

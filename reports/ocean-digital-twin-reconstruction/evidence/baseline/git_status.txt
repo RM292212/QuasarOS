@@ -1,0 +1,103 @@
+ M apps/web/package.json
+ M apps/web/src/App.tsx
+ M apps/web/src/components/analysis/Teos10SoundingsPanel.tsx
+ M apps/web/src/components/controls/transfer_function_model.ts
+ M apps/web/src/components/observations/ObservationComparisonPanel.tsx
+ M apps/web/src/components/shell/Header.tsx
+ M apps/web/src/components/shell/TimelineController.tsx
+ M apps/web/src/components/viewport/OceanVolumeViewport.tsx
+ M apps/web/src/context/app_store.ts
+ M apps/web/test/analysis_controls.test.ts
+ M apps/web/test/app_integration.test.ts
+ M apps/web/test/controls.test.ts
+ M apps/web/test/shell.test.ts
+ M apps/web/test/teos10_panel.test.ts
+ M apps/web/vite.config.ts
+ M package.json
+ M packages/client/package.json
+ M packages/client/src/streaming/verifier.ts
+ M packages/client/src/types.ts
+ M packages/ingestion/src/quasar_ingestion/adapters/copernicus_phy_adapter.py
+ M packages/renderer-webgl2/package.json
+ M packages/renderer-webgl2/src/pipeline/raymarching_renderer.ts
+ M packages/renderer-webgl2/src/resources/resource_manager.ts
+ M packages/renderer-webgl2/src/shaders/volume_raymarch.glsl.ts
+ M packages/renderer-webgpu/package.json
+ M packages/renderer-webgpu/src/pipeline/raymarching_renderer.ts
+ M packages/renderer-webgpu/src/residency/residency_adapter.ts
+ M packages/renderer-webgpu/src/resources/resource_manager.ts
+ M packages/renderer-webgpu/src/shaders/volume_raymarch.wgsl.ts
+ M packages/renderer-webgpu/test/picking_reconciliation.test.ts
+ M packages/renderer-webgpu/test/resources_upload.test.ts
+ M packages/runtime/package.json
+ M packages/runtime/src/index.ts
+ M packages/runtime/src/scientific/scientific_state.ts
+ M packages/runtime/test/failure_injection.test.ts
+ M packages/runtime/test/integration.test.ts
+ M packages/runtime/test/planning_packet.test.ts
+ M packages/runtime/test/session_coordinates.test.ts
+ M packages/services/src/quasar_services/analysis/analysis_engine.py
+ M packages/services/src/quasar_services/analysis/router.py
+ M packages/services/src/quasar_services/query/coordinate_resolver.py
+ M packages/services/src/quasar_services/query/query_engine.py
+?? .agents/
+?? .gitignore
+?? .venv/
+?? ARGUS/
+?? CB_Analysis/
+?? TEST_READY.md
+?? The_Implementation_of_a_WebGPU-Based_Volume_Render_compressed.pdf
+?? audit/
+?? changed_files.txt
+?? compute_task12.py
+?? compute_task14.py
+?? data/canonical/copernicus_phy_so/
+?? data/canonical/copernicus_phy_thetao/
+?? data/canonical/copernicus_phy_thetao_fulldepth/
+?? data/canonical/copernicus_phy_uo/
+?? data/canonical/copernicus_phy_vo/
+?? data/canonical/copernicus_phy_zos/
+?? data/manifests/
+?? data/visualization/
+?? examples/
+?? git_secrets.log
+?? package-lock.json
+?? packages/runtime/src/geology/
+?? paper_extracted_text.txt
+?? populate_evidence.py
+?? program_02r_observation_and_collocation_reconciliation_report.json
+?? program_02r_teos10_scientific_authority_reconciliation_report.json
+?? quasaros_v1.0.0_checksums.sha256
+?? quasaros_v1.0.0_release_manifest.json
+?? quasaros_v1.1.0_checksums.json
+?? quasaros_v1.1.0_checksums.sha256
+?? quasaros_v1.1.0_rc_artifact_manifest.json
+?? quasaros_v1.1.0_release_manifest.json
+?? raw.md
+?? release_01_candidate_artifact_manifest.json
+?? release_01d_cross_layer_lineage_validation.json
+?? release_01d_requirements_traceability_matrix.json
+?? reports/argus-browser-closeout/
+?? reports/argus/
+?? reports/runtime-stability/evidence/logs/
+?? reports/runtime-stability/evidence/runtime/
+?? reports/scientific-visualization-recovery/
+?? reports/visualization-remediation-03/
+?? run_quasar.ps1
+?? schemas/
+?? scratch/
+?? task_11a_release_candidate_manifest.json
+?? task_11b_numerical_validation_results.json
+?? task_12a_capacity_and_storage_model.json
+?? task_12a_contract_change_plan.json
+?? task_12a_scientific_error_budgets.json
+?? task_12a_variable_inventory.json
+?? task_12b_canonical_parity_results.json
+?? task_12r_payload_count_and_coverage_results.json
+?? task_12r_variable_quantization_results.json
+?? tests/conftest.py
+?? tests/e2e/
+?? validate.py
+?? verify_backend_api.py
+?? verify_task12.py
+?? write_report.py

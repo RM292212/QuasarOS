@@ -194,12 +194,15 @@ describe('QuasarOS WebGL2 GLSL ES 3.00 Scientific Raymarching Shaders', () => {
     assert.equal(miss.hit, false);
   });
 
-  it('should interpolate 31-level Copernicus non-uniform depth LUT accurately', () => {
+  it('should interpolate 50-level Copernicus non-uniform depth LUT accurately', () => {
     const copernicusDepths = [
       0.494025, 1.541375, 2.645669, 3.819495, 5.078224, 6.440614, 7.92956, 9.572997,
-      11.405, 13.46714, 15.81007, 18.49526, 21.59885, 25.21141, 29.44473, 34.43415,
+      11.405, 13.46714, 15.81007, 18.49556, 21.59882, 25.21141, 29.44473, 34.43415,
       40.34405, 47.37369, 55.76429, 65.80727, 77.85385, 92.32607, 109.7293, 130.666,
-      155.8507, 186.1256, 222.4752, 266.0403, 318.1274, 380.2706, 453.9377
+      155.8507, 186.1256, 222.4752, 266.0403, 318.1274, 380.213, 453.9377, 541.0889,
+      643.5668, 763.3331, 902.3393, 1062.44, 1245.291, 1452.251, 1684.284, 1941.893,
+      2225.078, 2533.336, 2865.703, 3220.82, 3597.032, 3992.484, 4405.224, 4833.291,
+      5274.784, 5727.917
     ];
 
     function evaluateDepth(normW: number, depthLevels: number[]): number {
@@ -216,10 +219,10 @@ describe('QuasarOS WebGL2 GLSL ES 3.00 Scientific Raymarching Shaders', () => {
     // Top surface depth
     assert.ok(Math.abs(evaluateDepth(0.0, copernicusDepths) - 0.494025) < 1e-5);
     // Deepest floor depth
-    assert.ok(Math.abs(evaluateDepth(1.0, copernicusDepths) - 453.9377) < 1e-4);
+    assert.ok(Math.abs(evaluateDepth(1.0, copernicusDepths) - 5727.917) < 1e-3);
     // Mid level interpolation
     const midDepth = evaluateDepth(0.5, copernicusDepths);
-    assert.ok(midDepth > 34.0 && midDepth < 48.0);
+    assert.ok(midDepth > 150.0 && midDepth < 200.0);
   });
 
   it('should compute Beer-Lambert step-size corrected opacity with mathematical parity to WebGPU', () => {
@@ -250,7 +253,7 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
     assert.equal(gl.createdVertexArrays.length, 1);
   });
 
-  it('should pack uniforms matching std140 672-byte buffer layout with 31 Copernicus depth levels', () => {
+  it('should pack uniforms matching std140 1184-byte buffer layout with 50 Copernicus depth levels', () => {
     const gl = new MockWebGL2Context();
     const renderer = new WebGL2RaymarchingRenderer(gl as unknown as WebGL2RenderingContext);
 
@@ -307,7 +310,10 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
         0.494, 1.541, 2.645, 3.819, 5.078, 6.440, 7.929, 9.572,
         11.405, 13.467, 15.810, 18.495, 21.598, 25.211, 29.444, 34.434,
         40.344, 47.373, 55.764, 65.807, 77.853, 92.326, 109.729, 130.666,
-        155.850, 186.125, 222.475, 266.040, 318.127, 380.270, 453.938
+        155.850, 186.125, 222.475, 266.040, 318.127, 380.213, 453.938,
+        541.089, 643.567, 763.333, 902.339, 1062.44, 1245.291, 1452.251,
+        1684.284, 1941.893, 2225.078, 2533.336, 2865.703, 3220.82,
+        3597.032, 3992.484, 4405.224, 4833.291, 5274.784, 5727.917,
       ]),
       clippingBox: { minU: 0.1, maxU: 0.9, minV: 0.2, maxV: 0.8, minW: 0.0, maxW: 1.0 },
       coordinateUniforms: {
@@ -319,7 +325,7 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
         minLatitudeDeg: 0,
         maxLatitudeDeg: 1,
         minDepthM: 0,
-        maxDepthM: 453.938,
+        maxDepthM: 5727.917,
         verticalExaggeration: 1,
       },
       scalarMin: 9.3747,
@@ -328,7 +334,7 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
     };
 
     const uniformBuf = renderer.packUniforms({ packet, camera }, false);
-    assert.equal(uniformBuf.byteLength, 672);
+    assert.equal(uniformBuf.byteLength, 1184);
 
     const f32 = new Float32Array(uniformBuf);
     const u32 = new Uint32Array(uniformBuf);
@@ -347,14 +353,14 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
     const expectedScale = (30.3618 - 9.3747) / 65535.0;
     assert.ok(Math.abs(f32[29] - expectedScale) < 1e-6);
 
-    // Verify depth level count (31)
-    assert.equal(u32[32], 31);
+    // Verify depth level count (50)
+    assert.equal(u32[32], 50);
     assert.equal(u32[33], 0); // isFloat = 0
     assert.equal(u32[34], 1); // useValidityMask = 1
 
     // Verify depth LUT std140 layout
     assert.ok(Math.abs(f32[40] - 0.494) < 1e-3); // level 0 (vec4.x at index 40)
-    assert.ok(Math.abs(f32[40 + 30 * 4] - 453.938) < 1e-3); // level 30 (vec4.x at index 160)
+    assert.ok(Math.abs(f32[40 + 49 * 4] - 5727.917) < 1e-3); // level 49 (vec4.x at index 236)
   });
 
   it('should execute renderFrame pass with drawArrays for active bricks', () => {
@@ -437,9 +443,90 @@ describe('QuasarOS WebGL2 Raymarching Renderer Pipeline Execution', () => {
       count: 3,
     });
     assert.equal(gl.bufferSubDataCalls.length, 1);
-    assert.equal(gl.bufferSubDataCalls[0].byteLength, 672);
+    assert.equal(gl.bufferSubDataCalls[0].byteLength, 1184);
 
     renderer.dispose();
     assert.equal(renderer.isDisposed, true);
+  });
+
+  it('should pack all 50 Copernicus depth levels into 64-entry UBO table and cap excess at 64', () => {
+    const gl = new MockWebGL2Context();
+    const renderer = new WebGL2RaymarchingRenderer(gl as unknown as WebGL2RenderingContext);
+
+    const copernicus50 = [
+      0.494025, 1.541375, 2.645669, 3.819495, 5.078224, 6.440614, 7.92956, 9.572997,
+      11.405, 13.46714, 15.81007, 18.49556, 21.59882, 25.21141, 29.44473, 34.43415,
+      40.34405, 47.37369, 55.76429, 65.80727, 77.85385, 92.32607, 109.7293, 130.666,
+      155.8507, 186.1256, 222.4752, 266.0403, 318.1274, 380.213, 453.9377, 541.0889,
+      643.5668, 763.3331, 902.3393, 1062.44, 1245.291, 1452.251, 1684.284, 1941.893,
+      2225.078, 2533.336, 2865.703, 3220.82, 3597.032, 3992.484, 4405.224, 4833.291,
+      5274.784, 5727.917
+    ];
+
+    const camera: VolumeRaymarchingCameraState = {
+      viewMatrix: new Float32Array(16),
+      projectionMatrix: new Float32Array(16),
+      inverseViewProjectionMatrix: new Float32Array(16),
+      cameraPosition: [0, 0, -2],
+      viewportWidth: 1280,
+      viewportHeight: 720,
+    };
+
+    const packet50: RenderPacket = {
+      packetId: 'pkt_50_levels',
+      frameTimestampMs: Date.now(),
+      datasetId: 'ocean_ds',
+      snapshotId: 'snap_50',
+      visualizationProductId: 'vis_temp',
+      productVersion: 'v1',
+      manifestSha256: '0'.repeat(64),
+      timestepIndex: 0,
+      timestepUtc: '2026-08-30T00:00:00Z',
+      targetLodLevel: 0,
+      isDegraded: false,
+      totalBricksInVolume: 1,
+      activeBricksCount: 1,
+      bricks: [],
+      depthLutEntriesM: new Float32Array(copernicus50),
+      clippingBox: { minU: 0, maxU: 1, minV: 0, maxV: 1, minW: 0, maxW: 1 },
+      coordinateUniforms: {
+        originLongitudeDeg: 0,
+        originLatitudeDeg: 0,
+        originDepthM: 0,
+        minLongitudeDeg: 0,
+        maxLongitudeDeg: 1,
+        minLatitudeDeg: 0,
+        maxLatitudeDeg: 1,
+        minDepthM: 0.494025,
+        maxDepthM: 5727.917,
+        verticalExaggeration: 1,
+      },
+      scalarMin: 0,
+      scalarMax: 30,
+      canonicalUnits: 'degree_Celsius',
+    };
+
+    const buf50 = renderer.packUniforms({ packet: packet50, camera }, false);
+    assert.equal(buf50.byteLength, 1184);
+
+    const f32_50 = new Float32Array(buf50);
+    const u32_50 = new Uint32Array(buf50);
+
+    assert.equal(u32_50[32], 50);
+    for (let i = 0; i < 50; i++) {
+      assert.ok(
+        Math.abs(f32_50[40 + i * 4] - copernicus50[i]) < 1e-3,
+        `Depth level ${i} mismatch: expected ${copernicus50[i]}, got ${f32_50[40 + i * 4]}`
+      );
+    }
+
+    // Test with 70 levels -> must cap level count at 64
+    const excess70 = new Float32Array(70);
+    for (let i = 0; i < 70; i++) excess70[i] = i * 100;
+    const packet70 = { ...packet50, depthLutEntriesM: excess70 };
+    const buf70 = renderer.packUniforms({ packet: packet70, camera }, false);
+    assert.equal(buf70.byteLength, 1184);
+    const u32_70 = new Uint32Array(buf70);
+    assert.equal(u32_70[32], 64);
   });
 });

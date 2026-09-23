@@ -12,10 +12,10 @@ import { IntegrityVerificationError } from './errors.ts';
  * Computes hexadecimal SHA-256 digest of a Uint8Array or ArrayBuffer.
  */
 export async function computeSha256Hex(data: ArrayBuffer | Uint8Array): Promise<string> {
-  const buffer = data instanceof Uint8Array ? data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength) : data;
+  const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
   
   if (typeof globalThis.crypto !== 'undefined' && globalThis.crypto.subtle) {
-    const hashBuffer = await globalThis.crypto.subtle.digest('SHA-256', buffer);
+    const hashBuffer = await globalThis.crypto.subtle.digest('SHA-256', bytes as unknown as BufferSource);
     const hashArray = new Uint8Array(hashBuffer);
     let hex = '';
     for (let i = 0; i < hashArray.length; i++) {

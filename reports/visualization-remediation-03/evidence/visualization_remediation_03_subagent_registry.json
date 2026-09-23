@@ -1,0 +1,54 @@
+{
+  "remediation_campaign": "VISUALIZATION-REMEDIATION-03",
+  "timestamp_utc": "2026-08-31T15:45:00Z",
+  "subagents": [
+    {
+      "agent_id": "VR1-PaperAndForensics",
+      "role": "Paper analysis, current renderer forensics, and acceptance specification",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr1_paper_requirements_and_renderer_architecture_report.md"
+    },
+    {
+      "agent_id": "VR2-CopernicusDataPayload",
+      "role": "Copernicus data, payloads, seven-day integrity, and scientific provenance",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr2_copernicus_seven_day_data_and_payload_integrity_report.md"
+    },
+    {
+      "agent_id": "VR3-VolumeRendererRebuild",
+      "role": "WebGPU/WebGL2 ray-casting renderer rebuild",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr3_webgpu_webgl2_volume_renderer_rebuild_report.md"
+    },
+    {
+      "agent_id": "VR4-BathymetryAndGeology",
+      "role": "Bathymetry, coastlines, wet mask, and geological context",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr4_bathymetry_coastline_wet_mask_and_geospatial_alignment_report.md"
+    },
+    {
+      "agent_id": "VR5-TimelineAndPlayback",
+      "role": "Timeline, playback, state, caching, and API correctness",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr5_timeline_playback_cache_and_api_correctness_report.md"
+    },
+    {
+      "agent_id": "VR6-ProductionUIAndAccessibility",
+      "role": "Production UI/UX and accessibility rebuild",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr6_production_ui_accessibility_and_layout_report.md"
+    },
+    {
+      "agent_id": "VR7-PerformanceAndPackaging",
+      "role": "Performance, packaging, clean build, and operations",
+      "status": "COMPLETED",
+      "evidence_path": "reports/visualization-remediation-03/vr7_performance_build_and_operations_report.md"
+    },
+    {
+      "agent_id": "VR8-IndependentAuditor",
+      "role": "Independent scientific and visual acceptance auditor",
+      "status": "APPROVED",
+      "evidence_path": "reports/visualization-remediation-03/vr8_independent_scientific_visualization_acceptance_report.md"
+    }
+  ]
+}

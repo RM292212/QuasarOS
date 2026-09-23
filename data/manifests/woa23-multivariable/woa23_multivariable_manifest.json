@@ -1,0 +1,234 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-J",
+  "provider": "NOAA NCEI (National Centers for Environmental Information)",
+  "product_id": "WOA23-MULTIVARIABLE",
+  "product_title": "World Ocean Atlas 2023 Climatology Multivariable Expansion (North Indian Ocean)",
+  "retrieval_timestamp_utc": "2026-08-30T07:48:32.170903+00:00",
+  "region": {
+    "description": "North Indian Ocean (Arabian Sea, Bay of Bengal, Equatorial Indian Ocean)",
+    "latitude_bounds": [
+      0.0,
+      30.0
+    ],
+    "longitude_bounds": [
+      40.0,
+      100.0
+    ]
+  },
+  "climatological_month": "August (08)",
+  "variables_included": [
+    "s_an",
+    "o_an",
+    "n_an",
+    "p_an",
+    "i_an"
+  ],
+  "variable_descriptions": {
+    "s_an": "Sea water practical salinity (0.25 deg, decav 1991-2020)",
+    "o_an": "Dissolved oxygen concentration (1.00 deg, all 1965-2020, micromoles/kg)",
+    "n_an": "Nitrate concentration (1.00 deg, all 1965-2020, micromoles/kg)",
+    "p_an": "Phosphate concentration (1.00 deg, all 1965-2020, micromoles/kg)",
+    "i_an": "Silicate concentration (1.00 deg, all 1965-2020, micromoles/kg)"
+  },
+  "files": [
+    {
+      "relative_path": "data/raw/woa23/multivariable/woa23_august_salinity_north_indian_ocean.nc",
+      "filename": "woa23_august_salinity_north_indian_ocean.nc",
+      "product_id": "WOA23",
+      "dataset_id": "woa23_decav_s08_04",
+      "variable_name": "s_an",
+      "variable_type": "salinity",
+      "standard_name": "sea_water_practical_salinity",
+      "units": "1",
+      "climatological_period": "August (decav 1991-2020)",
+      "resolution": "0.25 degree",
+      "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/salinity/netcdf/decav/0.25/woa23_decav_s08_04.nc",
+      "byte_size": 1730748,
+      "sha256": "434f134f01d3d8b0590f40b11ca6acfb7621d959b99bb58ec3c3fc8e3d3b8cbd",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 1,
+        "depth": 57,
+        "lat": 120,
+        "lon": 240
+      },
+      "depth_levels_count": 57,
+      "depth_range_meters": [
+        0.0,
+        1500.0
+      ],
+      "spatial_coverage": {
+        "latitude_min": 0.125,
+        "latitude_max": 29.875,
+        "longitude_min": 40.125,
+        "longitude_max": 99.875
+      },
+      "statistics": {
+        "min": 25.4488,
+        "max": 42.454,
+        "mean": 35.2037,
+        "valid_points": 788941
+      }
+    },
+    {
+      "relative_path": "data/raw/woa23/multivariable/woa23_august_oxygen_north_indian_ocean.nc",
+      "filename": "woa23_august_oxygen_north_indian_ocean.nc",
+      "product_id": "WOA23",
+      "dataset_id": "woa23_all_o08_01",
+      "variable_name": "o_an",
+      "variable_type": "oxygen",
+      "standard_name": "moles_of_oxygen_per_unit_mass_in_sea_water",
+      "units": "micromoles_per_kilogram",
+      "climatological_period": "August (all 1965-2020)",
+      "resolution": "1.00 degree",
+      "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/oxygen/netcdf/all/1.00/woa23_all_o08_01.nc",
+      "byte_size": 200022,
+      "sha256": "7857718e3ae0b5a7636c05c20a5950699a7c0231034bc2f704fc8e6f0ae6da8c",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 1,
+        "depth": 57,
+        "lat": 30,
+        "lon": 60
+      },
+      "depth_levels_count": 57,
+      "depth_range_meters": [
+        0.0,
+        1500.0
+      ],
+      "spatial_coverage": {
+        "latitude_min": 0.5,
+        "latitude_max": 29.5,
+        "longitude_min": 40.5,
+        "longitude_max": 99.5
+      },
+      "statistics": {
+        "min": 0.0,
+        "max": 226.8815,
+        "mean": 85.0957,
+        "valid_points": 48781
+      }
+    },
+    {
+      "relative_path": "data/raw/woa23/multivariable/woa23_august_nitrate_north_indian_ocean.nc",
+      "filename": "woa23_august_nitrate_north_indian_ocean.nc",
+      "product_id": "WOA23",
+      "dataset_id": "woa23_all_n08_01",
+      "variable_name": "n_an",
+      "variable_type": "nitrate",
+      "standard_name": "moles_of_nitrate_per_unit_mass_in_sea_water",
+      "units": "micromoles_per_kilogram",
+      "climatological_period": "August (all 1965-2020)",
+      "resolution": "1.00 degree",
+      "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/nitrate/netcdf/all/1.00/woa23_all_n08_01.nc",
+      "byte_size": 160172,
+      "sha256": "87055be0f7f1c7df21cb52c7241721013ffde1ad2e241b28098981620cf42ee9",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 1,
+        "depth": 43,
+        "lat": 30,
+        "lon": 60
+      },
+      "depth_levels_count": 43,
+      "depth_range_meters": [
+        0.0,
+        800.0
+      ],
+      "spatial_coverage": {
+        "latitude_min": 0.5,
+        "latitude_max": 29.5,
+        "longitude_min": 40.5,
+        "longitude_max": 99.5
+      },
+      "statistics": {
+        "min": 0.0,
+        "max": 47.4996,
+        "mean": 16.4698,
+        "valid_points": 37486
+      }
+    },
+    {
+      "relative_path": "data/raw/woa23/multivariable/woa23_august_phosphate_north_indian_ocean.nc",
+      "filename": "woa23_august_phosphate_north_indian_ocean.nc",
+      "product_id": "WOA23",
+      "dataset_id": "woa23_all_p08_01",
+      "variable_name": "p_an",
+      "variable_type": "phosphate",
+      "standard_name": "moles_of_phosphate_per_unit_mass_in_sea_water",
+      "units": "micromoles_per_kilogram",
+      "climatological_period": "August (all 1965-2020)",
+      "resolution": "1.00 degree",
+      "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/phosphate/netcdf/all/1.00/woa23_all_p08_01.nc",
+      "byte_size": 158844,
+      "sha256": "36ebf4dd7135a6efdf84162a2646568efa370f544a2cbe20dcd3f403f7994a2b",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 1,
+        "depth": 43,
+        "lat": 30,
+        "lon": 60
+      },
+      "depth_levels_count": 43,
+      "depth_range_meters": [
+        0.0,
+        800.0
+      ],
+      "spatial_coverage": {
+        "latitude_min": 0.5,
+        "latitude_max": 29.5,
+        "longitude_min": 40.5,
+        "longitude_max": 99.5
+      },
+      "statistics": {
+        "min": 0.0,
+        "max": 3.181,
+        "mean": 1.4386,
+        "valid_points": 37486
+      }
+    },
+    {
+      "relative_path": "data/raw/woa23/multivariable/woa23_august_silicate_north_indian_ocean.nc",
+      "filename": "woa23_august_silicate_north_indian_ocean.nc",
+      "product_id": "WOA23",
+      "dataset_id": "woa23_all_i08_01",
+      "variable_name": "i_an",
+      "variable_type": "silicate",
+      "standard_name": "moles_of_silicate_per_unit_mass_in_sea_water",
+      "units": "micromoles_per_kilogram",
+      "climatological_period": "August (all 1965-2020)",
+      "resolution": "1.00 degree",
+      "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/silicate/netcdf/all/1.00/woa23_all_i08_01.nc",
+      "byte_size": 162123,
+      "sha256": "57ff6d3dcec706b4559eb40dc36b26be477e1ae95c83e6a4af7695914f132a76",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 1,
+        "depth": 43,
+        "lat": 30,
+        "lon": 60
+      },
+      "depth_levels_count": 43,
+      "depth_range_meters": [
+        0.0,
+        800.0
+      ],
+      "spatial_coverage": {
+        "latitude_min": 0.5,
+        "latitude_max": 29.5,
+        "longitude_min": 40.5,
+        "longitude_max": 99.5
+      },
+      "statistics": {
+        "min": 0.0,
+        "max": 82.8508,
+        "mean": 23.9944,
+        "valid_points": 37486
+      }
+    }
+  ],
+  "licence": "Open Access / Creative Commons CC0 / US Public Domain (NOAA NCEI)",
+  "attribution": "NOAA National Centers for Environmental Information (NCEI) World Ocean Atlas 2023",
+  "validation_status": "VALIDATED"
+}

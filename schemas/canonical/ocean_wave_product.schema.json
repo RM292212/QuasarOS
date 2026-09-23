@@ -1,0 +1,258 @@
+{
+  "$defs": {
+    "StokesDriftContract": {
+      "description": "Contract for 3D or surface wave-induced Stokes drift velocity vector.",
+      "properties": {
+        "depth_decay_scale_m": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Characteristic exponential decay depth scale in meters (2 * k_p).",
+          "title": "Depth Decay Scale M"
+        },
+        "is_surface_only": {
+          "default": true,
+          "description": "Whether Stokes drift represents surface value (z=0) or full 3D profile.",
+          "title": "Is Surface Only",
+          "type": "boolean"
+        },
+        "u_stokes_var": {
+          "description": "Zonal eastward Stokes drift velocity variable name (m/s).",
+          "title": "U Stokes Var",
+          "type": "string"
+        },
+        "v_stokes_var": {
+          "description": "Meridional northward Stokes drift velocity variable name (m/s).",
+          "title": "V Stokes Var",
+          "type": "string"
+        },
+        "w_stokes_var": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Vertical Stokes drift velocity variable name (m/s).",
+          "title": "W Stokes Var"
+        }
+      },
+      "required": [
+        "u_stokes_var",
+        "v_stokes_var"
+      ],
+      "title": "StokesDriftContract",
+      "type": "object"
+    },
+    "VectorConvention": {
+      "description": "Directional convention for vector fields.",
+      "enum": [
+        "oceanographic_to",
+        "meteorological_from",
+        "none"
+      ],
+      "title": "VectorConvention",
+      "type": "string"
+    },
+    "WavePartitionContract": {
+      "description": "Contract for a single resolved wave partition (wind sea or swell system).",
+      "properties": {
+        "direction_var": {
+          "description": "Variable name for wave propagation direction in degrees [0, 360).",
+          "title": "Direction Var",
+          "type": "string"
+        },
+        "directional_convention": {
+          "$ref": "#/$defs/VectorConvention",
+          "default": "meteorological_from",
+          "description": "Directional convention: 'meteorological_from' (degrees coming from, 0=N, 90=E) or 'oceanographic_to'."
+        },
+        "directional_spreading_var": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Variable name for directional spreading width in degrees.",
+          "title": "Directional Spreading Var"
+        },
+        "partition_index": {
+          "default": 0,
+          "description": "Zero-based index of the partition (0 for total/primary).",
+          "minimum": 0,
+          "title": "Partition Index",
+          "type": "integer"
+        },
+        "partition_type": {
+          "$ref": "#/$defs/WavePartitionType",
+          "description": "Partition identity (wind_sea, primary_swell, etc.)."
+        },
+        "peak_or_mean_period_var": {
+          "description": "Variable name for wave period (s) (peak Tp or mean Tm).",
+          "title": "Peak Or Mean Period Var",
+          "type": "string"
+        },
+        "significant_wave_height_var": {
+          "description": "Variable name for significant wave height Hs (m).",
+          "title": "Significant Wave Height Var",
+          "type": "string"
+        }
+      },
+      "required": [
+        "partition_type",
+        "significant_wave_height_var",
+        "peak_or_mean_period_var",
+        "direction_var"
+      ],
+      "title": "WavePartitionContract",
+      "type": "object"
+    },
+    "WavePartitionType": {
+      "description": "Spectral wave partition classification.",
+      "enum": [
+        "total_sea",
+        "wind_sea",
+        "primary_swell",
+        "secondary_swell",
+        "tertiary_swell",
+        "infragravity"
+      ],
+      "title": "WavePartitionType",
+      "type": "string"
+    },
+    "WaveSpectralModel": {
+      "description": "Numerical wave action balance model family.",
+      "enum": [
+        "WW3",
+        "WAM",
+        "SWAN",
+        "MIKE21_SW",
+        "unspecified"
+      ],
+      "title": "WaveSpectralModel",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive authoritative contract for ocean wave products (Copernicus Waves, NOAA WW3, INCOIS RSMC WW3).",
+  "properties": {
+    "directional_convention": {
+      "$ref": "#/$defs/VectorConvention",
+      "default": "meteorological_from",
+      "description": "Directional convention for wave angles (standard meteorological 'from')."
+    },
+    "mean_direction_total": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "VMDR",
+      "description": "Mean wave direction variable name in degrees [0, 360).",
+      "title": "Mean Direction Total"
+    },
+    "mean_period_total": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "VTM02",
+      "description": "Mean wave period variable name (e.g. 'VTM02', 'tm02').",
+      "title": "Mean Period Total"
+    },
+    "partitions": {
+      "description": "Resolved wave partition contracts.",
+      "items": {
+        "$ref": "#/$defs/WavePartitionContract"
+      },
+      "title": "Partitions",
+      "type": "array"
+    },
+    "peak_period_total": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "VTPK",
+      "description": "Peak wave period variable name (e.g. 'VTPK', 'tp').",
+      "title": "Peak Period Total"
+    },
+    "significant_wave_height_total": {
+      "default": "VHM0",
+      "description": "Integrated significant wave height variable name (e.g. 'VHM0', 'hs', 'swh').",
+      "title": "Significant Wave Height Total",
+      "type": "string"
+    },
+    "spectral_directions_count": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of discrete directional bins (e.g. 24-36).",
+      "title": "Spectral Directions Count"
+    },
+    "spectral_frequencies_count": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Number of discrete frequency bins (e.g. 25-36).",
+      "title": "Spectral Frequencies Count"
+    },
+    "stokes_drift": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StokesDriftContract"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Stokes drift velocity contract."
+    },
+    "wave_model": {
+      "$ref": "#/$defs/WaveSpectralModel",
+      "default": "WW3",
+      "description": "Spectral wave model architecture."
+    }
+  },
+  "title": "OceanWaveProductContract",
+  "type": "object"
+}

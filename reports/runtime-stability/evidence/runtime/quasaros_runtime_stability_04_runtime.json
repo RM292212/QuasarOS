@@ -1,0 +1,12 @@
+﻿{
+    "liveness_url":  "http://127.0.0.1:8000/health/live",
+    "api_docs_url":  "http://127.0.0.1:8000/docs",
+    "recorded_at":  "2026-08-31 20:00:09",
+    "frontend_pid":  8832,
+    "backend_url":  "http://127.0.0.1:8000",
+    "final_status":  "RUNTIME-STABILITY-04 COMPLETE — QUASAROS STARTUP, API, AND DATA LIFECYCLE VALIDATED AND RUNNING LOCALLY",
+    "readiness_url":  "http://127.0.0.1:8000/health/ready",
+    "backend_pid":  6708,
+    "integrated_commit":  "dddb0f0ee7df76727a626aa07842a91097d60c8f",
+    "frontend_url":  "http://127.0.0.1:5173"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract for requesting a batch of multiresolution sub-volume bricks\nfor dynamic progressive raymarching streaming.",
+  "properties": {
+    "lod_level": {
+      "description": "LOD level requested.",
+      "minimum": 0,
+      "title": "Lod Level",
+      "type": "integer"
+    },
+    "priority": {
+      "default": 1,
+      "description": "Request priority (10 = immediate camera frustum, 1 = speculative prefetch).",
+      "maximum": 10,
+      "minimum": 0,
+      "title": "Priority",
+      "type": "integer"
+    },
+    "requested_brick_keys": {
+      "description": "Array of deterministic brick composite keys requested.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Requested Brick Keys",
+      "type": "array"
+    },
+    "timestep_index": {
+      "description": "Temporal timestep index requested.",
+      "minimum": 0,
+      "title": "Timestep Index",
+      "type": "integer"
+    },
+    "visualization_product_id": {
+      "description": "ID of the visual volume product.",
+      "title": "Visualization Product Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "visualization_product_id",
+    "lod_level",
+    "timestep_index",
+    "requested_brick_keys"
+  ],
+  "title": "StreamingChunkRequest",
+  "type": "object"
+}

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@quasar/renderer-webgl2",
   "version": "1.0.0",
   "description": "QuasarOS WebGL2 Scientific Volume Raymarching Renderer, Resource Manager, and Texture Pipeline",
@@ -26,7 +26,8 @@
   "author": "QuasarOS Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@quasar/client": "workspace:*",
-    "@quasar/runtime": "workspace:*"
+    "@quasar/client": "*",
+    "@quasar/runtime": "*"
   }
 }
+

@@ -1,0 +1,139 @@
+{
+  "$defs": {
+    "SpatialBoundingBox": {
+      "description": "2D spatial bounding box in geographic coordinates.",
+      "properties": {
+        "max_latitude": {
+          "description": "Northernmost latitude in degrees.",
+          "title": "Max Latitude",
+          "type": "number"
+        },
+        "max_longitude": {
+          "description": "Easternmost longitude in degrees.",
+          "title": "Max Longitude",
+          "type": "number"
+        },
+        "min_latitude": {
+          "description": "Southernmost latitude in degrees.",
+          "title": "Min Latitude",
+          "type": "number"
+        },
+        "min_longitude": {
+          "description": "Westernmost longitude in degrees.",
+          "title": "Min Longitude",
+          "type": "number"
+        }
+      },
+      "required": [
+        "min_longitude",
+        "min_latitude",
+        "max_longitude",
+        "max_latitude"
+      ],
+      "title": "SpatialBoundingBox",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract for 2D curvilinear coordinate horizontal grids (ROMS, NEMO ORCA, HYCOM bipolar/tripolar).\nCoordinates are 2D arrays: lon(eta, xi) and lat(eta, xi).",
+  "properties": {
+    "angle_variable_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "angle",
+      "description": "Variable name of the grid rotation angle field (radians between xi axis and true East).",
+      "title": "Angle Variable Name"
+    },
+    "eta_dimension_name": {
+      "default": "eta_rho",
+      "description": "Name of the along-grid meridional dimension (Y / eta).",
+      "title": "Eta Dimension Name",
+      "type": "string"
+    },
+    "eta_size": {
+      "description": "Dimension size along eta.",
+      "exclusiveMinimum": 0,
+      "title": "Eta Size",
+      "type": "integer"
+    },
+    "grid_id": {
+      "description": "Unique identifier for the curvilinear grid.",
+      "title": "Grid Id",
+      "type": "string"
+    },
+    "has_curvilinear_metrics": {
+      "default": true,
+      "description": "Whether metric scale factors (pm, pn / dx, dy) are present in the dataset.",
+      "title": "Has Curvilinear Metrics",
+      "type": "boolean"
+    },
+    "lat_variable_name": {
+      "default": "lat_rho",
+      "description": "Variable name of 2D latitude array.",
+      "title": "Lat Variable Name",
+      "type": "string"
+    },
+    "lon_variable_name": {
+      "default": "lon_rho",
+      "description": "Variable name of 2D longitude array.",
+      "title": "Lon Variable Name",
+      "type": "string"
+    },
+    "pm_variable_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "pm",
+      "description": "Reciprocal of grid spacing in XI-direction (1/m).",
+      "title": "Pm Variable Name"
+    },
+    "pn_variable_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "pn",
+      "description": "Reciprocal of grid spacing in ETA-direction (1/m).",
+      "title": "Pn Variable Name"
+    },
+    "spatial_bounds": {
+      "$ref": "#/$defs/SpatialBoundingBox",
+      "description": "Geographic bounding box enclosing all valid cells."
+    },
+    "xi_dimension_name": {
+      "default": "xi_rho",
+      "description": "Name of the along-grid zonal dimension (X / xi).",
+      "title": "Xi Dimension Name",
+      "type": "string"
+    },
+    "xi_size": {
+      "description": "Dimension size along xi.",
+      "exclusiveMinimum": 0,
+      "title": "Xi Size",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "grid_id",
+    "eta_size",
+    "xi_size",
+    "spatial_bounds"
+  ],
+  "title": "CurvilinearGridContract",
+  "type": "object"
+}

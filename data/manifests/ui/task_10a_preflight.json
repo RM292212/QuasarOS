@@ -1,0 +1,154 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-10A",
+  "task_title": "Scientific UX and Application Architecture Preflight",
+  "status": "APPROVED",
+  "generated_at_utc": "2026-08-30T17:05:00Z",
+  "application": {
+    "name": "QuasarOS 3D OceanScope",
+    "package_location": "apps/web",
+    "framework": "React 18+ / Vite / TypeScript",
+    "styling": "Tailwind CSS + Astryx-compliant Scientific Design System",
+    "memory_policy": {
+      "zero_large_typed_arrays_in_react_state": true,
+      "max_component_state_bytes": 65536,
+      "gpu_buffer_management": "Offscreen / Engine Memory Bridge via @quasar/runtime"
+    }
+  },
+  "runtime_integration": {
+    "engine_packages": [
+      "@quasar/client",
+      "@quasar/runtime",
+      "@quasar/renderer-webgpu"
+    ],
+    "backend_fallback_strategy": {
+      "default_preference": "AUTO",
+      "modes": ["WEBGPU", "WEBGL2", "AUTO"],
+      "fallback_trigger": "WebGPUInitializationError or navigator.gpu unavailability"
+    }
+  },
+  "operational_dataset_reference": {
+    "provider": "Copernicus Marine Service (E.U. Copernicus Programme)",
+    "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+    "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+    "variable_id": "sea_water_potential_temperature",
+    "canonical_units": "degree_Celsius",
+    "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "source_asset_sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+    "spatial_domain": {
+      "longitude_min_deg": 80.0,
+      "longitude_max_deg": 88.0,
+      "latitude_min_deg": -3.0,
+      "latitude_max_deg": 12.0,
+      "depth_min_meters": 0.494,
+      "depth_max_meters": 453.938,
+      "depth_levels_count": 31
+    },
+    "temporal_domain": {
+      "start_time_utc": "2026-08-24T00:00:00Z",
+      "end_time_utc": "2026-08-30T00:00:00Z",
+      "step_count": 7,
+      "steps": [
+        "2026-08-24T00:00:00Z",
+        "2026-08-25T00:00:00Z",
+        "2026-08-26T00:00:00Z",
+        "2026-08-27T00:00:00Z",
+        "2026-08-28T00:00:00Z",
+        "2026-08-29T00:00:00Z",
+        "2026-08-30T00:00:00Z"
+      ]
+    },
+    "licence": "Copernicus Sentinel Data / E.U. Open Data Policy",
+    "attribution": "E.U. Copernicus Marine Service Information; https://doi.org/10.48670/moi-00016"
+  },
+  "ui_subsystems": {
+    "header_shell": {
+      "component": "ApplicationHeader",
+      "features": [
+        "ServiceHealthBadge (Live/Ready status from /health/ready)",
+        "BackendSwitcher (WebGPU / WebGL2 / Auto with active adapter info)",
+        "DatasetSelector (Active pinned snapshot & catalog navigator)",
+        "SpatialBoundsPill (Bounding coordinate readouts)"
+      ]
+    },
+    "temporal_controller": {
+      "component": "TemporalControllerBar",
+      "timeline_steps": 7,
+      "date_range": ["2026-08-24", "2026-08-30"],
+      "controls": ["Play/Pause (1fps - 10fps configurable)", "Previous/Next Step", "Scrubber Slider", "Live Request Generation Tag"],
+      "cancellation_semantics": "New scrubber drag or step change increments session activeGeneration and aborts inflight brick streaming."
+    },
+    "transfer_function_panel": {
+      "component": "TransferFunctionPanel",
+      "supported_colormaps": ["Viridis", "Plasma", "Turbo", "Thermal"],
+      "default_colormap": "Viridis",
+      "scalar_bounds": {
+        "min": 10.0,
+        "max": 32.0,
+        "unit": "°C"
+      },
+      "discrete_colorbar": {
+        "tick_count": 5,
+        "ticks": ["10.0 °C", "15.5 °C", "21.0 °C", "26.5 °C", "32.0 °C"],
+        "land_mask_swatch": "#222222 (Skipped / 0.0 Opacity)",
+        "missing_data_swatch": "#888888 (Transparent)"
+      },
+      "opacity_curve_editor": "Piecewise linear control points with step-size-corrected preview"
+    },
+    "clipping_panel": {
+      "component": "PhysicalClippingPanel",
+      "sliders": [
+        { "axis": "Depth (Z)", "min": 0.494, "max": 453.938, "unit": "m", "positive_direction": "down" },
+        { "axis": "Longitude (X)", "min": 80.0, "max": 88.0, "unit": "°E" },
+        { "axis": "Latitude (Y)", "min": -3.0, "max": 12.0, "unit": "°N" }
+      ],
+      "actions": ["Reset to Full Bounding Box", "Invert Clipping Box"]
+    },
+    "reconciliation_panel": {
+      "component": "ScientificReconciliationPanel",
+      "cursor_tracking": {
+        "screen_pick": "Provisional GPU ray-cast estimate (Quantized f16/u16)",
+        "authoritative_query": "Canonical query to /queries/value (Lossless float32)"
+      },
+      "difference_metrics": ["Absolute Delta (|V_prov - V_auth|)", "Relative Error %", "Evaluation Method (Bilinear / Exact Level)"],
+      "vertical_profile": {
+        "chart_engine": "Recharts / SVG",
+        "vertical_levels": 31,
+        "non_uniform_depth_axis": true,
+        "depth_range_m": [0.494, 453.938]
+      }
+    },
+    "provenance_panel": {
+      "component": "ProvenanceMetadataDrawer",
+      "lineage_fields": [
+        "Provider & Dataset ID",
+        "Acquisition Timestamp UTC",
+        "Source NetCDF SHA-256 Checksum",
+        "Canonical Zarr Store Logical Hash",
+        "Processing Pipeline Version",
+        "Mandatory Copernicus Citation"
+      ]
+    }
+  },
+  "accessibility_and_wcag": {
+    "standard": "WCAG 2.1 AA",
+    "keyboard_navigation": {
+      "timeline": "ArrowLeft/ArrowRight for timestep stepping; Space for play/pause; Home/End for start/end timestep",
+      "clipping_sliders": "Arrow keys with 1% step, PageUp/PageDown with 10% step",
+      "focus_ring": "2px solid #38bdf8 with 2px offset"
+    },
+    "aria_roles": {
+      "volume_canvas": "role='application' aria-label='3D Oceanographic Volume Raymarching Visualization'",
+      "timeline": "role='slider' aria-label='Operational Date Scrubber' aria-valuemin='0' aria-valuemax='6'",
+      "color_legend": "role='region' aria-label='Scientific Transfer Function and Scalar Legend'"
+    },
+    "reduced_motion": {
+      "prefers_reduced_motion": "Disables automated camera orbital animation, pauses autoplay on timeline, snaps sliders without transition smoothing"
+    },
+    "color_contrast": {
+      "ui_text_ratio": ">= 4.5:1 on dark scientific canvas theme",
+      "high_contrast_legend_mode": "Supported (Accessible high-contrast tick marks & boundary labels)"
+    }
+  }
+}

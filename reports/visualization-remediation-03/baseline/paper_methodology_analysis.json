@@ -1,0 +1,54 @@
+{
+  "paper_analysis_id": "PAPER-METH-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "citation": {
+    "authors": ["Yu, J.", "Qin, R.", "Xu, Z."],
+    "title": "The Implementation of a WebGPU-Based Volume Rendering Framework for Interactive Visualization of Ocean Scalar Data",
+    "journal": "Applied Sciences",
+    "year": 2025,
+    "volume": 15,
+    "article_number": "2782",
+    "doi": "10.3390/app15062782"
+  },
+  "core_mathematical_foundations": {
+    "continuous_volume_rendering_integral": "I(D) = I_0 * exp(-int_0^D tau(s) ds) + int_0^D C(t) * tau(t) * exp(-int_t^D tau(s) ds) dt",
+    "discrete_front_to_back_compositing": {
+      "accumulated_color": "C_i^Delta = C_{i-1}^Delta + (1 - A_{i-1}^Delta) * A_i * C_i",
+      "accumulated_opacity": "A_i^Delta = A_{i-1}^Delta + (1 - A_{i-1}^Delta) * A_i",
+      "initial_conditions": "C_0^Delta = (0, 0, 0), A_0^Delta = 0.0",
+      "transmittance_invariant": "T_i = 1 - A_{i-1}^Delta"
+    },
+    "step_size_opacity_correction": "A_i(dt) = 1 - (1 - A_sample)^(dt / dt_ref)",
+    "adaptive_empty_space_leaping": {
+      "condition": "|A_i^Delta - A_{i-1}^Delta| < epsilon (epsilon ~ 1e-4)",
+      "step_multiplier": 1.5,
+      "reversion": "Revert to standard dt upon encountering non-zero opacity (A_i > 0)"
+    },
+    "early_ray_termination_threshold": 0.98
+  },
+  "grid_preprocessing_and_interpolation": {
+    "trilinear_interpolation": "Hardware 3D texture trilinear sampling or 8-tap software blend",
+    "non_uniform_depth_handling": {
+      "strategy_1_preprocessing": "1D cubic spline resampling to 401 uniform layers at 5m depth intervals",
+      "strategy_2_runtime_lut": "Storage buffer / 1D texture Depth LUT with piecewise-linear interpolation in shader"
+    },
+    "spatial_aspect_ratio_scaling": "Anisotropic model bounding box scaling with vertical exaggeration factor E_z (10x - 100x)"
+  },
+  "transfer_function_architecture": {
+    "1d_transfer_function": "256x1 RGBA8 texture lookup with scalar normalization v' = (v - v_min) / (v_max - v_min)",
+    "2d_transfer_function": "2D texture lookup indexed by (normalized_scalar, normalized_gradient_magnitude) for front/thermocline enhancement",
+    "roi_filtering": "Dynamic range thresholding [v_clip_min, v_clip_max] clamping out-of-range alpha to 0.0"
+  },
+  "performance_benchmarks_and_advantages": {
+    "webgpu_vs_webgl_speedup": "11.7x faster initial volume loading for ocean temperature fields",
+    "fps_advantage": "25 to 40 FPS improvement over WebGL2 fallback on massive datasets (5.48M to 56.7M voxels)",
+    "cpu_gpu_overhead": "Direct GPU compute and rendering pipelines eliminate CPU-side memory repack bottlenecks"
+  },
+  "remediation_mapping": {
+    "renderer_wgsl": "packages/renderer-webgpu/src/shaders/volume_raymarch.wgsl.ts",
+    "renderer_glsl": "packages/renderer-webgl2/src/shaders/volume_raymarch.glsl.ts",
+    "pipeline_renderer": "packages/renderer-webgpu/src/pipeline/raymarching_renderer.ts",
+    "depth_lut_module": "packages/runtime/src/depth/depth_lut.ts",
+    "viewport_component": "apps/web/src/components/viewport/OceanVolumeViewport.tsx"
+  }
+}

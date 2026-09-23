@@ -1,0 +1,82 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "release_designation": "QuasarOS v1.1.0-dev (Multivariable Ocean Platform)",
+  "snapshot_family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "provider": "Copernicus Marine Service",
+  "authority": "authoritative native-source value under ADR-0005",
+  "certification_status": "TASK-12 COMPLETE \u2014 MULTIVARIABLE OCEAN PRODUCT SCIENTIFICALLY VALIDATED",
+  "variables_certified": [
+    "thetao",
+    "so",
+    "uo",
+    "vo",
+    "zos"
+  ],
+  "artifacts": {
+    "raw_nc_thetao": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao/copernicus_phy_thetao_20260824_20260830.nc",
+      "sha256": "44786949946780c68b31b08e301239b27170b2086bf04ae433a35b06af7aef97",
+      "size_bytes": 24603646
+    },
+    "raw_nc_so": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/so/copernicus_phy_so_20260824_20260830.nc",
+      "sha256": "2863f5b72ab5eab6f65900c2f0be38764f3664035b276f01b77961957a2b9a8b",
+      "size_bytes": 24603646
+    },
+    "raw_nc_uo": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/uo/copernicus_phy_uo_20260824_20260830.nc",
+      "sha256": "1be3458f8c53b2fe6af941fce389f8c44e5167d70617265d7b1a4e38c034ed21",
+      "size_bytes": 24603646
+    },
+    "raw_nc_vo": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo/copernicus_phy_vo_20260824_20260830.nc",
+      "sha256": "47a84e0908c1bef39f6c72c323c8fa7a84089aefff4bf9b1b838c7fd1321a74f",
+      "size_bytes": 24603646
+    },
+    "raw_nc_zos": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos/copernicus_phy_zos_20260824_20260830.nc",
+      "sha256": "3a329f8b571ec902220bc98e47748d310da70a9c88e7b951b3c4e39baab3d2a5",
+      "size_bytes": 512512
+    },
+    "acquisition_results.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/acquisition_results.json",
+      "sha256": "79583a7f16416cf6d62320c081fe3035d468521c67e96ce2adef3875646488c8",
+      "size_bytes": 1720
+    },
+    "snapshot_family_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/snapshot_family_manifest.json",
+      "sha256": "6b197e1779e6cf5e432843abd57e00c18685f727d598ae8d1109328449cc6bfd",
+      "size_bytes": 2935
+    },
+    "so_acquisition_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/so_acquisition_manifest.json",
+      "sha256": "821afdd1e5d68736d321149565a4bfc3416285136f8fc0c9a57ca4a8efabdfe0",
+      "size_bytes": 835
+    },
+    "task_12b_canonical_parity_results.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/task_12b_canonical_parity_results.json",
+      "sha256": "710594659260742d841b7e4505a836802f5850d92a11059e1095b7d5ce8d8907",
+      "size_bytes": 2835
+    },
+    "thetao_acquisition_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao_acquisition_manifest.json",
+      "sha256": "4b0c8867e564c01e3153b11465d0c847167e35de9c83439467dee2be744122a5",
+      "size_bytes": 886
+    },
+    "uo_acquisition_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/uo_acquisition_manifest.json",
+      "sha256": "43d734392c2334886817670d9438b5eab404cb5e499640be4bd7b5534098ac7e",
+      "size_bytes": 855
+    },
+    "vo_acquisition_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo_acquisition_manifest.json",
+      "sha256": "4fa4a86550eead01fd382c50f69dbba264460c0be0db4babdc331e079cf8c0cb",
+      "size_bytes": 857
+    },
+    "zos_acquisition_manifest.json": {
+      "path": "data/manifests/copernicus-physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos_acquisition_manifest.json",
+      "sha256": "06c21b4ea39ee15a6eee7e99364c9632d4020d6c3856ec328a0effce5b2a8818",
+      "size_bytes": 854
+    }
+  }
+}

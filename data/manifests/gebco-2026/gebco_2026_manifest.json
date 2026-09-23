@@ -1,0 +1,122 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-I",
+  "provider": "GEBCO / BODC (British Oceanographic Data Centre) / CEDA",
+  "dataset_id": "GEBCO_2026",
+  "product_title": "GEBCO 2026 Grid & Type Identifier (TID) - Regional North Indian Ocean Elevation Subset",
+  "scientific_role": "BATHYMETRY",
+  "doi": "10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+  "doi_url": "https://doi.org/10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+  "release_date": "2026-04-23",
+  "retrieval_timestamp_utc": "2026-08-30T07:51:55.891579+00:00",
+  "source_elevation_opendap_endpoint": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/ice_surface_elevation/netcdf/GEBCO_2026.nc",
+  "source_tid_opendap_endpoint": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/type_identifier_grid/netcdf/gebco_2026_tid.nc",
+  "supersession": {
+    "status": "ACTIVE_SUPERSEDING",
+    "supersedes_dataset_id": "GEBCO_2020",
+    "historical_baseline_manifest": "data/manifests/gebco/gebco_manifest.json",
+    "historical_baseline_raw": "data/raw/gebco/gebco_2020_north_indian_ocean.nc",
+    "historical_baseline_preserved": true,
+    "supersession_rationale": "GEBCO 2026 introduces major high-resolution multibeam acoustic bathymetry assimilations and the official Type Identifier Grid (TID) to distinguish measured sounding cells from satellite-derived gravity predictions."
+  },
+  "spatial_coverage": {
+    "region_name": "North Indian Ocean",
+    "latitude_min": 0.0020833333333314386,
+    "latitude_max": 30.00208333333333,
+    "longitude_min": 40.00208333333333,
+    "longitude_max": 100.0020833333333,
+    "grid_dimensions": {
+      "latitude": 301,
+      "longitude": 601
+    },
+    "grid_spacing_degrees": 0.1,
+    "grid_stride_index": 24,
+    "crs": "EPSG:4326",
+    "vertical_datum": "Mean Sea Level (MSL) / Reference Ellipsoid"
+  },
+  "statistics": {
+    "total_grid_cells": 180901,
+    "ocean_cells_count": 99468,
+    "ocean_fraction_percent": 54.98,
+    "land_cells_count": 81433,
+    "land_fraction_percent": 45.02,
+    "elevation_min_m": -5405.0,
+    "elevation_max_m": 7401.0,
+    "elevation_mean_m": -1271.27,
+    "tid_distribution": {
+      "0": 81435,
+      "10": 2,
+      "11": 14171,
+      "14": 77,
+      "16": 2732,
+      "17": 1401,
+      "40": 79639,
+      "44": 1444
+    }
+  },
+  "variables": [
+    {
+      "name": "elevation",
+      "standard_name": "height_above_reference_ellipsoid",
+      "long_name": "Elevation relative to sea level",
+      "units": "m",
+      "dtype": "int16",
+      "min_value": -5405.0,
+      "max_value": 7401.0,
+      "mean_value": -1271.272618725159,
+      "plausible_ocean_depths_confirmed": true
+    },
+    {
+      "name": "tid",
+      "standard_name": "source_identifier_of_gebco_grid_cell_data",
+      "long_name": "GEBCO Type Identifier",
+      "units": "1",
+      "dtype": "int8",
+      "flag_values": [
+        0,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        70,
+        71,
+        72
+      ],
+      "flag_meanings": "Land Singlebeam Multibeam Seismic Isolated_sounding ENC_sounding Lidar Optical Combined predicted_altimetry interpolated contour_charts contour_ENC bathymetric_sounding predicted_airborne iceberg_grounding grounded_Argo_float_derived pre-generated_grid unknown steering_point",
+      "source_provenance_confirmed": true
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/gebco/gebco-2026/gebco_2026_north_indian_ocean.nc",
+      "byte_size": 387971,
+      "sha256": "ad95fb942b87eaceab8e5b9ad51262a57096acdb7cb2bad8aaaffd09925544a1",
+      "format": "NetCDF-4",
+      "contents": "Elevation and seafloor bathymetry grid"
+    },
+    {
+      "relative_path": "data/raw/gebco/gebco-2026/gebco_2026_tid_north_indian_ocean.nc",
+      "byte_size": 207375,
+      "sha256": "3151392c23df965c665b4464d22b6b7e8c5849236a34269d2394f2f755541659",
+      "format": "NetCDF-4",
+      "contents": "Type Identifier Grid (TID) data lineage and sensor origin codes"
+    }
+  ],
+  "licence": "GEBCO Open Access / Public Domain with Attribution",
+  "attribution": "GEBCO Bathymetric Compilation Group 2026 (2026). The GEBCO_2026 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals. doi:10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+  "validation_status": "VALIDATED",
+  "notes": "Upgraded GEBCO 2026 bathymetry & topography grid and companion TID grid for QuasarOS volume rendering boundary / seafloor terrain clipping and observation-bathymetry validation in the North Indian Ocean domain (Lat 0-30N, Lon 40-100E)."
+}

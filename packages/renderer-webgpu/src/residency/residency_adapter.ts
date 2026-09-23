@@ -79,7 +79,9 @@ export class GPUResidencyAdapter {
 
     // 2. Sync Colormap Transfer Function LUT Texture if present
     if (packet.transferFunction) {
-      const tfId = `tf_lut_${packet.transferFunction.colormap_name || 'custom'}`;
+      const tfAny = packet.transferFunction as any;
+      const tfName = tfAny.colormap_preset_name || tfAny.colormap_name || 'custom';
+      const tfId = `tf_lut_${tfName}`;
       if (!this._transferFunctionTexture || this._transferFunctionTexture.id !== tfId) {
         if (this._transferFunctionTexture) {
           this.resourceManager.destroyTexture(this._transferFunctionTexture.id);

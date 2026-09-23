@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "ErrorCategory": {
+      "description": "Categorical prefix conforming to ErrorModel.md.",
+      "enum": [
+        "AUTH",
+        "VALIDATION",
+        "CATALOG",
+        "SOURCE",
+        "DATA",
+        "RENDER",
+        "ANALYSIS",
+        "STORAGE",
+        "JOB",
+        "RATE",
+        "INTERNAL"
+      ],
+      "title": "ErrorCategory",
+      "type": "string"
+    },
+    "ErrorSeverity": {
+      "description": "Severity classification.",
+      "enum": [
+        "ERROR",
+        "WARNING",
+        "INFO"
+      ],
+      "title": "ErrorSeverity",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Structured diagnostic message for validation reports and API error responses.",
+  "properties": {
+    "category": {
+      "$ref": "#/$defs/ErrorCategory",
+      "description": "Functional category."
+    },
+    "code": {
+      "description": "Machine-readable error or warning code.",
+      "title": "Code",
+      "type": "string"
+    },
+    "dataset_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Dataset identifier related to this diagnostic.",
+      "title": "Dataset Id"
+    },
+    "details": {
+      "additionalProperties": true,
+      "description": "Safe structured context attributes.",
+      "title": "Details",
+      "type": "object"
+    },
+    "message": {
+      "description": "Human-readable explanation safe for UI display.",
+      "title": "Message",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/ErrorSeverity",
+      "default": "ERROR",
+      "description": "Severity level."
+    },
+    "suggested_action": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Actionable suggestion for operator or researcher.",
+      "title": "Suggested Action"
+    },
+    "variable_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Variable identifier related to this diagnostic.",
+      "title": "Variable Id"
+    }
+  },
+  "required": [
+    "code",
+    "category",
+    "message"
+  ],
+  "title": "ScientificDiagnostic",
+  "type": "object"
+}

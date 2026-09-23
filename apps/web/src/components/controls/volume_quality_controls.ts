@@ -10,6 +10,8 @@
  * - Maximum ray steps clamp (64 to 2048)
  */
 
+import type { LODMode } from '../../context/app_store.ts';
+
 export interface VolumeQualitySettings {
   stepSizeMultiplier: number;     // 0.25 to 4.0 (higher = finer step, lower stepSize)
   baseStepSize: number;           // base step in normalized volume space, default 0.005
@@ -18,6 +20,8 @@ export interface VolumeQualitySettings {
   showBoundingBox: boolean;       // boolean toggle
   earlyTerminationAlpha: number;  // 0.90 to 0.999, default 0.99
   maxSteps: number;               // 64 to 2048, default 512
+  lodMode: LODMode;               // 'preview' | 'interactive' | 'high_quality'
+  verticalExaggeration: number;   // 10.0 to 100.0, default 50.0
 }
 
 export type VolumeQualityChangeListener = (settings: VolumeQualitySettings) => void;
@@ -35,12 +39,22 @@ export class VolumeQualityModel {
       showBoundingBox: initialSettings?.showBoundingBox ?? true,
       earlyTerminationAlpha: initialSettings?.earlyTerminationAlpha ?? 0.99,
       maxSteps: initialSettings?.maxSteps ?? 512,
+      lodMode: initialSettings?.lodMode ?? 'interactive',
+      verticalExaggeration: initialSettings?.verticalExaggeration ?? 50.0,
     };
     this._validate();
   }
 
   get settings(): VolumeQualitySettings {
     return { ...this._settings };
+  }
+
+  get lodMode(): LODMode {
+    return this._settings.lodMode;
+  }
+
+  get verticalExaggeration(): number {
+    return this._settings.verticalExaggeration;
   }
 
   get effectiveStepSize(): number {
@@ -85,6 +99,16 @@ export class VolumeQualityModel {
     this._notify();
   }
 
+  setLODMode(mode: LODMode): void {
+    this._settings.lodMode = mode;
+    this._notify();
+  }
+
+  setVerticalExaggeration(ve: number): void {
+    this._settings.verticalExaggeration = Math.max(10.0, Math.min(100.0, ve));
+    this._notify();
+  }
+
   resetDefaults(): void {
     this._settings = {
       stepSizeMultiplier: 1.0,
@@ -94,6 +118,8 @@ export class VolumeQualityModel {
       showBoundingBox: true,
       earlyTerminationAlpha: 0.99,
       maxSteps: 512,
+      lodMode: 'interactive',
+      verticalExaggeration: 50.0,
     };
     this._notify();
   }

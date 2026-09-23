@@ -1,0 +1,62 @@
+{
+  "vertical_profile": {
+    "path": "/api/v1/analysis/vertical-profile",
+    "status": "VERIFIED_OPERATIONAL",
+    "runs": 5,
+    "payload_bytes": 7546,
+    "median_ms": 318.88,
+    "p95_ms": 381.99,
+    "range_ms": [
+      307.61,
+      381.99
+    ]
+  },
+  "teos10_soundings": {
+    "path": "/api/v1/analysis/teos10-soundings",
+    "status": "VERIFIED_OPERATIONAL",
+    "runs": 5,
+    "payload_bytes": 15114,
+    "median_ms": 591.26,
+    "p95_ms": 701.3,
+    "range_ms": [
+      583.76,
+      701.3
+    ]
+  },
+  "transect": {
+    "path": "/api/v1/analysis/transect",
+    "status": "VERIFIED_OPERATIONAL",
+    "runs": 5,
+    "payload_bytes": 19805,
+    "median_ms": 338.46,
+    "p95_ms": 345.39,
+    "range_ms": [
+      330.38,
+      345.39
+    ]
+  },
+  "depth_slice": {
+    "path": "/api/v1/analysis/slice",
+    "status": "VERIFIED_OPERATIONAL",
+    "runs": 5,
+    "payload_bytes": 657187,
+    "median_ms": 393.38,
+    "p95_ms": 423.04,
+    "range_ms": [
+      374.87,
+      423.04
+    ]
+  },
+  "bathymetry_grid": {
+    "path": "/api/v1/analysis/bathymetry-grid?min_lon=60.0&max_lon=68.0&min_lat=0.0&max_lat=15.0",
+    "status": "VERIFIED_OPERATIONAL",
+    "runs": 5,
+    "payload_bytes": 36242,
+    "median_ms": 371.09,
+    "p95_ms": 500.07,
+    "range_ms": [
+      304.93,
+      500.07
+    ]
+  }
+}

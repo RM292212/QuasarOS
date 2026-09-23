@@ -141,13 +141,13 @@ export class WebGL2RaymarchingRenderer {
     if (this._locMaskTexture) gl.uniform1i(this._locMaskTexture, WebGL2RaymarchingRenderer.TEXTURE_UNIT_MASK);
     if (this._locTransferFunction) gl.uniform1i(this._locTransferFunction, WebGL2RaymarchingRenderer.TEXTURE_UNIT_TRANSFER_FUNCTION);
 
-    // Uniform buffer (std140: 160 bytes header + 32 * 16 bytes depth LUT = 672 bytes total)
+    // Uniform buffer (std140: 160 bytes header + 64 * 16 bytes depth LUT = 1184 bytes total)
     this._uniformBuffer = gl.createBuffer();
     if (!this._uniformBuffer) {
       throw new WebGL2ResourceAllocationError('Failed to allocate UBO buffer');
     }
     gl.bindBuffer(gl.UNIFORM_BUFFER, this._uniformBuffer);
-    gl.bufferData(gl.UNIFORM_BUFFER, 704, gl.DYNAMIC_DRAW);
+    gl.bufferData(gl.UNIFORM_BUFFER, 1184, gl.DYNAMIC_DRAW);
     gl.bindBufferBase(
       gl.UNIFORM_BUFFER,
       WebGL2RaymarchingRenderer.UNIFORM_BINDING_POINT,
@@ -224,10 +224,10 @@ export class WebGL2RaymarchingRenderer {
    * 28..31 (112..127 bytes): uScalarOffset, uScalarScale, uScalarMin, uScalarMax (4 x float)
    * 32..35 (128..143 bytes): uDepthLevelCount, uIsFloatScalar, uUseValidityMask, uMaxSteps (4 x uint)
    * 36..39 (144..159 bytes): uViewport (vec4)
-   * 40..167 (160..671 bytes): uDepthLutEntries (32 x vec4)
+   * 40..295 (160..1183 bytes): uDepthLutEntries (64 x vec4)
    */
   public packUniforms(options: WebGL2VolumeRaymarchingRenderOptions, isFloat: boolean): ArrayBuffer {
-    const buffer = new ArrayBuffer(672);
+    const buffer = new ArrayBuffer(1184);
     const f32 = new Float32Array(buffer);
     const u32 = new Uint32Array(buffer);
 
@@ -259,7 +259,7 @@ export class WebGL2RaymarchingRenderer {
     f32[26] = pkt.clippingBox.maxW;
 
     // 27: uEarlyTerminationAlpha
-    f32[27] = options.earlyTerminationAlpha ?? 0.95;
+    f32[27] = options.earlyTerminationAlpha ?? 0.98;
 
     // 28..31: scalar parameters
     const scalarRange = pkt.scalarMax - pkt.scalarMin;
@@ -270,7 +270,7 @@ export class WebGL2RaymarchingRenderer {
 
     // 32..35: depth count & flags
     const depthLevels = pkt.depthLutEntriesM;
-    const levelCount = depthLevels ? Math.min(depthLevels.length, 32) : 0;
+    const levelCount = depthLevels ? Math.min(depthLevels.length, 64) : 0;
     u32[32] = levelCount;
     u32[33] = isFloat ? 1 : 0;
     u32[34] = 1; // uUseValidityMask
@@ -282,7 +282,7 @@ export class WebGL2RaymarchingRenderer {
     f32[38] = 1.0 / Math.max(cam.viewportWidth, 1);
     f32[39] = 1.0 / Math.max(cam.viewportHeight, 1);
 
-    // 40..167: uDepthLutEntries (each depth level stored in .x of vec4, std140 alignment)
+    // 40..295: uDepthLutEntries (each depth level stored in .x of vec4, std140 alignment)
     if (depthLevels) {
       for (let i = 0; i < levelCount; i++) {
         f32[40 + i * 4] = depthLevels[i];

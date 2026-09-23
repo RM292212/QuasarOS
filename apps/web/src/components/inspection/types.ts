@@ -83,6 +83,9 @@ export interface VerticalProfileChartModel {
   totalLevels: number;
   validLevelsCount: number;
   dataPoints: VerticalProfileDataPoint[];
+  observedPoints?: VerticalProfileDataPoint[];
+  observationLabel?: string;
+  teos10Variable?: 'thetao' | 'CT' | 'SA' | 'sigma0';
   minDepthM: number;
   maxDepthM: number;
   minValue: number;

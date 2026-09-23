@@ -1,0 +1,19 @@
+{
+  "campaign": "VISUALIZATION-REMEDIATION-03",
+  "backends": [
+    {
+      "backend": "WebGPU",
+      "status": "AVAILABLE",
+      "shader_lang": "WGSL",
+      "avg_fps": 60,
+      "vram_allocated_mb": 14.5
+    },
+    {
+      "backend": "WebGL2",
+      "status": "AVAILABLE",
+      "shader_lang": "GLSL 3.00 ES",
+      "avg_fps": 60,
+      "vram_allocated_mb": 14.5
+    }
+  ]
+}

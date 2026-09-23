@@ -6,7 +6,7 @@
  * 2. Smits-Kay ray-AABB intersection with normalized [0, 1]^3 ocean domain.
  * 3. Analytical 6-plane clipping box evaluation in normalized coordinates.
  * 4. Categorical empty space skipping using usampler3D validity mask (0u = invalid/nodata/halo).
- * 5. Continuous 31-level Copernicus depth LUT sampling with piece-wise linear interpolation.
+ * 5. Continuous 50-level Copernicus depth LUT sampling with piece-wise linear interpolation.
  * 6. Dual scalar sampling: r16f (sampled as float) or r16ui (quantized with affine scale/offset de-quantization).
  * 7. Manual trilinear filtering fallback for scalar textures when hardware filtering is unavailable.
  * 8. 256x1 Transfer Function lookup (sampler2D).
@@ -41,7 +41,7 @@ precision highp sampler2D;
 in vec2 vUv;
 out vec4 fragColor;
 
-// Uniform block matching WebGL2 standard 16-byte alignment
+// Uniform block matching WebGL2 standard 16-byte alignment (std140: 160 bytes header + 64 * 16 bytes = 1,184 bytes total)
 layout(std140) uniform VolumeRaymarchUniforms {
     mat4 uInverseViewProjection;
     vec3 uCameraPosition;
@@ -68,9 +68,9 @@ layout(std140) uniform VolumeRaymarchUniforms {
     // Viewport dimensions [width, height, 1/width, 1/height]
     vec4 uViewport;
 
-    // Depth LUT Array (up to 32 levels, matching 31 Copernicus ocean levels)
+    // Depth LUT Array (up to 64 levels, matching 50 Copernicus ocean levels)
     // vec4-aligned in std140 layout
-    vec4 uDepthLutEntries[32];
+    vec4 uDepthLutEntries[64];
 };
 
 // Texture bindings
@@ -172,8 +172,11 @@ uint sampleValidityMask(vec3 coord) {
     return texelFetch(uMaskTexture, texCoord, 0).r;
 }
 
-// Evaluate Transfer Function LUT (256x1 RGBA)
+// Evaluate Transfer function LUT sampling (1D clamped normalized scalar mapped to 256x1 RGBA)
 vec4 sampleTransferFunction(float scalarValue) {
+    if (scalarValue < uScalarMin || scalarValue > uScalarMax) {
+        return vec4(0.0);
+    }
     float range = uScalarMax - uScalarMin;
     float normalizedScalar = clamp((scalarValue - uScalarMin) / max(range, 1e-6), 0.0, 1.0);
     vec2 uv = vec2(normalizedScalar, 0.5);
@@ -223,12 +226,12 @@ void main() {
             continue;
         }
 
-        // Check categorical empty-space skipping via validity mask
+        // Check categorical empty-space skipping via validity mask (0u = land / nodata)
         if (uUseValidityMask == 1u) {
             uint maskVal = sampleValidityMask(currentPos);
             if (maskVal == 0u) {
-                // Invalid sample / land / missing value -> skip TF lookup
-                currentT += dt;
+                // Adaptive Empty-Space Leaping (1.5x step expansion)
+                currentT += dt * 1.5;
                 stepCount += 1u;
                 continue;
             }
@@ -237,26 +240,41 @@ void main() {
         // Sample scalar field
         float scalarValue = sampleScalar(currentPos);
 
+        // Sentinel check: if missing/fill value (e.g. <= -900.0)
+        if (scalarValue <= -900.0) {
+            // Adaptive Empty-Space Leaping (1.5x step expansion)
+            currentT += dt * 1.5;
+            stepCount += 1u;
+            continue;
+        }
+
         // Evaluate transfer function
         vec4 sampleColor = sampleTransferFunction(scalarValue);
 
-        // Step-size-corrected opacity: alpha_corr = 1.0 - (1.0 - alpha)^(dt / dt_ref)
+        // Beer-Lambert step-size opacity correction: A_i = 1 - (1 - A_sample)^(dt / dt_ref)
         float sampleAlpha = clamp(sampleColor.a, 0.0, 1.0);
         float alphaCorr = 1.0 - pow(max(1.0 - sampleAlpha, 0.0), dt / dtRef);
 
-        if (alphaCorr > 0.001) {
-            // Front-to-back accumulation
-            float weight = (1.0 - accumulatedColor.a) * alphaCorr;
-            accumulatedColor = vec4(
-                accumulatedColor.rgb + sampleColor.rgb * weight,
-                accumulatedColor.a + weight
-            );
+        // If alpha is negligible (|dA| < epsilon), leap with 1.5x step
+        if (alphaCorr <= 0.001) {
+            currentT += dt * 1.5;
+            stepCount += 1u;
+            continue;
+        }
 
-            // Early Ray Termination (accumulated alpha >= threshold, e.g. 0.95)
-            if (accumulatedColor.a >= uEarlyTerminationAlpha) {
-                accumulatedColor.a = 1.0;
-                break;
-            }
+        // Discrete front-to-back alpha compositing:
+        // C_dst = C_dst + (1 - A_dst) * C_src * A_src
+        // A_dst = A_dst + (1 - A_dst) * A_src
+        float weight = (1.0 - accumulatedColor.a) * alphaCorr;
+        accumulatedColor = vec4(
+            accumulatedColor.rgb + sampleColor.rgb * weight,
+            accumulatedColor.a + weight
+        );
+
+        // Early Ray Termination (accumulated opacity >= threshold, e.g. 0.98)
+        if (accumulatedColor.a >= uEarlyTerminationAlpha) {
+            accumulatedColor.a = 1.0;
+            break;
         }
 
         currentT += dt;
@@ -267,6 +285,8 @@ void main() {
         discard;
     }
 
-    fragColor = accumulatedColor;
+    // Un-premultiply RGB so that gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA) blends correctly with clearColor
+    vec3 straightColor = clamp(accumulatedColor.rgb / max(accumulatedColor.a, 1e-5), 0.0, 1.0);
+    fragColor = vec4(straightColor, accumulatedColor.a);
 }
 `;

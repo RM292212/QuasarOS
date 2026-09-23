@@ -23,9 +23,13 @@ import type {
   SpatialBoundingBox,
   TimeSelectorMode,
   TransferFunctionContract,
+  TransferFunctionControlPoint,
   VerticalSelectorType,
   VisualizationProductContract,
   CoordinateTransformContract,
+  BrickIdentityContract,
+  BrickGeometryContract,
+  BrickPayloadContract,
 } from '../../contracts/types/quasar_contracts.d.ts';
 
 export type {
@@ -43,9 +47,13 @@ export type {
   SpatialBoundingBox,
   TimeSelectorMode,
   TransferFunctionContract,
+  TransferFunctionControlPoint,
   VerticalSelectorType,
   VisualizationProductContract,
   CoordinateTransformContract,
+  BrickIdentityContract,
+  BrickGeometryContract,
+  BrickPayloadContract,
 };
 
 // ----------------------------------------------------------------------------

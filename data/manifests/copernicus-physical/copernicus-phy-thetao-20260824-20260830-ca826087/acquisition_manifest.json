@@ -1,0 +1,54 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-03S-B",
+  "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "acquisition_time_utc": "2026-08-30T12:57:44.550082+00:00",
+  "provider": "Copernicus Marine Service (E.U. Copernicus Programme)",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+  "variable": "thetao",
+  "temporal_classification": "OPERATIONAL_CURRENT_SNAPSHOT",
+  "source_classification": "api_generated_netcdf_subset",
+  "start_datetime_utc": "2026-08-24T00:00:00",
+  "end_datetime_utc": "2026-08-30T23:59:59",
+  "timestamps_requested": [
+    "2026-08-24T00:00:00Z",
+    "2026-08-25T00:00:00Z",
+    "2026-08-26T00:00:00Z",
+    "2026-08-27T00:00:00Z",
+    "2026-08-28T00:00:00Z",
+    "2026-08-29T00:00:00Z",
+    "2026-08-30T00:00:00Z"
+  ],
+  "timestamps_returned": [
+    "2026-08-24T00:00:00Z",
+    "2026-08-25T00:00:00Z",
+    "2026-08-26T00:00:00Z",
+    "2026-08-27T00:00:00Z",
+    "2026-08-28T00:00:00Z",
+    "2026-08-29T00:00:00Z",
+    "2026-08-30T00:00:00Z"
+  ],
+  "geographic_bounds": {
+    "minimum_longitude": 80.0,
+    "maximum_longitude": 88.0,
+    "minimum_latitude": -3.0,
+    "maximum_latitude": 12.0
+  },
+  "vertical_bounds": {
+    "minimum_depth_meters": 0.494,
+    "maximum_depth_meters": 453.938,
+    "classification": "UPPER_OCEAN_OPERATIONAL_VOLUME"
+  },
+  "file": {
+    "filename": "copernicus_phy_thetao_20260824_20260830.nc",
+    "relative_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+    "byte_size": 15263238,
+    "sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c"
+  },
+  "canonical_store_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087",
+  "authentication_method": "COPERNICUSMARINE_SERVICE credentials via environment variables",
+  "authentication_success": true,
+  "licence": "Copernicus Sentinel Data / E.U. Open Data Policy",
+  "attribution": "E.U. Copernicus Marine Service Information; https://doi.org/10.48670/moi-00016"
+}

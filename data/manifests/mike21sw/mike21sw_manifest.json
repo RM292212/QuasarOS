@@ -1,0 +1,52 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-H",
+  "task_title": "DHI MIKE 21 Spectral Wave (SW) Coastal Wave Simulation Model Discovery & Redistributability Evaluation",
+  "provider": "DHI (Danish Hydraulic Institute) / DHI Group",
+  "model_name": "MIKE 21 Spectral Wave (MIKE 21 SW)",
+  "software_family": "MIKE Powered by DHI",
+  "scientific_domain": "COASTAL_SPECTRAL_WIND_WAVE_MODELING",
+  "governing_equations": "Wave action balance equation in Cartesian and spherical coordinates with wave growth by wind action, non-linear four-wave interaction, whitecapping dissipation, bottom friction, depth-induced wave breaking, wave-current interaction, and shoaling/refraction.",
+  "status": "COMPLETE \u2014 NO PUBLIC REDISTRIBUTABLE MIKE 21 SW DATASET IDENTIFIED",
+  "evaluation_verdict": "NO_PUBLIC_REDISTRIBUTABLE_DATASET",
+  "validation_status": "DISCOVERY_RECORDED",
+  "licensing_model": "Proprietary Commercial Software (DHI Software Licence Agreement). Model execution binaries, input mesh configurations (.mesh), and output simulation files (.dfsu, .dfs2) are proprietary commercial assets of individual licensees, consultancies, or port authorities, with no open redistributable public domain or CC-BY archives.",
+  "investigation_timestamp_utc": "2026-08-30T07:58:00Z",
+  "data_formats_evaluated": [
+    {
+      "format_extension": ".dfsu",
+      "format_type": "DHI Flexible File (Binary)",
+      "description": "Unstructured flexible mesh binary storage for time-varying 2D/3D spectral wave and hydrodynamic fields with node and element coordinate tables."
+    },
+    {
+      "format_extension": ".mesh",
+      "format_type": "DHI Mesh File (ASCII / Binary)",
+      "description": "Node coordinate arrays, element connectivity topology, and boundary code tables for unstructured finite-volume discretization."
+    },
+    {
+      "format_extension": ".dfs2",
+      "format_type": "DHI Regular 2D Grid (Binary)",
+      "description": "Cartesian rectangular raster grid format for 2D wave parameters (significant wave height, peak period, mean direction)."
+    },
+    {
+      "format_extension": ".dfs0",
+      "format_type": "DHI Point Time Series (Binary)",
+      "description": "Equidistant and non-equidistant point time-series data for virtual wave buoy stations."
+    }
+  ],
+  "open_access_tooling": {
+    "library": "mikeio",
+    "repository": "https://github.com/DHI/mikeio",
+    "license": "BSD-3-Clause",
+    "purpose": "Read/write support for DHI DFS and Mesh files in Python without commercial GUI runtime."
+  },
+  "operational_alternative": {
+    "approved_operational_wave_model": "NOAA WAVEWATCH III (WW3)",
+    "dataset_id": "NWW3_Global_Best",
+    "task_reference": "TASK-01X-C",
+    "manifest_path": "data/manifests/noaa-ww3/noaa_ww3_manifest.json",
+    "raw_path": "data/raw/noaa/ww3/noaa_ww3_regional_20250420_20250426.nc",
+    "licence": "Open Access / Public Domain / Free redistribution with attribution (PacIOOS / NOAA / NCEP)"
+  },
+  "notes": "Investigation conducted under TASK-01X-H concluded that MIKE 21 SW simulation outputs in the Indian Ocean domain are commercial proprietary data products. No authoritative public, DOI-backed, redistributable numerical grid datasets are distributed under open science licences. NOAA WAVEWATCH III (TASK-01X-C) serves as the primary open wave modeling dataset for QuasarOS."
+}

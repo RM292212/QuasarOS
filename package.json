@@ -9,9 +9,10 @@
   "scripts": {
     "dev": "npm --workspace=@quasar/web run dev",
     "build": "npm --workspace=@quasar/web run build",
-    "test": "npm run test:packages && npm run test:apps",
+    "test": "npm run test:packages && npm run test:apps && npm run test:e2e",
     "test:packages": "node --experimental-strip-types --test packages/*/test/*.test.ts",
-    "test:apps": "node --experimental-strip-types --test apps/*/test/*.test.ts"
+    "test:apps": "node --experimental-strip-types --test apps/*/test/*.test.ts",
+    "test:e2e": "node --experimental-strip-types --test tests/e2e/*.test.ts"
   }
 }
 

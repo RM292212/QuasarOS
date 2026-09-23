@@ -1,0 +1,32 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01F",
+  "provider": "NOAA NCEI",
+  "product_id": "WOA23",
+  "dataset_id": "woa23_decav_t08_04",
+  "source_url": "https://www.ncei.noaa.gov/thredds-ocean/dodsC/woa23/DATA/temperature/netcdf/decav/0.25/woa23_decav_t08_04.nc",
+  "retrieval_timestamp_utc": "2026-08-30T07:38:41Z",
+  "climatological_period": "August (decav 1991-2020)",
+  "resolution": "0.25 degree",
+  "spatial_coverage": {
+    "latitude_min": 0.125,
+    "latitude_max": 29.875,
+    "longitude_min": 40.125,
+    "longitude_max": 99.875,
+    "depth_levels": 57
+  },
+  "variables": [
+    "t_an"
+  ],
+  "files": [
+    {
+      "relative_path": "data\\raw\\woa23\\woa23_august_temp_north_indian_ocean.nc",
+      "byte_size": 6575680,
+      "sha256": "ca37a4a9dd078a75fc52298afd6ac0cbab6403ec22046550b8c7796c653e13da",
+      "format": "NetCDF-4"
+    }
+  ],
+  "licence": "Open Access / Creative Commons CC0 / Public Domain",
+  "attribution": "NOAA National Centers for Environmental Information (NCEI) World Ocean Atlas 2023",
+  "validation_status": "VALIDATED"
+}

@@ -1,0 +1,195 @@
+{
+  "$schema": "../../../schemas/canonical/streaming_preflight.schema.json",
+  "task_identifier": "TASK-06A",
+  "preflight_status": "APPROVED_READY_FOR_STREAMING",
+  "created_at_utc": "2026-08-30T15:35:00Z",
+  "governing_rules": [
+    "AGENTS.md",
+    "docs/INDEX.md",
+    "docs/Arc.md",
+    "docs/Tech.md",
+    "docs/02-architecture/APIContracts.md",
+    "docs/02-architecture/ErrorModel.md"
+  ],
+  "active_operational_baseline": {
+    "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087",
+    "product_version": "v1",
+    "variable_id": "sea_water_potential_temperature",
+    "canonical_units": "degree_Celsius",
+    "physical_domain_range_degc": [
+      9.3747,
+      30.3618
+    ],
+    "total_bricks": 63,
+    "total_payload_files": 126,
+    "lod_levels": [
+      0,
+      1,
+      2
+    ],
+    "timesteps_count": 7,
+    "brick_dimensions": {
+      "interior_valid_shape": [
+        64,
+        64,
+        31
+      ],
+      "halo_padding": [
+        1,
+        1,
+        0
+      ],
+      "sample_shape": [
+        66,
+        66,
+        32
+      ],
+      "voxels_per_payload": 139392,
+      "uncompressed_bytes_per_payload": 278784
+    },
+    "formats": [
+      {
+        "representation": "f16",
+        "sample_format": "r16float",
+        "codec": "zstd",
+        "total_compressed_bytes": 4393536,
+        "max_quantization_error_degc": 0.0078125
+      },
+      {
+        "representation": "u16",
+        "sample_format": "r16uint",
+        "codec": "zstd",
+        "total_compressed_bytes": 8944521,
+        "max_quantization_error_degc": 0.0001601239
+      }
+    ]
+  },
+  "client_generation_and_drift_policy": {
+    "openapi_spec_path": "schemas/openapi/openapi_v1.json",
+    "contracts_declaration_path": "packages/contracts/types/quasar_contracts.d.ts",
+    "canonical_schemas_dir": "schemas/canonical/",
+    "codegen_engine": "openapi-typescript / type-safe fetch wrapper",
+    "drift_gate": "python scripts/generate_schemas.py --verify && python scripts/export_openapi.py",
+    "validation_rules": [
+      "No manual edits to auto-generated TypeScript declarations",
+      "Exact enum synchronization for error codes and sample formats",
+      "Zero schema drift required for release gate"
+    ]
+  },
+  "transport_contract": {
+    "required_dependency_task": "TASK-05T",
+    "route_pattern": "/api/v1/visualization-products/{product_id}/bricks/{brick_key}/payloads/{representation}",
+    "alternative_route_pattern": "/api/v1/visualization-products/{product_id}/lod/{lod}/t/{t}/{filename}",
+    "http_method": "GET",
+    "content_type": "application/octet-stream",
+    "cache_control": "public, max-age=31536000, immutable",
+    "etag_header": "X-Payload-SHA256",
+    "range_request_support": true,
+    "expected_http_status_codes": {
+      "200": "Full binary payload stream",
+      "206": "Partial content byte-range response",
+      "304": "Not Modified (ETag / If-None-Match match)",
+      "404": "Brick or product not found (RENDER_BRICK_NOT_FOUND)",
+      "422": "Invalid representation or parameters (VALIDATION_INVALID_REPRESENTATION)"
+    },
+    "path_traversal_guards": [
+      "Path segment regex: ^[a-zA-Z0-9_-]+$",
+      "Resolution against strictly verified product manifest inventory",
+      "Forbidden sequences: .. , \\, %2e%2e"
+    ]
+  },
+  "decompression_and_decoding_pipeline": {
+    "compression_codec": "zstd",
+    "decoder_architecture": "WebAssembly Zstandard (fzstd / zstd-wasm) in Dedicated Web Worker",
+    "main_thread_offload": true,
+    "decompression_memory_limit_bytes": 1048576,
+    "expected_uncompressed_bytes": 278784,
+    "decoding_pipelines": {
+      "r16float": {
+        "raw_bytes_per_sample": 2,
+        "input_buffer": "Uint16Array (Float16 bit patterns)",
+        "destination_target": "WebGL2/WebGPU Half-Float Texture / Float32Array",
+        "conversion": "Hardware texture upload (Float16) or CPU bitcast lookup table (139,392 elements in < 0.2ms)",
+        "missing_value_handling": "Float16 NaN -> alpha 0.0"
+      },
+      "r16uint": {
+        "raw_bytes_per_sample": 2,
+        "input_buffer": "Uint16Array",
+        "destination_target": "WebGL2/WebGPU R16UI Texture with Uniform Scale/Offset",
+        "scale_offset_recovery": "V_real = V_norm * scale_factor + add_offset",
+        "missing_code": 65535,
+        "missing_value_handling": "Code 65535 -> alpha 0.0"
+      },
+      "validity_mask": {
+        "raw_bytes_per_sample": 1,
+        "input_buffer": "Uint8Array",
+        "destination_target": "Bitmask occupancy buffer / shader discard mask",
+        "missing_value_handling": "Bit 0 -> Active Valid, Bit 1 -> Masked Land / Seabed"
+      }
+    }
+  },
+  "scheduler_and_cache_architecture": {
+    "max_concurrent_http_downloads": 6,
+    "request_cancellation_mechanism": "AbortController + Scene/Time Epoch Token",
+    "priority_tiers": [
+      {
+        "tier": 1,
+        "description": "Active Camera LOD coarse bricks",
+        "priority": 100
+      },
+      {
+        "tier": 2,
+        "description": "Active Camera LOD fine bricks in frustum",
+        "priority": 80
+      },
+      {
+        "tier": 3,
+        "description": "Neighboring spatial bricks in frustum margin",
+        "priority": 50
+      },
+      {
+        "tier": 4,
+        "description": "Next timestep coarse bricks (t+1)",
+        "priority": 30
+      },
+      {
+        "tier": 5,
+        "description": "Previous timestep coarse bricks (t-1)",
+        "priority": 20
+      },
+      {
+        "tier": 6,
+        "description": "Speculative background prefetch",
+        "priority": 10
+      }
+    ],
+    "memory_cache": {
+      "strategy": "LRU (Least Recently Used) with priority weighting",
+      "capacity_budget_bytes": 52428800,
+      "capacity_budget_mib": 50.0,
+      "cache_key_schema": "{snapshot_id}:{product_version}:{lod}:{t}:{bx}:{by}:{bz}:{representation}:{checksum}",
+      "eviction_policy": "Evict lowest priority, furthest temporal/spatial distance from active frustum",
+      "stale_work_policy": "Drop in-flight Worker decode jobs if scene or timestep changes before completion"
+    }
+  },
+  "performance_targets": {
+    "single_brick_download_ms_p50": 15.0,
+    "single_brick_download_ms_p95": 40.0,
+    "single_brick_wasm_decompression_ms_p50": 0.35,
+    "single_brick_wasm_decompression_ms_p95": 0.85,
+    "single_brick_f16_decode_ms_p50": 0.15,
+    "single_brick_f16_decode_ms_p95": 0.4,
+    "end_to_end_brick_turnaround_ms_p50": 18.0,
+    "peak_browser_heap_budget_mib": 100.0,
+    "gpu_atlas_transfer_latency_ms": 1.2
+  },
+  "downstream_handoff": {
+    "prerequisite_task": "TASK-05T (FastAPI Binary Brick Endpoint Implementation)",
+    "next_client_tasks": [
+      "TASK-06B: Web Worker Streaming Pipeline & WASM Decoder Implementation",
+      "TASK-06C: Priority Queue Scheduler & LRU Brick Cache Implementation",
+      "TASK-06D: Browser Network Transport Conformance & End-to-End Stress Suite"
+    ]
+  }
+}

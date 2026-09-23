@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "CollocationBlockingReason": {
+      "description": "Specific scientific reason codes preventing valid observation-to-model collocation.",
+      "enum": [
+        "OUTSIDE_SPATIAL_BOUNDS",
+        "OUTSIDE_TEMPORAL_BOUNDS",
+        "INCOMPATIBLE_VERTICAL_DATUM",
+        "INCOMPATIBLE_PHYSICAL_QUANTITY",
+        "UNIT_CONVERSION_BLOCKED",
+        "FAILED_OBSERVATION_QC",
+        "MISSING_MODEL_GRID_INFORMATION",
+        "LAND_MASK_OCCLUSION",
+        "EXCEEDS_MAX_TIME_WINDOW",
+        "EXCEEDS_MAX_SPATIAL_RADIUS",
+        "NO_BLOCKING_REASON"
+      ],
+      "title": "CollocationBlockingReason",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative contract defining whether an observation entity (profile or trajectory cast)\ncan be scientifically collocated with a target 3D model volume or 2D grid field.",
+  "properties": {
+    "blocking_reasons": {
+      "description": "List of blocking reasons if is_collocation_ready is False. Empty or [NO_BLOCKING_REASON] if ready.",
+      "items": {
+        "$ref": "#/$defs/CollocationBlockingReason"
+      },
+      "title": "Blocking Reasons",
+      "type": "array"
+    },
+    "collocation_id": {
+      "description": "Unique identifier for this collocation readiness evaluation.",
+      "title": "Collocation Id",
+      "type": "string"
+    },
+    "is_collocation_ready": {
+      "description": "True if all spatial, temporal, physical unit, and QC checks pass with zero blockers.",
+      "title": "Is Collocation Ready",
+      "type": "boolean"
+    },
+    "max_allowed_spatial_radius_km": {
+      "default": 50.0,
+      "description": "Configured maximum allowable spatial search radius in kilometers.",
+      "minimum": 0.0,
+      "title": "Max Allowed Spatial Radius Km",
+      "type": "number"
+    },
+    "max_allowed_time_window_seconds": {
+      "default": 86400.0,
+      "description": "Configured maximum allowable temporal tolerance for collocation (e.g. 24 hours = 86400s).",
+      "minimum": 0.0,
+      "title": "Max Allowed Time Window Seconds",
+      "type": "number"
+    },
+    "model_dataset_id": {
+      "description": "Identifier of the candidate model dataset (e.g. 'copernicus_phy_thetao').",
+      "title": "Model Dataset Id",
+      "type": "string"
+    },
+    "model_variable": {
+      "description": "Target model variable name (e.g. 'thetao' or 'sea_water_potential_temperature').",
+      "title": "Model Variable",
+      "type": "string"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Human-readable diagnostics or notes regarding the collocation readiness check.",
+      "title": "Notes"
+    },
+    "observation_id": {
+      "description": "Identifier of the observation entity (e.g. 'incois_argo_7902250_042_A').",
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "observation_variable": {
+      "description": "Observation variable name (e.g. 'TEMP' or 'sea_water_temperature').",
+      "title": "Observation Variable",
+      "type": "string"
+    },
+    "qc_passed": {
+      "default": true,
+      "description": "Whether the observation record satisfies minimum QC quality filters.",
+      "title": "Qc Passed",
+      "type": "boolean"
+    },
+    "spatial_distance_to_model_domain_km": {
+      "default": 0.0,
+      "description": "Distance from observation location to nearest model valid grid boundary (0 if inside).",
+      "minimum": 0.0,
+      "title": "Spatial Distance To Model Domain Km",
+      "type": "number"
+    },
+    "temporal_offset_seconds": {
+      "default": 0.0,
+      "description": "Absolute time difference between observation timestamp and nearest model timestep in seconds.",
+      "minimum": 0.0,
+      "title": "Temporal Offset Seconds",
+      "type": "number"
+    },
+    "unit_conversion_required": {
+      "default": false,
+      "description": "Whether a mathematical or affine unit conversion is required prior to comparison.",
+      "title": "Unit Conversion Required",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "collocation_id",
+    "observation_id",
+    "model_dataset_id",
+    "observation_variable",
+    "model_variable",
+    "is_collocation_ready"
+  ],
+  "title": "CollocationReadinessContract",
+  "type": "object"
+}

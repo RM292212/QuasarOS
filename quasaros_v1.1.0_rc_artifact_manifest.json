@@ -1,0 +1,36 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "release_designation": "QuasarOS v1.1.0-rc.1 (Multivariable Ocean Platform)",
+  "target_release_version": "1.1.0",
+  "total_unified_tests": 556,
+  "test_pass_rate": "100.0%",
+  "python_tests": 399,
+  "typescript_tests": 157,
+  "artifacts": {
+    "analysis_engine.py": {
+      "path": "packages/services/src/quasar_services/analysis/analysis_engine.py",
+      "sha256": "f23f8a10a3b335a8bf716cd306a73777909cb01f15f40e2086275d57f7389fd4",
+      "size_bytes": 6957
+    },
+    "router.py": {
+      "path": "packages/services/src/quasar_services/analysis/router.py",
+      "sha256": "65dcf877c1998d31bf4727d8be056c4f3d34a7bbe4b371f7aa3f9a1c9f57281a",
+      "size_bytes": 2383
+    },
+    "collocation_engine.py": {
+      "path": "packages/services/src/quasar_services/observations/collocation_engine.py",
+      "sha256": "3f47d3eaa9ffbee6a57ae8b9039b99152d596e832563e346b22386ee9cd6c750",
+      "size_bytes": 4639
+    },
+    "task_12_multivariable_certification_manifest.json": {
+      "path": "data/manifests/certification/task_12_multivariable_certification_manifest.json",
+      "sha256": "a400d179489949df9c48d26c60b11a45bb73d4aa4ccbf6a6a809dd7059a840ba",
+      "size_bytes": 4353
+    },
+    "task_13_14_analysis_and_observation_certification_manifest.json": {
+      "path": "data/manifests/certification/task_13_14_analysis_and_observation_certification_manifest.json",
+      "sha256": "4c549a651be743392e9a76480734f6e61e8b4296d610fd3f077deffa8657fb03",
+      "size_bytes": 1357
+    }
+  }
+}

@@ -1,4 +1,4 @@
-﻿import { defineConfig } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
@@ -10,6 +10,7 @@ export default defineConfig({
       '@quasar/client': path.resolve(__dirname, '../../packages/client/src'),
       '@quasar/runtime': path.resolve(__dirname, '../../packages/runtime/src'),
       '@quasar/renderer-webgpu': path.resolve(__dirname, '../../packages/renderer-webgpu/src'),
+      '@quasar/renderer-webgl2': path.resolve(__dirname, '../../packages/renderer-webgl2/src'),
       '@': path.resolve(__dirname, './src'),
     },
   },

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "@quasar/renderer-webgpu",
   "version": "1.0.0",
   "description": "QuasarOS WebGPU Raymarching Volume Renderer, GPU Resource Manager, and Residency Adapter",
@@ -26,10 +26,11 @@
   "author": "QuasarOS Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "@quasar/client": "workspace:*",
-    "@quasar/runtime": "workspace:*"
+    "@quasar/client": "*",
+    "@quasar/runtime": "*"
   },
   "devDependencies": {
     "@webgpu/types": "^0.1.40"
   }
 }
+

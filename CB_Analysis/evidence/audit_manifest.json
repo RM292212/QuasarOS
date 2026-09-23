@@ -1,0 +1,10 @@
+{
+  "audit_id": "quasaros-current-audit",
+  "timestamp_utc": "2026-08-31T16:15:00Z",
+  "repo_root": "C:\\Users\\Ranji\\Downloads\\ocanscope3d",
+  "git": {
+    "branch": "main",
+    "head": "6307280",
+    "dirty": true
+  }
+}

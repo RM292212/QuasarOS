@@ -1,0 +1,81 @@
+{
+  "release_candidate_version": "v1.0.0-rc.1",
+  "freeze_timestamp_utc": "2026-08-30T17:26:30Z",
+  "target_milestone": "TASK-11A",
+  "repository": "RM292212/QuasarOS",
+  "operational_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "runtime_environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python_version": "3.12.10",
+    "node_version": "v24.18.0",
+    "npm_version": "11.16.0"
+  },
+  "cryptographic_trust_chain": {
+    "1_active_snapshot_catalog": {
+      "relative_path": "data/manifests/active_snapshot_catalog.json",
+      "sha256": "d515a90280bea5ce7b908e920a006b0e9fa77749aeffa2a668c5b63778b3693b",
+      "byte_size": 2693
+    },
+    "2_raw_netcdf_source": {
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+      "sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+      "byte_size": 15263238
+    },
+    "3_acquisition_manifest": {
+      "relative_path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/acquisition_manifest.json",
+      "sha256": "0861401c53c9c03ec66362c69a1e6935e5d22cfffb11dc50d2217b53204dbd73",
+      "byte_size": 2175
+    },
+    "4_canonical_zarr_store": {
+      "relative_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087",
+      "file_count": 107,
+      "total_bytes": 11741725,
+      "zattrs_sha256": "440212181e3465c2ed0f2a431c00e67826a93f2f7f67dbccc103e39b9a8f5e8d"
+    },
+    "5_visualization_manifest": {
+      "relative_path": "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+      "sha256": "6e3f15bedd81d42865549000f21cf6a1296f8728aed5a7bfe9f9b1dc158c9a77",
+      "byte_size": 194070,
+      "total_bricks": 63,
+      "total_payload_files": 126,
+      "verified_unbroken_chain": true
+    }
+  },
+  "package_manifest": {
+    "@quasar/web": {
+      "version": "1.0.0",
+      "path": "apps/web",
+      "package_json_sha256": "ed0627ea5e3fec195a0bd054b94d316044440ad5585a294a05da2548a163fee8"
+    },
+    "@quasar/client": {
+      "version": "1.0.0",
+      "path": "packages/client",
+      "package_json_sha256": "1bcbd45521df935403a6c94bb964e33088d67cf3149ed058ad7115b11a90321f"
+    },
+    "@quasar/runtime": {
+      "version": "1.0.0",
+      "path": "packages/runtime",
+      "package_json_sha256": "41664950abb7193afb9890735638fdbc6def61e979169f3fd770a513e5c77df0"
+    },
+    "@quasar/renderer-webgpu": {
+      "version": "1.0.0",
+      "path": "packages/renderer-webgpu",
+      "package_json_sha256": "8e12136bbca00f276e4f5e22803da16f01bab2fb541bc33c95816547266d531b"
+    },
+    "@quasar/renderer-webgl2": {
+      "version": "1.0.0",
+      "path": "packages/renderer-webgl2",
+      "package_json_sha256": "c774716c77b47d642591dbd4c4f16b0e4f3687f748e07d3f9be0947331ab955e"
+    }
+  },
+  "verification_summary": {
+    "canonical_schema_drift": 0,
+    "python_tests_passed": 369,
+    "python_tests_failed": 0,
+    "typescript_tests_passed": 157,
+    "typescript_tests_failed": 0,
+    "security_audit_zero_secrets": true,
+    "security_audit_zero_path_leakage": true,
+    "provenance_reproducibility_status": "FROZEN_VALIDATED"
+  }
+}

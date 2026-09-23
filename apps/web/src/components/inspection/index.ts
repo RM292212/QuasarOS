@@ -9,3 +9,4 @@ export * from './VerticalProfileLogic.ts';
 export * from './VerticalProfileChart.tsx';
 export * from './ProvenanceLogic.ts';
 export * from './ProvenanceDrawer.tsx';
+export * from './SoundingInspectionPanel.tsx';

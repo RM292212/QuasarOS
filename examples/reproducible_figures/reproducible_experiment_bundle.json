@@ -1,0 +1,1246 @@
+{
+  "experiment_id": "EXP-QUASAROS-2026-001",
+  "software_version": "QuasarOS v1.1.0",
+  "gsw_teos10_version": "3.6.23",
+  "created_at": "2026-08-30T19:15:30.379822+00:00",
+  "provenance_statement": "Generated directly from native Copernicus NetCDF-4 arrays and delayed-mode Argo profile 5906421 under ADR-0005",
+  "figures": {
+    "fig1_temperature_profile": {
+      "variable": "thetao",
+      "units": "degrees_C",
+      "time_index": 0,
+      "latitude": 7.5,
+      "longitude": 64.0,
+      "levels_count": 50,
+      "profile": [
+        {
+          "level_index": 0,
+          "depth_m": 0.49402499198913574,
+          "value": 28.876806259155273,
+          "is_valid": true
+        },
+        {
+          "level_index": 1,
+          "depth_m": 1.5413750410079956,
+          "value": 28.878347396850586,
+          "is_valid": true
+        },
+        {
+          "level_index": 2,
+          "depth_m": 2.6456689834594727,
+          "value": 28.87931251525879,
+          "is_valid": true
+        },
+        {
+          "level_index": 3,
+          "depth_m": 3.8194949626922607,
+          "value": 28.8797607421875,
+          "is_valid": true
+        },
+        {
+          "level_index": 4,
+          "depth_m": 5.078224182128906,
+          "value": 28.87969207763672,
+          "is_valid": true
+        },
+        {
+          "level_index": 5,
+          "depth_m": 6.440614223480225,
+          "value": 28.878995895385742,
+          "is_valid": true
+        },
+        {
+          "level_index": 6,
+          "depth_m": 7.92956018447876,
+          "value": 28.877296447753906,
+          "is_valid": true
+        },
+        {
+          "level_index": 7,
+          "depth_m": 9.572997093200684,
+          "value": 28.87422752380371,
+          "is_valid": true
+        },
+        {
+          "level_index": 8,
+          "depth_m": 11.404999732971191,
+          "value": 28.869632720947266,
+          "is_valid": true
+        },
+        {
+          "level_index": 9,
+          "depth_m": 13.467140197753906,
+          "value": 28.863710403442383,
+          "is_valid": true
+        },
+        {
+          "level_index": 10,
+          "depth_m": 15.810070037841797,
+          "value": 28.856834411621094,
+          "is_valid": true
+        },
+        {
+          "level_index": 11,
+          "depth_m": 18.495559692382812,
+          "value": 28.849773406982422,
+          "is_valid": true
+        },
+        {
+          "level_index": 12,
+          "depth_m": 21.598819732666016,
+          "value": 28.843551635742188,
+          "is_valid": true
+        },
+        {
+          "level_index": 13,
+          "depth_m": 25.211410522460938,
+          "value": 28.83745765686035,
+          "is_valid": true
+        },
+        {
+          "level_index": 14,
+          "depth_m": 29.444730758666992,
+          "value": 28.82695770263672,
+          "is_valid": true
+        },
+        {
+          "level_index": 15,
+          "depth_m": 34.43415069580078,
+          "value": 28.768678665161133,
+          "is_valid": true
+        },
+        {
+          "level_index": 16,
+          "depth_m": 40.344051361083984,
+          "value": 28.65515899658203,
+          "is_valid": true
+        },
+        {
+          "level_index": 17,
+          "depth_m": 47.37369155883789,
+          "value": 28.61618423461914,
+          "is_valid": true
+        },
+        {
+          "level_index": 18,
+          "depth_m": 55.76428985595703,
+          "value": 28.595809936523438,
+          "is_valid": true
+        },
+        {
+          "level_index": 19,
+          "depth_m": 65.80726623535156,
+          "value": 28.594005584716797,
+          "is_valid": true
+        },
+        {
+          "level_index": 20,
+          "depth_m": 77.85385131835938,
+          "value": 28.58928871154785,
+          "is_valid": true
+        },
+        {
+          "level_index": 21,
+          "depth_m": 92.3260726928711,
+          "value": 27.384801864624023,
+          "is_valid": true
+        },
+        {
+          "level_index": 22,
+          "depth_m": 109.72930145263672,
+          "value": 24.979745864868164,
+          "is_valid": true
+        },
+        {
+          "level_index": 23,
+          "depth_m": 130.66600036621094,
+          "value": 21.422264099121094,
+          "is_valid": true
+        },
+        {
+          "level_index": 24,
+          "depth_m": 155.85069274902344,
+          "value": 18.068904876708984,
+          "is_valid": true
+        },
+        {
+          "level_index": 25,
+          "depth_m": 186.12559509277344,
+          "value": 15.75428295135498,
+          "is_valid": true
+        },
+        {
+          "level_index": 26,
+          "depth_m": 222.47520446777344,
+          "value": 14.184341430664062,
+          "is_valid": true
+        },
+        {
+          "level_index": 27,
+          "depth_m": 266.0403137207031,
+          "value": 13.169992446899414,
+          "is_valid": true
+        },
+        {
+          "level_index": 28,
+          "depth_m": 318.1274108886719,
+          "value": 12.467528343200684,
+          "is_valid": true
+        },
+        {
+          "level_index": 29,
+          "depth_m": 380.2130126953125,
+          "value": 11.756340980529785,
+          "is_valid": true
+        },
+        {
+          "level_index": 30,
+          "depth_m": 453.9377136230469,
+          "value": 11.223508834838867,
+          "is_valid": true
+        },
+        {
+          "level_index": 31,
+          "depth_m": 541.0889282226562,
+          "value": 10.674890518188477,
+          "is_valid": true
+        },
+        {
+          "level_index": 32,
+          "depth_m": 643.5667724609375,
+          "value": 10.049182891845703,
+          "is_valid": true
+        },
+        {
+          "level_index": 33,
+          "depth_m": 763.3331298828125,
+          "value": 9.455828666687012,
+          "is_valid": true
+        },
+        {
+          "level_index": 34,
+          "depth_m": 902.3392944335938,
+          "value": 8.258505821228027,
+          "is_valid": true
+        },
+        {
+          "level_index": 35,
+          "depth_m": 1062.43994140625,
+          "value": 6.889725685119629,
+          "is_valid": true
+        },
+        {
+          "level_index": 36,
+          "depth_m": 1245.291015625,
+          "value": 5.7775444984436035,
+          "is_valid": true
+        },
+        {
+          "level_index": 37,
+          "depth_m": 1452.2509765625,
+          "value": 4.929832458496094,
+          "is_valid": true
+        },
+        {
+          "level_index": 38,
+          "depth_m": 1684.2840576171875,
+          "value": 3.812256097793579,
+          "is_valid": true
+        },
+        {
+          "level_index": 39,
+          "depth_m": 1941.8929443359375,
+          "value": 2.8459603786468506,
+          "is_valid": true
+        },
+        {
+          "level_index": 40,
+          "depth_m": 2225.077880859375,
+          "value": 2.344665050506592,
+          "is_valid": true
+        },
+        {
+          "level_index": 41,
+          "depth_m": 2533.3359375,
+          "value": 2.060499668121338,
+          "is_valid": true
+        },
+        {
+          "level_index": 42,
+          "depth_m": 2865.702880859375,
+          "value": 1.6499080657958984,
+          "is_valid": true
+        },
+        {
+          "level_index": 43,
+          "depth_m": 3220.820068359375,
+          "value": 1.4480448961257935,
+          "is_valid": true
+        },
+        {
+          "level_index": 44,
+          "depth_m": 3597.031982421875,
+          "value": 1.3774325847625732,
+          "is_valid": true
+        },
+        {
+          "level_index": 45,
+          "depth_m": 3992.48388671875,
+          "value": 1.3638687133789062,
+          "is_valid": true
+        },
+        {
+          "level_index": 46,
+          "depth_m": 4405.22412109375,
+          "value": 1.3562110662460327,
+          "is_valid": true
+        },
+        {
+          "level_index": 47,
+          "depth_m": 4833.291015625,
+          "value": null,
+          "is_valid": false
+        },
+        {
+          "level_index": 48,
+          "depth_m": 5274.7841796875,
+          "value": null,
+          "is_valid": false
+        },
+        {
+          "level_index": 49,
+          "depth_m": 5727.9169921875,
+          "value": null,
+          "is_valid": false
+        }
+      ],
+      "authority": "authoritative native-source value under ADR-0005"
+    },
+    "fig2_salinity_profile": {
+      "variable": "so",
+      "units": "1e-3",
+      "time_index": 0,
+      "latitude": 7.5,
+      "longitude": 64.0,
+      "levels_count": 50,
+      "profile": [
+        {
+          "level_index": 0,
+          "depth_m": 0.49402499198913574,
+          "value": 36.39885711669922,
+          "is_valid": true
+        },
+        {
+          "level_index": 1,
+          "depth_m": 1.5413750410079956,
+          "value": 36.39881896972656,
+          "is_valid": true
+        },
+        {
+          "level_index": 2,
+          "depth_m": 2.6456689834594727,
+          "value": 36.3988151550293,
+          "is_valid": true
+        },
+        {
+          "level_index": 3,
+          "depth_m": 3.8194949626922607,
+          "value": 36.39883804321289,
+          "is_valid": true
+        },
+        {
+          "level_index": 4,
+          "depth_m": 5.078224182128906,
+          "value": 36.39888381958008,
+          "is_valid": true
+        },
+        {
+          "level_index": 5,
+          "depth_m": 6.440614223480225,
+          "value": 36.398948669433594,
+          "is_valid": true
+        },
+        {
+          "level_index": 6,
+          "depth_m": 7.92956018447876,
+          "value": 36.3990478515625,
+          "is_valid": true
+        },
+        {
+          "level_index": 7,
+          "depth_m": 9.572997093200684,
+          "value": 36.39920425415039,
+          "is_valid": true
+        },
+        {
+          "level_index": 8,
+          "depth_m": 11.404999732971191,
+          "value": 36.39945602416992,
+          "is_valid": true
+        },
+        {
+          "level_index": 9,
+          "depth_m": 13.467140197753906,
+          "value": 36.39985656738281,
+          "is_valid": true
+        },
+        {
+          "level_index": 10,
+          "depth_m": 15.810070037841797,
+          "value": 36.400474548339844,
+          "is_valid": true
+        },
+        {
+          "level_index": 11,
+          "depth_m": 18.495559692382812,
+          "value": 36.40143585205078,
+          "is_valid": true
+        },
+        {
+          "level_index": 12,
+          "depth_m": 21.598819732666016,
+          "value": 36.40281677246094,
+          "is_valid": true
+        },
+        {
+          "level_index": 13,
+          "depth_m": 25.211410522460938,
+          "value": 36.40562438964844,
+          "is_valid": true
+        },
+        {
+          "level_index": 14,
+          "depth_m": 29.444730758666992,
+          "value": 36.417057037353516,
+          "is_valid": true
+        },
+        {
+          "level_index": 15,
+          "depth_m": 34.43415069580078,
+          "value": 36.45167922973633,
+          "is_valid": true
+        },
+        {
+          "level_index": 16,
+          "depth_m": 40.344051361083984,
+          "value": 36.47905349731445,
+          "is_valid": true
+        },
+        {
+          "level_index": 17,
+          "depth_m": 47.37369155883789,
+          "value": 36.48338317871094,
+          "is_valid": true
+        },
+        {
+          "level_index": 18,
+          "depth_m": 55.76428985595703,
+          "value": 36.489559173583984,
+          "is_valid": true
+        },
+        {
+          "level_index": 19,
+          "depth_m": 65.80726623535156,
+          "value": 36.495643615722656,
+          "is_valid": true
+        },
+        {
+          "level_index": 20,
+          "depth_m": 77.85385131835938,
+          "value": 36.49671173095703,
+          "is_valid": true
+        },
+        {
+          "level_index": 21,
+          "depth_m": 92.3260726928711,
+          "value": 36.3537483215332,
+          "is_valid": true
+        },
+        {
+          "level_index": 22,
+          "depth_m": 109.72930145263672,
+          "value": 36.04890441894531,
+          "is_valid": true
+        },
+        {
+          "level_index": 23,
+          "depth_m": 130.66600036621094,
+          "value": 35.625980377197266,
+          "is_valid": true
+        },
+        {
+          "level_index": 24,
+          "depth_m": 155.85069274902344,
+          "value": 35.359092712402344,
+          "is_valid": true
+        },
+        {
+          "level_index": 25,
+          "depth_m": 186.12559509277344,
+          "value": 35.28623962402344,
+          "is_valid": true
+        },
+        {
+          "level_index": 26,
+          "depth_m": 222.47520446777344,
+          "value": 35.241634368896484,
+          "is_valid": true
+        },
+        {
+          "level_index": 27,
+          "depth_m": 266.0403137207031,
+          "value": 35.24378967285156,
+          "is_valid": true
+        },
+        {
+          "level_index": 28,
+          "depth_m": 318.1274108886719,
+          "value": 35.27724075317383,
+          "is_valid": true
+        },
+        {
+          "level_index": 29,
+          "depth_m": 380.2130126953125,
+          "value": 35.29301452636719,
+          "is_valid": true
+        },
+        {
+          "level_index": 30,
+          "depth_m": 453.9377136230469,
+          "value": 35.30256652832031,
+          "is_valid": true
+        },
+        {
+          "level_index": 31,
+          "depth_m": 541.0889282226562,
+          "value": 35.308143615722656,
+          "is_valid": true
+        },
+        {
+          "level_index": 32,
+          "depth_m": 643.5667724609375,
+          "value": 35.29542541503906,
+          "is_valid": true
+        },
+        {
+          "level_index": 33,
+          "depth_m": 763.3331298828125,
+          "value": 35.29612350463867,
+          "is_valid": true
+        },
+        {
+          "level_index": 34,
+          "depth_m": 902.3392944335938,
+          "value": 35.19425582885742,
+          "is_valid": true
+        },
+        {
+          "level_index": 35,
+          "depth_m": 1062.43994140625,
+          "value": 35.06871032714844,
+          "is_valid": true
+        },
+        {
+          "level_index": 36,
+          "depth_m": 1245.291015625,
+          "value": 34.9947395324707,
+          "is_valid": true
+        },
+        {
+          "level_index": 37,
+          "depth_m": 1452.2509765625,
+          "value": 34.95181655883789,
+          "is_valid": true
+        },
+        {
+          "level_index": 38,
+          "depth_m": 1684.2840576171875,
+          "value": 34.87704086303711,
+          "is_valid": true
+        },
+        {
+          "level_index": 39,
+          "depth_m": 1941.8929443359375,
+          "value": 34.80534362792969,
+          "is_valid": true
+        },
+        {
+          "level_index": 40,
+          "depth_m": 2225.077880859375,
+          "value": 34.79108810424805,
+          "is_valid": true
+        },
+        {
+          "level_index": 41,
+          "depth_m": 2533.3359375,
+          "value": 34.7786750793457,
+          "is_valid": true
+        },
+        {
+          "level_index": 42,
+          "depth_m": 2865.702880859375,
+          "value": 34.76539993286133,
+          "is_valid": true
+        },
+        {
+          "level_index": 43,
+          "depth_m": 3220.820068359375,
+          "value": 34.76277542114258,
+          "is_valid": true
+        },
+        {
+          "level_index": 44,
+          "depth_m": 3597.031982421875,
+          "value": 34.76712417602539,
+          "is_valid": true
+        },
+        {
+          "level_index": 45,
+          "depth_m": 3992.48388671875,
+          "value": 34.77101135253906,
+          "is_valid": true
+        },
+        {
+          "level_index": 46,
+          "depth_m": 4405.22412109375,
+          "value": 34.771976470947266,
+          "is_valid": true
+        },
+        {
+          "level_index": 47,
+          "depth_m": 4833.291015625,
+          "value": null,
+          "is_valid": false
+        },
+        {
+          "level_index": 48,
+          "depth_m": 5274.7841796875,
+          "value": null,
+          "is_valid": false
+        },
+        {
+          "level_index": 49,
+          "depth_m": 5727.9169921875,
+          "value": null,
+          "is_valid": false
+        }
+      ],
+      "authority": "authoritative native-source value under ADR-0005"
+    },
+    "fig3_teos10_derived_soundings": {
+      "time_index": 0,
+      "latitude": 7.5,
+      "longitude": 64.0,
+      "mixed_layer_depth_m": 29.444730758666992,
+      "gsw_library_version": "3.6.23",
+      "levels_count": 47,
+      "soundings": [
+        {
+          "depth_m": 0.49402499198913574,
+          "pressure_dbar": 0.49679842118790773,
+          "potential_temperature_C": 28.876806259155273,
+          "practical_salinity": 36.39885711669922,
+          "absolute_salinity_g_kg": 36.57078790035107,
+          "conservative_temperature_C": 28.825438129129004,
+          "in_situ_density_kg_m3": 1023.158174740926,
+          "potential_density_anomaly_kg_m3": 23.15609202025223,
+          "sound_speed_m_s": 1544.456883274396
+        },
+        {
+          "depth_m": 1.5413750410079956,
+          "pressure_dbar": 1.5500322007202558,
+          "potential_temperature_C": 28.878347396850586,
+          "practical_salinity": 36.39881896972656,
+          "absolute_salinity_g_kg": 36.57075092049291,
+          "conservative_temperature_C": 28.826981763892935,
+          "in_situ_density_kg_m3": 1023.1620456384688,
+          "potential_density_anomaly_kg_m3": 23.155547564717608,
+          "sound_speed_m_s": 1544.4782019617642
+        },
+        {
+          "depth_m": 2.6456689834594727,
+          "pressure_dbar": 2.660535604540241,
+          "potential_temperature_C": 28.87931251525879,
+          "practical_salinity": 36.3988151550293,
+          "absolute_salinity_g_kg": 36.57074850833872,
+          "conservative_temperature_C": 28.827947570624566,
+          "in_situ_density_kg_m3": 1023.166375489028,
+          "potential_density_anomaly_kg_m3": 23.15522210957124,
+          "sound_speed_m_s": 1544.4993150157502
+        },
+        {
+          "depth_m": 3.8194949626922607,
+          "pressure_dbar": 3.840968592138499,
+          "potential_temperature_C": 28.8797607421875,
+          "practical_salinity": 36.39883804321289,
+          "absolute_salinity_g_kg": 36.57077301465415,
+          "conservative_temperature_C": 28.828395035595065,
+          "in_situ_density_kg_m3": 1023.1711918251691,
+          "potential_density_anomaly_kg_m3": 23.155090118515545,
+          "sound_speed_m_s": 1544.520557527327
+        },
+        {
+          "depth_m": 5.078224182128906,
+          "pressure_dbar": 5.106790226735614,
+          "potential_temperature_C": 28.87969207763672,
+          "practical_salinity": 36.39888381958008,
+          "absolute_salinity_g_kg": 36.570820626501366,
+          "conservative_temperature_C": 28.828324319656478,
+          "in_situ_density_kg_m3": 1023.1765565987586,
+          "potential_density_anomaly_kg_m3": 23.15514874560961,
+          "sound_speed_m_s": 1544.542190869151
+        },
+        {
+          "depth_m": 6.440614223480225,
+          "pressure_dbar": 6.476865538396224,
+          "potential_temperature_C": 28.878995895385742,
+          "practical_salinity": 36.398948669433594,
+          "absolute_salinity_g_kg": 36.57088753529931,
+          "conservative_temperature_C": 28.82762489023595,
+          "in_situ_density_kg_m3": 1023.1825831366077,
+          "potential_density_anomaly_kg_m3": 23.155432241030667,
+          "sound_speed_m_s": 1544.5642996013326
+        },
+        {
+          "depth_m": 7.92956018447876,
+          "pressure_dbar": 7.974221100013669,
+          "potential_temperature_C": 28.877296447753906,
+          "practical_salinity": 36.3990478515625,
+          "absolute_salinity_g_kg": 36.57098910137563,
+          "conservative_temperature_C": 28.825920123540353,
+          "in_situ_density_kg_m3": 1023.1895054604649,
+          "potential_density_anomaly_kg_m3": 23.156078083688158,
+          "sound_speed_m_s": 1544.5864959131318
+        },
+        {
+          "depth_m": 9.572997093200684,
+          "pressure_dbar": 9.626952819205762,
+          "potential_temperature_C": 28.87422752380371,
+          "practical_salinity": 36.39920425415039,
+          "absolute_salinity_g_kg": 36.57114835698164,
+          "conservative_temperature_C": 28.82284261567706,
+          "in_situ_density_kg_m3": 1023.1975813591407,
+          "potential_density_anomaly_kg_m3": 23.157226255596584,
+          "sound_speed_m_s": 1544.6085069517412
+        },
+        {
+          "depth_m": 11.404999732971191,
+          "pressure_dbar": 11.46933237829423,
+          "potential_temperature_C": 28.869632720947266,
+          "practical_salinity": 36.39945602416992,
+          "absolute_salinity_g_kg": 36.571403081920515,
+          "conservative_temperature_C": 28.818234278165715,
+          "in_situ_density_kg_m3": 1023.2070351135535,
+          "potential_density_anomaly_kg_m3": 23.15895735474453,
+          "sound_speed_m_s": 1544.6306269039926
+        },
+        {
+          "depth_m": 13.467140197753906,
+          "pressure_dbar": 13.543173038910673,
+          "potential_temperature_C": 28.863710403442383,
+          "practical_salinity": 36.39985656738281,
+          "absolute_salinity_g_kg": 36.57180733572439,
+          "conservative_temperature_C": 28.812291320096904,
+          "in_situ_density_kg_m3": 1023.2180157349605,
+          "potential_density_anomaly_kg_m3": 23.161245153787263,
+          "sound_speed_m_s": 1544.6540504911352
+        },
+        {
+          "depth_m": 15.810070037841797,
+          "pressure_dbar": 15.899421562826362,
+          "potential_temperature_C": 28.856834411621094,
+          "practical_salinity": 36.400474548339844,
+          "absolute_salinity_g_kg": 36.572430302122775,
+          "conservative_temperature_C": 28.80538489702877,
+          "in_situ_density_kg_m3": 1023.2306629288195,
+          "potential_density_anomaly_kg_m3": 23.164015910380613,
+          "sound_speed_m_s": 1544.6805182760088
+        },
+        {
+          "depth_m": 18.495559692382812,
+          "pressure_dbar": 18.600210382655042,
+          "potential_temperature_C": 28.849773406982422,
+          "practical_salinity": 36.40143585205078,
+          "absolute_salinity_g_kg": 36.573398515347385,
+          "conservative_temperature_C": 28.79827880594795,
+          "in_situ_density_kg_m3": 1023.2450737265466,
+          "potential_density_anomaly_kg_m3": 23.167106496950396,
+          "sound_speed_m_s": 1544.7128634610474
+        },
+        {
+          "depth_m": 21.598819732666016,
+          "pressure_dbar": 21.721193721244145,
+          "potential_temperature_C": 28.843551635742188,
+          "practical_salinity": 36.40281677246094,
+          "absolute_salinity_g_kg": 36.574791117745086,
+          "conservative_temperature_C": 28.791994578553663,
+          "in_situ_density_kg_m3": 1023.2612806643056,
+          "potential_density_anomaly_kg_m3": 23.170232854976916,
+          "sound_speed_m_s": 1544.754647045086
+        },
+        {
+          "depth_m": 25.211410522460938,
+          "pressure_dbar": 25.354476257509386,
+          "potential_temperature_C": 28.83745765686035,
+          "practical_salinity": 36.40562438964844,
+          "absolute_salinity_g_kg": 36.577620297128234,
+          "conservative_temperature_C": 28.78577768028895,
+          "in_situ_density_kg_m3": 1023.2806647289882,
+          "potential_density_anomaly_kg_m3": 23.174390355620858,
+          "sound_speed_m_s": 1544.8069948995928
+        },
+        {
+          "depth_m": 29.444730758666992,
+          "pressure_dbar": 29.612125116679913,
+          "potential_temperature_C": 28.82695770263672,
+          "practical_salinity": 36.417057037353516,
+          "absolute_salinity_g_kg": 36.589116685151765,
+          "conservative_temperature_C": 28.774786955590393,
+          "in_situ_density_kg_m3": 1023.310621062517,
+          "potential_density_anomaly_kg_m3": 23.18650478382017,
+          "sound_speed_m_s": 1544.869741414636
+        },
+        {
+          "depth_m": 34.43415069580078,
+          "pressure_dbar": 34.63033189392336,
+          "potential_temperature_C": 28.768678665161133,
+          "practical_salinity": 36.45167922973633,
+          "absolute_salinity_g_kg": 36.62391782628082,
+          "conservative_temperature_C": 28.715009991212355,
+          "in_situ_density_kg_m3": 1023.3771996606588,
+          "potential_density_anomaly_kg_m3": 23.232041662883717,
+          "sound_speed_m_s": 1544.8680706669406
+        },
+        {
+          "depth_m": 40.344051361083984,
+          "pressure_dbar": 40.57448829309828,
+          "potential_temperature_C": 28.65515899658203,
+          "practical_salinity": 36.47905349731445,
+          "absolute_salinity_g_kg": 36.651443897201794,
+          "conservative_temperature_C": 28.60027639663691,
+          "in_situ_density_kg_m3": 1023.4606784414786,
+          "potential_density_anomaly_kg_m3": 23.290568827175434,
+          "sound_speed_m_s": 1544.7563476390474
+        },
+        {
+          "depth_m": 47.37369155883789,
+          "pressure_dbar": 47.645097852964774,
+          "potential_temperature_C": 28.61618423461914,
+          "practical_salinity": 36.48338317871094,
+          "absolute_salinity_g_kg": 36.65586357771712,
+          "conservative_temperature_C": 28.561097749231198,
+          "in_situ_density_kg_m3": 1023.5066377759551,
+          "potential_density_anomaly_kg_m3": 23.3068797452396,
+          "sound_speed_m_s": 1544.7988343590005
+        },
+        {
+          "depth_m": 55.76428985595703,
+          "pressure_dbar": 56.084914815014756,
+          "potential_temperature_C": 28.595809936523438,
+          "practical_salinity": 36.489559173583984,
+          "absolute_salinity_g_kg": 36.66214050986144,
+          "conservative_temperature_C": 28.5404510071836,
+          "in_situ_density_kg_m3": 1023.5535016285179,
+          "potential_density_anomaly_kg_m3": 23.318369359951134,
+          "sound_speed_m_s": 1544.9065392028203
+        },
+        {
+          "depth_m": 65.80726623535156,
+          "pressure_dbar": 66.18725684665564,
+          "potential_temperature_C": 28.594005584716797,
+          "practical_salinity": 36.495643615722656,
+          "absolute_salinity_g_kg": 36.66833438870386,
+          "conservative_temperature_C": 28.53838645558102,
+          "in_situ_density_kg_m3": 1023.601057974293,
+          "potential_density_anomaly_kg_m3": 23.32360438087119,
+          "sound_speed_m_s": 1545.0824661896938
+        },
+        {
+          "depth_m": 77.85385131835938,
+          "pressure_dbar": 78.30570407188645,
+          "potential_temperature_C": 28.58928871154785,
+          "practical_salinity": 36.49671173095703,
+          "absolute_salinity_g_kg": 36.669528008636846,
+          "conservative_temperature_C": 28.533617465570423,
+          "in_situ_density_kg_m3": 1023.6542828775117,
+          "potential_density_anomaly_kg_m3": 23.326069771678476,
+          "sound_speed_m_s": 1545.281479632349
+        },
+        {
+          "depth_m": 92.3260726928711,
+          "pressure_dbar": 92.86519872633635,
+          "potential_temperature_C": 27.384801864624023,
+          "practical_salinity": 36.3537483215332,
+          "absolute_salinity_g_kg": 36.52615245710361,
+          "conservative_temperature_C": 27.334478645024006,
+          "in_situ_density_kg_m3": 1024.0053949559704,
+          "potential_density_anomaly_kg_m3": 23.614815412035455,
+          "sound_speed_m_s": 1542.7510691173106
+        },
+        {
+          "depth_m": 109.72930145263672,
+          "pressure_dbar": 110.3747362533298,
+          "potential_temperature_C": 24.979745864868164,
+          "practical_salinity": 36.04890441894531,
+          "absolute_salinity_g_kg": 36.220202290949636,
+          "conservative_temperature_C": 24.940184943081572,
+          "in_situ_density_kg_m3": 1024.6105156774772,
+          "potential_density_anomaly_kg_m3": 24.142836441538975,
+          "sound_speed_m_s": 1537.1896629419543
+        },
+        {
+          "depth_m": 130.66600036621094,
+          "pressure_dbar": 131.4412962349011,
+          "potential_temperature_C": 21.422264099121094,
+          "practical_salinity": 35.625980377197266,
+          "absolute_salinity_g_kg": 35.795686314379786,
+          "conservative_temperature_C": 21.395913451011122,
+          "in_situ_density_kg_m3": 1025.4225586439604,
+          "potential_density_anomaly_kg_m3": 24.858879783423163,
+          "sound_speed_m_s": 1528.1571900426777
+        },
+        {
+          "depth_m": 155.85069274902344,
+          "pressure_dbar": 156.78504469018378,
+          "potential_temperature_C": 18.068904876708984,
+          "practical_salinity": 35.359092712402344,
+          "absolute_salinity_g_kg": 35.527955977306085,
+          "conservative_temperature_C": 18.049482159512074,
+          "in_situ_density_kg_m3": 1026.2161123395874,
+          "potential_density_anomaly_kg_m3": 25.535424950239076,
+          "sound_speed_m_s": 1519.001313087635
+        },
+        {
+          "depth_m": 186.12559509277344,
+          "pressure_dbar": 187.25526379471845,
+          "potential_temperature_C": 15.75428295135498,
+          "practical_salinity": 35.28623962402344,
+          "absolute_salinity_g_kg": 35.45509703333327,
+          "conservative_temperature_C": 15.73643119022457,
+          "in_situ_density_kg_m3": 1026.8497556653565,
+          "potential_density_anomaly_kg_m3": 26.02949716969465,
+          "sound_speed_m_s": 1512.5001103376997
+        },
+        {
+          "depth_m": 222.47520446777344,
+          "pressure_dbar": 223.84531004130633,
+          "potential_temperature_C": 14.184341430664062,
+          "practical_salinity": 35.241634368896484,
+          "absolute_salinity_g_kg": 35.4105148129714,
+          "conservative_temperature_C": 14.16767470225765,
+          "in_situ_density_kg_m3": 1027.3270078847797,
+          "potential_density_anomaly_kg_m3": 26.340345834202253,
+          "sound_speed_m_s": 1508.1081898024017
+        },
+        {
+          "depth_m": 266.0403137207031,
+          "pressure_dbar": 267.7071025180919,
+          "potential_temperature_C": 13.169992446899414,
+          "practical_salinity": 35.24378967285156,
+          "absolute_salinity_g_kg": 35.41288536587813,
+          "conservative_temperature_C": 13.153495089971138,
+          "in_situ_density_kg_m3": 1027.7374356027544,
+          "potential_density_anomaly_kg_m3": 26.552818671846808,
+          "sound_speed_m_s": 1505.532993634169
+        },
+        {
+          "depth_m": 318.1274108886719,
+          "pressure_dbar": 320.16110092335714,
+          "potential_temperature_C": 12.467528343200684,
+          "practical_salinity": 35.27724075317383,
+          "absolute_salinity_g_kg": 35.44680007194295,
+          "conservative_temperature_C": 12.45054428909768,
+          "in_situ_density_kg_m3": 1028.1393769793597,
+          "potential_density_anomaly_kg_m3": 26.719123548007246,
+          "sound_speed_m_s": 1504.1048739405455
+        },
+        {
+          "depth_m": 380.2130126953125,
+          "pressure_dbar": 382.70135070458025,
+          "potential_temperature_C": 11.756340980529785,
+          "practical_salinity": 35.29301452636719,
+          "absolute_salinity_g_kg": 35.46314222080894,
+          "conservative_temperature_C": 11.739380212159407,
+          "in_situ_density_kg_m3": 1028.570734758885,
+          "potential_density_anomaly_kg_m3": 26.86879549907235,
+          "sound_speed_m_s": 1502.750355987644
+        },
+        {
+          "depth_m": 453.9377136230469,
+          "pressure_dbar": 456.99036739446626,
+          "potential_temperature_C": 11.223508834838867,
+          "practical_salinity": 35.30256652832031,
+          "absolute_salinity_g_kg": 35.473308627220106,
+          "conservative_temperature_C": 11.20667827259437,
+          "in_situ_density_kg_m3": 1029.011694662793,
+          "potential_density_anomaly_kg_m3": 26.976095168098027,
+          "sound_speed_m_s": 1502.162770164366
+        },
+        {
+          "depth_m": 541.0889282226562,
+          "pressure_dbar": 544.8428439509298,
+          "potential_temperature_C": 10.674890518188477,
+          "practical_salinity": 35.308143615722656,
+          "absolute_salinity_g_kg": 35.47958622577462,
+          "conservative_temperature_C": 10.658335321237084,
+          "in_situ_density_kg_m3": 1029.5111596098886,
+          "potential_density_anomaly_kg_m3": 27.08039367296783,
+          "sound_speed_m_s": 1501.7156457320893
+        },
+        {
+          "depth_m": 643.5667724609375,
+          "pressure_dbar": 648.1925736514503,
+          "potential_temperature_C": 10.049182891845703,
+          "practical_salinity": 35.29542541503906,
+          "absolute_salinity_g_kg": 35.46768536065429,
+          "conservative_temperature_C": 10.033361796108188,
+          "in_situ_density_kg_m3": 1030.0780494796309,
+          "potential_density_anomaly_kg_m3": 27.180851856639492,
+          "sound_speed_m_s": 1501.2009410234011
+        },
+        {
+          "depth_m": 763.3331298828125,
+          "pressure_dbar": 769.042580997119,
+          "potential_temperature_C": 9.455828666687012,
+          "practical_salinity": 35.29612350463867,
+          "absolute_salinity_g_kg": 35.46945776139796,
+          "conservative_temperature_C": 9.440506538830919,
+          "in_situ_density_kg_m3": 1030.7251542134952,
+          "potential_density_anomaly_kg_m3": 27.28255698367775,
+          "sound_speed_m_s": 1501.0782567233446
+        },
+        {
+          "depth_m": 902.3392944335938,
+          "pressure_dbar": 909.3937016021576,
+          "potential_temperature_C": 8.258505821228027,
+          "practical_salinity": 35.19425582885742,
+          "absolute_salinity_g_kg": 35.36826238180669,
+          "conservative_temperature_C": 8.246043688474346,
+          "in_situ_density_kg_m3": 1031.4842534008162,
+          "potential_density_anomaly_kg_m3": 27.394822288247724,
+          "sound_speed_m_s": 1498.8599502361915
+        },
+        {
+          "depth_m": 1062.43994140625,
+          "pressure_dbar": 1071.1592508159356,
+          "potential_temperature_C": 6.889725685119629,
+          "practical_salinity": 35.06871032714844,
+          "absolute_salinity_g_kg": 35.24324016980425,
+          "conservative_temperature_C": 6.880496474134765,
+          "in_situ_density_kg_m3": 1032.3396203972686,
+          "potential_density_anomaly_kg_m3": 27.496429285804425,
+          "sound_speed_m_s": 1496.1601902654115
+        },
+        {
+          "depth_m": 1245.291015625,
+          "pressure_dbar": 1256.0631026050787,
+          "potential_temperature_C": 5.7775444984436035,
+          "practical_salinity": 34.9947395324707,
+          "absolute_salinity_g_kg": 35.17005693715675,
+          "conservative_temperature_C": 5.770401601052365,
+          "in_situ_density_kg_m3": 1033.2874499531094,
+          "potential_density_anomaly_kg_m3": 27.585564947394005,
+          "sound_speed_m_s": 1494.76419546966
+        },
+        {
+          "depth_m": 1452.2509765625,
+          "pressure_dbar": 1465.5405311781244,
+          "potential_temperature_C": 4.929832458496094,
+          "practical_salinity": 34.95181655883789,
+          "absolute_salinity_g_kg": 35.1283117860084,
+          "conservative_temperature_C": 4.92405642760556,
+          "in_situ_density_kg_m3": 1034.3234650044647,
+          "potential_density_anomaly_kg_m3": 27.654909187084968,
+          "sound_speed_m_s": 1494.7942073177442
+        },
+        {
+          "depth_m": 1684.2840576171875,
+          "pressure_dbar": 1700.640189725267,
+          "potential_temperature_C": 3.812256097793579,
+          "practical_salinity": 34.87704086303711,
+          "absolute_salinity_g_kg": 35.05427132961682,
+          "conservative_temperature_C": 3.808422657125325,
+          "in_situ_density_kg_m3": 1035.4857871446634,
+          "potential_density_anomaly_kg_m3": 27.718225215523262,
+          "sound_speed_m_s": 1494.0121294221929
+        },
+        {
+          "depth_m": 1941.8929443359375,
+          "pressure_dbar": 1961.954761101071,
+          "potential_temperature_C": 2.8459603786468506,
+          "practical_salinity": 34.80534362792969,
+          "absolute_salinity_g_kg": 34.983060707741494,
+          "conservative_temperature_C": 2.8437578528441687,
+          "in_situ_density_kg_m3": 1036.7408475299926,
+          "potential_density_anomaly_kg_m3": 27.754868622540698,
+          "sound_speed_m_s": 1494.2196716210606
+        },
+        {
+          "depth_m": 2225.077880859375,
+          "pressure_dbar": 2249.577232383429,
+          "potential_temperature_C": 2.344665050506592,
+          "practical_salinity": 34.79108810424805,
+          "absolute_salinity_g_kg": 34.96949314123258,
+          "conservative_temperature_C": 2.3430723171377936,
+          "in_situ_density_kg_m3": 1038.0884456244537,
+          "potential_density_anomaly_kg_m3": 27.78783322920731,
+          "sound_speed_m_s": 1496.93059142053
+        },
+        {
+          "depth_m": 2533.3359375,
+          "pressure_dbar": 2563.0968596020293,
+          "potential_temperature_C": 2.060499668121338,
+          "practical_salinity": 34.7786750793457,
+          "absolute_salinity_g_kg": 34.957493329583635,
+          "conservative_temperature_C": 2.059281602501035,
+          "in_situ_density_kg_m3": 1039.516445926403,
+          "potential_density_anomaly_kg_m3": 27.801678844610024,
+          "sound_speed_m_s": 1501.0553993015737
+        },
+        {
+          "depth_m": 2865.702880859375,
+          "pressure_dbar": 2901.637682273372,
+          "potential_temperature_C": 1.6499080657958984,
+          "practical_salinity": 34.76539993286133,
+          "absolute_salinity_g_kg": 34.94440458489044,
+          "conservative_temperature_C": 1.6491915761593643,
+          "in_situ_density_kg_m3": 1041.0675547907833,
+          "potential_density_anomaly_kg_m3": 27.82324397251523,
+          "sound_speed_m_s": 1505.0744887164985
+        },
+        {
+          "depth_m": 3220.820068359375,
+          "pressure_dbar": 3263.9222079797537,
+          "potential_temperature_C": 1.4480448961257935,
+          "practical_salinity": 34.76277542114258,
+          "absolute_salinity_g_kg": 34.941880102868026,
+          "conservative_temperature_C": 1.447546385214915,
+          "in_situ_density_kg_m3": 1042.6912730301879,
+          "potential_density_anomaly_kg_m3": 27.83617176289772,
+          "sound_speed_m_s": 1510.4840908418698
+        },
+        {
+          "depth_m": 3597.031982421875,
+          "pressure_dbar": 3648.3665105085715,
+          "potential_temperature_C": 1.3774325847625732,
+          "practical_salinity": 34.76712417602539,
+          "absolute_salinity_g_kg": 34.94630280942485,
+          "conservative_temperature_C": 1.3769765228380426,
+          "in_situ_density_kg_m3": 1044.3843549676576,
+          "potential_density_anomaly_kg_m3": 27.8448084822096,
+          "sound_speed_m_s": 1516.922090900444
+        },
+        {
+          "depth_m": 3992.48388671875,
+          "pressure_dbar": 4053.1761108850083,
+          "potential_temperature_C": 1.3638687133789062,
+          "practical_salinity": 34.77101135253906,
+          "absolute_salinity_g_kg": 34.95023353062149,
+          "conservative_temperature_C": 1.3634013681032993,
+          "in_situ_density_kg_m3": 1046.1408260073229,
+          "potential_density_anomaly_kg_m3": 27.848921840990897,
+          "sound_speed_m_s": 1524.0202711890627
+        },
+        {
+          "depth_m": 4405.22412109375,
+          "pressure_dbar": 4476.447549634085,
+          "potential_temperature_C": 1.3562110662460327,
+          "practical_salinity": 34.771976470947266,
+          "absolute_salinity_g_kg": 34.951200887621994,
+          "conservative_temperature_C": 1.3557453545451013,
+          "in_situ_density_kg_m3": 1047.9564648851667,
+          "potential_density_anomaly_kg_m3": 27.850243138488167,
+          "sound_speed_m_s": 1531.515645581076
+        }
+      ],
+      "authority": "authoritative derived TEOS-10 calculation under ADR-0005"
+    },
+    "fig4_argo_model_collocation": {
+      "platform_id": "5906421",
+      "cycle_number": 42,
+      "observation_time": "2026-08-26T08:30:00Z",
+      "latitude": 7.452,
+      "longitude": 64.12,
+      "metrics": {
+        "temperature_bias_c": -0.9764025996182817,
+        "temperature_rmse_c": 1.5252094258116833,
+        "salinity_bias": -0.35500155315375537,
+        "salinity_rmse": 0.40203392850141895,
+        "sample_count": 7
+      },
+      "collocation_table": [
+        {
+          "depth_m": 4.96,
+          "obs_temperature_c": 28.85,
+          "model_temperature_c": 28.972131049013345,
+          "temperature_delta_c": -0.12213104901334404,
+          "obs_salinity": 35.82,
+          "model_salinity": 36.43406118694219,
+          "salinity_delta": -0.6140611869421875,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 24.81,
+          "obs_temperature_c": 28.82,
+          "model_temperature_c": 28.865618615171684,
+          "temperature_delta_c": -0.04561861517168353,
+          "obs_salinity": 35.84,
+          "model_salinity": 36.43935224641379,
+          "salinity_delta": -0.5993522464137868,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 49.63,
+          "obs_temperature_c": 27.1,
+          "model_temperature_c": 28.733743694919237,
+          "temperature_delta_c": -1.6337436949192359,
+          "obs_salinity": 36.12,
+          "model_salinity": 36.45248067203919,
+          "salinity_delta": -0.3324806720391891,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 99.25,
+          "obs_temperature_c": 22.4,
+          "model_temperature_c": 25.98047258182186,
+          "temperature_delta_c": -3.580472581821862,
+          "obs_salinity": 35.75,
+          "model_salinity": 36.16306657272667,
+          "salinity_delta": -0.41306657272667024,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 198.5,
+          "obs_temperature_c": 14.8,
+          "model_temperature_c": 15.192589189220117,
+          "temperature_delta_c": -0.3925891892201161,
+          "obs_salinity": 35.2,
+          "model_salinity": 35.25674267876642,
+          "salinity_delta": -0.05674267876641892,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 496.2,
+          "obs_temperature_c": 10.2,
+          "model_temperature_c": 10.905832941861505,
+          "temperature_delta_c": -0.7058329418615052,
+          "obs_salinity": 35.05,
+          "model_salinity": 35.30215813976715,
+          "salinity_delta": -0.25215813976715395,
+          "qc_flag": 1
+        },
+        {
+          "depth_m": 992.3,
+          "obs_temperature_c": 7.1,
+          "model_temperature_c": 7.454430125320225,
+          "temperature_delta_c": -0.3544301253202251,
+          "obs_salinity": 34.9,
+          "model_salinity": 35.11714937542088,
+          "salinity_delta": -0.21714937542088109,
+          "qc_flag": 1
+        }
+      ],
+      "authority": "authoritative observation-model collocation comparison under ADR-0005"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "CF-compliant scale_factor and add_offset packing specification.\nFormula: unpacked_value = (packed_value * scale_factor) + add_offset",
+  "properties": {
+    "add_offset": {
+      "default": 0.0,
+      "description": "Linear add offset translation.",
+      "title": "Add Offset",
+      "type": "number"
+    },
+    "packed_data_type": {
+      "default": "int16",
+      "description": "Packed raw integer data type ('int16', 'int32', 'int8', 'uint16', etc.).",
+      "title": "Packed Data Type",
+      "type": "string"
+    },
+    "scale_factor": {
+      "default": 1.0,
+      "description": "Linear scale factor multiplier.",
+      "title": "Scale Factor",
+      "type": "number"
+    },
+    "unpacked_data_type": {
+      "default": "float32",
+      "description": "Unpacked floating point data type ('float32', 'float64').",
+      "title": "Unpacked Data Type",
+      "type": "string"
+    }
+  },
+  "title": "PackingMetadata",
+  "type": "object"
+}

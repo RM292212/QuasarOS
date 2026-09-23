@@ -1,0 +1,18 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "variable": "thetao",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+  "standard_name": "sea_water_potential_temperature",
+  "long_name": "Temperature",
+  "units": "degrees_C",
+  "has_depth": true,
+  "source_file": {
+    "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao/copernicus_phy_thetao_20260824_20260830.nc",
+    "byte_size": 24603646,
+    "sha256": "44786949946780c68b31b08e301239b27170b2086bf04ae433a35b06af7aef97"
+  },
+  "canonical_zarr_path": "data/canonical/copernicus_phy_thetao_fulldepth/copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "authority": "authoritative native-source value under ADR-0005"
+}

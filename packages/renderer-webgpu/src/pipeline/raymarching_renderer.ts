@@ -133,12 +133,11 @@ export class VolumeRaymarchingRenderer {
       canonical_variable: 'dummy',
       range_min: 0,
       range_max: 1,
-      opacity_mapping: 'linear',
       control_points: [
-        { normalized_scalar: 0, color: [0, 0, 0], opacity: 0 },
-        { normalized_scalar: 1, color: [1, 1, 1], opacity: 1 },
+        { normalized_position: 0, red: 0, green: 0, blue: 0, opacity: 0 },
+        { normalized_position: 1, red: 1, green: 1, blue: 1, opacity: 1 },
       ],
-    });
+    } as any);
 
     // 2-level dummy depth LUT
     this._dummyDepthLutBuffer = resManager.uploadDepthLUTBuffer(
@@ -300,7 +299,7 @@ export class VolumeRaymarchingRenderer {
     f32[26] = pkt.clippingBox.maxW;
 
     // 27 (108..111 bytes): earlyTerminationAlpha
-    f32[27] = options.earlyTerminationAlpha ?? 0.99;
+    f32[27] = options.earlyTerminationAlpha ?? 0.98;
 
     // 28..31 (112..127 bytes): scalarOffset, scalarScale, scalarMin, scalarMax
     // For raw quantized uint16: scale = (max - min) / 65535, offset = min

@@ -18,6 +18,7 @@ import type {
   ExactValueQueryRequest,
   ExactValueQueryResponse,
   ReconcilePickRequest,
+  ReconcilePickResponse,
   ProvisionalRenderPickResponse,
 } from '../../../client/src/index.ts';
 

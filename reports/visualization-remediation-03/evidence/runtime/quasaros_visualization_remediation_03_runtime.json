@@ -1,0 +1,9 @@
+{
+  "campaign": "VISUALIZATION-REMEDIATION-03",
+  "status": "READY_FOR_LOCAL_OPERATOR_STARTUP",
+  "backend_url": "http://127.0.0.1:8000",
+  "frontend_url": "http://127.0.0.1:5173",
+  "launcher_script": "run_quasar.ps1",
+  "health_endpoint": "http://127.0.0.1:8000/health/ready",
+  "api_docs_endpoint": "http://127.0.0.1:8000/docs"
+}

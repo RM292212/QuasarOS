@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Deterministic composite key uniquely identifying a sub-volume brick.\nFormat: vis_prod_id:v1:lod{level}:t{time}:bx{x}:by{y}:bz{z}:{var_id}",
+  "properties": {
+    "brick_index_x": {
+      "description": "Spatial brick grid index in X / Longitude dimension.",
+      "minimum": 0,
+      "title": "Brick Index X",
+      "type": "integer"
+    },
+    "brick_index_y": {
+      "description": "Spatial brick grid index in Y / Latitude dimension.",
+      "minimum": 0,
+      "title": "Brick Index Y",
+      "type": "integer"
+    },
+    "brick_index_z": {
+      "description": "Spatial brick grid index in Z / Depth dimension.",
+      "minimum": 0,
+      "title": "Brick Index Z",
+      "type": "integer"
+    },
+    "lod_level": {
+      "description": "Multiresolution level of detail (0 = finest full-resolution).",
+      "minimum": 0,
+      "title": "Lod Level",
+      "type": "integer"
+    },
+    "product_version": {
+      "default": "v1",
+      "description": "Version string of the visualization product.",
+      "title": "Product Version",
+      "type": "string"
+    },
+    "timestep_index": {
+      "description": "Discrete time step index along temporal axis.",
+      "minimum": 0,
+      "title": "Timestep Index",
+      "type": "integer"
+    },
+    "variable_id": {
+      "description": "Canonical variable identifier.",
+      "title": "Variable Id",
+      "type": "string"
+    },
+    "visualization_product_id": {
+      "description": "ID of the visual product.",
+      "title": "Visualization Product Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "visualization_product_id",
+    "lod_level",
+    "timestep_index",
+    "brick_index_x",
+    "brick_index_y",
+    "brick_index_z",
+    "variable_id"
+  ],
+  "title": "BrickIdentityContract",
+  "type": "object"
+}

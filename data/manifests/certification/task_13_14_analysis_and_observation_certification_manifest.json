@@ -1,0 +1,30 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "release_designation": "QuasarOS v1.1.0-dev (Scientific Analysis & In-Situ Observation Engine)",
+  "authority": "authoritative derived analysis & observation collocation under ADR-0005",
+  "certification_status": "TASK-13 & TASK-14 COMPLETE \u2014 SCIENTIFIC ANALYSIS AND OBSERVATION FUSION VALIDATED",
+  "services_certified": [
+    "Point Time Series",
+    "Full-Depth Vertical Profiles (50 levels)",
+    "Arbitrary Vertical Geodesic Transects",
+    "GSW TEOS-10 Derived Soundings (CT, SA, Density, Sound Speed, MLD)",
+    "Argo In-Situ Observation Ingestion & DMQC Collocation Engine"
+  ],
+  "artifacts": {
+    "analysis_engine.py": {
+      "path": "packages/services/src/quasar_services/analysis/analysis_engine.py",
+      "sha256": "f23f8a10a3b335a8bf716cd306a73777909cb01f15f40e2086275d57f7389fd4",
+      "size_bytes": 6957
+    },
+    "router.py": {
+      "path": "packages/services/src/quasar_services/analysis/router.py",
+      "sha256": "65dcf877c1998d31bf4727d8be056c4f3d34a7bbe4b371f7aa3f9a1c9f57281a",
+      "size_bytes": 2383
+    },
+    "collocation_engine.py": {
+      "path": "packages/services/src/quasar_services/observations/collocation_engine.py",
+      "sha256": "3f47d3eaa9ffbee6a57ae8b9039b99152d596e832563e346b22386ee9cd6c750",
+      "size_bytes": 4639
+    }
+  }
+}

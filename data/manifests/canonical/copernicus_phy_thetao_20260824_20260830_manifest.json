@@ -1,0 +1,1433 @@
+{
+  "manifest_schema_version": "2.0.0",
+  "dataset_id": "copernicus_phy_thetao",
+  "dataset_version": "2025.04",
+  "canonical_store_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087",
+  "created_at_utc": "2026-08-30T13:00:40.157941+00:00",
+  "source_asset_sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+  "source_filename": "copernicus_phy_thetao_20260824_20260830.nc",
+  "zarr_format": 2,
+  "compression_codec": "zstd(level=3)",
+  "arrays": {
+    "sea_water_potential_temperature": {
+      "name": "sea_water_potential_temperature",
+      "shape": [
+        7,
+        31,
+        181,
+        97
+      ],
+      "chunks": [
+        1,
+        31,
+        64,
+        64
+      ],
+      "dtype": "float32",
+      "fill_value": "NaN",
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "sea_water_potential_temperature",
+        "long_name": "Sea Water Potential Temperature",
+        "units": "degree_Celsius",
+        "source_variable": "thetao",
+        "physical_quantity": "temperature",
+        "dimensions": [
+          "time",
+          "depth",
+          "latitude",
+          "longitude"
+        ],
+        "missing_value": "NaN",
+        "valid_min": -10.0,
+        "valid_max": 40.0
+      },
+      "logical_sha256": "17fd608417a917d58d3ac2bc143df07ac0e07a892e33e49e83bcd78b617112b6",
+      "chunk_count": 42,
+      "chunks_manifest": [
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.0.0",
+          "chunk_index": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 402495,
+          "sha256": "9b30e82e40215018ae4fe312086c66aec6df46ea7ddb66dbb10d5b4767fd0c18"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.0.1",
+          "chunk_index": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 208869,
+          "sha256": "1c746b068c070c970939e61fae419d2687de12906bfbe69a2118dfd37fc58016"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.1.0",
+          "chunk_index": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366091,
+          "sha256": "97c99b51e92840a3de097a8dda39f313935ae43d274b89d83930ae9a6acaf77d"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.1.1",
+          "chunk_index": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 211868,
+          "sha256": "df5501fad22854a307c61275f43a668f0a934b320729f8fa50b510dc976efae0"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.2.0",
+          "chunk_index": [
+            0,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 296921,
+          "sha256": "e6556d06fe67438b886f931fdfb29804c268fef4cbe48902daf1fb45f5573b70"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/0.0.2.1",
+          "chunk_index": [
+            0,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177285,
+          "sha256": "671fadbab1b0475db019709ad942948db8f5fc75ea1c72b8b5cb25764f2d9c66"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.0.0",
+          "chunk_index": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 399480,
+          "sha256": "71a3f7c6dbd9d9899e418116446d25411b342b90514fcdfcf2c19b7962dab61b"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.0.1",
+          "chunk_index": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 207958,
+          "sha256": "fcc377eb85b9f16c4d37d6941b54faa4cc8ed90ab9f4b97a3d162e0e6877e4e9"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.1.0",
+          "chunk_index": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366342,
+          "sha256": "2d6d247cb55dfc61fd0d788268e63140e18231258d57d2445e180ef50c5c530e"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.1.1",
+          "chunk_index": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 212463,
+          "sha256": "a442db186d50517f1f2ec4bcfd94de6c6d7096b3bb6057bee1a38d9cbedd46e3"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.2.0",
+          "chunk_index": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 296886,
+          "sha256": "717186946d8570b93b8cefedea52d1312feb626769509a50f5839335007ff2d2"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/1.0.2.1",
+          "chunk_index": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177011,
+          "sha256": "0654d3df32e67dd2658c5530d769cda91b414db9a6698e8aa1a4db9bb31b5755"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.0.0",
+          "chunk_index": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 400842,
+          "sha256": "c97a793820a5768fcef2fba94787f63990ccf23e4e36f243fc7f255112641eee"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.0.1",
+          "chunk_index": [
+            2,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 207673,
+          "sha256": "228085071d365e6795695aab8a198f904c22888f8c38865c545c52ed0d226b21"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.1.0",
+          "chunk_index": [
+            2,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366743,
+          "sha256": "b82d5719b57b534cf9bd12a835b891d6ca2c1ecd98e0beabbf402c6757d2b1a8"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.1.1",
+          "chunk_index": [
+            2,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 212611,
+          "sha256": "82c76492dbedad3ff99e7d337c6625aa6620ebd3d0f1f86523f86a3c3d08f873"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.2.0",
+          "chunk_index": [
+            2,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 297665,
+          "sha256": "01fb04ff53bce7b4026950b9a4dbed8f3ed50e2ecf7f7863695e9dce8e4f067a"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/2.0.2.1",
+          "chunk_index": [
+            2,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177014,
+          "sha256": "31f69f65f7e34f1a1f8f16f83c20cc348216c9820588053ede39d6b2ec451656"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.0.0",
+          "chunk_index": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 400925,
+          "sha256": "8fe527a170496ba29889ffa6d4a75f8a3282c8851c0ab6810ea9c6275d9779cf"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.0.1",
+          "chunk_index": [
+            3,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 207488,
+          "sha256": "1be7e51fb819745ba5c4d45ed929875ef5e25d42774ca0259ffa941cf9e00c8c"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.1.0",
+          "chunk_index": [
+            3,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366634,
+          "sha256": "5b27e81e415013f045dec1cf212371c796501c7818889739fc48dba20ff38d75"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.1.1",
+          "chunk_index": [
+            3,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 212846,
+          "sha256": "06a9231d8a14836fa8c12995267e0f15fc4be4fe5ba3e775efafccd1af1d3e09"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.2.0",
+          "chunk_index": [
+            3,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 297973,
+          "sha256": "a09c12d79ef9b013547e827ae6f9e4f6b130a36d3577277c42f66d02a0420efe"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/3.0.2.1",
+          "chunk_index": [
+            3,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177026,
+          "sha256": "2383c1fb62785dfdcca010314b7b9414d713966b529edb08cb3aeeebb6472983"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.0.0",
+          "chunk_index": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 401371,
+          "sha256": "995fb1fc87acc611908bbd0e13744e869410bd492e720edb29856eb588c99ba2"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.0.1",
+          "chunk_index": [
+            4,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 207528,
+          "sha256": "04ef3b3cc57acb70247b2742da84540e9cc762a791fda8b639022d5735fa9625"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.1.0",
+          "chunk_index": [
+            4,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366428,
+          "sha256": "2718b9a5d138d6e8d3b02a98fabd66469192aea16b37b622438dbbcd9b6b6ca3"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.1.1",
+          "chunk_index": [
+            4,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 212763,
+          "sha256": "94b82af2d984611eeee713f6c763f160a0c27f43e944b6679ac471c8125f1ffb"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.2.0",
+          "chunk_index": [
+            4,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 298710,
+          "sha256": "86bee9823172c3ad416ce54a01712317d7e62333788ef68a15998a8d650f6a19"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/4.0.2.1",
+          "chunk_index": [
+            4,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177155,
+          "sha256": "e78a3e23b486bcd4a3446b54e59281f60e9a51d3ba1ab0666ff8a4a442c88f87"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.0.0",
+          "chunk_index": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 401775,
+          "sha256": "a200230524bba2240b9b11b856cf640bee6cae2a31d29d80fbab7adf8a0fc49c"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.0.1",
+          "chunk_index": [
+            5,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 207277,
+          "sha256": "ef991ce65f5f22d3b33b38cd5cbb06641e99479250a63abb59f21a8cbf455b24"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.1.0",
+          "chunk_index": [
+            5,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366349,
+          "sha256": "34ae4c975f9d0dc91d42f32c0c471ad609b643fadedff9f4baee3f972c8d82da"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.1.1",
+          "chunk_index": [
+            5,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 213023,
+          "sha256": "39276c0d7f53b110cc098fa0709974738abb915a05d09b6eb4296999f73e73df"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.2.0",
+          "chunk_index": [
+            5,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 298804,
+          "sha256": "10e99ef9e2abcbfefa9d519be134d75a7ca6c46623236991048add395c6e068f"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/5.0.2.1",
+          "chunk_index": [
+            5,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 176985,
+          "sha256": "441fc51168a29a964ee64cc0dfe219d072659de81371ae590888b583e391edac"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.0.0",
+          "chunk_index": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 399515,
+          "sha256": "34c34c0af93f72e595feec221de8c2e41137ea34cdd23a944e2ee7c6f6bf9399"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.0.1",
+          "chunk_index": [
+            6,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 206631,
+          "sha256": "2908bdbc96b22910c8c25967a3705bcf5ff65a0f6e0d2957f33c91b65d3a444c"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.1.0",
+          "chunk_index": [
+            6,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 366411,
+          "sha256": "1579323e4d91da00211f17639b68283badd5e2b9f262ffd8d9886a73e774f0a8"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.1.1",
+          "chunk_index": [
+            6,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 213151,
+          "sha256": "6f754bd7a3e440ab22f165e3e3e409ff0726d43fb8352b7bcc5dd0869c3f96a3"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.2.0",
+          "chunk_index": [
+            6,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 298977,
+          "sha256": "667c23ac51ec8dc0d1fab02f1696ce2d42bd1f6873808970cf86068598a21e96"
+        },
+        {
+          "chunk_key": "sea_water_potential_temperature/6.0.2.1",
+          "chunk_index": [
+            6,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 177364,
+          "sha256": "246577a380d2bf97aef133f0fdd1d3d255b5287bcdb2a33c5df677ca672e9001"
+        }
+      ]
+    },
+    "validity_mask": {
+      "name": "validity_mask",
+      "shape": [
+        7,
+        31,
+        181,
+        97
+      ],
+      "chunks": [
+        1,
+        31,
+        64,
+        64
+      ],
+      "dtype": "uint8",
+      "fill_value": 1,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "status_flag",
+        "long_name": "Validity and Mask Categorical Flag",
+        "dimensions": [
+          "time",
+          "depth",
+          "latitude",
+          "longitude"
+        ],
+        "flag_values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "flag_meanings": "VALID SOURCE_MISSING LAND BELOW_SEABED OUTSIDE_DOMAIN QC_REJECTED TEMPORALLY_UNAVAILABLE NOT_OBSERVED PROCESSING_FAILED",
+        "categories": {
+          "0": "VALID",
+          "1": "SOURCE_MISSING",
+          "2": "LAND",
+          "3": "BELOW_SEABED",
+          "4": "OUTSIDE_DOMAIN",
+          "5": "QC_REJECTED",
+          "6": "TEMPORALLY_UNAVAILABLE",
+          "7": "NOT_OBSERVED",
+          "8": "PROCESSING_FAILED"
+        }
+      },
+      "logical_sha256": "4d98d25c889cb1738eb951e258d8a0c61f4e2c5e4f88f8a0e6d23f9ae838396b",
+      "chunk_count": 42,
+      "chunks_manifest": [
+        {
+          "chunk_key": "validity_mask/0.0.0.0",
+          "chunk_index": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/0.0.0.1",
+          "chunk_index": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/0.0.1.0",
+          "chunk_index": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/0.0.1.1",
+          "chunk_index": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/0.0.2.0",
+          "chunk_index": [
+            0,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/0.0.2.1",
+          "chunk_index": [
+            0,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.0.0",
+          "chunk_index": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.0.1",
+          "chunk_index": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.1.0",
+          "chunk_index": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.1.1",
+          "chunk_index": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.2.0",
+          "chunk_index": [
+            1,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/1.0.2.1",
+          "chunk_index": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.0.0",
+          "chunk_index": [
+            2,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.0.1",
+          "chunk_index": [
+            2,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.1.0",
+          "chunk_index": [
+            2,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.1.1",
+          "chunk_index": [
+            2,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.2.0",
+          "chunk_index": [
+            2,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/2.0.2.1",
+          "chunk_index": [
+            2,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.0.0",
+          "chunk_index": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.0.1",
+          "chunk_index": [
+            3,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.1.0",
+          "chunk_index": [
+            3,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.1.1",
+          "chunk_index": [
+            3,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.2.0",
+          "chunk_index": [
+            3,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/3.0.2.1",
+          "chunk_index": [
+            3,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.0.0",
+          "chunk_index": [
+            4,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.0.1",
+          "chunk_index": [
+            4,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.1.0",
+          "chunk_index": [
+            4,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.1.1",
+          "chunk_index": [
+            4,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.2.0",
+          "chunk_index": [
+            4,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/4.0.2.1",
+          "chunk_index": [
+            4,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.0.0",
+          "chunk_index": [
+            5,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.0.1",
+          "chunk_index": [
+            5,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.1.0",
+          "chunk_index": [
+            5,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.1.1",
+          "chunk_index": [
+            5,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.2.0",
+          "chunk_index": [
+            5,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/5.0.2.1",
+          "chunk_index": [
+            5,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.0.0",
+          "chunk_index": [
+            6,
+            0,
+            0,
+            0
+          ],
+          "byte_size": 22,
+          "sha256": "8510be62308939ec4889ad18ccee759296a36a40f96df34336b710e3d6ff5bc6"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.0.1",
+          "chunk_index": [
+            6,
+            0,
+            0,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.1.0",
+          "chunk_index": [
+            6,
+            0,
+            1,
+            0
+          ],
+          "byte_size": 526,
+          "sha256": "1de4c05d77d6afb4238f5864998d41f377bf658f7facb7a728a99dbc735b832d"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.1.1",
+          "chunk_index": [
+            6,
+            0,
+            1,
+            1
+          ],
+          "byte_size": 1041,
+          "sha256": "0002a8305081987569ca8d319187263d4e22c7b5d6831a96ccb9ea36b6e2063d"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.2.0",
+          "chunk_index": [
+            6,
+            0,
+            2,
+            0
+          ],
+          "byte_size": 1565,
+          "sha256": "ff412d160d313329daebb4419795a06395772d4f4406d1386b0b903253b12721"
+        },
+        {
+          "chunk_key": "validity_mask/6.0.2.1",
+          "chunk_index": [
+            6,
+            0,
+            2,
+            1
+          ],
+          "byte_size": 933,
+          "sha256": "f04f30b5c9ce5ad06735ed73fe424aab4ef7623110fc7cab34764cbf54aa1c49"
+        }
+      ]
+    },
+    "depth": {
+      "name": "depth",
+      "shape": [
+        31
+      ],
+      "chunks": [
+        31
+      ],
+      "dtype": "float32",
+      "fill_value": null,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "depth",
+        "long_name": "Depth",
+        "units": "m",
+        "positive": "down",
+        "axis": "Z"
+      },
+      "logical_sha256": "4aea70316aa6397cd7745b4ff2732c2659448ed7f16432386a9811812b015fa0",
+      "chunk_count": 1,
+      "chunks_manifest": [
+        {
+          "chunk_key": "depth/0",
+          "chunk_index": [
+            0
+          ],
+          "byte_size": 133,
+          "sha256": "fca289d38f39e87987c869a24afec39be03e9d06fed95802be2890ab7d3f49b6"
+        }
+      ]
+    },
+    "latitude": {
+      "name": "latitude",
+      "shape": [
+        181
+      ],
+      "chunks": [
+        181
+      ],
+      "dtype": "float32",
+      "fill_value": null,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "latitude",
+        "long_name": "Latitude",
+        "units": "degrees_north",
+        "axis": "Y"
+      },
+      "logical_sha256": "59a480f07f2be998bf2b7a455726e5c927544d33f13a1a909f628cabc3f38fe8",
+      "chunk_count": 1,
+      "chunks_manifest": [
+        {
+          "chunk_key": "latitude/0",
+          "chunk_index": [
+            0
+          ],
+          "byte_size": 524,
+          "sha256": "f0218f30837da67a9121cacb868a283bf900982ffd51df342999ab751b656cc8"
+        }
+      ]
+    },
+    "longitude": {
+      "name": "longitude",
+      "shape": [
+        97
+      ],
+      "chunks": [
+        97
+      ],
+      "dtype": "float32",
+      "fill_value": null,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "longitude",
+        "long_name": "Longitude",
+        "units": "degrees_east",
+        "axis": "X"
+      },
+      "logical_sha256": "04a6d60dc22f0096dea6cdec8fe4ba1f6d4b65a8ca83a4146f55dfe9b7cd4f58",
+      "chunk_count": 1,
+      "chunks_manifest": [
+        {
+          "chunk_key": "longitude/0",
+          "chunk_index": [
+            0
+          ],
+          "byte_size": 235,
+          "sha256": "07cc1065045e19b57d012f91c830dc5f1633fc557c34275101b9ebed4ace1175"
+        }
+      ]
+    },
+    "time": {
+      "name": "time",
+      "shape": [
+        7
+      ],
+      "chunks": [
+        7
+      ],
+      "dtype": "float32",
+      "fill_value": null,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "time",
+        "long_name": "Time",
+        "units": "hours since 1950-01-01",
+        "calendar": "gregorian",
+        "axis": "T"
+      },
+      "logical_sha256": "674c0144600eff0db5d676443f9154572d37b9262bcc9939149eb6a828725b19",
+      "chunk_count": 1,
+      "chunks_manifest": [
+        {
+          "chunk_key": "time/0",
+          "chunk_index": [
+            0
+          ],
+          "byte_size": 37,
+          "sha256": "7abb4f9b4507fbd7ea37a9c926e73f10624486eff20bf3c3f6b225f6ad674ae3"
+        }
+      ]
+    },
+    "time_iso": {
+      "name": "time_iso",
+      "shape": [
+        7
+      ],
+      "chunks": [
+        7
+      ],
+      "dtype": "<U20",
+      "fill_value": null,
+      "compressor": "zstd(level=3)",
+      "attributes": {
+        "standard_name": "time",
+        "long_name": "ISO-8601 UTC Timestamps",
+        "units": "ISO-8601 UTC"
+      },
+      "logical_sha256": "0db009b831987c3da011c046ad8fac146a176a61b6634e7a4490061c3bb9c274",
+      "chunk_count": 1,
+      "chunks_manifest": [
+        {
+          "chunk_key": "time_iso/0",
+          "chunk_index": [
+            0
+          ],
+          "byte_size": 82,
+          "sha256": "91d7f0b75f8316e79df05e335c079784cc4431a20b7895a4c6a5ceee7abbbb89"
+        }
+      ]
+    }
+  },
+  "root_attributes": {
+    "schema_version_metadata": {
+      "schema_version": "1.0.0",
+      "min_compatible_version": "1.0.0",
+      "change_classification": "PATCH",
+      "schema_target": "QuasarOS Canonical Scientific Schema"
+    },
+    "identity": {
+      "dataset_id": "copernicus_phy_thetao",
+      "dataset_version": "2025.04",
+      "snapshot_id": "sha256:ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+      "title": "Copernicus Marine Global Ocean Physical 3D Potential Temperature Analysis & Forecast",
+      "description": "Operational daily mean 3D potential temperature analysis and forecast on a 1/12\u00b0 equirectangular grid spanning the Northern Indian Ocean / Arabian Sea / Bay of Bengal.",
+      "provider": {
+        "provider_id": "copernicus_marine",
+        "name": "Copernicus Marine Service (E.U. Copernicus Programme / Mercator Ocean International)",
+        "country": "European Union",
+        "institution_url": "https://marine.copernicus.eu"
+      },
+      "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "scientific_role": "model",
+      "data_class": "model_volume",
+      "processing_level": "ANALYSIS_FORECAST",
+      "operational_status": "operational",
+      "licence": {
+        "licence_id": "Copernicus-Marine-Data-License",
+        "licence_name": "Copernicus Sentinel Data / E.U. Open Data Policy",
+        "terms_url": "https://marine.copernicus.eu/user-corner/service-commitments-and-licence",
+        "attribution_statement": "E.U. Copernicus Marine Service Information; https://doi.org/10.48670/moi-00016",
+        "access_restriction": "attribution_required",
+        "commercial_use_allowed": true
+      },
+      "citations": [
+        {
+          "citation_text": "E.U. Copernicus Marine Service Information (CMEMS). Global Ocean Physics Analysis and Forecast.",
+          "doi": "10.48670/moi-00016",
+          "bibtex": null,
+          "url": "https://doi.org/10.48670/moi-00016"
+        }
+      ],
+      "validation_report": {
+        "state": "valid",
+        "validator_version": "1.0.0",
+        "validated_at_utc": "2026-08-30T13:00:39.349232+00:00",
+        "checks": [
+          {
+            "check_name": "source_file_integrity_sha256",
+            "passed": true,
+            "severity": "INFO",
+            "message": "SHA-256 checksum ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c verified against disk asset.",
+            "timestamp_utc": "2026-08-30T13:00:39.349232+00:00"
+          },
+          {
+            "check_name": "coordinate_monotonicity",
+            "passed": true,
+            "severity": "INFO",
+            "message": "Coordinates depth, latitude, and longitude verified strictly monotonic.",
+            "timestamp_utc": "2026-08-30T13:00:39.349232+00:00"
+          }
+        ],
+        "is_publication_ready": true
+      }
+    },
+    "grid": {
+      "grid_id": "cmems_glo_0083deg_rectilinear",
+      "grid_type": "rectilinear",
+      "crs": "EPSG:4326",
+      "spatial_bounds": {
+        "min_longitude": 80.0,
+        "min_latitude": -3.0,
+        "max_longitude": 88.0,
+        "max_latitude": 12.0
+      },
+      "resolution_x_deg": 0.08334,
+      "resolution_y_deg": 0.08334,
+      "resolution_description": "0.08333_degree_equirectangular",
+      "shape": [
+        181,
+        97
+      ],
+      "dimension_names": [
+        "latitude",
+        "longitude"
+      ],
+      "staggering": "none",
+      "is_periodic_longitude": false,
+      "node_count": null,
+      "element_count": null
+    },
+    "vertical": {
+      "coordinate_type": "z_level",
+      "units": "m",
+      "positive_direction": "down",
+      "datum": "sea_surface",
+      "min_depth_m": 0.49402499198913574,
+      "max_depth_m": 453.9377136230469,
+      "levels": [
+        0.49402499198913574,
+        1.5413750410079956,
+        2.6456689834594727,
+        3.8194949626922607,
+        5.078224182128906,
+        6.440614223480225,
+        7.92956018447876,
+        9.572997093200684,
+        11.404999732971191,
+        13.467140197753906,
+        15.810070037841797,
+        18.495559692382812,
+        21.598819732666016,
+        25.211410522460938,
+        29.444730758666992,
+        34.43415069580078,
+        40.344051361083984,
+        47.37369155883789,
+        55.76428985595703,
+        65.80726623535156,
+        77.85385131835938,
+        92.3260726928711,
+        109.72930145263672,
+        130.66600036621094,
+        155.85069274902344,
+        186.12559509277344,
+        222.47520446777344,
+        266.0403137207031,
+        318.1274108886719,
+        380.2130126953125,
+        453.9377136230469
+      ],
+      "level_count": 31,
+      "is_uniform": false,
+      "is_time_varying": false,
+      "is_space_varying": false,
+      "roms_params": null
+    },
+    "time_semantics": {
+      "calendar": "gregorian",
+      "reference_time_utc": "2026-08-24T00:00:00Z",
+      "valid_time_utc": "2026-08-24T00:00:00Z",
+      "lead_time_seconds": 0,
+      "observation_time_utc": null,
+      "climatology_period": null,
+      "timestep_index": 0,
+      "time_bounds_utc": [
+        "2026-08-24T00:00:00Z",
+        "2026-08-30T00:00:00Z"
+      ],
+      "source_time_string": "hours since 1950-01-01"
+    },
+    "variables": {
+      "sea_water_potential_temperature": {
+        "variable_id": "sea_water_potential_temperature",
+        "canonical_name": "Sea Water Potential Temperature",
+        "source_name": "thetao",
+        "standard_name": "sea_water_potential_temperature",
+        "long_name": "Temperature",
+        "physical_quantity": "temperature",
+        "canonical_units": "degree_Celsius",
+        "source_units": "degrees_C",
+        "topology": "volume_scalar",
+        "data_type": "float32",
+        "dimensions": [
+          "time",
+          "depth",
+          "latitude",
+          "longitude"
+        ],
+        "is_vector": false,
+        "vector_components": null,
+        "vector_convention": "none",
+        "reference_north": "geographic_true_north",
+        "packing": null,
+        "missing_value_contract": {
+          "fill_value": 9.969209968386869e+36,
+          "missing_value": null,
+          "has_nan": true,
+          "valid_min": -10.0,
+          "valid_max": 40.0,
+          "stored_data_type": "float32",
+          "is_fill_value_raw": true,
+          "diagnostics": []
+        },
+        "display_range": {
+          "min_value": 8.0,
+          "max_value": 32.0,
+          "colormap": "turbo",
+          "unit": "\u00b0C",
+          "scale": "linear"
+        },
+        "qc_scheme": null
+      }
+    },
+    "capabilities": {
+      "can_volume_render_3d": true,
+      "can_surface_render_2d": true,
+      "can_render_vector_glyphs": false,
+      "can_render_streamlines": false,
+      "can_render_observation_profiles": false,
+      "can_render_observation_trajectories": false,
+      "can_render_bathymetry_terrain": false,
+      "can_exact_query": true,
+      "can_horizontal_slice": true,
+      "can_vertical_slice": true,
+      "can_extract_isosurface": true,
+      "can_collocate_with_profiles": true
+    },
+    "source_assets": [
+      {
+        "asset_id": "asset_copernicus_phy_thetao_raw",
+        "dataset_id": "copernicus_phy_thetao",
+        "provider_filename": "copernicus_phy_thetao_20260824_20260830.nc",
+        "local_relative_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+        "media_type": "application/x-netcdf4",
+        "format": "netcdf4_enhanced",
+        "artifact_classification": "raw_source",
+        "size_bytes": 15263238,
+        "sha256_checksum": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+        "retrieval_timestamp_utc": "2026-08-30T07:38:55.736183+00:00",
+        "source_url": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024",
+        "is_immutable": true
+      }
+    ],
+    "provenance": [
+      {
+        "lineage_id": "lin_copernicus_phy_thetao_adapter_ca826087",
+        "dataset_id": "copernicus_phy_thetao",
+        "operation": "copernicus_netcdf_adapter_ingestion",
+        "software_name": "quasar_ingestion.adapters.copernicus_phy_adapter",
+        "software_version": "1.0.0",
+        "source_asset_ids": [
+          "asset_copernicus_phy_thetao_raw"
+        ],
+        "source_checksums": {
+          "asset_copernicus_phy_thetao_raw": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c"
+        },
+        "target_asset_ids": [],
+        "parameters": {
+          "variable": "thetao",
+          "canonical_name": "sea_water_potential_temperature",
+          "canonical_units": "degree_Celsius"
+        },
+        "operator": "Scientific Ingestion Engineer",
+        "started_at_utc": "2026-08-30T13:00:39.349232+00:00",
+        "completed_at_utc": "2026-08-30T13:00:39.349232+00:00",
+        "validation_passed": true,
+        "comments": "Ingested via CopernicusPhysicalAdapter without lossless decoding or unit mutation."
+      }
+    ],
+    "spatial_coverage_description": "Northern Indian Ocean / Arabian Sea (-3.00N to 12.00N, 80.00E to 88.00E)",
+    "temporal_coverage_description": "2026-08-24T00:00:00Z to 2026-08-30T00:00:00Z daily analysis/forecast"
+  },
+  "validation_status": "VALIDATED"
+}

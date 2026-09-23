@@ -1,0 +1,83 @@
+{
+  "$defs": {
+    "VectorConvention": {
+      "description": "Directional convention for vector fields.",
+      "enum": [
+        "oceanographic_to",
+        "meteorological_from",
+        "none"
+      ],
+      "title": "VectorConvention",
+      "type": "string"
+    },
+    "WavePartitionType": {
+      "description": "Spectral wave partition classification.",
+      "enum": [
+        "total_sea",
+        "wind_sea",
+        "primary_swell",
+        "secondary_swell",
+        "tertiary_swell",
+        "infragravity"
+      ],
+      "title": "WavePartitionType",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Contract for a single resolved wave partition (wind sea or swell system).",
+  "properties": {
+    "direction_var": {
+      "description": "Variable name for wave propagation direction in degrees [0, 360).",
+      "title": "Direction Var",
+      "type": "string"
+    },
+    "directional_convention": {
+      "$ref": "#/$defs/VectorConvention",
+      "default": "meteorological_from",
+      "description": "Directional convention: 'meteorological_from' (degrees coming from, 0=N, 90=E) or 'oceanographic_to'."
+    },
+    "directional_spreading_var": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Variable name for directional spreading width in degrees.",
+      "title": "Directional Spreading Var"
+    },
+    "partition_index": {
+      "default": 0,
+      "description": "Zero-based index of the partition (0 for total/primary).",
+      "minimum": 0,
+      "title": "Partition Index",
+      "type": "integer"
+    },
+    "partition_type": {
+      "$ref": "#/$defs/WavePartitionType",
+      "description": "Partition identity (wind_sea, primary_swell, etc.)."
+    },
+    "peak_or_mean_period_var": {
+      "description": "Variable name for wave period (s) (peak Tp or mean Tm).",
+      "title": "Peak Or Mean Period Var",
+      "type": "string"
+    },
+    "significant_wave_height_var": {
+      "description": "Variable name for significant wave height Hs (m).",
+      "title": "Significant Wave Height Var",
+      "type": "string"
+    }
+  },
+  "required": [
+    "partition_type",
+    "significant_wave_height_var",
+    "peak_or_mean_period_var",
+    "direction_var"
+  ],
+  "title": "WavePartitionContract",
+  "type": "object"
+}

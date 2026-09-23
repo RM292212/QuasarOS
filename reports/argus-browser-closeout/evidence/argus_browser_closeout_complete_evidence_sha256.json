@@ -1,0 +1,14 @@
+{
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_browser_matrix.json": "adb91d4434c84a4a61f627e2467d7536e3d6d5e5bbc545303e591b2c46d1b56c",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_full_test_results.json": "438a6b2572cc3e1f75c5e1cb0218e47399b6118c1691ed5ae6e6a2d1c950f501",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_gap_register.json": "d6011b6165893c94fa513d5b4bb007b6ded31d3ea4a180e87baa3a93712298e5",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_integration_registry.json": "4fd6151a9aecd8328aa2ee83e9ab8698c32134d1e9e131df58f94b61a0ab6314",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_original_finding_disposition.json": "85f8a0333dc75a7f17b604d4c94d13d5796ef659f2d634bec1c80156c3720f48",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_scientific_rendering_matrix.json": "314a5476713a91dd06f55fefef2990f2c046cbbc82cc64bcd506c0571253626d",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_subagent_registry.json": "d9ac1d8742e31c8980f9175343ee6b8ac15daaac8cd8dd6261a7a2b98d99e159",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_test_script_validation.json": "a865ee9a5f8b63c8d9e96f9db80f3984bd55507067b60a2e2c660f2814025864",
+  "reports\\argus-browser-closeout\\evidence\\argus_browser_closeout_traceability_matrix.csv": "2677c05687cf7d2df41e837fa0e80de708adf25f9b4b66920ea70686365cd993",
+  "reports\\argus-browser-closeout\\evidence\\pre_remediation\\cb_analysis_evidence_hashes.json": "b085e061aebe55dc61778ab4361d749dab2deba810ecf478a3eff72a6280e748",
+  "reports\\argus-browser-closeout\\evidence\\pre_remediation\\pre_existing_dirty_worktree.patch": "709e5463fe548866631b92f6bb119a8efebf9351b007b01b508bfb40dd5438ef",
+  "reports\\argus-browser-closeout\\evidence\\runtime\\quasaros_argus_browser_closeout_runtime.json": "bdc8d54103dbe88cd22be3d89476fe3e91546b17cbc740afdeeaac0484f85a13"
+}

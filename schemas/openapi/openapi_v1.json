@@ -1,0 +1,4890 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "QuasarOS Scientific Catalog & Visualization API",
+    "description": "High-performance control-plane, metadata catalog, and authoritative exact-value query service for QuasarOceanScope.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health/live": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Liveness Probe",
+        "description": "Return liveness status of the catalog service.",
+        "operationId": "health_live_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Readiness Probe",
+        "description": "Return readiness status including cryptographic SHA-256 integrity verification.",
+        "operationId": "health_ready_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalog": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "Catalog Overview",
+        "description": "List all registered dataset families and active/historical snapshots.",
+        "operationId": "get_catalog_api_v1_catalog_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_CatalogOverview_"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/capabilities": {
+      "get": {
+        "tags": [
+          "Capabilities"
+        ],
+        "summary": "System Capabilities",
+        "description": "Retrieve system capabilities, supported coordinate frames, and precision profiles.",
+        "operationId": "get_capabilities_api_v1_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_SystemCapabilities_"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Dataset Details",
+        "description": "Retrieve complete canonical dataset contract metadata.",
+        "operationId": "get_dataset_api_v1_datasets__dataset_id__get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_CanonicalDatasetContract_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/snapshots": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "List Dataset Snapshots",
+        "description": "List available operational and historical snapshots for a dataset with pagination.",
+        "operationId": "list_dataset_snapshots_api_v1_datasets__dataset_id__snapshots_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Maximum snapshots to return",
+              "default": 50,
+              "title": "Limit"
+            },
+            "description": "Maximum snapshots to return"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Pagination offset",
+              "default": 0,
+              "title": "Offset"
+            },
+            "description": "Pagination offset"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_List_SnapshotSummary__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/snapshots/{snapshot_id}": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Get Snapshot Details",
+        "description": "Retrieve details for a specific dataset snapshot.",
+        "operationId": "get_dataset_snapshot_api_v1_datasets__dataset_id__snapshots__snapshot_id__get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "snapshot_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Snapshot Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_SnapshotSummary_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/variables": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Dataset Variables",
+        "description": "Retrieve canonical variable metadata and valid physical ranges for a dataset.",
+        "operationId": "get_dataset_variables_api_v1_datasets__dataset_id__variables_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_DatasetVariablesCatalog_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/times": {
+      "get": {
+        "tags": [
+          "Datasets"
+        ],
+        "summary": "Dataset Time Axis",
+        "description": "Retrieve available discrete timestamps and time semantics for a dataset.",
+        "operationId": "get_dataset_times_api_v1_datasets__dataset_id__times_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_DatasetTimeAxis_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/visualization-products": {
+      "get": {
+        "tags": [
+          "Visualization"
+        ],
+        "summary": "List Visualization Products",
+        "description": "List derived 3D volume visualization products and LOD hierarchies.",
+        "operationId": "list_visualization_products_api_v1_visualization_products_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_List_VisualizationProductSummary__"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/visualization-products/{product_id}": {
+      "get": {
+        "tags": [
+          "Visualization"
+        ],
+        "summary": "Get Visualization Product Detail",
+        "description": "Retrieve complete multiresolution LOD hierarchy, brick inventory, and transfer function.",
+        "operationId": "get_visualization_product_api_v1_visualization_products__product_id__get",
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Product Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_VisualizationProductDetail_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/render-manifests/{product_id}": {
+      "get": {
+        "tags": [
+          "Visualization"
+        ],
+        "summary": "Render Manifest Alias Endpoint",
+        "description": "Alias endpoint conforming to docs/02-architecture/APIContracts.md core resources table.",
+        "operationId": "get_render_manifest_alias_api_v1_render_manifests__product_id__get",
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Product Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_VisualizationProductDetail_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/visualization-products/{product_id}/bricks/{brick_key}/payloads/{representation}": {
+      "get": {
+        "tags": [
+          "Visualization"
+        ],
+        "summary": "Download Immutable Brick Binary Payload",
+        "description": "Stream immutable zstd-compressed binary brick payload (.bin.zst).\n\nAdheres strictly to docs/02-architecture/APIContracts.md, ErrorModel.md, and TASK-06A transport specs:\n- Path params: product_id, brick_key, representation ('f16' or 'u16').\n- Immutable caching headers: Cache-Control: public, max-age=31536000, immutable.\n- Strong ETag validation: supports conditional If-None-Match requests returning 304 Not Modified.\n- Zero host filesystem path leakage in headers or error payloads.",
+        "operationId": "get_brick_payload_api_v1_visualization_products__product_id__bricks__brick_key__payloads__representation__get",
+        "parameters": [
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Product Id"
+            }
+          },
+          {
+            "name": "brick_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Brick Key"
+            }
+          },
+          {
+            "name": "representation",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Representation"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Immutable zstd-compressed binary brick payload.",
+            "content": {
+              "application/octet-stream": {}
+            },
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/octet-stream"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "public, max-age=31536000, immutable"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "\"e8884ebbd172aa6a39cc419c42c828ebe294df7e908b78be89ba8ce2b924384d\""
+                }
+              },
+              "X-Payload-SHA256": {
+                "schema": {
+                  "type": "string",
+                  "example": "e8884ebbd172aa6a39cc419c42c828ebe294df7e908b78be89ba8ce2b924384d"
+                }
+              },
+              "X-Payload-Compressed-Bytes": {
+                "schema": {
+                  "type": "integer",
+                  "example": 104986
+                }
+              },
+              "X-Payload-Uncompressed-Bytes": {
+                "schema": {
+                  "type": "integer",
+                  "example": 278784
+                }
+              },
+              "Accept-Ranges": {
+                "schema": {
+                  "type": "string",
+                  "example": "bytes"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not Modified (payload matching client ETag cached)."
+          },
+          "400": {
+            "description": "Invalid parameter or representation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuasarErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Visualization product, brick key, or binary payload not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuasarErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/queries/value": {
+      "post": {
+        "tags": [
+          "Scientific Queries"
+        ],
+        "summary": "Exact Scientific Point Query",
+        "description": "Execute an authoritative exact-value point query directly from native NetCDF arrays, resolving geodetic coordinates, depth LUT, and exact numerical value.",
+        "operationId": "query_exact_value_api_v1_queries_value_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExactValueQueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_ExactValueQueryResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/queries/profile": {
+      "post": {
+        "tags": [
+          "Scientific Queries"
+        ],
+        "summary": "Authoritative Vertical Profile Cast Query",
+        "description": "Execute an authoritative vertical profile query extracting an exact 1D column cast across all 31 depth levels at target lat/lon and timestep.",
+        "operationId": "query_vertical_profile_api_v1_queries_profile_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerticalProfileQueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_VerticalProfileQueryResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/queries/reconcile-pick": {
+      "post": {
+        "tags": [
+          "Scientific Queries"
+        ],
+        "summary": "Reconcile Provisional GPU Render Pick",
+        "description": "Reconcile a provisional GPU raymarch pick by mapping coordinates and evaluating native NetCDF ground truth, reporting exact difference delta and confidence bounds.",
+        "operationId": "reconcile_provisional_pick_api_v1_queries_reconcile_pick_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReconcilePickRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse_ReconcilePickResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessRestriction": {
+        "type": "string",
+        "enum": [
+          "open_unrestricted",
+          "attribution_required",
+          "non_commercial",
+          "restricted_registration_required",
+          "institutional_only"
+        ],
+        "title": "AccessRestriction",
+        "description": "Data access restriction classification."
+      },
+      "AggregationMethod": {
+        "type": "string",
+        "enum": [
+          "average_2x2x2",
+          "subsample_stride_2",
+          "area_weighted_average",
+          "max_magnitude",
+          "median"
+        ],
+        "title": "AggregationMethod",
+        "description": "Statistical aggregation applied to construct multiresolution LOD levels."
+      },
+      "ApiResponse_CanonicalDatasetContract_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CanonicalDatasetContract"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[CanonicalDatasetContract]"
+      },
+      "ApiResponse_CatalogOverview_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CatalogOverview"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[CatalogOverview]"
+      },
+      "ApiResponse_DatasetTimeAxis_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DatasetTimeAxis"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[DatasetTimeAxis]"
+      },
+      "ApiResponse_DatasetVariablesCatalog_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DatasetVariablesCatalog"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[DatasetVariablesCatalog]"
+      },
+      "ApiResponse_ExactValueQueryResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ExactValueQueryResponse"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[ExactValueQueryResponse]"
+      },
+      "ApiResponse_List_SnapshotSummary__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/SnapshotSummary"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[List[SnapshotSummary]]"
+      },
+      "ApiResponse_List_VisualizationProductSummary__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/VisualizationProductSummary"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[List[VisualizationProductSummary]]"
+      },
+      "ApiResponse_ReconcilePickResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ReconcilePickResponse"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[ReconcilePickResponse]"
+      },
+      "ApiResponse_SnapshotSummary_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SnapshotSummary"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[SnapshotSummary]"
+      },
+      "ApiResponse_SystemCapabilities_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SystemCapabilities"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[SystemCapabilities]"
+      },
+      "ApiResponse_VerticalProfileQueryResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/VerticalProfileQueryResponse"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[VerticalProfileQueryResponse]"
+      },
+      "ApiResponse_VisualizationProductDetail_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/VisualizationProductDetail"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "title": "ApiResponse[VisualizationProductDetail]"
+      },
+      "ArtifactClassification": {
+        "type": "string",
+        "enum": [
+          "raw_source",
+          "intermediate_normalized",
+          "canonical_zarr",
+          "rendering_brick",
+          "observation_index",
+          "metadata_manifest"
+        ],
+        "title": "ArtifactClassification",
+        "description": "Functional role of the artifact in the QuasarOS data architecture."
+      },
+      "AssetFormat": {
+        "type": "string",
+        "enum": [
+          "netcdf4_classic",
+          "netcdf4_enhanced",
+          "netcdf3_64bit_offset",
+          "netcdf3_classic",
+          "parquet",
+          "json_manifest",
+          "zarr_v2",
+          "zarr_v3",
+          "geotiff",
+          "dhi_dfsu",
+          "dhi_dfs2"
+        ],
+        "title": "AssetFormat",
+        "description": "Physical storage and serialization format of the asset."
+      },
+      "BackendCompatibility": {
+        "type": "string",
+        "enum": [
+          "webgpu_recommended",
+          "webgl2_fallback",
+          "both_supported"
+        ],
+        "title": "BackendCompatibility",
+        "description": "Renderer support status for visual products."
+      },
+      "CalendarType": {
+        "type": "string",
+        "enum": [
+          "gregorian",
+          "standard",
+          "proleptic_gregorian",
+          "julian",
+          "noleap",
+          "360_day",
+          "all_leap"
+        ],
+        "title": "CalendarType",
+        "description": "CF-compliant calendar taxonomy."
+      },
+      "CanonicalDatasetContract": {
+        "properties": {
+          "schema_version_metadata": {
+            "$ref": "#/components/schemas/SchemaVersionMetadata",
+            "description": "Schema version and compatibility tracking."
+          },
+          "identity": {
+            "$ref": "#/components/schemas/DatasetIdentity",
+            "description": "Dataset identity, provider metadata, and certification."
+          },
+          "grid": {
+            "$ref": "#/components/schemas/HorizontalGridContract",
+            "description": "Horizontal grid topology and spatial bounding box."
+          },
+          "vertical": {
+            "$ref": "#/components/schemas/VerticalCoordinateContract",
+            "description": "Vertical coordinate system and depth structure."
+          },
+          "time_semantics": {
+            "$ref": "#/components/schemas/TimeSemanticsContract",
+            "description": "Temporal domain, calendar, and forecast lead time definition."
+          },
+          "variables": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CanonicalVariableContract"
+            },
+            "type": "object",
+            "title": "Variables",
+            "description": "Catalog of physical variables indexed by canonical variable ID."
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/DatasetCapabilitiesContract",
+            "description": "Renderer routing and analytical capability flags."
+          },
+          "source_assets": {
+            "items": {
+              "$ref": "#/components/schemas/ImmutableSourceAsset"
+            },
+            "type": "array",
+            "title": "Source Assets",
+            "description": "Underlying raw or normalized source assets with SHA-256 integrity."
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/LineageRecord"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance",
+            "description": "Lineage transformations linking canonical representation to raw files."
+          },
+          "spatial_coverage_description": {
+            "type": "string",
+            "title": "Spatial Coverage Description",
+            "description": "Geographic region description (e.g. 'North Indian Ocean (Arabian Sea / Bay of Bengal)')."
+          },
+          "temporal_coverage_description": {
+            "type": "string",
+            "title": "Temporal Coverage Description",
+            "description": "Temporal interval description (e.g. '2025-04-20 to 2025-04-26 daily forecast')."
+          }
+        },
+        "type": "object",
+        "required": [
+          "identity",
+          "grid",
+          "vertical",
+          "time_semantics",
+          "variables",
+          "capabilities",
+          "spatial_coverage_description",
+          "temporal_coverage_description"
+        ],
+        "title": "CanonicalDatasetContract",
+        "description": "Authoritative top-level canonical oceanographic dataset contract."
+      },
+      "CanonicalVariableContract": {
+        "properties": {
+          "variable_id": {
+            "type": "string",
+            "title": "Variable Id",
+            "description": "Canonical unique variable identifier (e.g. 'sea_water_potential_temperature')."
+          },
+          "canonical_name": {
+            "type": "string",
+            "title": "Canonical Name",
+            "description": "Standardized name across all providers."
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name",
+            "description": "Original variable name in source file (e.g. 'thetao', 'water_temp', 'so', 'VHM0')."
+          },
+          "standard_name": {
+            "type": "string",
+            "title": "Standard Name",
+            "description": "CF standard name (e.g. 'sea_water_potential_temperature', 'sea_surface_wave_significant_height')."
+          },
+          "long_name": {
+            "type": "string",
+            "title": "Long Name",
+            "description": "Human-readable descriptive title."
+          },
+          "physical_quantity": {
+            "$ref": "#/components/schemas/PhysicalQuantity",
+            "description": "Physical quantity classification."
+          },
+          "canonical_units": {
+            "type": "string",
+            "title": "Canonical Units",
+            "description": "Standard canonical unit (e.g. 'degree_Celsius', 'm s-1', 'dbar', '1e-3')."
+          },
+          "source_units": {
+            "type": "string",
+            "title": "Source Units",
+            "description": "Original unit string recorded in raw source metadata."
+          },
+          "topology": {
+            "$ref": "#/components/schemas/Topology",
+            "description": "Geometric rendering topology."
+          },
+          "data_type": {
+            "type": "string",
+            "title": "Data Type",
+            "description": "Canonical storage floating point precision ('float32', 'float64', 'int16').",
+            "default": "float32"
+          },
+          "dimensions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dimensions",
+            "description": "Ordered list of dimension names (e.g. ['time', 'depth', 'latitude', 'longitude'])."
+          },
+          "is_vector": {
+            "type": "boolean",
+            "title": "Is Vector",
+            "description": "Whether this variable forms part of a multi-component vector field.",
+            "default": false
+          },
+          "vector_components": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vector Components",
+            "description": "List of component variable IDs if this is a composite vector."
+          },
+          "vector_convention": {
+            "$ref": "#/components/schemas/VectorConvention",
+            "description": "Direction convention if directional/vector variable.",
+            "default": "none"
+          },
+          "reference_north": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference North",
+            "description": "Reference North datum for directional angles.",
+            "default": "geographic_true_north"
+          },
+          "packing": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PackingMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Scale factor and add offset packing metadata if packed in raw source."
+          },
+          "missing_value_contract": {
+            "$ref": "#/components/schemas/MissingValueContract",
+            "description": "Missing and fill value specifications."
+          },
+          "display_range": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DisplayRange"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Recommended default visual color mapping."
+          },
+          "qc_scheme": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QCScheme"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Quality control standard associated with this variable."
+          }
+        },
+        "type": "object",
+        "required": [
+          "variable_id",
+          "canonical_name",
+          "source_name",
+          "standard_name",
+          "long_name",
+          "physical_quantity",
+          "canonical_units",
+          "source_units",
+          "topology",
+          "dimensions"
+        ],
+        "title": "CanonicalVariableContract",
+        "description": "Authoritative scientific variable contract."
+      },
+      "CatalogOverview": {
+        "properties": {
+          "totalDatasets": {
+            "type": "integer",
+            "title": "Totaldatasets",
+            "description": "Total number of registered dataset families"
+          },
+          "datasets": {
+            "items": {
+              "$ref": "#/components/schemas/DatasetFamilySummary"
+            },
+            "type": "array",
+            "title": "Datasets",
+            "description": "List of dataset families"
+          },
+          "activeSnapshots": {
+            "items": {
+              "$ref": "#/components/schemas/SnapshotSummary"
+            },
+            "type": "array",
+            "title": "Activesnapshots",
+            "description": "List of active operational snapshots"
+          },
+          "historicalSnapshots": {
+            "items": {
+              "$ref": "#/components/schemas/SnapshotSummary"
+            },
+            "type": "array",
+            "title": "Historicalsnapshots",
+            "description": "List of historical validation snapshots"
+          }
+        },
+        "type": "object",
+        "required": [
+          "totalDatasets"
+        ],
+        "title": "CatalogOverview",
+        "description": "Catalog search and overview model."
+      },
+      "ChangeClassification": {
+        "type": "string",
+        "enum": [
+          "PATCH",
+          "ADDITIVE",
+          "BREAKING"
+        ],
+        "title": "ChangeClassification",
+        "description": "Classification of changes between canonical schema versions."
+      },
+      "Citation": {
+        "properties": {
+          "citation_text": {
+            "type": "string",
+            "title": "Citation Text",
+            "description": "Full text bibliographic citation string (APA / BibTeX compatible)."
+          },
+          "doi": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doi",
+            "description": "Digital Object Identifier (e.g. '10.5281/zenodo.11670413')."
+          },
+          "bibtex": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bibtex",
+            "description": "Raw BibTeX citation record."
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url",
+            "description": "Direct persistent link to publication or data landing page."
+          }
+        },
+        "type": "object",
+        "required": [
+          "citation_text"
+        ],
+        "title": "Citation",
+        "description": "Scientific bibliographic citation record."
+      },
+      "CoordinateSpace": {
+        "type": "string",
+        "enum": [
+          "native_grid_indices",
+          "geographic_wgs84",
+          "local_enu",
+          "normalized_texture_coordinates",
+          "brick_local_sample_space",
+          "display_volume_lab"
+        ],
+        "title": "CoordinateSpace",
+        "description": "Coordinate frames across the scientific and visualization pipeline."
+      },
+      "CoordinateTransformContract": {
+        "properties": {
+          "source_coordinate_space": {
+            "$ref": "#/components/schemas/CoordinateSpace",
+            "description": "Starting coordinate frame.",
+            "default": "geographic_wgs84"
+          },
+          "target_coordinate_space": {
+            "$ref": "#/components/schemas/CoordinateSpace",
+            "description": "Destination coordinate frame.",
+            "default": "display_volume_lab"
+          },
+          "origin_longitude_deg": {
+            "type": "number",
+            "title": "Origin Longitude Deg",
+            "description": "Center longitude of the volume rendering domain."
+          },
+          "origin_latitude_deg": {
+            "type": "number",
+            "title": "Origin Latitude Deg",
+            "description": "Center latitude of the volume rendering domain."
+          },
+          "origin_depth_m": {
+            "type": "number",
+            "title": "Origin Depth M",
+            "description": "Reference vertical depth in meters (positive down).",
+            "default": 0.0
+          },
+          "scale_x_meters": {
+            "type": "number",
+            "title": "Scale X Meters",
+            "description": "Scaling factor along X axis.",
+            "default": 1.0
+          },
+          "scale_y_meters": {
+            "type": "number",
+            "title": "Scale Y Meters",
+            "description": "Scaling factor along Y axis.",
+            "default": 1.0
+          },
+          "scale_z_meters": {
+            "type": "number",
+            "title": "Scale Z Meters",
+            "description": "Scaling factor along Z axis.",
+            "default": 1.0
+          },
+          "vertical_exaggeration_factor": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Vertical Exaggeration Factor",
+            "description": "Visual vertical exaggeration multiplier applied ONLY in display space.",
+            "default": 100.0
+          },
+          "uses_non_uniform_depth_lut": {
+            "type": "boolean",
+            "title": "Uses Non Uniform Depth Lut",
+            "description": "Whether non-uniform vertical z-levels require a 1D lookup texture/LUT.",
+            "default": true
+          },
+          "depth_lut_entries_m": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Depth Lut Entries M",
+            "description": "Discrete vertical depth values in meters for non-uniform level lookup."
+          }
+        },
+        "type": "object",
+        "required": [
+          "origin_longitude_deg",
+          "origin_latitude_deg"
+        ],
+        "title": "CoordinateTransformContract",
+        "description": "Formal mapping contract between native source coordinates, WGS84 geographic,\nlocal East-North-Up (ENU), Volume Lab rendering space, and GPU texture coordinates."
+      },
+      "DataClassDiscriminator": {
+        "type": "string",
+        "enum": [
+          "model_volume",
+          "wave_grid",
+          "satellite_grid",
+          "profile_observations",
+          "trajectory_observations",
+          "time_series_observations",
+          "bathymetry_grid",
+          "climatology_grid",
+          "visualization_product",
+          "derived_product"
+        ],
+        "title": "DataClassDiscriminator",
+        "description": "Discriminator classifying the fundamental scientific structure and rendering path.\nEnforces typed discriminated unions across all dataset representations."
+      },
+      "DatasetCapabilitiesContract": {
+        "properties": {
+          "can_volume_render_3d": {
+            "type": "boolean",
+            "title": "Can Volume Render 3D",
+            "description": "Dataset contains 3D/4D depth-resolved scalar field eligible for volume raymarching.",
+            "default": false
+          },
+          "can_surface_render_2d": {
+            "type": "boolean",
+            "title": "Can Surface Render 2D",
+            "description": "Dataset contains 2D surface raster eligible for georeferenced surface mapping.",
+            "default": false
+          },
+          "can_render_vector_glyphs": {
+            "type": "boolean",
+            "title": "Can Render Vector Glyphs",
+            "description": "Dataset contains vector components (u, v, w) eligible for 2D/3D arrow glyph rendering.",
+            "default": false
+          },
+          "can_render_streamlines": {
+            "type": "boolean",
+            "title": "Can Render Streamlines",
+            "description": "Dataset supports streamline or particle flow integration.",
+            "default": false
+          },
+          "can_render_observation_profiles": {
+            "type": "boolean",
+            "title": "Can Render Observation Profiles",
+            "description": "Dataset contains in-situ 1D vertical profile casts (Argo, CTD).",
+            "default": false
+          },
+          "can_render_observation_trajectories": {
+            "type": "boolean",
+            "title": "Can Render Observation Trajectories",
+            "description": "Dataset contains 4D moving observation paths (Glider yo-yo dives, drifters).",
+            "default": false
+          },
+          "can_render_bathymetry_terrain": {
+            "type": "boolean",
+            "title": "Can Render Bathymetry Terrain",
+            "description": "Dataset contains digital bathymetry elevation eligible for 3D seafloor mesh clipping.",
+            "default": false
+          },
+          "can_exact_query": {
+            "type": "boolean",
+            "title": "Can Exact Query",
+            "description": "Dataset supports exact quantitative cell inspection from canonical arrays.",
+            "default": true
+          },
+          "can_horizontal_slice": {
+            "type": "boolean",
+            "title": "Can Horizontal Slice",
+            "description": "Dataset supports arbitrary horizontal depth plane slicing.",
+            "default": false
+          },
+          "can_vertical_slice": {
+            "type": "boolean",
+            "title": "Can Vertical Slice",
+            "description": "Dataset supports arbitrary vertical transect slicing.",
+            "default": false
+          },
+          "can_extract_isosurface": {
+            "type": "boolean",
+            "title": "Can Extract Isosurface",
+            "description": "Dataset supports 3D Marching Cubes / GPU isosurface polygonization.",
+            "default": false
+          },
+          "can_collocate_with_profiles": {
+            "type": "boolean",
+            "title": "Can Collocate With Profiles",
+            "description": "Dataset supports automated 4D spatiotemporal collocation with in-situ profiles.",
+            "default": false
+          }
+        },
+        "type": "object",
+        "title": "DatasetCapabilitiesContract",
+        "description": "Explicit capability declarations for renderer routing and analytical tools."
+      },
+      "DatasetFamilySummary": {
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "title": "Datasetid",
+            "description": "Unique dataset identifier"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Dataset title"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider",
+            "description": "Provider organization"
+          },
+          "scientificRole": {
+            "type": "string",
+            "title": "Scientificrole",
+            "description": "Scientific role (model, observation, etc.)"
+          },
+          "dataClass": {
+            "type": "string",
+            "title": "Dataclass",
+            "description": "Data class discriminator"
+          },
+          "activeSnapshotId": {
+            "type": "string",
+            "title": "Activesnapshotid",
+            "description": "Active operational snapshot ID"
+          },
+          "availableSnapshotsCount": {
+            "type": "integer",
+            "title": "Availablesnapshotscount",
+            "description": "Total number of registered snapshots",
+            "default": 1
+          },
+          "temporalRange": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Temporalrange",
+            "description": "{'start': ..., 'end': ...}"
+          },
+          "variables": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Variables",
+            "description": "Available canonical variable IDs"
+          },
+          "canVolumeRender3d": {
+            "type": "boolean",
+            "title": "Canvolumerender3D",
+            "description": "3D volume rendering capability",
+            "default": false
+          },
+          "canExactQuery": {
+            "type": "boolean",
+            "title": "Canexactquery",
+            "description": "Exact query capability",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "datasetId",
+          "title",
+          "provider",
+          "scientificRole",
+          "dataClass",
+          "activeSnapshotId",
+          "temporalRange"
+        ],
+        "title": "DatasetFamilySummary",
+        "description": "Summary of a dataset family in the catalog."
+      },
+      "DatasetIdentity": {
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Unique, stable machine-readable identifier for this dataset product."
+          },
+          "dataset_version": {
+            "type": "string",
+            "title": "Dataset Version",
+            "description": "Version string of the provider product or canonical snapshot."
+          },
+          "snapshot_id": {
+            "type": "string",
+            "title": "Snapshot Id",
+            "description": "Immutable snapshot identifier or cryptographic hash ensuring dataset reproducibility."
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Human-readable title of the scientific product."
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "Detailed oceanographic and technical description of the product."
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderIdentity",
+            "description": "Authoritative data provider and origin."
+          },
+          "product_id": {
+            "type": "string",
+            "title": "Product Id",
+            "description": "Provider-specific product or catalog identifier."
+          },
+          "scientific_role": {
+            "$ref": "#/components/schemas/ScientificRole",
+            "description": "Scientific role (model, observation, climatology, bathymetry, etc.)."
+          },
+          "data_class": {
+            "$ref": "#/components/schemas/DataClassDiscriminator",
+            "description": "Core scientific data class discriminator for rendering and analysis."
+          },
+          "processing_level": {
+            "$ref": "#/components/schemas/ProcessingLevel",
+            "description": "Processing level (L0 to L4, ANALYSIS_FORECAST, CLIMATOLOGY, etc.)."
+          },
+          "operational_status": {
+            "$ref": "#/components/schemas/OperationalStatus",
+            "description": "Operational maturity status."
+          },
+          "licence": {
+            "$ref": "#/components/schemas/LicenceContract",
+            "description": "Licence terms and attribution obligations."
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "type": "array",
+            "title": "Citations",
+            "description": "Bibliographic citations and persistent DOIs."
+          },
+          "validation_report": {
+            "$ref": "#/components/schemas/ValidationReport",
+            "description": "Formal validation and certification report."
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "dataset_version",
+          "snapshot_id",
+          "title",
+          "description",
+          "provider",
+          "product_id",
+          "scientific_role",
+          "data_class",
+          "processing_level",
+          "operational_status",
+          "licence",
+          "validation_report"
+        ],
+        "title": "DatasetIdentity",
+        "description": "Authoritative scientific dataset identity specification."
+      },
+      "DatasetTimeAxis": {
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "title": "Datasetid",
+            "description": "Dataset identifier"
+          },
+          "snapshotId": {
+            "type": "string",
+            "title": "Snapshotid",
+            "description": "Snapshot identifier"
+          },
+          "calendar": {
+            "type": "string",
+            "title": "Calendar",
+            "description": "CF calendar type",
+            "default": "gregorian"
+          },
+          "temporalClassification": {
+            "type": "string",
+            "title": "Temporalclassification",
+            "description": "Temporal classification of this snapshot"
+          },
+          "timeStepsCount": {
+            "type": "integer",
+            "title": "Timestepscount",
+            "description": "Number of available discrete timesteps"
+          },
+          "availableTimestamps": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Availabletimestamps",
+            "description": "List of ISO 8601 UTC timestamps"
+          },
+          "referenceTimeUtc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Referencetimeutc",
+            "description": "Forecast cycle reference time if applicable"
+          },
+          "startDatetimeUtc": {
+            "type": "string",
+            "title": "Startdatetimeutc",
+            "description": "Start timestamp ISO 8601 UTC"
+          },
+          "endDatetimeUtc": {
+            "type": "string",
+            "title": "Enddatetimeutc",
+            "description": "End timestamp ISO 8601 UTC"
+          },
+          "temporalResolution": {
+            "type": "string",
+            "title": "Temporalresolution",
+            "description": "Temporal resolution description",
+            "default": "P1D (Daily Mean)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "datasetId",
+          "snapshotId",
+          "temporalClassification",
+          "timeStepsCount",
+          "availableTimestamps",
+          "startDatetimeUtc",
+          "endDatetimeUtc"
+        ],
+        "title": "DatasetTimeAxis",
+        "description": "Detailed temporal axis representation for a dataset."
+      },
+      "DatasetVariablesCatalog": {
+        "properties": {
+          "datasetId": {
+            "type": "string",
+            "title": "Datasetid",
+            "description": "Dataset identifier"
+          },
+          "snapshotId": {
+            "type": "string",
+            "title": "Snapshotid",
+            "description": "Snapshot identifier"
+          },
+          "variables": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CanonicalVariableContract"
+            },
+            "type": "object",
+            "title": "Variables",
+            "description": "Canonical variable specifications indexed by variable ID"
+          }
+        },
+        "type": "object",
+        "required": [
+          "datasetId",
+          "snapshotId",
+          "variables"
+        ],
+        "title": "DatasetVariablesCatalog",
+        "description": "Catalog of variables for a dataset."
+      },
+      "DisplayRange": {
+        "properties": {
+          "min_value": {
+            "type": "number",
+            "title": "Min Value",
+            "description": "Lower bound of default transfer function or colorbar."
+          },
+          "max_value": {
+            "type": "number",
+            "title": "Max Value",
+            "description": "Upper bound of default transfer function or colorbar."
+          },
+          "colormap": {
+            "type": "string",
+            "title": "Colormap",
+            "description": "Scientific colormap name ('turbo', 'viridis', 'cmocean_thermal', 'cmocean_haline', 'cmocean_speed').",
+            "default": "turbo"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit",
+            "description": "Display unit label rendered in UI colorbar."
+          },
+          "scale": {
+            "type": "string",
+            "enum": [
+              "linear",
+              "logarithmic",
+              "diverging"
+            ],
+            "title": "Scale",
+            "description": "Color scale transfer function shape.",
+            "default": "linear"
+          }
+        },
+        "type": "object",
+        "required": [
+          "min_value",
+          "max_value",
+          "unit"
+        ],
+        "title": "DisplayRange",
+        "description": "Default visual range and colormap configuration for rendering."
+      },
+      "ErrorCategory": {
+        "type": "string",
+        "enum": [
+          "AUTH",
+          "VALIDATION",
+          "CATALOG",
+          "SOURCE",
+          "DATA",
+          "RENDER",
+          "ANALYSIS",
+          "STORAGE",
+          "JOB",
+          "RATE",
+          "INTERNAL"
+        ],
+        "title": "ErrorCategory",
+        "description": "Categorical prefix conforming to ErrorModel.md."
+      },
+      "ErrorSeverity": {
+        "type": "string",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO"
+        ],
+        "title": "ErrorSeverity",
+        "description": "Severity classification."
+      },
+      "ExactValueQueryRequest": {
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Canonical dataset identifier (e.g. 'copernicus_phy_thetao')."
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version",
+            "description": "Semantic version of the dataset.",
+            "default": "1.0.0"
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Id",
+            "description": "Specific snapshot ID for immutable reproducible queries."
+          },
+          "variable_id": {
+            "type": "string",
+            "title": "Variable Id",
+            "description": "Canonical variable identifier (e.g. 'sea_water_potential_temperature')."
+          },
+          "latitude_deg": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Latitude Deg",
+            "description": "Target latitude in degrees North [-90, 90]."
+          },
+          "longitude_deg": {
+            "type": "number",
+            "maximum": 360.0,
+            "minimum": -180.0,
+            "title": "Longitude Deg",
+            "description": "Target longitude in degrees East [-180, 180] or [0, 360]."
+          },
+          "vertical_selector_type": {
+            "$ref": "#/components/schemas/VerticalSelectorType",
+            "description": "Mode of vertical coordinate specification.",
+            "default": "physical_depth_meters"
+          },
+          "vertical_target_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vertical Target Value",
+            "description": "Target vertical coordinate value (e.g. 50.0 meters depth, 100.0 dbar pressure, or level index).",
+            "default": 0.0
+          },
+          "time_selector_mode": {
+            "$ref": "#/components/schemas/TimeSelectorMode",
+            "description": "Temporal selection mode.",
+            "default": "exact_utc_timestamp"
+          },
+          "target_time_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Time Utc",
+            "description": "ISO 8601 UTC timestamp."
+          },
+          "forecast_lead_time_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast Lead Time Seconds",
+            "description": "Lead time seconds from cycle reference time if querying forecast cycle."
+          },
+          "selection_interpolation": {
+            "$ref": "#/components/schemas/SelectionInterpolationContract",
+            "description": "Interpolation policy and tolerances."
+          },
+          "requested_units": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Units",
+            "description": "Preferred scientific units (if conversion requested)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "variable_id",
+          "latitude_deg",
+          "longitude_deg"
+        ],
+        "title": "ExactValueQueryRequest",
+        "description": "Authoritative request contract for point or profile scientific queries.\nBypasses visual GPU buffers and directly targets canonical gridded data."
+      },
+      "ExactValueQueryResponse": {
+        "properties": {
+          "response_type": {
+            "type": "string",
+            "title": "Response Type",
+            "description": "Discriminator identifying this as an authoritative scientific evaluation.",
+            "default": "authoritative_scientific_value"
+          },
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Canonical dataset identifier."
+          },
+          "variable_id": {
+            "type": "string",
+            "title": "Variable Id",
+            "description": "Canonical variable identifier."
+          },
+          "scientific_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scientific Value",
+            "description": "Authoritative numerical value (null if cell state is missing/masked/outside domain)."
+          },
+          "canonical_units": {
+            "type": "string",
+            "title": "Canonical Units",
+            "description": "Scientific units of the returned value."
+          },
+          "value_state": {
+            "$ref": "#/components/schemas/PhysicalCellState",
+            "description": "Validity state (valid, missing, masked, outside_domain, below_seafloor, rejected_by_qc).",
+            "default": "valid"
+          },
+          "requested_latitude_deg": {
+            "type": "number",
+            "title": "Requested Latitude Deg",
+            "description": "Originally requested latitude."
+          },
+          "requested_longitude_deg": {
+            "type": "number",
+            "title": "Requested Longitude Deg",
+            "description": "Originally requested longitude."
+          },
+          "resolved_latitude_deg": {
+            "type": "number",
+            "title": "Resolved Latitude Deg",
+            "description": "Actual resolved/evaluated latitude."
+          },
+          "resolved_longitude_deg": {
+            "type": "number",
+            "title": "Resolved Longitude Deg",
+            "description": "Actual resolved/evaluated longitude."
+          },
+          "resolved_depth_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved Depth M",
+            "description": "Actual physical depth evaluated in meters."
+          },
+          "resolved_time_utc": {
+            "type": "string",
+            "title": "Resolved Time Utc",
+            "description": "Actual valid ISO 8601 UTC timestamp evaluated."
+          },
+          "grid_index_evaluated": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grid Index Evaluated",
+            "description": "Discrete [time_idx, depth_idx, lat_idx, lon_idx] native array index evaluated."
+          },
+          "selection_method_used": {
+            "$ref": "#/components/schemas/SelectionMethod",
+            "description": "Mathematical selection/interpolation algorithm used.",
+            "default": "nearest_native_sample"
+          },
+          "source_asset_id": {
+            "type": "string",
+            "title": "Source Asset Id",
+            "description": "Immutable ID of the underlying NetCDF/Zarr asset from which the value was extracted."
+          },
+          "source_asset_sha256": {
+            "type": "string",
+            "title": "Source Asset Sha256",
+            "description": "SHA-256 hash of the immutable source asset."
+          },
+          "provenance_details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance Details",
+            "description": "Additional lineage or computation details (e.g. TEOS-10 parameters if derived)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "variable_id",
+          "canonical_units",
+          "requested_latitude_deg",
+          "requested_longitude_deg",
+          "resolved_latitude_deg",
+          "resolved_longitude_deg",
+          "resolved_time_utc",
+          "source_asset_id",
+          "source_asset_sha256"
+        ],
+        "title": "ExactValueQueryResponse",
+        "description": "Discriminator: 'authoritative_scientific_value'.\nAuthoritative scientific value resolved directly from source NetCDF / canonical Zarr arrays.\nCarries complete lineage, evaluated coordinates, and physical validity state."
+      },
+      "GridType": {
+        "type": "string",
+        "enum": [
+          "rectilinear",
+          "curvilinear",
+          "staggered",
+          "unstructured",
+          "point_collection",
+          "trajectory"
+        ],
+        "title": "GridType",
+        "description": "Classification of the horizontal grid topology."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthStatus": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Health state: 'ok', 'degraded', 'unavailable'"
+          },
+          "service": {
+            "type": "string",
+            "title": "Service",
+            "description": "Service identifier",
+            "default": "quasar-catalog-service"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version",
+            "description": "Service release version",
+            "default": "1.0.0"
+          },
+          "activeSnapshotsCount": {
+            "type": "integer",
+            "title": "Activesnapshotscount",
+            "description": "Number of loaded active snapshots",
+            "default": 0
+          },
+          "historicalSnapshotsCount": {
+            "type": "integer",
+            "title": "Historicalsnapshotscount",
+            "description": "Number of loaded historical snapshots",
+            "default": 0
+          },
+          "visualizationProductsCount": {
+            "type": "integer",
+            "title": "Visualizationproductscount",
+            "description": "Number of loaded visualization products",
+            "default": 0
+          },
+          "integrityVerified": {
+            "type": "boolean",
+            "title": "Integrityverified",
+            "description": "Whether all SHA-256 integrity checks passed",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "HealthStatus",
+        "description": "Service health check model."
+      },
+      "HorizontalGridContract": {
+        "properties": {
+          "grid_id": {
+            "type": "string",
+            "title": "Grid Id",
+            "description": "Unique identifier for the horizontal grid configuration."
+          },
+          "grid_type": {
+            "$ref": "#/components/schemas/GridType",
+            "description": "Fundamental topology of the horizontal grid."
+          },
+          "crs": {
+            "type": "string",
+            "title": "Crs",
+            "description": "Coordinate Reference System string (e.g. 'EPSG:4326').",
+            "default": "EPSG:4326"
+          },
+          "spatial_bounds": {
+            "$ref": "#/components/schemas/SpatialBoundingBox",
+            "description": "Geographic bounding box enclosing all valid grid cells."
+          },
+          "resolution_x_deg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution X Deg",
+            "description": "Zonal grid resolution in degrees (for rectilinear grids)."
+          },
+          "resolution_y_deg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolution Y Deg",
+            "description": "Meridional grid resolution in degrees (for rectilinear grids)."
+          },
+          "resolution_description": {
+            "type": "string",
+            "title": "Resolution Description",
+            "description": "Human-readable description of grid resolution (e.g. '0.08333_degree_equirectangular')."
+          },
+          "shape": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Shape",
+            "description": "Array shape along horizontal dimensions [ny, nx] or [n_points]."
+          },
+          "dimension_names": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Dimension Names",
+            "description": "Names of the horizontal dimensions (e.g. ['latitude', 'longitude'])."
+          },
+          "staggering": {
+            "$ref": "#/components/schemas/StaggeringType",
+            "description": "Grid staggering classification if Arakawa staggered.",
+            "default": "none"
+          },
+          "is_periodic_longitude": {
+            "type": "boolean",
+            "title": "Is Periodic Longitude",
+            "description": "Whether the grid wraps 360 degrees around the globe.",
+            "default": false
+          },
+          "node_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Node Count",
+            "description": "Number of nodes (for unstructured mesh)."
+          },
+          "element_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Element Count",
+            "description": "Number of polygonal elements (for unstructured mesh)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "grid_id",
+          "grid_type",
+          "spatial_bounds",
+          "resolution_description",
+          "shape",
+          "dimension_names"
+        ],
+        "title": "HorizontalGridContract",
+        "description": "Authoritative contract specifying the horizontal grid representation."
+      },
+      "ImmutableSourceAsset": {
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "title": "Asset Id",
+            "description": "Unique identifier for this specific physical file or object."
+          },
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Reference to the parent dataset identity."
+          },
+          "provider_filename": {
+            "type": "string",
+            "title": "Provider Filename",
+            "description": "Original authoritative filename as distributed by provider."
+          },
+          "local_relative_path": {
+            "type": "string",
+            "title": "Local Relative Path",
+            "description": "Repository-relative or storage-relative path to the asset."
+          },
+          "media_type": {
+            "type": "string",
+            "title": "Media Type",
+            "description": "Standard MIME type (e.g. 'application/x-netcdf4', 'application/json')."
+          },
+          "format": {
+            "$ref": "#/components/schemas/AssetFormat",
+            "description": "Underlying serialization format."
+          },
+          "artifact_classification": {
+            "$ref": "#/components/schemas/ArtifactClassification",
+            "description": "Role of this asset in the scientific data plane."
+          },
+          "size_bytes": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Size Bytes",
+            "description": "Exact bitwise file size in bytes (must be > 0)."
+          },
+          "sha256_checksum": {
+            "type": "string",
+            "title": "Sha256 Checksum",
+            "description": "Bitwise SHA-256 hexadecimal checksum (64 lowercase hex characters)."
+          },
+          "retrieval_timestamp_utc": {
+            "type": "string",
+            "title": "Retrieval Timestamp Utc",
+            "description": "ISO 8601 UTC timestamp recording exact acquisition time."
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url",
+            "description": "Direct upstream download or API endpoint URL where asset was fetched."
+          },
+          "is_immutable": {
+            "type": "boolean",
+            "title": "Is Immutable",
+            "description": "Flag certifying asset immutability. Overwriting is strictly prohibited.",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "asset_id",
+          "dataset_id",
+          "provider_filename",
+          "local_relative_path",
+          "media_type",
+          "format",
+          "artifact_classification",
+          "size_bytes",
+          "sha256_checksum",
+          "retrieval_timestamp_utc"
+        ],
+        "title": "ImmutableSourceAsset",
+        "description": "Immutable asset record tracking raw or processed file on disk / storage."
+      },
+      "LicenceContract": {
+        "properties": {
+          "licence_id": {
+            "type": "string",
+            "title": "Licence Id",
+            "description": "Standard license identifier (e.g. 'CC-BY-4.0', 'Copernicus-Marine-Data-License', 'GEBCO-2020-Terms')."
+          },
+          "licence_name": {
+            "type": "string",
+            "title": "Licence Name",
+            "description": "Full human-readable license name."
+          },
+          "terms_url": {
+            "type": "string",
+            "title": "Terms Url",
+            "description": "Official URL specifying complete legal license terms."
+          },
+          "attribution_statement": {
+            "type": "string",
+            "title": "Attribution Statement",
+            "description": "Mandatory user-facing attribution statement that must be rendered in UI."
+          },
+          "access_restriction": {
+            "$ref": "#/components/schemas/AccessRestriction",
+            "description": "Access restriction and registration policy.",
+            "default": "attribution_required"
+          },
+          "commercial_use_allowed": {
+            "type": "boolean",
+            "title": "Commercial Use Allowed",
+            "description": "Whether commercial exploitation of the data is permissible.",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "licence_id",
+          "licence_name",
+          "terms_url",
+          "attribution_statement"
+        ],
+        "title": "LicenceContract",
+        "description": "Authoritative licensing terms and terms-of-use contract."
+      },
+      "LineageRecord": {
+        "properties": {
+          "lineage_id": {
+            "type": "string",
+            "title": "Lineage Id",
+            "description": "Unique lineage identifier (UUID or hash)."
+          },
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Dataset identifier associated with this transformation."
+          },
+          "operation": {
+            "type": "string",
+            "title": "Operation",
+            "description": "Scientific or ingestion operation name (e.g. 'cf_normalization', 'teos10_density')."
+          },
+          "software_name": {
+            "type": "string",
+            "title": "Software Name",
+            "description": "Name of software package or module executing the operation.",
+            "default": "quasar_contracts"
+          },
+          "software_version": {
+            "type": "string",
+            "title": "Software Version",
+            "description": "Exact software version.",
+            "default": "1.0.0"
+          },
+          "source_asset_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Asset Ids",
+            "description": "List of input asset IDs consumed by the operation."
+          },
+          "source_checksums": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Source Checksums",
+            "description": "Cryptographic SHA-256 hashes of input assets at execution time."
+          },
+          "target_asset_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Target Asset Ids",
+            "description": "List of output asset IDs produced by the operation."
+          },
+          "parameters": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Parameters",
+            "description": "Execution parameters, thresholds, and mathematical settings."
+          },
+          "operator": {
+            "type": "string",
+            "title": "Operator",
+            "description": "Identity of the service, agent, or researcher initiating the transformation."
+          },
+          "started_at_utc": {
+            "type": "string",
+            "title": "Started At Utc",
+            "description": "ISO 8601 UTC timestamp of operation start."
+          },
+          "completed_at_utc": {
+            "type": "string",
+            "title": "Completed At Utc",
+            "description": "ISO 8601 UTC timestamp of operation completion."
+          },
+          "validation_passed": {
+            "type": "boolean",
+            "title": "Validation Passed",
+            "description": "Whether post-operation validation checks succeeded.",
+            "default": true
+          },
+          "comments": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comments",
+            "description": "Additional scientific context or execution notes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "lineage_id",
+          "dataset_id",
+          "operation",
+          "operator",
+          "started_at_utc",
+          "completed_at_utc"
+        ],
+        "title": "LineageRecord",
+        "description": "Immutable provenance record connecting derived or normalized data to source assets."
+      },
+      "MissingValueContract": {
+        "properties": {
+          "fill_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fill Value",
+            "description": "CF _FillValue (e.g. -32767.0, -9999.0, 9.96921e+36, 0.0, NaN)."
+          },
+          "missing_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Missing Value",
+            "description": "CF missing_value legacy attribute."
+          },
+          "has_nan": {
+            "type": "boolean",
+            "title": "Has Nan",
+            "description": "Whether IEEE 754 NaN represents missing data.",
+            "default": true
+          },
+          "valid_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Min",
+            "description": "Minimum physical threshold below which data are invalid."
+          },
+          "valid_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Max",
+            "description": "Maximum physical threshold above which data are invalid."
+          },
+          "stored_data_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stored Data Type",
+            "description": "Declared raw storage datatype ('int8', 'int16', 'int32', 'uint16', 'float32', 'float64')."
+          },
+          "is_fill_value_raw": {
+            "type": "boolean",
+            "title": "Is Fill Value Raw",
+            "description": "Whether fill_value is compared against raw packed integers before scale/offset decoding.",
+            "default": true
+          },
+          "diagnostics": {
+            "items": {
+              "$ref": "#/components/schemas/ScientificDiagnostic"
+            },
+            "type": "array",
+            "title": "Diagnostics",
+            "description": "Scientific diagnostics and warnings regarding fill value definitions."
+          }
+        },
+        "type": "object",
+        "title": "MissingValueContract",
+        "description": "Authoritative missing value and valid range specification.\n\nSupports:\n- Provider-declared fill values (int, float, NaN, zero sentinel).\n- Legacy missing_value attribute with structured difference diagnostics.\n- Decoupled missing-value checking on raw stored vs decoded physical values.\n- Explicit type representation checks against stored data types."
+      },
+      "MultiresolutionLevelContract": {
+        "properties": {
+          "lod_level": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Lod Level",
+            "description": "LOD index (0 = native/finest, higher indices = coarser resolutions)."
+          },
+          "grid_shape": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Grid Shape",
+            "description": "[nx, ny, nz] spatial dimensions at this LOD."
+          },
+          "brick_shape": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Brick Shape",
+            "description": "[bx, by, bz] standard sub-volume brick dimensions.",
+            "default": [
+              32,
+              32,
+              32
+            ]
+          },
+          "brick_grid_shape": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Brick Grid Shape",
+            "description": "[num_bricks_x, num_bricks_y, num_bricks_z] grid layout of bricks."
+          },
+          "total_brick_count": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Total Brick Count",
+            "description": "Total number of sub-volume bricks in this LOD."
+          },
+          "aggregation_method": {
+            "$ref": "#/components/schemas/AggregationMethod",
+            "description": "Method used to compute coarser LOD levels from finer levels.",
+            "default": "average_2x2x2"
+          },
+          "sample_data_type": {
+            "type": "string",
+            "title": "Sample Data Type",
+            "description": "Data type of uncompressed voxels at this LOD.",
+            "default": "float32"
+          },
+          "voxel_resolution_x_deg": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Voxel Resolution X Deg",
+            "description": "Effective spatial voxel resolution in longitude (degrees)."
+          },
+          "voxel_resolution_y_deg": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Voxel Resolution Y Deg",
+            "description": "Effective spatial voxel resolution in latitude (degrees)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "lod_level",
+          "grid_shape",
+          "brick_grid_shape",
+          "total_brick_count",
+          "voxel_resolution_x_deg",
+          "voxel_resolution_y_deg"
+        ],
+        "title": "MultiresolutionLevelContract",
+        "description": "Contract defining a specific Level of Detail (LOD) in the multiresolution hierarchy.\nLOD 0 is the finest native grid resolution."
+      },
+      "OperationalStatus": {
+        "type": "string",
+        "enum": [
+          "operational",
+          "pre_operational",
+          "research",
+          "demonstration",
+          "retired",
+          "synthetic"
+        ],
+        "title": "OperationalStatus",
+        "description": "Operational maturity and release qualification status."
+      },
+      "OutOfRangeRenderingPolicy": {
+        "type": "string",
+        "enum": [
+          "clamp_to_edge_color",
+          "discard_transparent",
+          "render_alert_color"
+        ],
+        "title": "OutOfRangeRenderingPolicy",
+        "description": "Behavior when physical values fall outside transfer function bounds."
+      },
+      "PackingMetadata": {
+        "properties": {
+          "scale_factor": {
+            "type": "number",
+            "title": "Scale Factor",
+            "description": "Linear scale factor multiplier.",
+            "default": 1.0
+          },
+          "add_offset": {
+            "type": "number",
+            "title": "Add Offset",
+            "description": "Linear add offset translation.",
+            "default": 0.0
+          },
+          "packed_data_type": {
+            "type": "string",
+            "title": "Packed Data Type",
+            "description": "Packed raw integer data type ('int16', 'int32', 'int8', 'uint16', etc.).",
+            "default": "int16"
+          },
+          "unpacked_data_type": {
+            "type": "string",
+            "title": "Unpacked Data Type",
+            "description": "Unpacked floating point data type ('float32', 'float64').",
+            "default": "float32"
+          }
+        },
+        "type": "object",
+        "title": "PackingMetadata",
+        "description": "CF-compliant scale_factor and add_offset packing specification.\nFormula: unpacked_value = (packed_value * scale_factor) + add_offset"
+      },
+      "PhysicalCellState": {
+        "type": "string",
+        "enum": [
+          "valid",
+          "missing",
+          "masked",
+          "outside_domain",
+          "below_seafloor",
+          "not_evaluated",
+          "rejected_by_qc"
+        ],
+        "title": "PhysicalCellState",
+        "description": "Authoritative physical validity state of an individual voxel / cell."
+      },
+      "PhysicalQuantity": {
+        "type": "string",
+        "enum": [
+          "temperature",
+          "practical_salinity",
+          "absolute_salinity",
+          "velocity_component",
+          "velocity_vector",
+          "speed",
+          "surface_elevation",
+          "wave_height",
+          "wave_direction",
+          "wave_period",
+          "bathymetry_elevation",
+          "dissolved_oxygen",
+          "chlorophyll_concentration",
+          "nitrate",
+          "phosphate",
+          "silicate",
+          "density",
+          "sound_speed",
+          "mixed_layer_depth",
+          "quality_flag",
+          "dimensionless"
+        ],
+        "title": "PhysicalQuantity",
+        "description": "Authoritative physical quantity taxonomy."
+      },
+      "ProcessingLevel": {
+        "type": "string",
+        "enum": [
+          "L0",
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "ANALYSIS_FORECAST",
+          "REANALYSIS",
+          "CLIMATOLOGY",
+          "TERRAIN_MODEL",
+          "DERIVED_DIAGNOSTIC"
+        ],
+        "title": "ProcessingLevel",
+        "description": "Standard processing level classification (NASA / CEOS / Operational standard)."
+      },
+      "ProviderIdentity": {
+        "properties": {
+          "provider_id": {
+            "type": "string",
+            "title": "Provider Id",
+            "description": "Machine-readable provider identifier (e.g. 'copernicus_marine', 'incois', 'noaa_ncei', 'argo_gdac')."
+          },
+          "name": {
+            "type": "string",
+            "title": "Name",
+            "description": "Full organizational or programme name."
+          },
+          "country": {
+            "type": "string",
+            "title": "Country",
+            "description": "Country or international jurisdiction code/name."
+          },
+          "institution_url": {
+            "type": "string",
+            "title": "Institution Url",
+            "description": "Primary official portal URL."
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider_id",
+          "name",
+          "country",
+          "institution_url"
+        ],
+        "title": "ProviderIdentity",
+        "description": "Authoritative provider and institution identity."
+      },
+      "ProvisionalRenderPickResponse": {
+        "properties": {
+          "response_type": {
+            "type": "string",
+            "title": "Response Type",
+            "description": "Discriminator identifying this as an approximate rendering texture sample.",
+            "default": "approximate_render_sample"
+          },
+          "visualization_product_id": {
+            "type": "string",
+            "title": "Visualization Product Id",
+            "description": "ID of the visual product under the raycast cursor."
+          },
+          "lod_level": {
+            "type": "integer",
+            "title": "Lod Level",
+            "description": "LOD level of the sampled brick."
+          },
+          "approximate_value": {
+            "type": "number",
+            "title": "Approximate Value",
+            "description": "Value sampled from GPU texture or quantized buffer."
+          },
+          "display_units": {
+            "type": "string",
+            "title": "Display Units",
+            "description": "Display units corresponding to the current transfer function."
+          },
+          "world_ray_hit_position": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "World Ray Hit Position",
+            "description": "[x, y, z] position in 3D Volume Lab world space where ray intersection occurred."
+          },
+          "estimated_sample_error_bound": {
+            "type": "number",
+            "title": "Estimated Sample Error Bound",
+            "description": "Theoretical error bound based on LOD downsampling and texture quantization."
+          },
+          "approximation_notice": {
+            "type": "string",
+            "title": "Approximation Notice",
+            "description": "Mandatory user-facing scientific notice.",
+            "default": "PROVISIONAL VALUE: Interpolated from GPU rendering volume. Query /queries/value for authoritative scientific data."
+          }
+        },
+        "type": "object",
+        "required": [
+          "visualization_product_id",
+          "lod_level",
+          "approximate_value",
+          "display_units",
+          "world_ray_hit_position",
+          "estimated_sample_error_bound"
+        ],
+        "title": "ProvisionalRenderPickResponse",
+        "description": "Discriminator: 'approximate_render_sample'.\nReturned during live 3D viewport raycast hover/click interactions.\nExplicitly carries an approximation warning and error confidence bounds."
+      },
+      "QCScheme": {
+        "type": "string",
+        "enum": [
+          "wmo_argo",
+          "ioos_qartod",
+          "gebco_tid",
+          "custom"
+        ],
+        "title": "QCScheme",
+        "description": "Quality control standard taxonomy."
+      },
+      "QuantizationContract": {
+        "properties": {
+          "scale_factor": {
+            "type": "number",
+            "title": "Scale Factor",
+            "description": "Multiplicative scale factor applied during quantization: float_val = int_val * scale_factor + add_offset."
+          },
+          "add_offset": {
+            "type": "number",
+            "title": "Add Offset",
+            "description": "Additive offset applied during quantization."
+          },
+          "quantized_data_type": {
+            "type": "string",
+            "title": "Quantized Data Type",
+            "description": "Quantized integer type (e.g. 'uint8', 'uint16', 'uint32').",
+            "default": "uint16"
+          },
+          "unquantized_data_type": {
+            "type": "string",
+            "title": "Unquantized Data Type",
+            "description": "Source unquantized floating point type.",
+            "default": "float32"
+          },
+          "reserved_missing_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reserved Missing Code",
+            "description": "Dedicated discrete integer code reserved for missing / masked / invalid samples.",
+            "default": 65535
+          },
+          "theoretical_max_quantization_error": {
+            "type": "number",
+            "title": "Theoretical Max Quantization Error",
+            "description": "Maximum absolute error introduced by quantization: 0.5 * scale_factor."
+          },
+          "is_eligible_for_exact_query": {
+            "type": "boolean",
+            "title": "Is Eligible For Exact Query",
+            "description": "MANDATORY FALSE: Quantized render textures must NEVER be queried as authoritative scientific values.",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "scale_factor",
+          "add_offset",
+          "theoretical_max_quantization_error"
+        ],
+        "title": "QuantizationContract",
+        "description": "Metadata governing linear integer quantization for GPU texture memory packing.\nEnforces documented error bounds and strictly flags data as non-authoritative."
+      },
+      "QuasarErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "Machine-readable error code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Safe, human-readable error message"
+          },
+          "requestId": {
+            "type": "string",
+            "title": "Requestid",
+            "description": "Unique request identifier for tracing"
+          },
+          "retryable": {
+            "type": "boolean",
+            "title": "Retryable",
+            "description": "Whether the request may be retried",
+            "default": false
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details",
+            "description": "Safe structured metadata (no absolute paths or secrets)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "requestId"
+        ],
+        "title": "QuasarErrorDetail",
+        "description": "Structured error payload conforming to docs/02-architecture/ErrorModel.md."
+      },
+      "QuasarErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/QuasarErrorDetail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "QuasarErrorResponse",
+        "description": "Top-level standardized error envelope."
+      },
+      "ROMSSCoordinateParameters": {
+        "properties": {
+          "Vtransform": {
+            "type": "integer",
+            "enum": [
+              1,
+              2
+            ],
+            "title": "Vtransform",
+            "description": "Vertical transformation equation (1: Song & Haidvogel 1994; 2: Shchepetkin & McWilliams 2005).",
+            "default": 1
+          },
+          "Vstretching": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              4,
+              5
+            ],
+            "title": "Vstretching",
+            "description": "Vertical stretching function (1: Song/Haidvogel, 2: A. Shchepetkin 2005, 4: UCLA, 5: Souza).",
+            "default": 1
+          },
+          "theta_s": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Theta S",
+            "description": "Surface stretching parameter (theta_s >= 0.0)."
+          },
+          "theta_b": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Theta B",
+            "description": "Bottom stretching parameter (theta_b >= 0.0)."
+          },
+          "hc": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Hc",
+            "description": "Critical depth / thermocline parameter in meters (hc > 0.0)."
+          },
+          "N": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "N",
+            "description": "Number of vertical terrain-following s-levels."
+          },
+          "s_rho": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "S Rho",
+            "description": "Fractional non-dimensional vertical coordinates at RHO points (in [-1.0, 0.0])."
+          },
+          "Cs_r": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Cs R",
+            "description": "Non-dimensional stretching curves C(s) at RHO points (in [-1.0, 0.0])."
+          },
+          "s_w": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "S W",
+            "description": "Fractional vertical coordinates at W points (in [-1.0, 0.0])."
+          },
+          "Cs_w": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cs W",
+            "description": "Stretching curves C(s) at W points (in [-1.0, 0.0])."
+          }
+        },
+        "type": "object",
+        "required": [
+          "theta_s",
+          "theta_b",
+          "hc",
+          "N",
+          "s_rho",
+          "Cs_r"
+        ],
+        "title": "ROMSSCoordinateParameters",
+        "description": "Theoretical formulation parameters for ROMS terrain-following s-coordinates.\nSupports Vtransform 1 (Song & Haidvogel 1994) and Vtransform 2 (Shchepetkin & McWilliams 2005)."
+      },
+      "ReconcilePickRequest": {
+        "properties": {
+          "provisional_pick": {
+            "$ref": "#/components/schemas/ProvisionalRenderPickResponse",
+            "description": "The approximate GPU rendering pick received during 3D viewport raycast."
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id",
+            "description": "Dataset identifier override (if omitted, extracted from visual product metadata or default)."
+          },
+          "variable_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Id",
+            "description": "Variable identifier override (if omitted, extracted from visual product metadata or default)."
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Id",
+            "description": "Snapshot identifier override."
+          },
+          "target_time_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Time Utc",
+            "description": "Target UTC timestamp override."
+          },
+          "latitude_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 90.0,
+                "minimum": -90.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude Deg",
+            "description": "Explicit latitude coordinate (if omitted, mapped from world_ray_hit_position)."
+          },
+          "longitude_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 360.0,
+                "minimum": -180.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude Deg",
+            "description": "Explicit longitude coordinate (if omitted, mapped from world_ray_hit_position)."
+          },
+          "depth_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depth M",
+            "description": "Explicit physical depth in meters (if omitted, mapped from world_ray_hit_position)."
+          },
+          "selection_method": {
+            "$ref": "#/components/schemas/SelectionMethod",
+            "description": "Selection method to use for authoritative ground truth.",
+            "default": "nearest_native_sample"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provisional_pick"
+        ],
+        "title": "ReconcilePickRequest",
+        "description": "Request payload to reconcile a provisional GPU raymarch pick against authoritative native NetCDF ground truth."
+      },
+      "ReconcilePickResponse": {
+        "properties": {
+          "response_type": {
+            "type": "string",
+            "title": "Response Type",
+            "description": "Discriminator identifying this as an authoritative reconciled pick.",
+            "default": "authoritative_reconciled_pick"
+          },
+          "provisional_value": {
+            "type": "number",
+            "title": "Provisional Value",
+            "description": "Approximate scalar value sampled from GPU rendering texture."
+          },
+          "provisional_lod_level": {
+            "type": "integer",
+            "title": "Provisional Lod Level",
+            "description": "LOD level of the sampled brick."
+          },
+          "estimated_sample_error_bound": {
+            "type": "number",
+            "title": "Estimated Sample Error Bound",
+            "description": "Theoretical error bound based on texture quantization and LOD downsampling."
+          },
+          "authoritative_response": {
+            "$ref": "#/components/schemas/ExactValueQueryResponse",
+            "description": "Authoritative exact scientific response evaluated directly from native NetCDF source."
+          },
+          "absolute_difference_delta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Absolute Difference Delta",
+            "description": "Absolute numerical error: |provisional_value - authoritative_scientific_value|."
+          },
+          "relative_difference_percent": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relative Difference Percent",
+            "description": "Relative error percentage: (|delta| / |exact|) * 100."
+          },
+          "within_estimated_error_bound": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Within Estimated Error Bound",
+            "description": "Whether the empirical difference is strictly within the estimated sample error bound."
+          },
+          "reconciliation_notice": {
+            "type": "string",
+            "title": "Reconciliation Notice",
+            "description": "Scientific reconciliation notice.",
+            "default": "PROVISIONAL PICK RECONCILED: Authoritative native NetCDF ground truth evaluated directly from immutable source."
+          }
+        },
+        "type": "object",
+        "required": [
+          "provisional_value",
+          "provisional_lod_level",
+          "estimated_sample_error_bound",
+          "authoritative_response"
+        ],
+        "title": "ReconcilePickResponse",
+        "description": "Response contract reconciling approximate GPU texture sample against authoritative native NetCDF ground truth."
+      },
+      "RenderStatisticsContract": {
+        "properties": {
+          "valid_min": {
+            "type": "number",
+            "title": "Valid Min",
+            "description": "Global minimum physical value across valid (non-missing) samples."
+          },
+          "valid_max": {
+            "type": "number",
+            "title": "Valid Max",
+            "description": "Global maximum physical value across valid (non-missing) samples."
+          },
+          "percentile_01": {
+            "type": "number",
+            "title": "Percentile 01",
+            "description": "1st percentile physical value for robust visual contrast scaling."
+          },
+          "percentile_50": {
+            "type": "number",
+            "title": "Percentile 50",
+            "description": "50th percentile (median) physical value."
+          },
+          "percentile_99": {
+            "type": "number",
+            "title": "Percentile 99",
+            "description": "99th percentile physical value for robust visual contrast scaling."
+          },
+          "mean_value": {
+            "type": "number",
+            "title": "Mean Value",
+            "description": "Mean physical value across valid ocean samples."
+          },
+          "std_dev_value": {
+            "type": "number",
+            "title": "Std Dev Value",
+            "description": "Standard deviation of valid ocean samples."
+          },
+          "histogram_bin_edges": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Histogram Bin Edges",
+            "description": "List of N+1 bin edge values defining the histogram partition."
+          },
+          "histogram_counts": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Histogram Counts",
+            "description": "List of N sample counts per bin."
+          },
+          "missing_sample_fraction": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Missing Sample Fraction",
+            "description": "Fraction of total voxels classified as missing, land, or QC-rejected [0.0, 1.0].",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "valid_min",
+          "valid_max",
+          "percentile_01",
+          "percentile_50",
+          "percentile_99",
+          "mean_value",
+          "std_dev_value"
+        ],
+        "title": "RenderStatisticsContract",
+        "description": "Comprehensive statistical summaries used for dynamic transfer function histogramming,\ncontrast stretching, and empty-space skipping bounds."
+      },
+      "ResponseMeta": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "title": "Requestid",
+            "description": "Unique request tracing identifier"
+          },
+          "schemaVersion": {
+            "type": "string",
+            "title": "Schemaversion",
+            "description": "API contract schema version",
+            "default": "1.0.0"
+          },
+          "timestampUtc": {
+            "type": "string",
+            "title": "Timestamputc",
+            "description": "UTC response generation timestamp"
+          }
+        },
+        "type": "object",
+        "title": "ResponseMeta",
+        "description": "Authoritative response envelope metadata."
+      },
+      "SchemaVersionMetadata": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version",
+            "description": "Authoritative semantic version of this canonical contract.",
+            "default": "1.0.0"
+          },
+          "min_compatible_version": {
+            "type": "string",
+            "title": "Min Compatible Version",
+            "description": "Minimum client / reader schema version required to deserialize this contract.",
+            "default": "1.0.0"
+          },
+          "change_classification": {
+            "$ref": "#/components/schemas/ChangeClassification",
+            "description": "Change classification relative to preceding schema iteration.",
+            "default": "PATCH"
+          },
+          "schema_target": {
+            "type": "string",
+            "title": "Schema Target",
+            "description": "Target domain and scope of the schema.",
+            "default": "QuasarOS Canonical Scientific Schema"
+          }
+        },
+        "type": "object",
+        "title": "SchemaVersionMetadata",
+        "description": "Metadata tracking schema version and compatibility classification."
+      },
+      "ScientificDiagnostic": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "Machine-readable error or warning code."
+          },
+          "category": {
+            "$ref": "#/components/schemas/ErrorCategory",
+            "description": "Functional category."
+          },
+          "severity": {
+            "$ref": "#/components/schemas/ErrorSeverity",
+            "description": "Severity level.",
+            "default": "ERROR"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable explanation safe for UI display."
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id",
+            "description": "Dataset identifier related to this diagnostic."
+          },
+          "variable_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variable Id",
+            "description": "Variable identifier related to this diagnostic."
+          },
+          "suggested_action": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Suggested Action",
+            "description": "Actionable suggestion for operator or researcher."
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details",
+            "description": "Safe structured context attributes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "category",
+          "message"
+        ],
+        "title": "ScientificDiagnostic",
+        "description": "Structured diagnostic message for validation reports and API error responses."
+      },
+      "ScientificRole": {
+        "type": "string",
+        "enum": [
+          "model",
+          "observation",
+          "climatology",
+          "bathymetry",
+          "satellite",
+          "derived",
+          "rendering_acceleration",
+          "test_fixture"
+        ],
+        "title": "ScientificRole",
+        "description": "Authoritative scientific role of the dataset in QuasarOS."
+      },
+      "SelectionInterpolationContract": {
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/SelectionMethod",
+            "description": "Governing coordinate selection/interpolation algorithm.",
+            "default": "nearest_native_sample"
+          },
+          "allows_extrapolation": {
+            "type": "boolean",
+            "title": "Allows Extrapolation",
+            "description": "Whether extrapolation beyond the convex hull of valid native grid points is permitted.",
+            "default": false
+          },
+          "max_horizontal_extrapolation_deg": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Max Horizontal Extrapolation Deg",
+            "description": "Maximum allowed distance in degrees for horizontal extrapolation (0.0 = none).",
+            "default": 0.0
+          },
+          "max_vertical_extrapolation_m": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Max Vertical Extrapolation M",
+            "description": "Maximum allowed vertical extrapolation in meters (0.0 = none).",
+            "default": 0.0
+          },
+          "interpolation_weights_provenance": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interpolation Weights Provenance",
+            "description": "Recorded weights of surrounding grid points used during interpolation."
+          }
+        },
+        "type": "object",
+        "title": "SelectionInterpolationContract",
+        "description": "Formal specification of mathematical selection and spatial/temporal interpolation methods."
+      },
+      "SelectionMethod": {
+        "type": "string",
+        "enum": [
+          "nearest_native_sample",
+          "exact_grid_index",
+          "trilinear_interpolation",
+          "bilinear_horizontal_nearest_vertical",
+          "native_level_horizontal_interpolation"
+        ],
+        "title": "SelectionMethod",
+        "description": "Scientific coordinate resolution and selection method."
+      },
+      "SnapshotSummary": {
+        "properties": {
+          "snapshotId": {
+            "type": "string",
+            "title": "Snapshotid",
+            "description": "Immutable snapshot identifier"
+          },
+          "datasetId": {
+            "type": "string",
+            "title": "Datasetid",
+            "description": "Parent dataset identifier"
+          },
+          "temporalClassification": {
+            "type": "string",
+            "title": "Temporalclassification",
+            "description": "OPERATIONAL_CURRENT_SNAPSHOT or HISTORICAL_SEVEN_DAY_VALIDATION_SNAPSHOT"
+          },
+          "startDate": {
+            "type": "string",
+            "title": "Startdate",
+            "description": "Start date (ISO 8601 string)"
+          },
+          "endDate": {
+            "type": "string",
+            "title": "Enddate",
+            "description": "End date (ISO 8601 string)"
+          },
+          "latestValidTime": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latestvalidtime",
+            "description": "Latest valid timestamp ISO 8601 UTC"
+          },
+          "shape": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Shape",
+            "description": "Array shape [time, depth, lat, lon]"
+          },
+          "temperatureRangeDegC": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temperaturerangedegc",
+            "description": "Valid physical temperature range"
+          },
+          "sourceSha256": {
+            "type": "string",
+            "title": "Sourcesha256",
+            "description": "Bitwise SHA-256 digest of source NetCDF or canonical baseline"
+          },
+          "rawNcPath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rawncpath",
+            "description": "Repository-relative safe path to raw NetCDF"
+          },
+          "canonicalZarrPath": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonicalzarrpath",
+            "description": "Repository-relative safe path to canonical Zarr store"
+          },
+          "visualizationProductId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Visualizationproductid",
+            "description": "Associated visualization product ID if available"
+          },
+          "isEligibleForExactQuery": {
+            "type": "boolean",
+            "title": "Iseligibleforexactquery",
+            "description": "True for native NetCDF / canonical arrays",
+            "default": true
+          },
+          "immutable": {
+            "type": "boolean",
+            "title": "Immutable",
+            "description": "Immutability certification",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "snapshotId",
+          "datasetId",
+          "temporalClassification",
+          "startDate",
+          "endDate",
+          "shape",
+          "sourceSha256"
+        ],
+        "title": "SnapshotSummary",
+        "description": "Summary of an individual operational or historical snapshot."
+      },
+      "SpatialBoundingBox": {
+        "properties": {
+          "min_longitude": {
+            "type": "number",
+            "title": "Min Longitude",
+            "description": "Westernmost longitude in degrees."
+          },
+          "min_latitude": {
+            "type": "number",
+            "title": "Min Latitude",
+            "description": "Southernmost latitude in degrees."
+          },
+          "max_longitude": {
+            "type": "number",
+            "title": "Max Longitude",
+            "description": "Easternmost longitude in degrees."
+          },
+          "max_latitude": {
+            "type": "number",
+            "title": "Max Latitude",
+            "description": "Northernmost latitude in degrees."
+          }
+        },
+        "type": "object",
+        "required": [
+          "min_longitude",
+          "min_latitude",
+          "max_longitude",
+          "max_latitude"
+        ],
+        "title": "SpatialBoundingBox",
+        "description": "2D spatial bounding box in geographic coordinates."
+      },
+      "StaggeringType": {
+        "type": "string",
+        "enum": [
+          "none",
+          "arakawa_a",
+          "arakawa_b",
+          "arakawa_c_rho",
+          "arakawa_c_u",
+          "arakawa_c_v",
+          "arakawa_c_psi"
+        ],
+        "title": "StaggeringType",
+        "description": "Arakawa grid staggering convention."
+      },
+      "SystemCapabilities": {
+        "properties": {
+          "serverVersion": {
+            "type": "string",
+            "title": "Serverversion",
+            "description": "Catalog service server version",
+            "default": "1.0.0"
+          },
+          "supportedRenderingBackends": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supportedrenderingbackends",
+            "description": "Supported 3D volume rendering backend targets"
+          },
+          "supportedCoordinateSpaces": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supportedcoordinatespaces",
+            "description": "Supported coordinate reference frames"
+          },
+          "supportedSelectionMethods": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supportedselectionmethods",
+            "description": "Supported interpolation algorithms for exact queries"
+          },
+          "exactQueryPrecision": {
+            "type": "string",
+            "title": "Exactqueryprecision",
+            "description": "Numerical precision of exact queries",
+            "default": "float32/float64 (Native Provider Array Full Precision)"
+          },
+          "gpuVisualizationPrecision": {
+            "type": "string",
+            "title": "Gpuvisualizationprecision",
+            "description": "Precision of GPU textures",
+            "default": "r16float / r16uint (Lossy / Quantized with Documented Bounds)"
+          },
+          "resourceLimits": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Resourcelimits",
+            "description": "Resource constraints and safety bounds"
+          }
+        },
+        "type": "object",
+        "title": "SystemCapabilities",
+        "description": "System and dataset capabilities model."
+      },
+      "TimeSelectorMode": {
+        "type": "string",
+        "enum": [
+          "exact_utc_timestamp",
+          "nearest_available_timestep",
+          "forecast_reference_and_lead"
+        ],
+        "title": "TimeSelectorMode",
+        "description": "Time selection mode."
+      },
+      "TimeSemanticsContract": {
+        "properties": {
+          "calendar": {
+            "$ref": "#/components/schemas/CalendarType",
+            "description": "Underlying CF calendar type.",
+            "default": "gregorian"
+          },
+          "reference_time_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Time Utc",
+            "description": "Forecast analysis / model cycle initialization time (ISO 8601 UTC e.g. '2026-08-30T00:00:00Z')."
+          },
+          "valid_time_utc": {
+            "type": "string",
+            "title": "Valid Time Utc",
+            "description": "Authoritative physical valid time of the field state (ISO 8601 UTC)."
+          },
+          "lead_time_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Time Seconds",
+            "description": "Forecast lead time offset tau in seconds (>= 0)."
+          },
+          "observation_time_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Time Utc",
+            "description": "Exact in-situ measurement or satellite pass timestamp (ISO 8601 UTC)."
+          },
+          "climatology_period": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Climatology Period",
+            "description": "Climatological baseline period description (e.g. '1991-2020 August decadal mean')."
+          },
+          "timestep_index": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Timestep Index",
+            "description": "Zero-based timestep index in the temporal sequence.",
+            "default": 0
+          },
+          "time_bounds_utc": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Bounds Utc",
+            "description": "[start_time_utc, end_time_utc] interval bounds for time-averaged data (e.g. daily mean)."
+          },
+          "source_time_string": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Time String",
+            "description": "Original provider time encoding string (e.g. 'hours since 1950-01-01 00:00:00')."
+          }
+        },
+        "type": "object",
+        "required": [
+          "valid_time_utc"
+        ],
+        "title": "TimeSemanticsContract",
+        "description": "Authoritative time and forecast semantics specification."
+      },
+      "Topology": {
+        "type": "string",
+        "enum": [
+          "volume_scalar",
+          "volume_vector",
+          "surface_scalar",
+          "surface_vector",
+          "terrain",
+          "profile",
+          "trajectory",
+          "point_timeseries",
+          "mesh",
+          "mask",
+          "uncertainty"
+        ],
+        "title": "Topology",
+        "description": "Geometric topology of the variable array."
+      },
+      "TransferFunctionContract": {
+        "properties": {
+          "colormap_preset_name": {
+            "type": "string",
+            "title": "Colormap Preset Name",
+            "description": "Standard ocean colormap preset name (e.g. 'cmocean_thermal', 'cmocean_haline', 'viridis', 'turbo')."
+          },
+          "physical_domain_min": {
+            "type": "number",
+            "title": "Physical Domain Min",
+            "description": "Physical quantity value corresponding to normalized position 0.0."
+          },
+          "physical_domain_max": {
+            "type": "number",
+            "title": "Physical Domain Max",
+            "description": "Physical quantity value corresponding to normalized position 1.0."
+          },
+          "physical_units": {
+            "type": "string",
+            "title": "Physical Units",
+            "description": "Physical units of the transfer function domain (e.g. 'degree_Celsius', 'PSU')."
+          },
+          "control_points": {
+            "items": {
+              "$ref": "#/components/schemas/TransferFunctionControlPoint"
+            },
+            "type": "array",
+            "title": "Control Points",
+            "description": "Ordered sequence of color and opacity control points."
+          },
+          "out_of_range_policy": {
+            "$ref": "#/components/schemas/OutOfRangeRenderingPolicy",
+            "description": "Visual behavior when physical values fall outside [min, max].",
+            "default": "discard_transparent"
+          },
+          "missing_value_color_rgba": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Missing Value Color Rgba",
+            "description": "RGBA color assigned to missing, land, or QC-rejected samples.",
+            "default": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "colormap_preset_name",
+          "physical_domain_min",
+          "physical_domain_max",
+          "physical_units",
+          "control_points"
+        ],
+        "title": "TransferFunctionContract",
+        "description": "Contract defining scientific transfer function curves, colormaps, opacity mappings,\nand out-of-bounds/missing value policies."
+      },
+      "TransferFunctionControlPoint": {
+        "properties": {
+          "normalized_position": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Normalized Position",
+            "description": "Position along normalized domain [0.0, 1.0]."
+          },
+          "red": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Red",
+            "description": "Normalized Red component [0.0, 1.0]."
+          },
+          "green": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Green",
+            "description": "Normalized Green component [0.0, 1.0]."
+          },
+          "blue": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Blue",
+            "description": "Normalized Blue component [0.0, 1.0]."
+          },
+          "opacity": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Opacity",
+            "description": "Normalized Opacity/Alpha component [0.0, 1.0]."
+          }
+        },
+        "type": "object",
+        "required": [
+          "normalized_position",
+          "red",
+          "green",
+          "blue",
+          "opacity"
+        ],
+        "title": "TransferFunctionControlPoint",
+        "description": "A single normalized control point on a 1D color/opacity transfer function."
+      },
+      "ValidationCheckResult": {
+        "properties": {
+          "check_name": {
+            "type": "string",
+            "title": "Check Name",
+            "description": "Machine-readable name of the validation check."
+          },
+          "passed": {
+            "type": "boolean",
+            "title": "Passed",
+            "description": "True if check passed; False if failed."
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "ERROR"
+            ],
+            "title": "Severity",
+            "description": "Severity level if check triggered.",
+            "default": "INFO"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "Human-readable diagnostics explaining the check result."
+          },
+          "timestamp_utc": {
+            "type": "string",
+            "title": "Timestamp Utc",
+            "description": "ISO 8601 UTC timestamp when check executed."
+          }
+        },
+        "type": "object",
+        "required": [
+          "check_name",
+          "passed",
+          "message",
+          "timestamp_utc"
+        ],
+        "title": "ValidationCheckResult",
+        "description": "Result of an individual scientific, coordinate, or metadata check."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ValidationReport": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/ValidationState",
+            "description": "Overall validation state certification."
+          },
+          "validator_version": {
+            "type": "string",
+            "title": "Validator Version",
+            "description": "Version of validation engine executing rules.",
+            "default": "1.0.0"
+          },
+          "validated_at_utc": {
+            "type": "string",
+            "title": "Validated At Utc",
+            "description": "ISO 8601 UTC timestamp of certification."
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationCheckResult"
+            },
+            "type": "array",
+            "title": "Checks",
+            "description": "Detailed list of check results."
+          },
+          "is_publication_ready": {
+            "type": "boolean",
+            "title": "Is Publication Ready",
+            "description": "Only valid or valid_with_warnings datasets may be published for user visualization.",
+            "readOnly": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "validated_at_utc",
+          "is_publication_ready"
+        ],
+        "title": "ValidationReport",
+        "description": "Comprehensive validation report certifying contract compliance."
+      },
+      "ValidationState": {
+        "type": "string",
+        "enum": [
+          "valid",
+          "valid_with_warnings",
+          "invalid",
+          "catalog_only",
+          "discovery_only",
+          "blocked"
+        ],
+        "title": "ValidationState",
+        "description": "Lifecycle validation status of a dataset or canonical product."
+      },
+      "VectorConvention": {
+        "type": "string",
+        "enum": [
+          "oceanographic_to",
+          "meteorological_from",
+          "none"
+        ],
+        "title": "VectorConvention",
+        "description": "Directional convention for vector fields."
+      },
+      "VerticalCoordinateContract": {
+        "properties": {
+          "coordinate_type": {
+            "$ref": "#/components/schemas/VerticalCoordinateType",
+            "description": "Type of vertical coordinate."
+          },
+          "units": {
+            "type": "string",
+            "title": "Units",
+            "description": "Vertical unit string ('m', 'dbar', '1', 'level').",
+            "default": "m"
+          },
+          "positive_direction": {
+            "$ref": "#/components/schemas/VerticalDirection",
+            "description": "Direction of increasing coordinate value.",
+            "default": "down"
+          },
+          "datum": {
+            "$ref": "#/components/schemas/VerticalDatum",
+            "description": "Reference physical datum.",
+            "default": "mean_sea_level"
+          },
+          "min_depth_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Depth M",
+            "description": "Minimum geometric depth in meters."
+          },
+          "max_depth_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Depth M",
+            "description": "Maximum geometric depth in meters."
+          },
+          "levels": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Levels",
+            "description": "Discrete nominal coordinate levels (e.g. standard 31 z-levels)."
+          },
+          "level_count": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Level Count",
+            "description": "Number of vertical levels."
+          },
+          "is_uniform": {
+            "type": "boolean",
+            "title": "Is Uniform",
+            "description": "Whether geometric spacing between levels is uniform.",
+            "default": false
+          },
+          "is_time_varying": {
+            "type": "boolean",
+            "title": "Is Time Varying",
+            "description": "Whether vertical coordinate physical positions shift with time (e.g. s-coords with sea surface height).",
+            "default": false
+          },
+          "is_space_varying": {
+            "type": "boolean",
+            "title": "Is Space Varying",
+            "description": "Whether vertical coordinate physical positions vary horizontally (e.g. s-coords with bathymetry).",
+            "default": false
+          },
+          "roms_params": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ROMSSCoordinateParameters"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "ROMS s-coordinate formulation parameters if coordinate_type is terrain_following_s_coordinate."
+          }
+        },
+        "type": "object",
+        "required": [
+          "coordinate_type",
+          "level_count"
+        ],
+        "title": "VerticalCoordinateContract",
+        "description": "Authoritative contract specifying vertical coordinate definition."
+      },
+      "VerticalCoordinateType": {
+        "type": "string",
+        "enum": [
+          "depth",
+          "pressure",
+          "height",
+          "z_level",
+          "sigma",
+          "hybrid_sigma",
+          "terrain_following_s_coordinate",
+          "surface_only"
+        ],
+        "title": "VerticalCoordinateType",
+        "description": "Classification of vertical coordinate system."
+      },
+      "VerticalDatum": {
+        "type": "string",
+        "enum": [
+          "mean_sea_level",
+          "sea_surface",
+          "geoid",
+          "wgs84_ellipsoid"
+        ],
+        "title": "VerticalDatum",
+        "description": "Reference vertical datum."
+      },
+      "VerticalDirection": {
+        "type": "string",
+        "enum": [
+          "down",
+          "up"
+        ],
+        "title": "VerticalDirection",
+        "description": "Direction of positive vertical coordinate."
+      },
+      "VerticalProfileLevelSample": {
+        "properties": {
+          "level_index": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Level Index",
+            "description": "0-based vertical grid index."
+          },
+          "depth_m": {
+            "type": "number",
+            "title": "Depth M",
+            "description": "Physical depth in meters (positive downward)."
+          },
+          "scientific_value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scientific Value",
+            "description": "Authoritative numerical value (null if cell state is missing/masked/below seafloor)."
+          },
+          "value_state": {
+            "$ref": "#/components/schemas/PhysicalCellState",
+            "description": "Categorical validity state.",
+            "default": "valid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "level_index",
+          "depth_m"
+        ],
+        "title": "VerticalProfileLevelSample",
+        "description": "Single level measurement sample in a vertical profile cast."
+      },
+      "VerticalProfileQueryRequest": {
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Canonical dataset identifier (e.g. 'copernicus_phy_thetao')."
+          },
+          "dataset_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Version",
+            "description": "Semantic version of the dataset.",
+            "default": "1.0.0"
+          },
+          "snapshot_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Id",
+            "description": "Specific snapshot ID for reproducible queries."
+          },
+          "variable_id": {
+            "type": "string",
+            "title": "Variable Id",
+            "description": "Canonical variable identifier (e.g. 'sea_water_potential_temperature')."
+          },
+          "latitude_deg": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": -90.0,
+            "title": "Latitude Deg",
+            "description": "Target latitude in degrees North [-90, 90]."
+          },
+          "longitude_deg": {
+            "type": "number",
+            "maximum": 360.0,
+            "minimum": -180.0,
+            "title": "Longitude Deg",
+            "description": "Target longitude in degrees East [-180, 180] or [0, 360]."
+          },
+          "target_time_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Time Utc",
+            "description": "ISO 8601 UTC timestamp."
+          },
+          "time_selector_mode": {
+            "$ref": "#/components/schemas/TimeSelectorMode",
+            "description": "Temporal selection mode.",
+            "default": "exact_utc_timestamp"
+          },
+          "selection_interpolation": {
+            "$ref": "#/components/schemas/SelectionInterpolationContract",
+            "description": "Horizontal selection and interpolation policy."
+          },
+          "requested_units": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Units",
+            "description": "Preferred scientific units (if conversion requested)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "variable_id",
+          "latitude_deg",
+          "longitude_deg"
+        ],
+        "title": "VerticalProfileQueryRequest",
+        "description": "Authoritative request contract for a vertical 1D profile column query across all depth levels."
+      },
+      "VerticalProfileQueryResponse": {
+        "properties": {
+          "response_type": {
+            "type": "string",
+            "title": "Response Type",
+            "description": "Discriminator identifying this as an authoritative vertical profile.",
+            "default": "authoritative_vertical_profile"
+          },
+          "dataset_id": {
+            "type": "string",
+            "title": "Dataset Id",
+            "description": "Canonical dataset identifier."
+          },
+          "variable_id": {
+            "type": "string",
+            "title": "Variable Id",
+            "description": "Canonical variable identifier."
+          },
+          "canonical_units": {
+            "type": "string",
+            "title": "Canonical Units",
+            "description": "Scientific measurement units."
+          },
+          "requested_latitude_deg": {
+            "type": "number",
+            "title": "Requested Latitude Deg",
+            "description": "Originally requested latitude."
+          },
+          "requested_longitude_deg": {
+            "type": "number",
+            "title": "Requested Longitude Deg",
+            "description": "Originally requested longitude."
+          },
+          "resolved_latitude_deg": {
+            "type": "number",
+            "title": "Resolved Latitude Deg",
+            "description": "Actual resolved/evaluated latitude."
+          },
+          "resolved_longitude_deg": {
+            "type": "number",
+            "title": "Resolved Longitude Deg",
+            "description": "Actual resolved/evaluated longitude."
+          },
+          "horizontal_distance_delta_km": {
+            "type": "number",
+            "title": "Horizontal Distance Delta Km",
+            "description": "Geodetic distance between requested and resolved horizontal location in kilometers."
+          },
+          "resolved_time_utc": {
+            "type": "string",
+            "title": "Resolved Time Utc",
+            "description": "Actual valid ISO 8601 UTC timestamp evaluated."
+          },
+          "grid_index_evaluated": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grid Index Evaluated",
+            "description": "Native [time_idx, lat_idx, lon_idx] array index evaluated."
+          },
+          "selection_method_used": {
+            "$ref": "#/components/schemas/SelectionMethod",
+            "description": "Selection method used for horizontal resolution.",
+            "default": "nearest_native_sample"
+          },
+          "total_levels": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Total Levels",
+            "description": "Total vertical depth levels evaluated."
+          },
+          "valid_levels_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Valid Levels Count",
+            "description": "Count of physically valid numeric levels."
+          },
+          "samples": {
+            "items": {
+              "$ref": "#/components/schemas/VerticalProfileLevelSample"
+            },
+            "type": "array",
+            "title": "Samples",
+            "description": "Ordered array of samples from sea surface to deepest level."
+          },
+          "source_asset_id": {
+            "type": "string",
+            "title": "Source Asset Id",
+            "description": "Immutable ID of underlying native NetCDF asset."
+          },
+          "source_asset_sha256": {
+            "type": "string",
+            "title": "Source Asset Sha256",
+            "description": "SHA-256 hash of the immutable source asset."
+          },
+          "provenance_details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provenance Details",
+            "description": "Lineage and processing details."
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "variable_id",
+          "canonical_units",
+          "requested_latitude_deg",
+          "requested_longitude_deg",
+          "resolved_latitude_deg",
+          "resolved_longitude_deg",
+          "horizontal_distance_delta_km",
+          "resolved_time_utc",
+          "total_levels",
+          "valid_levels_count",
+          "samples",
+          "source_asset_id",
+          "source_asset_sha256"
+        ],
+        "title": "VerticalProfileQueryResponse",
+        "description": "Authoritative response contract for a vertical profile cast query across all native levels."
+      },
+      "VerticalSelectorType": {
+        "type": "string",
+        "enum": [
+          "physical_depth_meters",
+          "pressure_dbar",
+          "grid_level_index",
+          "sea_surface",
+          "sea_floor"
+        ],
+        "title": "VerticalSelectorType",
+        "description": "Vertical coordinate selection mode."
+      },
+      "VisualizationProductContract": {
+        "properties": {
+          "visualization_product_id": {
+            "type": "string",
+            "title": "Visualization Product Id",
+            "description": "Unique product identifier (e.g. 'vis_copernicus_phy_thetao_arabian_sea_20250420')."
+          },
+          "product_version": {
+            "type": "string",
+            "title": "Product Version",
+            "description": "Semantic version of the visual product.",
+            "default": "1.0.0"
+          },
+          "source_dataset_id": {
+            "type": "string",
+            "title": "Source Dataset Id",
+            "description": "Identifier of the authoritative source dataset."
+          },
+          "source_variable_id": {
+            "type": "string",
+            "title": "Source Variable Id",
+            "description": "Canonical variable identifier visualized."
+          },
+          "canonical_units": {
+            "type": "string",
+            "title": "Canonical Units",
+            "description": "Authoritative scientific units of the underlying quantity."
+          },
+          "source_asset_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Asset Ids",
+            "description": "List of immutable NetCDF / Zarr source asset IDs used to generate this product."
+          },
+          "source_asset_checksums": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Source Asset Checksums",
+            "description": "SHA-256 checksums of source assets to guarantee lineage integrity."
+          },
+          "processing_pipeline_version": {
+            "type": "string",
+            "title": "Processing Pipeline Version",
+            "description": "Version string of the volume processing pipeline software."
+          },
+          "backend_compatibility": {
+            "$ref": "#/components/schemas/BackendCompatibility",
+            "description": "Renderer backend support status.",
+            "default": "both_supported"
+          },
+          "spatial_bounds": {
+            "$ref": "#/components/schemas/SpatialBoundingBox",
+            "description": "Geographic bounding box covering the entire visual volume."
+          },
+          "min_depth_m": {
+            "type": "number",
+            "title": "Min Depth M",
+            "description": "Surface or shallowest depth in meters."
+          },
+          "max_depth_m": {
+            "type": "number",
+            "title": "Max Depth M",
+            "description": "Deepest depth in meters."
+          },
+          "timestep_count": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Timestep Count",
+            "description": "Number of available time steps in this visual product.",
+            "default": 1
+          },
+          "available_lod_levels": {
+            "items": {
+              "$ref": "#/components/schemas/MultiresolutionLevelContract"
+            },
+            "type": "array",
+            "title": "Available Lod Levels",
+            "description": "Array of available Level-of-Detail manifests from LOD 0 (finest) to LOD N."
+          },
+          "coordinate_transform": {
+            "$ref": "#/components/schemas/CoordinateTransformContract",
+            "description": "Coordinate mapping specification from geographic/depth space to Volume Lab space."
+          },
+          "render_statistics": {
+            "$ref": "#/components/schemas/RenderStatisticsContract",
+            "description": "Global valid value ranges, percentiles, and histogram."
+          },
+          "default_transfer_function": {
+            "$ref": "#/components/schemas/TransferFunctionContract",
+            "description": "Default calibrated transfer function for this ocean variable."
+          },
+          "brick_template_url": {
+            "type": "string",
+            "title": "Brick Template Url",
+            "description": "Relative URL template for fetching bricks (e.g. 'volumes/{prod_id}/lod{lod}/t{time}/b_{bx}_{by}_{bz}.bin')."
+          }
+        },
+        "type": "object",
+        "required": [
+          "visualization_product_id",
+          "source_dataset_id",
+          "source_variable_id",
+          "canonical_units",
+          "source_asset_ids",
+          "source_asset_checksums",
+          "processing_pipeline_version",
+          "spatial_bounds",
+          "min_depth_m",
+          "max_depth_m",
+          "available_lod_levels",
+          "coordinate_transform",
+          "render_statistics",
+          "default_transfer_function",
+          "brick_template_url"
+        ],
+        "title": "VisualizationProductContract",
+        "description": "Top-level authoritative contract for a derived 3D visualization product.\nMaintains complete lineage to immutable source assets, multiresolution LOD manifests,\ncoordinate transformations, and backend compatibility profiles."
+      },
+      "VisualizationProductDetail": {
+        "properties": {
+          "visualizationProduct": {
+            "$ref": "#/components/schemas/VisualizationProductContract",
+            "description": "Authoritative VisualizationProductContract"
+          },
+          "quantizationContract": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QuantizationContract"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Quantization contract applied"
+          },
+          "totalBricks": {
+            "type": "integer",
+            "title": "Totalbricks",
+            "description": "Total number of bricks in product"
+          },
+          "storageSummary": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Storagesummary",
+            "description": "Compressed storage summary"
+          },
+          "isEligibleForExactQuery": {
+            "type": "boolean",
+            "title": "Iseligibleforexactquery",
+            "description": "Strictly False",
+            "default": false
+          },
+          "brickInventoryCount": {
+            "type": "integer",
+            "title": "Brickinventorycount",
+            "description": "Number of bricks declared in manifest"
+          },
+          "manifestPath": {
+            "type": "string",
+            "title": "Manifestpath",
+            "description": "Safe repository-relative path to manifest"
+          }
+        },
+        "type": "object",
+        "required": [
+          "visualizationProduct",
+          "totalBricks",
+          "brickInventoryCount",
+          "manifestPath"
+        ],
+        "title": "VisualizationProductDetail",
+        "description": "Comprehensive visualization product detail including LODs, bricks inventory, and contracts."
+      },
+      "VisualizationProductSummary": {
+        "properties": {
+          "visualizationProductId": {
+            "type": "string",
+            "title": "Visualizationproductid",
+            "description": "Visualization product identifier"
+          },
+          "productVersion": {
+            "type": "string",
+            "title": "Productversion",
+            "description": "Product version",
+            "default": "v1"
+          },
+          "sourceDatasetId": {
+            "type": "string",
+            "title": "Sourcedatasetid",
+            "description": "Authoritative source dataset identifier"
+          },
+          "sourceVariableId": {
+            "type": "string",
+            "title": "Sourcevariableid",
+            "description": "Target variable identifier visualized"
+          },
+          "canonicalUnits": {
+            "type": "string",
+            "title": "Canonicalunits",
+            "description": "Authoritative scientific units"
+          },
+          "totalBricks": {
+            "type": "integer",
+            "title": "Totalbricks",
+            "description": "Total number of 3D bricks across all LODs"
+          },
+          "lodLevelsCount": {
+            "type": "integer",
+            "title": "Lodlevelscount",
+            "description": "Number of LOD levels available"
+          },
+          "storageBytes": {
+            "type": "integer",
+            "title": "Storagebytes",
+            "description": "Total storage size in bytes"
+          },
+          "storageMib": {
+            "type": "number",
+            "title": "Storagemib",
+            "description": "Total storage size in MiB"
+          },
+          "isEligibleForExactQuery": {
+            "type": "boolean",
+            "title": "Iseligibleforexactquery",
+            "description": "Strictly False for visualization bricks",
+            "default": false
+          },
+          "manifestSha256": {
+            "type": "string",
+            "title": "Manifestsha256",
+            "description": "SHA-256 checksum of visualization manifest"
+          }
+        },
+        "type": "object",
+        "required": [
+          "visualizationProductId",
+          "sourceDatasetId",
+          "sourceVariableId",
+          "canonicalUnits",
+          "totalBricks",
+          "lodLevelsCount",
+          "storageBytes",
+          "storageMib",
+          "manifestSha256"
+        ],
+        "title": "VisualizationProductSummary",
+        "description": "Summary of a derived 3D visualization product."
+      }
+    }
+  }
+}

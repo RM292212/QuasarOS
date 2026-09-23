@@ -1,0 +1,801 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "TASK-04A",
+  "status": "APPROVED",
+  "decision_timestamp_utc": "2026-08-30T13:45:00Z",
+  "active_operational_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "input_dataset_dimensions": {
+    "time_steps": 7,
+    "depth_levels": 31,
+    "latitude_points": 181,
+    "longitude_points": 97,
+    "total_voxels": 3809869,
+    "valid_voxels": 3618944,
+    "missing_voxels": 190925
+  },
+  "approved_architectural_decisions": {
+    "brick_shape": [
+      64,
+      64,
+      32
+    ],
+    "rationale_brick_shape": "Optimal 30.79% padding waste, exactly 6 bricks per timestep, 100% GPU texture cache alignment, zero vertical fragmentation.",
+    "hierarchy_strategy": "STRATEGY_3_HORIZONTAL_PYRAMID_VERTICAL_LUT",
+    "rationale_hierarchy_strategy": "Preserves all 31 non-uniform depth levels (0.49m to 453.94m) without destructive vertical blurring. GPU raymarcher uses 1D texture LUT for true z-coordinates.",
+    "downsampling_policy": "VALID_SAMPLE_MEAN_WITH_MASK_PRESERVATION",
+    "downsampling_rule": "Coarse cell takes mean of valid sub-voxels; masked if valid sub-voxels count == 0. Preserves coastline and thermocline structure.",
+    "boundary_halo": [
+      1,
+      1,
+      0
+    ],
+    "rationale_boundary_halo": "1-voxel horizontal halo eliminates trilinear filtering seams and enables central difference gradient computation across brick boundaries. Vertical halo is 0 as full 31-level depth fits in brick depth of 32.",
+    "precision_encoding": "R16FLOAT_PRIMARY_WITH_UINT16_COMPACT_FALLBACK",
+    "rationale_precision": "Float16 achieves Max Error < 0.0079 degC, MAE 0.0035 degC, RMSE 0.0041 degC (well below 0.01 degC scientific tolerance), with 3.01 MiB total payload size for 7 timesteps (<2% of 150 MiB budget).",
+    "occupancy_empty_skipping": {
+      "brick_metadata_fields": [
+        "min_value",
+        "max_value",
+        "is_empty_or_masked",
+        "valid_voxel_count"
+      ],
+      "occupancy_bitmask": "Transfer function range test against [min_value, max_value] guarantees ZERO false negatives."
+    },
+    "storage_and_network_budget": {
+      "total_7_timestep_payload_zstd_mib": 4.19,
+      "total_7_timestep_http_requests": 63,
+      "target_budget_limit_mib": 150.0,
+      "compliance_status": "EXCEEDS_BUDGET_REQUIREMENTS"
+    }
+  },
+  "empirical_benchmark_evidence": {
+    "candidate_shapes": [
+      {
+        "shape": [
+          64,
+          64,
+          64
+        ],
+        "grid_dims": [
+          2,
+          3,
+          1
+        ],
+        "bricks_per_timestep": 6,
+        "total_bricks_7_timesteps": 42,
+        "empty_bricks_total": 0,
+        "empty_brick_pct": 0.0,
+        "active_bricks_per_timestep": 6,
+        "raw_allocated_voxels_per_step": 1572864,
+        "padding_waste_pct": 65.4,
+        "gpu_alignment_suitability": "EXCELLENT"
+      },
+      {
+        "shape": [
+          64,
+          64,
+          32
+        ],
+        "grid_dims": [
+          2,
+          3,
+          1
+        ],
+        "bricks_per_timestep": 6,
+        "total_bricks_7_timesteps": 42,
+        "empty_bricks_total": 0,
+        "empty_brick_pct": 0.0,
+        "active_bricks_per_timestep": 6,
+        "raw_allocated_voxels_per_step": 786432,
+        "padding_waste_pct": 30.79,
+        "gpu_alignment_suitability": "EXCELLENT"
+      },
+      {
+        "shape": [
+          64,
+          64,
+          16
+        ],
+        "grid_dims": [
+          2,
+          3,
+          2
+        ],
+        "bricks_per_timestep": 12,
+        "total_bricks_7_timesteps": 84,
+        "empty_bricks_total": 0,
+        "empty_brick_pct": 0.0,
+        "active_bricks_per_timestep": 12,
+        "raw_allocated_voxels_per_step": 786432,
+        "padding_waste_pct": 30.79,
+        "gpu_alignment_suitability": "EXCELLENT"
+      },
+      {
+        "shape": [
+          32,
+          32,
+          32
+        ],
+        "grid_dims": [
+          4,
+          6,
+          1
+        ],
+        "bricks_per_timestep": 24,
+        "total_bricks_7_timesteps": 168,
+        "empty_bricks_total": 0,
+        "empty_brick_pct": 0.0,
+        "active_bricks_per_timestep": 24,
+        "raw_allocated_voxels_per_step": 786432,
+        "padding_waste_pct": 30.79,
+        "gpu_alignment_suitability": "EXCELLENT"
+      },
+      {
+        "shape": [
+          32,
+          32,
+          16
+        ],
+        "grid_dims": [
+          4,
+          6,
+          2
+        ],
+        "bricks_per_timestep": 48,
+        "total_bricks_7_timesteps": 336,
+        "empty_bricks_total": 0,
+        "empty_brick_pct": 0.0,
+        "active_bricks_per_timestep": 48,
+        "raw_allocated_voxels_per_step": 786432,
+        "padding_waste_pct": 30.79,
+        "gpu_alignment_suitability": "EXCELLENT"
+      }
+    ],
+    "precision_and_quantization": {
+      "dataset_scalar_range_degc": [
+        9.374712944030762,
+        30.361833572387695
+      ],
+      "float16_r16float": {
+        "max_error_degc": 0.0078125,
+        "mae_degc": 0.0034762525465339422,
+        "rmse_degc": 0.004121011588722467,
+        "p50_degc": 0.0032024383544921875,
+        "p95_degc": 0.0073108673095703125,
+        "p99_degc": 0.00771331787109375,
+        "p99_9_degc": 0.0078029632568359375,
+        "memory_bytes_per_voxel": 2,
+        "compression_ratio_vs_f32": 2.0,
+        "gradient_fidelity": {
+          "mean_gradient_magnitude": 0.6645011305809021,
+          "max_gradient_error": 0.011978333815932274,
+          "mae_gradient_error": 0.002365031512454152,
+          "rmse_gradient_error": 0.0029672516975551844
+        }
+      },
+      "uint16_global_linear": {
+        "max_error_degc": 0.0001621246337890625,
+        "mae_degc": 8.00463676569052e-05,
+        "rmse_degc": 9.24488776945509e-05,
+        "p50_degc": 8.0108642578125e-05,
+        "p95_degc": 0.000152587890625,
+        "p99_degc": 0.0001583099365234375,
+        "p99_9_degc": 0.00016021728515625,
+        "scale_factor": 0.00032024781988520363,
+        "add_offset": 9.374712944030762,
+        "theoretical_max_error_degc": 0.00016012390994260182,
+        "memory_bytes_per_voxel": 2,
+        "compression_ratio_vs_f32": 2.0,
+        "gradient_fidelity": {
+          "mean_gradient_magnitude": 0.6645011305809021,
+          "max_gradient_error": 0.00023109279572963715,
+          "mae_gradient_error": 5.321762728272006e-05,
+          "rmse_gradient_error": 6.536958971992135e-05
+        }
+      },
+      "uint16_per_brick_linear": {
+        "max_error_degc": 0.0001583099365234375,
+        "mae_degc": 7.651724445167929e-05,
+        "rmse_degc": 8.838634676067159e-05,
+        "p50_degc": 7.62939453125e-05,
+        "p95_degc": 0.00014495849609375,
+        "p99_degc": 0.000152587890625,
+        "p99_9_degc": 0.000156402587890625,
+        "memory_bytes_per_voxel": 2,
+        "compression_ratio_vs_f32": 2.0
+      }
+    },
+    "halo_and_storage_analysis": {
+      "halo_0_voxels": {
+        "halo_padding_voxels": [
+          0,
+          0,
+          0
+        ],
+        "brick_allocated_shape": [
+          64,
+          64,
+          32
+        ],
+        "total_bricks_7_timesteps": 42,
+        "float32_totals": {
+          "raw_bytes_7_timesteps": 22020096,
+          "raw_mib": 21.0,
+          "zstd_bytes_7_timesteps": 11642635,
+          "zstd_mib": 11.1
+        },
+        "float16_totals": {
+          "raw_bytes_7_timesteps": 11010048,
+          "raw_mib": 10.5,
+          "zstd_bytes_7_timesteps": 3035761,
+          "zstd_mib": 2.9
+        },
+        "uint16_totals": {
+          "raw_bytes_7_timesteps": 11010048,
+          "raw_mib": 10.5,
+          "zstd_bytes_7_timesteps": 6461144,
+          "zstd_mib": 6.16
+        },
+        "overhead_vs_0_halo_pct": 0.0,
+        "sample_timestep_0_bricks": [
+          {
+            "brick_idx": [
+              0,
+              0,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.599087715148926,
+            "max_val": 29.762653350830078,
+            "f16_zstd_bytes": 99000,
+            "u16_zstd_bytes": 224348
+          },
+          {
+            "brick_idx": [
+              1,
+              0,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.557741165161133,
+            "max_val": 29.687171936035156,
+            "f16_zstd_bytes": 58337,
+            "u16_zstd_bytes": 117410
+          },
+          {
+            "brick_idx": [
+              0,
+              1,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.912120819091797,
+            "max_val": 30.1508846282959,
+            "f16_zstd_bytes": 92942,
+            "u16_zstd_bytes": 204723
+          },
+          {
+            "brick_idx": [
+              1,
+              1,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 10.033059120178223,
+            "max_val": 29.63229751586914,
+            "f16_zstd_bytes": 50327,
+            "u16_zstd_bytes": 117015
+          },
+          {
+            "brick_idx": [
+              0,
+              2,
+              0
+            ],
+            "interior_shape": [
+              64,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.842988014221191,
+            "max_val": 30.361833572387695,
+            "f16_zstd_bytes": 81782,
+            "u16_zstd_bytes": 164627
+          },
+          {
+            "brick_idx": [
+              1,
+              2,
+              0
+            ],
+            "interior_shape": [
+              33,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              64,
+              64,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.957657814025879,
+            "max_val": 29.43576431274414,
+            "f16_zstd_bytes": 45877,
+            "u16_zstd_bytes": 94777
+          }
+        ]
+      },
+      "halo_1_voxels": {
+        "halo_padding_voxels": [
+          1,
+          1,
+          0
+        ],
+        "brick_allocated_shape": [
+          66,
+          66,
+          32
+        ],
+        "total_bricks_7_timesteps": 42,
+        "float32_totals": {
+          "raw_bytes_7_timesteps": 23417856,
+          "raw_mib": 22.33,
+          "zstd_bytes_7_timesteps": 12152491,
+          "zstd_mib": 11.59
+        },
+        "float16_totals": {
+          "raw_bytes_7_timesteps": 11708928,
+          "raw_mib": 11.17,
+          "zstd_bytes_7_timesteps": 3198096,
+          "zstd_mib": 3.05
+        },
+        "uint16_totals": {
+          "raw_bytes_7_timesteps": 11708928,
+          "raw_mib": 11.17,
+          "zstd_bytes_7_timesteps": 6751005,
+          "zstd_mib": 6.44
+        },
+        "overhead_vs_0_halo_pct": 6.35,
+        "sample_timestep_0_bricks": [
+          {
+            "brick_idx": [
+              0,
+              0,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.599087715148926,
+            "max_val": 29.762653350830078,
+            "f16_zstd_bytes": 104986,
+            "u16_zstd_bytes": 233369
+          },
+          {
+            "brick_idx": [
+              1,
+              0,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.557741165161133,
+            "max_val": 29.69418716430664,
+            "f16_zstd_bytes": 61069,
+            "u16_zstd_bytes": 123267
+          },
+          {
+            "brick_idx": [
+              0,
+              1,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.912120819091797,
+            "max_val": 30.361833572387695,
+            "f16_zstd_bytes": 98690,
+            "u16_zstd_bytes": 214748
+          },
+          {
+            "brick_idx": [
+              1,
+              1,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 10.033059120178223,
+            "max_val": 29.63229751586914,
+            "f16_zstd_bytes": 53508,
+            "u16_zstd_bytes": 123952
+          },
+          {
+            "brick_idx": [
+              0,
+              2,
+              0
+            ],
+            "interior_shape": [
+              64,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.842988014221191,
+            "max_val": 30.361833572387695,
+            "f16_zstd_bytes": 84373,
+            "u16_zstd_bytes": 169880
+          },
+          {
+            "brick_idx": [
+              1,
+              2,
+              0
+            ],
+            "interior_shape": [
+              33,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              66,
+              66,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.943671226501465,
+            "max_val": 29.43576431274414,
+            "f16_zstd_bytes": 48050,
+            "u16_zstd_bytes": 98939
+          }
+        ]
+      },
+      "halo_2_voxels": {
+        "halo_padding_voxels": [
+          2,
+          2,
+          0
+        ],
+        "brick_allocated_shape": [
+          68,
+          68,
+          32
+        ],
+        "total_bricks_7_timesteps": 42,
+        "float32_totals": {
+          "raw_bytes_7_timesteps": 24858624,
+          "raw_mib": 23.71,
+          "zstd_bytes_7_timesteps": 12658108,
+          "zstd_mib": 12.07
+        },
+        "float16_totals": {
+          "raw_bytes_7_timesteps": 12429312,
+          "raw_mib": 11.85,
+          "zstd_bytes_7_timesteps": 3312649,
+          "zstd_mib": 3.16
+        },
+        "uint16_totals": {
+          "raw_bytes_7_timesteps": 12429312,
+          "raw_mib": 11.85,
+          "zstd_bytes_7_timesteps": 6989785,
+          "zstd_mib": 6.67
+        },
+        "overhead_vs_0_halo_pct": 12.89,
+        "sample_timestep_0_bricks": [
+          {
+            "brick_idx": [
+              0,
+              0,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.599087715148926,
+            "max_val": 29.762653350830078,
+            "f16_zstd_bytes": 108198,
+            "u16_zstd_bytes": 239187
+          },
+          {
+            "brick_idx": [
+              1,
+              0,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.557741165161133,
+            "max_val": 29.70514488220215,
+            "f16_zstd_bytes": 63443,
+            "u16_zstd_bytes": 128229
+          },
+          {
+            "brick_idx": [
+              0,
+              1,
+              0
+            ],
+            "interior_shape": [
+              64,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.912120819091797,
+            "max_val": 30.361833572387695,
+            "f16_zstd_bytes": 102664,
+            "u16_zstd_bytes": 222743
+          },
+          {
+            "brick_idx": [
+              1,
+              1,
+              0
+            ],
+            "interior_shape": [
+              33,
+              64,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 10.033059120178223,
+            "max_val": 29.63229751586914,
+            "f16_zstd_bytes": 56480,
+            "u16_zstd_bytes": 131095
+          },
+          {
+            "brick_idx": [
+              0,
+              2,
+              0
+            ],
+            "interior_shape": [
+              64,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.842988014221191,
+            "max_val": 30.361833572387695,
+            "f16_zstd_bytes": 86695,
+            "u16_zstd_bytes": 173941
+          },
+          {
+            "brick_idx": [
+              1,
+              2,
+              0
+            ],
+            "interior_shape": [
+              33,
+              53,
+              31
+            ],
+            "allocated_shape": [
+              68,
+              68,
+              32
+            ],
+            "is_empty": false,
+            "min_val": 9.930720329284668,
+            "max_val": 29.47019386291504,
+            "f16_zstd_bytes": 49727,
+            "u16_zstd_bytes": 103453
+          }
+        ]
+      }
+    },
+    "multiresolution_lod_pyramid": {
+      "strategy_name": "STRATEGY_3_HORIZONTAL_PYRAMID_VERTICAL_LUT",
+      "vertical_levels_preserved": 31,
+      "vertical_depth_range_m": [
+        0.49402499198913574,
+        453.9377136230469
+      ],
+      "non_uniform_dz_min_m": 1.0473500490188599,
+      "non_uniform_dz_max_m": 73.72470092773438,
+      "lod_levels": [
+        {
+          "lod_level": 0,
+          "downsampling_factor": [
+            1,
+            1,
+            1
+          ],
+          "volume_dimensions": [
+            97,
+            181,
+            31
+          ],
+          "brick_grid_layout": [
+            2,
+            3,
+            1
+          ],
+          "bricks_per_timestep": 6,
+          "total_bricks_7_timesteps": 42,
+          "f16_zstd_bytes_7_timesteps": 3198096,
+          "f16_zstd_mib_7_timesteps": 3.05,
+          "u16_zstd_bytes_7_timesteps": 6751005,
+          "u16_zstd_mib_7_timesteps": 6.44
+        },
+        {
+          "lod_level": 1,
+          "downsampling_factor": [
+            2,
+            2,
+            1
+          ],
+          "volume_dimensions": [
+            49,
+            91,
+            31
+          ],
+          "brick_grid_layout": [
+            1,
+            2,
+            1
+          ],
+          "bricks_per_timestep": 2,
+          "total_bricks_7_timesteps": 14,
+          "f16_zstd_bytes_7_timesteps": 926024,
+          "f16_zstd_mib_7_timesteps": 0.88,
+          "u16_zstd_bytes_7_timesteps": 1739136,
+          "u16_zstd_mib_7_timesteps": 1.66
+        },
+        {
+          "lod_level": 2,
+          "downsampling_factor": [
+            4,
+            4,
+            1
+          ],
+          "volume_dimensions": [
+            25,
+            46,
+            31
+          ],
+          "brick_grid_layout": [
+            1,
+            1,
+            1
+          ],
+          "bricks_per_timestep": 1,
+          "total_bricks_7_timesteps": 7,
+          "f16_zstd_bytes_7_timesteps": 274382,
+          "f16_zstd_mib_7_timesteps": 0.26,
+          "u16_zstd_bytes_7_timesteps": 453174,
+          "u16_zstd_mib_7_timesteps": 0.43
+        }
+      ],
+      "complete_pyramid_summary": {
+        "total_http_requests_7_timesteps": 63,
+        "total_f16_zstd_mib_7_timesteps": 4.19,
+        "total_u16_zstd_mib_7_timesteps": 8.53,
+        "budget_limit_mib": 150.0,
+        "budget_utilization_pct": 2.8,
+        "budget_compliant": true
+      }
+    }
+  }
+}

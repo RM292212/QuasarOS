@@ -1,0 +1,170 @@
+{
+  "$defs": {
+    "PhysicalCellState": {
+      "description": "Authoritative physical validity state of an individual voxel / cell.",
+      "enum": [
+        "valid",
+        "missing",
+        "masked",
+        "outside_domain",
+        "below_seafloor",
+        "not_evaluated",
+        "rejected_by_qc"
+      ],
+      "title": "PhysicalCellState",
+      "type": "string"
+    },
+    "SelectionMethod": {
+      "description": "Scientific coordinate resolution and selection method.",
+      "enum": [
+        "nearest_native_sample",
+        "exact_grid_index",
+        "trilinear_interpolation",
+        "bilinear_horizontal_nearest_vertical",
+        "native_level_horizontal_interpolation"
+      ],
+      "title": "SelectionMethod",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Discriminator: 'authoritative_scientific_value'.\nAuthoritative scientific value resolved directly from source NetCDF / canonical Zarr arrays.\nCarries complete lineage, evaluated coordinates, and physical validity state.",
+  "properties": {
+    "canonical_units": {
+      "description": "Scientific units of the returned value.",
+      "title": "Canonical Units",
+      "type": "string"
+    },
+    "dataset_id": {
+      "description": "Canonical dataset identifier.",
+      "title": "Dataset Id",
+      "type": "string"
+    },
+    "grid_index_evaluated": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Discrete [time_idx, depth_idx, lat_idx, lon_idx] native array index evaluated.",
+      "title": "Grid Index Evaluated"
+    },
+    "provenance_details": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Additional lineage or computation details (e.g. TEOS-10 parameters if derived).",
+      "title": "Provenance Details"
+    },
+    "requested_latitude_deg": {
+      "description": "Originally requested latitude.",
+      "title": "Requested Latitude Deg",
+      "type": "number"
+    },
+    "requested_longitude_deg": {
+      "description": "Originally requested longitude.",
+      "title": "Requested Longitude Deg",
+      "type": "number"
+    },
+    "resolved_depth_m": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Actual physical depth evaluated in meters.",
+      "title": "Resolved Depth M"
+    },
+    "resolved_latitude_deg": {
+      "description": "Actual resolved/evaluated latitude.",
+      "title": "Resolved Latitude Deg",
+      "type": "number"
+    },
+    "resolved_longitude_deg": {
+      "description": "Actual resolved/evaluated longitude.",
+      "title": "Resolved Longitude Deg",
+      "type": "number"
+    },
+    "resolved_time_utc": {
+      "description": "Actual valid ISO 8601 UTC timestamp evaluated.",
+      "title": "Resolved Time Utc",
+      "type": "string"
+    },
+    "response_type": {
+      "default": "authoritative_scientific_value",
+      "description": "Discriminator identifying this as an authoritative scientific evaluation.",
+      "title": "Response Type",
+      "type": "string"
+    },
+    "scientific_value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Authoritative numerical value (null if cell state is missing/masked/outside domain).",
+      "title": "Scientific Value"
+    },
+    "selection_method_used": {
+      "$ref": "#/$defs/SelectionMethod",
+      "default": "nearest_native_sample",
+      "description": "Mathematical selection/interpolation algorithm used."
+    },
+    "source_asset_id": {
+      "description": "Immutable ID of the underlying NetCDF/Zarr asset from which the value was extracted.",
+      "title": "Source Asset Id",
+      "type": "string"
+    },
+    "source_asset_sha256": {
+      "description": "SHA-256 hash of the immutable source asset.",
+      "title": "Source Asset Sha256",
+      "type": "string"
+    },
+    "value_state": {
+      "$ref": "#/$defs/PhysicalCellState",
+      "default": "valid",
+      "description": "Validity state (valid, missing, masked, outside_domain, below_seafloor, rejected_by_qc)."
+    },
+    "variable_id": {
+      "description": "Canonical variable identifier.",
+      "title": "Variable Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "dataset_id",
+    "variable_id",
+    "canonical_units",
+    "requested_latitude_deg",
+    "requested_longitude_deg",
+    "resolved_latitude_deg",
+    "resolved_longitude_deg",
+    "resolved_time_utc",
+    "source_asset_id",
+    "source_asset_sha256"
+  ],
+  "title": "ExactValueQueryResponse",
+  "type": "object"
+}

@@ -1,4 +1,4 @@
-﻿import { describe, it } from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -19,7 +19,9 @@ import {
 } from '../src/index.ts';
 
 // Resolve real baseline assets
-const REPO_ROOT = path.resolve(process.cwd(), '../..');
+const REPO_ROOT = fs.existsSync(path.join(process.cwd(), 'data'))
+  ? process.cwd()
+  : path.resolve(process.cwd(), '../..');
 const VIS_ROOT = path.join(
   REPO_ROOT,
   'data',

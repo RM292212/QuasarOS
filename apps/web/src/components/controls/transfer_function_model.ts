@@ -36,8 +36,21 @@ export interface TransferFunctionEditorState {
 
 export type TransferFunctionChangeListener = (tf: TransferFunctionContract) => void;
 
+export function extractCanonicalVarCode(variable: string): 'thetao' | 'so' | 'speed' | 'uo' | 'vo' | 'zos' | 'unknown' {
+  const v = (variable || '').toLowerCase().trim();
+  if (v.includes('thetao') || v.includes('temp')) return 'thetao';
+  if (v.includes('so') || v.includes('salin')) return 'so';
+  if (v.includes('speed') || v.includes('magnitude') || v === 'velocity') return 'speed';
+  if (v.includes('uo')) return 'uo';
+  if (v.includes('vo')) return 'vo';
+  if (v.includes('zos') || v.includes('ssh') || v.includes('height')) return 'zos';
+  return 'unknown';
+}
+
 export class TransferFunctionModel {
   private _state: TransferFunctionEditorState;
+  private _varCode: string = 'thetao';
+  private _userCustomizedClamps: boolean = false;
   private _listeners: Set<TransferFunctionChangeListener> = new Set();
 
   constructor(initialState?: Partial<TransferFunctionEditorState>) {
@@ -99,6 +112,10 @@ export class TransferFunctionModel {
     return this._state.unit;
   }
 
+  get varCode(): string {
+    return this._varCode;
+  }
+
   setColormap(presetKey: string): void {
     const key = presetKey.toLowerCase();
     if (!COLORMAP_REGISTRY[key]) {
@@ -112,13 +129,15 @@ export class TransferFunctionModel {
     if (min > max) {
       throw new Error(`Clamped min (${min}) cannot exceed clamped max (${max}).`);
     }
-    if (min < this._state.domainMin || max > this._state.domainMax) {
+    const EPS = 1e-4;
+    if (min < this._state.domainMin - EPS || max > this._state.domainMax + EPS) {
       throw new Error(
         `Clamps [${min}, ${max}] exceed valid physical domain [${this._state.domainMin}, ${this._state.domainMax}].`
       );
     }
-    this._state.clampedMin = min;
-    this._state.clampedMax = max;
+    this._state.clampedMin = Math.max(this._state.domainMin, min);
+    this._state.clampedMax = Math.min(this._state.domainMax, max);
+    this._userCustomizedClamps = true;
     this._notify();
   }
 
@@ -136,6 +155,157 @@ export class TransferFunctionModel {
 
   setOutOfRangePolicy(policy: OutOfRangeRenderingPolicy): void {
     this._state.outOfRangePolicy = policy;
+    this._notify();
+  }
+
+  /**
+   * Configures colormap, physical domain, unit, and non-saturating opacity curves
+   * for a specific oceanographic variable matching scientific standards and Yu et al. (2025).
+   */
+  configureForVariable(variable: string, minVal?: number, maxVal?: number): void {
+    const prevCanonical = extractCanonicalVarCode(this._varCode);
+    const newCanonical = extractCanonicalVarCode(variable);
+    const varChanged = prevCanonical !== newCanonical;
+    this._varCode = newCanonical !== 'unknown' ? newCanonical : variable.toLowerCase().trim();
+
+    if (varChanged) {
+      this._userCustomizedClamps = false;
+    }
+
+    const varCode = this._varCode;
+    if (varCode === 'thetao') {
+      const dMin = minVal !== undefined ? minVal : 1.0;
+      const dMax = maxVal !== undefined ? maxVal : 30.5;
+      this._state.colormapName = 'thermal';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = '°C';
+      // Scientifically calibrated thermocline transparency:
+      // Deep abyssal water (cold < 10°C) is subtly translucent to prevent occluding upper thermal fronts;
+      // Thermocline (15°C - 24°C) has distinct gradient opacity;
+      // Warm surface mixed layer (>28°C) is prominent and luminous.
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.02 },  // 1.0°C Abyssal cold
+        { id: 'cp-1', normalizedScalar: 0.25, opacity: 0.08 }, // ~8.5°C Intermediate deep
+        { id: 'cp-2', normalizedScalar: 0.55, opacity: 0.32 }, // ~17.5°C Thermocline
+        { id: 'cp-3', normalizedScalar: 0.80, opacity: 0.65 }, // ~25.0°C Subsurface warm
+        { id: 'cp-4', normalizedScalar: 1.0, opacity: 0.85 },  // ~31.0°C Tropical surface
+      ];
+    } else if (varCode === 'so') {
+      const dMin = minVal !== undefined ? minVal : 34.5;
+      const dMax = maxVal !== undefined ? maxVal : 36.8;
+      this._state.colormapName = 'coolwarm';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = 'PSU';
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.02 },
+        { id: 'cp-1', normalizedScalar: 0.3, opacity: 0.15 },
+        { id: 'cp-2', normalizedScalar: 0.6, opacity: 0.45 },
+        { id: 'cp-3', normalizedScalar: 1.0, opacity: 0.80 },
+      ];
+    } else if (varCode === 'speed') {
+      const dMin = minVal !== undefined ? minVal : 0.0;
+      const dMax = maxVal !== undefined ? maxVal : 1.5;
+      this._state.colormapName = 'turbo';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = 'm/s';
+      // Current jet prominence curve (Yu et al. 2025):
+      // Quiescent ocean water (< 0.12 m/s) is near completely transparent so it never occludes volume
+      // Intermediate flows (0.15 - 0.45 m/s) show translucent structure
+      // High-speed jet cores (> 0.60 m/s) stand out crisply
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.00 },
+        { id: 'cp-1', normalizedScalar: 0.08, opacity: 0.02 },
+        { id: 'cp-2', normalizedScalar: 0.25, opacity: 0.20 },
+        { id: 'cp-3', normalizedScalar: 0.46, opacity: 0.85 },
+        { id: 'cp-4', normalizedScalar: 1.0, opacity: 0.98 },
+      ];
+    } else if (varCode === 'uo' || varCode === 'vo') {
+      const dMin = minVal !== undefined ? minVal : -1.0;
+      const dMax = maxVal !== undefined ? maxVal : 1.2;
+      this._state.colormapName = 'turbo';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = 'm/s';
+      // High-velocity jet prominence curve (quiescent water near 0 m/s is translucent, strong currents stand out)
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.35 },
+        { id: 'cp-1', normalizedScalar: 0.35, opacity: 0.05 },
+        { id: 'cp-2', normalizedScalar: 0.50, opacity: 0.02 }, // ~0 m/s quiescent water
+        { id: 'cp-3', normalizedScalar: 0.65, opacity: 0.08 },
+        { id: 'cp-4', normalizedScalar: 0.85, opacity: 0.55 },
+        { id: 'cp-5', normalizedScalar: 1.0, opacity: 0.80 },
+      ];
+    } else if (varCode === 'zos') {
+      const dMin = minVal !== undefined ? minVal : 0.3;
+      const dMax = maxVal !== undefined ? maxVal : 0.7;
+      this._state.colormapName = 'plasma';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = 'm';
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.05 },
+        { id: 'cp-1', normalizedScalar: 0.5, opacity: 0.40 },
+        { id: 'cp-2', normalizedScalar: 1.0, opacity: 0.85 },
+      ];
+    } else {
+      const dMin = minVal !== undefined ? minVal : 0.0;
+      const dMax = maxVal !== undefined ? maxVal : 1.0;
+      this._state.colormapName = 'viridis';
+      this._state.domainMin = dMin;
+      this._state.domainMax = dMax;
+      if (!this._userCustomizedClamps) {
+        this._state.clampedMin = dMin;
+        this._state.clampedMax = dMax;
+      } else {
+        this._state.clampedMin = Math.max(dMin, Math.min(dMax, this._state.clampedMin));
+        this._state.clampedMax = Math.min(dMax, Math.max(dMin, this._state.clampedMax));
+      }
+      this._state.unit = 'units';
+      this._state.opacityControlPoints = [
+        { id: 'cp-0', normalizedScalar: 0.0, opacity: 0.02 },
+        { id: 'cp-1', normalizedScalar: 0.5, opacity: 0.35 },
+        { id: 'cp-2', normalizedScalar: 1.0, opacity: 0.80 },
+      ];
+    }
+    this._sortAndValidatePoints();
     this._notify();
   }
 

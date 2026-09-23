@@ -1,0 +1,206 @@
+{
+  "schema_version": "2.0.0",
+  "task_id": "TASK-07A",
+  "task_title": "Renderer-Independent Runtime Architecture Preflight",
+  "status": "APPROVED",
+  "evaluated_at_utc": "2026-08-30T21:45:00Z",
+  "baseline": {
+    "active_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087",
+    "product_version": "v1",
+    "target_variable": "sea_water_potential_temperature",
+    "canonical_units": "degree_Celsius",
+    "spatial_extents": {
+      "longitude_min_deg": 80.0,
+      "longitude_max_deg": 88.0,
+      "latitude_min_deg": -3.0,
+      "latitude_max_deg": 12.0
+    },
+    "vertical_extents": {
+      "depth_min_m": 0.49402499198913574,
+      "depth_max_m": 453.9377136230469,
+      "depth_levels_count": 31,
+      "uses_non_uniform_lut": true
+    },
+    "temporal_extents": {
+      "timestep_count": 7,
+      "start_time_utc": "2026-08-24T12:00:00Z",
+      "end_time_utc": "2026-08-30T12:00:00Z",
+      "step_interval": "1D"
+    }
+  },
+  "package_architecture": {
+    "package_name": "@quasar/runtime",
+    "location": "packages/runtime/",
+    "dependencies": {
+      "@quasar/contracts": "workspace:*",
+      "@quasar/client": "workspace:*"
+    },
+    "forbidden_dependencies": [
+      "@babylonjs/core",
+      "@babylonjs/gui",
+      "@babylonjs/materials",
+      "three",
+      "cesium",
+      "react",
+      "react-dom"
+    ],
+    "modules": [
+      {
+        "name": "session",
+        "path": "src/session/",
+        "responsibility": "Pinned snapshot session lifecycle, immutable dataset/variable/timestep binding, and session-level lifecycle governance."
+      },
+      {
+        "name": "coordinates",
+        "path": "src/coordinates/",
+        "responsibility": "Bidirectional conversion between geodetic (WGS84 lon/lat), non-uniform depth LUT (0.494m to 453.938m), normalized volume space [0,1]^3, local ENU, and brick-local sample coordinates."
+      },
+      {
+        "name": "temporal",
+        "path": "src/temporal/",
+        "responsibility": "7-day discrete time-scrubbing controller with automatic stale-generation epoch tagging and cancellation dispatch."
+      },
+      {
+        "name": "planning",
+        "path": "src/planning/",
+        "responsibility": "Frustum & ROI visibility culling, 3-level anisotropic horizontal LOD selection with hysteresis deadbands, and priority score computation for @quasar/client scheduler."
+      },
+      {
+        "name": "residency",
+        "path": "src/residency/",
+        "responsibility": "Resident brick ledger tracking CPU-decoded and GPU-resident page states, reference-passed memory accounting without double buffering."
+      },
+      {
+        "name": "clipping",
+        "path": "src/clipping/",
+        "responsibility": "Physical depth range, geodetic bounding box, and arbitrary analytical clipping plane math in normalized volume coordinates."
+      },
+      {
+        "name": "packet",
+        "path": "src/packet/",
+        "responsibility": "Synthesis of backend-neutral RenderPacket containing texture buffer references, uniform structs, depth LUT arrays, transformation matrices, and scalar ranges."
+      },
+      {
+        "name": "picking",
+        "path": "src/picking/",
+        "responsibility": "Backend-neutral provisional pick ray casting with error bounding, delegating to TASK-05 authoritative exact query reconciliation."
+      }
+    ]
+  },
+  "fsm_specification": {
+    "states": [
+      "UNINITIALIZED",
+      "DISCOVERING",
+      "SNAPSHOT_PINNED",
+      "MANIFEST_LOADING",
+      "MANIFEST_READY",
+      "STREAMING",
+      "READY",
+      "DEGRADED",
+      "ERROR",
+      "DISPOSING",
+      "DISPOSED"
+    ],
+    "initial_state": "UNINITIALIZED",
+    "terminal_states": ["DISPOSED"],
+    "error_recovery_states": ["SNAPSHOT_PINNED", "MANIFEST_READY", "DEGRADED"],
+    "transitions": [
+      {
+        "from": "UNINITIALIZED",
+        "to": "DISCOVERING",
+        "event": "START_DISCOVERY",
+        "action": "Query catalog metadata from FastAPI service."
+      },
+      {
+        "from": "DISCOVERING",
+        "to": "SNAPSHOT_PINNED",
+        "event": "PIN_SNAPSHOT",
+        "action": "Pin active snapshot ID and anchor cryptographic hash."
+      },
+      {
+        "from": "SNAPSHOT_PINNED",
+        "to": "MANIFEST_LOADING",
+        "event": "LOAD_MANIFEST",
+        "action": "Fetch volume render manifest and verify SHA-256."
+      },
+      {
+        "from": "MANIFEST_LOADING",
+        "to": "MANIFEST_READY",
+        "event": "MANIFEST_PARSED",
+        "action": "Initialize depth LUT, bounding boxes, and coordinate transformers."
+      },
+      {
+        "from": "MANIFEST_READY",
+        "to": "STREAMING",
+        "event": "START_STREAMING",
+        "action": "Evaluate initial camera ROI/LOD and dispatch brick stream requests."
+      },
+      {
+        "from": "STREAMING",
+        "to": "READY",
+        "event": "STREAMING_SETTLED",
+        "action": "All visible viewport bricks at target LOD loaded into residency."
+      },
+      {
+        "from": "STREAMING",
+        "to": "DEGRADED",
+        "event": "FALLBACK_LOD_AVAILABLE",
+        "action": "Fine LOD pending; coarsened LOD rendered to maintain 60 FPS frame rate."
+      },
+      {
+        "from": "DEGRADED",
+        "to": "READY",
+        "event": "LOD_REFINED",
+        "action": "Fine LOD bricks arrived and uploaded to GPU."
+      },
+      {
+        "from": ["STREAMING", "READY", "DEGRADED"],
+        "to": "STREAMING",
+        "event": "VIEWPORT_CHANGED",
+        "action": "Advance epoch, re-evaluate frustum, queue new visible bricks."
+      },
+      {
+        "from": ["DISCOVERING", "MANIFEST_LOADING", "STREAMING"],
+        "to": "ERROR",
+        "event": "FATAL_ERROR",
+        "action": "Capture QuasarErrorDetail, emit error event, retain last valid state."
+      },
+      {
+        "from": "ERROR",
+        "to": "MANIFEST_READY",
+        "event": "RETRY_STREAMING",
+        "action": "Reset scheduler and retry streaming."
+      },
+      {
+        "from": "*",
+        "to": "DISPOSING",
+        "event": "DISPOSE",
+        "action": "Abort all inflight streams, evict caches, release GPU textures."
+      },
+      {
+        "from": "DISPOSING",
+        "to": "DISPOSED",
+        "event": "DISPOSAL_COMPLETE",
+        "action": "Nullify references and enter terminal state."
+      }
+    ]
+  },
+  "coordinate_transformers": {
+    "geographic_to_normalized": {
+      "lon_formula": "u = (lon - 80.0) / (88.0 - 80.0)",
+      "lat_formula": "v = (lat - (-3.0)) / (12.0 - (-3.0))"
+    },
+    "depth_lut_transformation": {
+      "level_count": 31,
+      "depth_bounds_m": [0.49402499198913574, 453.9377136230469],
+      "forward_mapping": "Monotonic piece-wise linear interpolation between discrete depth levels z_k",
+      "inverse_mapping": "Exact binary search across depth_lut_entries_m to resolve continuous depth from normalized w"
+    }
+  },
+  "memory_budget_coordination": {
+    "client_cache_budget_bytes": 52428800,
+    "runtime_ledger_overhead_bytes_ceiling": 5242880,
+    "strategy": "Direct object reference passing of DecodedBrick.rawBuffer; zero intermediate array copies between client and renderer."
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "$defs": {
+    "PlatformType": {
+      "description": "Taxonomy of ocean observation platform types.",
+      "enum": [
+        "argo_float",
+        "bgc_argo_float",
+        "underwater_glider",
+        "moored_buoy",
+        "drifting_buoy",
+        "research_vessel",
+        "coastal_station",
+        "autonomous_surface_vehicle",
+        "animal_borne_sensor",
+        "submersible",
+        "custom"
+      ],
+      "title": "PlatformType",
+      "type": "string"
+    },
+    "SensorMetadata": {
+      "description": "Metadata describing a sensor payload mounted on an observation platform.",
+      "properties": {
+        "calibration_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ISO 8601 UTC date string of the last calibration.",
+          "title": "Calibration Date"
+        },
+        "measured_variables": {
+          "description": "List of canonical or source variable names measured by this sensor.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Measured Variables",
+          "type": "array"
+        },
+        "sensor_id": {
+          "description": "Unique identifier or serial number for this sensor.",
+          "title": "Sensor Id",
+          "type": "string"
+        },
+        "sensor_maker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Manufacturer name (e.g. Sea-Bird Scientific, Aanderaa, RBR).",
+          "title": "Sensor Maker"
+        },
+        "sensor_model": {
+          "description": "Sensor model name (e.g. SBE41CP, Aanderaa 4330, Wetlabs ECO Puck).",
+          "title": "Sensor Model",
+          "type": "string"
+        },
+        "serial_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Manufacturer serial number of the sensor unit.",
+          "title": "Serial Number"
+        }
+      },
+      "required": [
+        "sensor_id",
+        "sensor_model",
+        "measured_variables"
+      ],
+      "title": "SensorMetadata",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative metadata contract for oceanographic observation platforms.\nCaptures platform identifiers, WMO numbering, deployment history, telemetry, and sensor payload.",
+  "properties": {
+    "deployment_date_utc": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "ISO 8601 UTC timestamp of deployment.",
+      "title": "Deployment Date Utc"
+    },
+    "deployment_latitude": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Initial deployment latitude in degrees North [-90, 90].",
+      "title": "Deployment Latitude"
+    },
+    "deployment_longitude": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Initial deployment longitude in degrees East [-180, 180].",
+      "title": "Deployment Longitude"
+    },
+    "institution": {
+      "description": "Deploying institution or lead scientific organization (e.g. 'INCOIS', 'Rutgers University', 'Coriolis').",
+      "title": "Institution",
+      "type": "string"
+    },
+    "institution_country": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Country of the responsible institution.",
+      "title": "Institution Country"
+    },
+    "is_active": {
+      "default": true,
+      "description": "Whether the platform is currently active and reporting observations.",
+      "title": "Is Active",
+      "type": "boolean"
+    },
+    "pi_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Principal Investigator (PI) responsible for the platform and data stream.",
+      "title": "Pi Name"
+    },
+    "platform_code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Platform manufacturer or institutional code / serial number.",
+      "title": "Platform Code"
+    },
+    "platform_id": {
+      "description": "Canonical unique platform identifier in QuasarOS (e.g. incois_argo_7902250, glider_ru29).",
+      "title": "Platform Id",
+      "type": "string"
+    },
+    "platform_type": {
+      "$ref": "#/$defs/PlatformType",
+      "description": "Standard classification of the observation platform."
+    },
+    "project_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Associated mission, research program or campaign (e.g. 'Argo India', 'Challenger Glider Mission').",
+      "title": "Project Name"
+    },
+    "sensors": {
+      "description": "List of sensors installed on the platform.",
+      "items": {
+        "$ref": "#/$defs/SensorMetadata"
+      },
+      "title": "Sensors",
+      "type": "array"
+    },
+    "telemetry_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Data transmission system (e.g. 'Iridium', 'Argos', 'Cellular').",
+      "title": "Telemetry Type"
+    },
+    "wmo_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "World Meteorological Organization (WMO) numeric identifier (e.g. '7902250').",
+      "title": "Wmo Id"
+    }
+  },
+  "required": [
+    "platform_id",
+    "platform_type",
+    "institution"
+  ],
+  "title": "PlatformMetadataContract",
+  "type": "object"
+}

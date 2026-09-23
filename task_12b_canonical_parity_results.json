@@ -1,0 +1,86 @@
+{
+  "thetao": {
+    "netcdf_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/thetao/copernicus_phy_thetao_20260824_20260830.nc",
+    "zarr_store_path": "data/canonical/copernicus_phy_thetao_fulldepth/copernicus-phy-multivariable-20260824-20260830-v11dev",
+    "shape": [
+      7,
+      50,
+      181,
+      97
+    ],
+    "dtype": "float32",
+    "total_voxels": 6144950,
+    "valid_voxels": 5583466,
+    "masked_voxels": 561484,
+    "max_abs_difference": 0.0,
+    "nan_mask_identical": true,
+    "lossless_parity_verified": true
+  },
+  "so": {
+    "netcdf_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/so/copernicus_phy_so_20260824_20260830.nc",
+    "zarr_store_path": "data/canonical/copernicus_phy_so/copernicus-phy-multivariable-20260824-20260830-v11dev",
+    "shape": [
+      7,
+      50,
+      181,
+      97
+    ],
+    "dtype": "float32",
+    "total_voxels": 6144950,
+    "valid_voxels": 5583466,
+    "masked_voxels": 561484,
+    "max_abs_difference": 0.0,
+    "nan_mask_identical": true,
+    "lossless_parity_verified": true
+  },
+  "uo": {
+    "netcdf_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/uo/copernicus_phy_uo_20260824_20260830.nc",
+    "zarr_store_path": "data/canonical/copernicus_phy_uo/copernicus-phy-multivariable-20260824-20260830-v11dev",
+    "shape": [
+      7,
+      50,
+      181,
+      97
+    ],
+    "dtype": "float32",
+    "total_voxels": 6144950,
+    "valid_voxels": 5583466,
+    "masked_voxels": 561484,
+    "max_abs_difference": 0.0,
+    "nan_mask_identical": true,
+    "lossless_parity_verified": true
+  },
+  "vo": {
+    "netcdf_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo/copernicus_phy_vo_20260824_20260830.nc",
+    "zarr_store_path": "data/canonical/copernicus_phy_vo/copernicus-phy-multivariable-20260824-20260830-v11dev",
+    "shape": [
+      7,
+      50,
+      181,
+      97
+    ],
+    "dtype": "float32",
+    "total_voxels": 6144950,
+    "valid_voxels": 5583466,
+    "masked_voxels": 561484,
+    "max_abs_difference": 0.0,
+    "nan_mask_identical": true,
+    "lossless_parity_verified": true
+  },
+  "zos": {
+    "netcdf_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos/copernicus_phy_zos_20260824_20260830.nc",
+    "zarr_store_path": "data/canonical/copernicus_phy_zos/copernicus-phy-multivariable-20260824-20260830-v11dev",
+    "shape": [
+      7,
+      181,
+      97
+    ],
+    "dtype": "float32",
+    "total_voxels": 122899,
+    "valid_voxels": 122899,
+    "masked_voxels": 0,
+    "max_abs_difference": 0.0,
+    "nan_mask_identical": true,
+    "lossless_parity_verified": true
+  }
+}

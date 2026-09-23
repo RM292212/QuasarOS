@@ -1,0 +1,46 @@
+{
+  "$defs": {
+    "VectorReferenceFrame": {
+      "description": "Reference coordinate frame for vector components.",
+      "enum": [
+        "earth_relative",
+        "grid_relative",
+        "instrument_relative"
+      ],
+      "title": "VectorReferenceFrame",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Metadata required for converting between grid-relative and true Earth-relative vector components.\nFormula:\n  u_earth = u_grid * cos(angle) - v_grid * sin(angle)\n  v_earth = u_grid * sin(angle) + v_grid * cos(angle)",
+  "properties": {
+    "angle_units": {
+      "default": "radians",
+      "description": "Units of the rotation angle array.",
+      "enum": [
+        "radians",
+        "degrees"
+      ],
+      "title": "Angle Units",
+      "type": "string"
+    },
+    "angle_variable_name": {
+      "default": "angle",
+      "description": "Dataset variable name containing grid rotation angle in radians between xi-axis and true East.",
+      "title": "Angle Variable Name",
+      "type": "string"
+    },
+    "source_reference_frame": {
+      "$ref": "#/$defs/VectorReferenceFrame",
+      "default": "grid_relative",
+      "description": "Original frame in the source dataset."
+    },
+    "target_reference_frame": {
+      "$ref": "#/$defs/VectorReferenceFrame",
+      "default": "earth_relative",
+      "description": "Target reference frame for scientific visualization and analysis."
+    }
+  },
+  "title": "RotationMetadata",
+  "type": "object"
+}

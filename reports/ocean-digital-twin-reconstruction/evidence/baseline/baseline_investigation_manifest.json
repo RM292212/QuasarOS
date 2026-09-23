@@ -1,0 +1,15 @@
+{
+  "audit_id": "ocean-digital-twin-baseline-capture",
+  "timestamp_utc": "2026-08-31T18:12:00Z",
+  "commit": "6307280152cdcaaa6af79f7d318850e1b0a8dfb1",
+  "investigation_targets": [
+    "Root cause 1: Depth clipping slider clamped at 453.5m while domain reaches 5727.9m",
+    "Root cause 2: Variable round-trip thetao -> velocity -> thetao state restoration",
+    "Root cause 3: Velocity magnitude sqrt(uo^2 + vo^2) algorithmic implementation",
+    "Root cause 4: Selectable resolution / LOD modes (Preview, Interactive, High Quality)",
+    "Root cause 5: Auto-rotation disablement and stable georeferenced camera orientation",
+    "Root cause 6: Cesium Explorer Mode with geographic bounding box selection and transfer to Scientific Mode",
+    "Root cause 7: Multi-dataset INCOIS catalog integration across available ocean datasets",
+    "Root cause 8: Argo float and profile synchronization between Cesium, 3D volume, and analytical plots"
+  ]
+}

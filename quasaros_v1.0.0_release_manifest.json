@@ -1,0 +1,183 @@
+{
+  "release_manifest": {
+    "product_name": "QuasarOS",
+    "version": "1.0.0",
+    "release_tag": "v1.0.0",
+    "promotion_from": "v1.0.0-rc.1",
+    "milestone": "RELEASE-01E (Independent Final Verification, Release Promotion, and Official Milestone Closure)",
+    "release_date_iso": "2026-08-30T23:35:00+05:30",
+    "operational_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "status": "RELEASE_PROMOTED_OFFICIALLY_CLOSED",
+    "governing_specification": "ADR-0005 (Authoritative Separation of Numerical Truth from Rendering)",
+    "cryptographic_verification_standard": "NIST FIPS 180-4 SHA-256"
+  },
+  "quality_and_testing_verification": {
+    "canonical_schema_drift": {
+      "schemas_evaluated": 54,
+      "schemas_drift_count": 0,
+      "verification_tool": "python scripts/generate_schemas.py --verify",
+      "verdict": "ZERO_DRIFT_PASSED"
+    },
+    "test_execution_matrix": {
+      "python_unit_and_integration_tests": {
+        "tests_run": 381,
+        "tests_passed": 381,
+        "tests_failed": 0,
+        "pass_rate_pct": 100.0
+      },
+      "typescript_subsystem_tests": {
+        "@quasar/client": { "tests": 22, "passed": 22, "failed": 0 },
+        "@quasar/runtime": { "tests": 42, "passed": 42, "failed": 0 },
+        "@quasar/renderer-webgpu": { "tests": 27, "passed": 27, "failed": 0 },
+        "@quasar/renderer-webgl2": { "tests": 28, "passed": 28, "failed": 0 },
+        "@quasar/web": { "tests": 38, "passed": 38, "failed": 0 },
+        "total_typescript_tests": 157,
+        "passed": 157,
+        "failed": 0,
+        "pass_rate_pct": 100.0
+      },
+      "combined_total_tests": 538,
+      "combined_total_passed": 538,
+      "combined_total_failed": 0,
+      "combined_pass_rate_pct": 100.0,
+      "verdict": "100_PERCENT_TEST_PASS_VERIFIED"
+    }
+  },
+  "deployable_packages": {
+    "@quasar/web": {
+      "role": "Application Shell UI, Accessibility Trees & Visualization Workspace",
+      "package_path": "apps/web",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "manifest_sha256": "ed0627ea5e3fec195a0bd054b94d316044440ad5585a294a05da2548a163fee8",
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*",
+        "@quasar/renderer-webgpu": "workspace:*",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "zustand": "^4.5.5",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^2.5.2"
+      }
+    },
+    "@quasar/client": {
+      "role": "Typed Catalog Discovery, Streaming Client & NetCDF Query Client",
+      "package_path": "packages/client",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "manifest_sha256": "1bcbd45521df935403a6c94bb964e33088d67cf3149ed058ad7115b11a90321f",
+      "runtime_dependencies": {
+        "fzstd": "^0.1.1"
+      }
+    },
+    "@quasar/runtime": {
+      "role": "Scientific Coordinate, Non-Uniform Depth LUT & Session Runtime Engine",
+      "package_path": "packages/runtime",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "manifest_sha256": "41664950abb7193afb9890735638fdbc6def61e979169f3fd770a513e5c77df0",
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*"
+      }
+    },
+    "@quasar/renderer-webgpu": {
+      "role": "WebGPU WGSL Adaptive Raymarching 3D Volume Renderer",
+      "package_path": "packages/renderer-webgpu",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "manifest_sha256": "8e12136bbca00f276e4f5e22803da16f01bab2fb541bc33c95816547266d531b",
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*"
+      }
+    },
+    "@quasar/renderer-webgl2": {
+      "role": "WebGL2 GLSL ES 3.00 Parity Fallback Volume Renderer",
+      "package_path": "packages/renderer-webgl2",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "manifest_sha256": "c774716c77b47d642591dbd4c4f16b0e4f3687f748e07d3f9be0947331ab955e",
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*"
+      }
+    },
+    "quasar_services": {
+      "role": "FastAPI Authoritative Exact NetCDF-4 Query & Catalog Gateway",
+      "package_path": "packages/services",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "framework": "FastAPI / Uvicorn / Xarray / NetCDF4"
+    }
+  },
+  "cryptographic_trust_chain": {
+    "active_snapshot_catalog": {
+      "relative_path": "data/manifests/active_snapshot_catalog.json",
+      "sha256": "bfb7646360eca55e58d886f3b21e4a3583968ffc5140d766fb246511bf24bba8",
+      "byte_size": 2693,
+      "role": "Operational Snapshot Registry & Active Discovery Root"
+    },
+    "raw_netcdf_source": {
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+      "sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+      "byte_size": 15263238,
+      "role": "Authoritative Native Float32 Oceanographic NetCDF-4 Dataset (Sole Authority)"
+    },
+    "acquisition_manifest": {
+      "relative_path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/acquisition_manifest.json",
+      "sha256": "0861401c53c9c03ec66362c69a1e6935e5d22cfffb11dc50d2217b53204dbd73",
+      "byte_size": 2175,
+      "role": "Copernicus Marine Data Store Provenance & Acquisition Manifest"
+    },
+    "canonical_zarr_metadata": {
+      "relative_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/.zattrs",
+      "sha256": "440212181e3465c2ed0f2a431c00e67826a93f2f7f67dbccc103e39b9a8f5e8d",
+      "byte_size": 9563,
+      "role": "Canonical Zarr-3 Array Attributes & CF Metadata"
+    },
+    "visualization_manifest": {
+      "relative_path": "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+      "sha256": "b470d6657dd4c164f5d2c924fa9889988b84f08e3529c4a0b8ac8d6aff733908",
+      "byte_size": 194070,
+      "role": "Multiresolution Octree & Brick Payload Manifest"
+    }
+  },
+  "scientific_lineage_and_adr0005_audit": {
+    "framework": "14-Stage Full Cross-Layer Traceability",
+    "ocean_sample_verification": {
+      "coordinate": "84.167°E, 1.167°N, 0.494m",
+      "native_netcdf_float32": 29.087975,
+      "canonical_zarr_float32": 29.087975,
+      "visualization_u16_quantized": 29.087888,
+      "provisional_raycast_pick": 29.088,
+      "adr0005_reconciled_exact_value": 29.087975,
+      "reconciliation_parity_delta_degC": 0.000000,
+      "verdict": "EXACT_PARITY_VERIFIED"
+    },
+    "coastal_masked_land_verification": {
+      "coordinate": "80.417°E, 6.000°N, 0.494m",
+      "native_netcdf_mask": "is_masked=True (_FillValue=1e20)",
+      "canonical_zarr_mask": "validity_mask=1 (NaN scalar)",
+      "visualization_u16_mask": "reserved code 65535",
+      "provisional_raycast_pick": "transparent (hit=false)",
+      "adr0005_reconciled_exact_value": "MASKED_POINT (is_valid=false)",
+      "verdict": "MASK_PRESERVATION_VERIFIED"
+    }
+  },
+  "platform_performance_and_security_audit": {
+    "webgpu_performance": "5.11 ms median frame time (195.7 FPS) at 1080p",
+    "webgl2_fallback_performance": "6.82 ms median frame time (146.6 FPS) at 1080p",
+    "memory_residency_budget": "<= 50.0 MiB in-memory LRU client cache / <= 50.0 MiB GPU texture budget",
+    "device_loss_hot_failover": "0.23 ms WebGPU -> WebGL2 recovery time",
+    "security_headers": "Strict-CSP, X-Content-Type-Options: nosniff, X-Frame-Options: DENY, Referrer-Policy: strict-origin-when-cross-origin",
+    "path_traversal_protection": "100% sanitized / absolute path leaks: 0",
+    "secrets_audit": "Zero hardcoded credentials, API keys, or private access tokens"
+  },
+  "governance_and_release_approval": {
+    "independent_verification_lead": "Independent Final Verification & Release Approval Lead",
+    "approval_status": "APPROVED_FOR_OFFICIAL_RELEASE",
+    "task_12_scope_creep_audit": "0 unauthorized TASK-12 items detected",
+    "release_tag": "QuasarOS v1.0.0"
+  }
+}

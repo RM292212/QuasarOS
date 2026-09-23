@@ -1,0 +1,121 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "variable": "zos",
+  "is_3d": false,
+  "quantization": {
+    "scale_factor": 4.667005758826579e-06,
+    "offset": 0.3321612775325775,
+    "missing_code": 65535,
+    "valid_min": 0.3321612775325775,
+    "valid_max": 0.6380088329315186,
+    "theoretical_max_error": 2.3335028794132895e-06
+  },
+  "bricks": [
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t0",
+      "time_index": 0,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t0/surface_f16.bin.zst",
+        "sha256": "166ce332aea031ee51d8f6f393857d09b1a60b8cb4d537935366809d7cb01000",
+        "compressed_bytes": 19957
+      },
+      "u16_payload": {
+        "storage_key": "surface/t0/surface_u16.bin.zst",
+        "sha256": "7f4c4dbf66f35f9484aa939d31d24b1a8f75c6b9d4d408424a7a17076c8cfe70",
+        "compressed_bytes": 33859
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t1",
+      "time_index": 1,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t1/surface_f16.bin.zst",
+        "sha256": "3b4e6d900f47a4007a152fc7e4a05807caac36388facae36592142ebd1b45cb8",
+        "compressed_bytes": 20064
+      },
+      "u16_payload": {
+        "storage_key": "surface/t1/surface_u16.bin.zst",
+        "sha256": "bb3b8e2b5c27bd0b2b09d557667fdc553a38c71799372fa7ee1c254499930a76",
+        "compressed_bytes": 33906
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t2",
+      "time_index": 2,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t2/surface_f16.bin.zst",
+        "sha256": "bd88fa57a0a4dc17b16a624a22ad0e0d59931950d5c71b2f95d3aa3ffb18ce3a",
+        "compressed_bytes": 20475
+      },
+      "u16_payload": {
+        "storage_key": "surface/t2/surface_u16.bin.zst",
+        "sha256": "dfc88f8f399470ab6e9e1e4f935fb016b277b2179fd83baf7a417ab0c4d836d2",
+        "compressed_bytes": 34055
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t3",
+      "time_index": 3,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t3/surface_f16.bin.zst",
+        "sha256": "cf502cb49016f6a51d4b910c371beeb54d68df4afe5791c93e8fa906a782f074",
+        "compressed_bytes": 20442
+      },
+      "u16_payload": {
+        "storage_key": "surface/t3/surface_u16.bin.zst",
+        "sha256": "a138c188de0b689cbbf41ec25e8afdbc774fc7d37aa0b32cc9f1b98f2a318df4",
+        "compressed_bytes": 34050
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t4",
+      "time_index": 4,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t4/surface_f16.bin.zst",
+        "sha256": "f7cd9010ad72e2c733b40fc554713ae6cc3051c408ca7d1b57ffac173ea5f4fd",
+        "compressed_bytes": 20242
+      },
+      "u16_payload": {
+        "storage_key": "surface/t4/surface_u16.bin.zst",
+        "sha256": "416ae0a8cfa14425dfc7afc45c26979a6e3c845a88730822fb7471fe428e2f93",
+        "compressed_bytes": 34059
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t5",
+      "time_index": 5,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t5/surface_f16.bin.zst",
+        "sha256": "b29580cfe04dbd2374aea0a1298151fe32285ccff95fd8ebda25c1cb2f8eead4",
+        "compressed_bytes": 20316
+      },
+      "u16_payload": {
+        "storage_key": "surface/t5/surface_u16.bin.zst",
+        "sha256": "759fb18a7aa6f21cd080498d7fd2635b7d7c3d18d3ac3e98f60850304d30b580",
+        "compressed_bytes": 34118
+      }
+    },
+    {
+      "brick_key": "vis_zos:copernicus-phy-multivariable-20260824-20260830-v11dev:surface:t6",
+      "time_index": 6,
+      "is_surface": true,
+      "f16_payload": {
+        "storage_key": "surface/t6/surface_f16.bin.zst",
+        "sha256": "554be916b577ba4f4e8633607eab3cb76239dce1f0aee66fe0071f0dfd860cfb",
+        "compressed_bytes": 20733
+      },
+      "u16_payload": {
+        "storage_key": "surface/t6/surface_u16.bin.zst",
+        "sha256": "faf8d01455cb37971cb23496c0751c6c112938c036835ff534a7b7ec68dd9fba",
+        "compressed_bytes": 34204
+      }
+    }
+  ]
+}

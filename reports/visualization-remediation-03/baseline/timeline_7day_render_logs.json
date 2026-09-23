@@ -1,0 +1,157 @@
+{
+  "log_session_id": "TL-7DAY-LOGS-20260831",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "temporal_domain": {
+    "start_utc": "2026-08-24T00:00:00Z",
+    "end_utc": "2026-08-30T00:00:00Z",
+    "total_timesteps": 7
+  },
+  "spatial_domain": {
+    "latitude_bounds": [0.0, 15.0, 181],
+    "longitude_bounds": [60.0, 68.0, 97],
+    "depth_levels_count": 50,
+    "depth_range_m": [0.494, 5727.917]
+  },
+  "daily_timeline_logs": [
+    {
+      "time_index": 0,
+      "date_iso": "2026-08-24",
+      "timestamp_utc": "2026-08-24T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.042, "max": 30.792, "mean": 13.842, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.612, "max": 36.646, "mean": 35.481, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.781, "max": 1.138, "mean": 0.042, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.708, "max": 1.028, "mean": 0.018, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.332, "max": 0.638, "mean": 0.492, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 48.2,
+        "texture_upload_ms": 3.1,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Unphysical uniform depth scaling; mock UI panels display static day 7 data."
+      }
+    },
+    {
+      "time_index": 1,
+      "date_iso": "2026-08-25",
+      "timestamp_utc": "2026-08-25T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.045, "max": 30.751, "mean": 13.839, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.615, "max": 36.644, "mean": 35.480, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.765, "max": 1.112, "mean": 0.041, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.692, "max": 1.015, "mean": 0.017, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.335, "max": 0.635, "mean": 0.491, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 45.6,
+        "texture_upload_ms": 2.9,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Texture swap occurs with single-frame flicker due to missing double-buffering."
+      }
+    },
+    {
+      "time_index": 2,
+      "date_iso": "2026-08-26",
+      "timestamp_utc": "2026-08-26T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.043, "max": 30.712, "mean": 13.835, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.618, "max": 36.641, "mean": 35.479, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.750, "max": 1.095, "mean": 0.039, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.680, "max": 0.998, "mean": 0.016, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.338, "max": 0.632, "mean": 0.490, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 47.1,
+        "texture_upload_ms": 3.0,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Rapid scrubber drag triggers multiple concurrent fetch requests with potential race conditions."
+      }
+    },
+    {
+      "time_index": 3,
+      "date_iso": "2026-08-27",
+      "timestamp_utc": "2026-08-27T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.042, "max": 30.685, "mean": 13.831, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.620, "max": 36.638, "mean": 35.478, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.738, "max": 1.072, "mean": 0.038, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.665, "max": 0.985, "mean": 0.015, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.340, "max": 0.630, "mean": 0.489, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 44.9,
+        "texture_upload_ms": 2.8,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Thermal boundary shows sharp color stepping due to basic 4-segment colormap."
+      }
+    },
+    {
+      "time_index": 4,
+      "date_iso": "2026-08-28",
+      "timestamp_utc": "2026-08-28T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.041, "max": 30.650, "mean": 13.828, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.622, "max": 36.635, "mean": 35.477, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.725, "max": 1.050, "mean": 0.037, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.650, "max": 0.970, "mean": 0.014, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.342, "max": 0.628, "mean": 0.488, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 46.5,
+        "texture_upload_ms": 3.1,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Salinity and velocity variables render in same default thermal colormap."
+      }
+    },
+    {
+      "time_index": 5,
+      "date_iso": "2026-08-29",
+      "timestamp_utc": "2026-08-29T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.042, "max": 30.612, "mean": 13.824, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.625, "max": 36.632, "mean": 35.476, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.710, "max": 1.035, "mean": 0.036, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.635, "max": 0.955, "mean": 0.013, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.345, "max": 0.625, "mean": 0.487, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 45.8,
+        "texture_upload_ms": 2.9,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Viewport fails to display spatial coordinate ticks or physical geographic bounding box."
+      }
+    },
+    {
+      "time_index": 6,
+      "date_iso": "2026-08-30",
+      "timestamp_utc": "2026-08-30T00:00:00Z",
+      "variables": {
+        "thetao": { "min": 1.042, "max": 30.585, "mean": 13.820, "units": "degC", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "so": { "min": 34.628, "max": 36.630, "mean": 35.475, "units": "PSU", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "uo": { "min": -0.695, "max": 1.020, "mean": 0.035, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "vo": { "min": -0.620, "max": 0.940, "mean": 0.012, "units": "m/s", "shape": [50, 181, 97], "valid_pct": 90.86 },
+        "zos": { "min": 0.348, "max": 0.622, "mean": 0.486, "units": "m", "shape": [181, 97], "valid_pct": 100.00 }
+      },
+      "baseline_render_metrics": {
+        "fps": 60,
+        "grid_resolution": [16, 32, 32],
+        "fetch_latency_ms": 46.2,
+        "texture_upload_ms": 3.0,
+        "memory_allocated_kb": 16.384,
+        "render_anomaly": "Default active timestep; HUD displays 0.494m-5727.9m but shader renders uncalibrated linear depth."
+      }
+    }
+  ]
+}

@@ -62,11 +62,18 @@ export class ScientificLegendFormatter {
     config: ScientificLegendConfig = {}
   ): LegendRenderModel {
     const tickCount = Math.max(2, config.tickCount ?? 5);
-    const precision = config.decimalPrecision ?? 1;
-    const unit = config.unit ?? tf.physical_units ?? '°C';
     const min = tf.physical_domain_min;
     const max = tf.physical_domain_max;
     const span = max - min;
+    // Adaptively scale precision: for small ranges (like speed 0-1.2 m/s or zos 0.3-0.7 m), use 2 or 3 decimals
+    let defaultPrecision = 1;
+    if (span <= 0.5) {
+      defaultPrecision = 3;
+    } else if (span <= 2.5) {
+      defaultPrecision = 2;
+    }
+    const precision = config.decimalPrecision ?? defaultPrecision;
+    const unit = config.unit ?? tf.physical_units ?? '°C';
     const cmapName = tf.colormap_preset_name;
 
     const ticks: LegendTick[] = [];

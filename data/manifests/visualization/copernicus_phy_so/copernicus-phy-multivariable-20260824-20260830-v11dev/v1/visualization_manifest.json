@@ -1,0 +1,1528 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "variable": "so",
+  "is_3d": true,
+  "quantization": {
+    "scale_factor": 3.104588697815733e-05,
+    "offset": 34.61166763305664,
+    "missing_code": 65535,
+    "valid_min": 34.61166763305664,
+    "valid_max": 36.6462287902832,
+    "theoretical_max_error": 1.5522943489078665e-05
+  },
+  "bricks": [
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b0_0_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_0_0_0_f16.bin.zst",
+        "sha256": "3016e203f999da97a4e83f615ed8b55084388ead2f5d5b08e00d4166833bcfd8",
+        "compressed_bytes": 34628
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_0_0_0_u16.bin.zst",
+        "sha256": "48819d84f49fa330082205f9f3d22c712d280bd02669ed1bed997aba0f271cdb",
+        "compressed_bytes": 263630
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b0_1_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_0_1_0_f16.bin.zst",
+        "sha256": "33ce3a17cee7c8aed3e863a5dbbf1a03abd9ec1f09cd2abd1ca27b6fe41cc45b",
+        "compressed_bytes": 18730
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_0_1_0_u16.bin.zst",
+        "sha256": "e23668db2000fb669b6f15213c60a1002a6543fdb80d903558a7b57f9c91a95b",
+        "compressed_bytes": 138178
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b1_0_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_1_0_0_f16.bin.zst",
+        "sha256": "8428d9662fab819d22929da88a374dadcae476731e74ee3827be84f8751a95b4",
+        "compressed_bytes": 26836
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_1_0_0_u16.bin.zst",
+        "sha256": "d9f430caf1e265c2efedda9205b7f242f84248df41d7f29426f09846a940d753",
+        "compressed_bytes": 268681
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b1_1_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_1_1_0_f16.bin.zst",
+        "sha256": "49003bccb2521c7c050afff824a578f794dfa3ab875664d2f5d5b9fc6ef8b4af",
+        "compressed_bytes": 16648
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_1_1_0_u16.bin.zst",
+        "sha256": "400b6320ec096c37211a5d556eceaf94be8cd204bcd4cc3d7cccb7cf58fcf5e4",
+        "compressed_bytes": 142914
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b2_0_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_2_0_0_f16.bin.zst",
+        "sha256": "e756aa11007119453b93c414c7df3428c24ca490df0f177a82824459c2a2582a",
+        "compressed_bytes": 19572
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_2_0_0_u16.bin.zst",
+        "sha256": "c12ad6dedcc4efea28e77097d4e88b937484c7425ae88f44de333921062c1a05",
+        "compressed_bytes": 208321
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b2_1_0",
+      "time_index": 0,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_2_1_0_f16.bin.zst",
+        "sha256": "63b536cae928a22386b0920e2f145386ce1641a204a1a5d5fe9efd1ef745d519",
+        "compressed_bytes": 9636
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_2_1_0_u16.bin.zst",
+        "sha256": "c3af37daea5e92fce595302b1486c71551fc474f7cdd2d8518a668a23673df9f",
+        "compressed_bytes": 107113
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b0_0_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_0_0_1_f16.bin.zst",
+        "sha256": "ecd32c5d1c0a536da71176a16a75e443df58e4da4aeffd25955e3227c9c6c567",
+        "compressed_bytes": 8220
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_0_0_1_u16.bin.zst",
+        "sha256": "e31ecf5e837304155ee91eb3476972df25456c570b2af0b3ba9f665636e928f0",
+        "compressed_bytes": 107800
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b0_1_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_0_1_1_f16.bin.zst",
+        "sha256": "c0daf42d30e34487b9a0ca885e4edd877b462a40fa0c98ffe92a79f30e2539bb",
+        "compressed_bytes": 5556
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_0_1_1_u16.bin.zst",
+        "sha256": "e64d3bf0b4c67849e9ec3d84502cf761084c0b798c33e135b4af0f17d1a43b0c",
+        "compressed_bytes": 53903
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b1_0_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_1_0_1_f16.bin.zst",
+        "sha256": "83a6938c1ea0ff09c4703e9758aa1f2a0ed23fb4723f43474e9cac52202ca9d8",
+        "compressed_bytes": 8916
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_1_0_1_u16.bin.zst",
+        "sha256": "e10f94433a6b5041d4cb7d838234301a4ec515115e4256541a04aa3762d9cf93",
+        "compressed_bytes": 119402
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b1_1_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_1_1_1_f16.bin.zst",
+        "sha256": "1b71174b5b8231e6ac4414819c7651089f1dd18111d49b0d83ef4ac68e1060e5",
+        "compressed_bytes": 4687
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_1_1_1_u16.bin.zst",
+        "sha256": "fa96355bb9f6bbe6b8991217e064491217d2cc72c8b1cc2480407a7354c83b67",
+        "compressed_bytes": 64825
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b2_0_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_2_0_1_f16.bin.zst",
+        "sha256": "0a8c49584c3ea3d01d37a7429fc6f8b43d7e233d5e83d905c46a355b65c4c707",
+        "compressed_bytes": 6657
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_2_0_1_u16.bin.zst",
+        "sha256": "14ce777598f7890cb80c23357f4440f6677ee1bdcde11e9bd462e4141ed5893c",
+        "compressed_bytes": 97411
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t0:b2_1_1",
+      "time_index": 0,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t0/b_2_1_1_f16.bin.zst",
+        "sha256": "6533e5cb0662c49c241ff74d0c58198fdddd189f7b924597b57f9c7edca39b7f",
+        "compressed_bytes": 4341
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t0/b_2_1_1_u16.bin.zst",
+        "sha256": "a749bbce4e116761d5c05fa00e2a8e06a7f397e5a9fc9deede056ca57fde7270",
+        "compressed_bytes": 51745
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b0_0_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_0_0_0_f16.bin.zst",
+        "sha256": "55106d9a75e751fb070b23c27698cc027f7e4b84978a6ec88521232a638883ee",
+        "compressed_bytes": 33379
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_0_0_0_u16.bin.zst",
+        "sha256": "8335afe776835c0180651bbf26f7faf96e01f567a542b61ce39c2ff974ba8896",
+        "compressed_bytes": 262705
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b0_1_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_0_1_0_f16.bin.zst",
+        "sha256": "c652c24cfb864867db6d0da115a37b60385956da29c2628e9eb7f2e62ce710c9",
+        "compressed_bytes": 17678
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_0_1_0_u16.bin.zst",
+        "sha256": "7f50b2540e464b0eaddc56522f6330e3e3335850ac02d6bb081dd1a08a6cf06e",
+        "compressed_bytes": 137888
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b1_0_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_1_0_0_f16.bin.zst",
+        "sha256": "e78161c507720573753f3d674d5dae8fa3f27c21b3d4be12bef475a71400615e",
+        "compressed_bytes": 26522
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_1_0_0_u16.bin.zst",
+        "sha256": "968608cf168fb2d3a0b746205dba7ab96e9d18c998cbaed343152e33af7e5041",
+        "compressed_bytes": 268711
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b1_1_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_1_1_0_f16.bin.zst",
+        "sha256": "f12ab9819bc49e554f5e4b0941b620cb61d041e0dd3be58beb010e718f749350",
+        "compressed_bytes": 15761
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_1_1_0_u16.bin.zst",
+        "sha256": "f10d03c6b0deab293477ef7e5b8f3ea8c699b21e58aead88fc79dba91325f35a",
+        "compressed_bytes": 142347
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b2_0_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_2_0_0_f16.bin.zst",
+        "sha256": "5d53460e481663f739f1dba9b55b6e3570869f5aac1b9be1869c66f194777de7",
+        "compressed_bytes": 19492
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_2_0_0_u16.bin.zst",
+        "sha256": "b8c7aaedcec8aa8533aac2448955496e25a90c3034855942d17ce8b096926c8e",
+        "compressed_bytes": 210318
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b2_1_0",
+      "time_index": 1,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_2_1_0_f16.bin.zst",
+        "sha256": "3003f99af5faad669da80ed6c3a27793ee71f8666288141956ae92713c0308eb",
+        "compressed_bytes": 9121
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_2_1_0_u16.bin.zst",
+        "sha256": "432c0a94ad7ce685f681d8c65ea42efa130ef0451380d015d654b495c6e3b903",
+        "compressed_bytes": 108484
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b0_0_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_0_0_1_f16.bin.zst",
+        "sha256": "bba5f5b7652b2475b74cd7ae6c6b996003c298b72e797a809bbb98b3c27eb00f",
+        "compressed_bytes": 8216
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_0_0_1_u16.bin.zst",
+        "sha256": "2763905b9d3449e347419f80d734f2ece86dba6d5f5513dea8f64e5977b1c585",
+        "compressed_bytes": 107351
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b0_1_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_0_1_1_f16.bin.zst",
+        "sha256": "01b09d89721a36c8feb6e088538a421ce36cb29de9e09ea71d00875d71ea0ace",
+        "compressed_bytes": 5661
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_0_1_1_u16.bin.zst",
+        "sha256": "052455329b2b0c593edd1b5a0fd47ebe5a4e7792ae0dd9a5ecc3ef4fcdf6ddff",
+        "compressed_bytes": 53923
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b1_0_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_1_0_1_f16.bin.zst",
+        "sha256": "da1bb6a65d0d7d0bf6294d19448c11d430be1f859ee5599e15f41c32239e433f",
+        "compressed_bytes": 8959
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_1_0_1_u16.bin.zst",
+        "sha256": "b86583b03ee2f898480b9867232ae7361c07c6a26e619212670245c6835e8f15",
+        "compressed_bytes": 119504
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b1_1_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_1_1_1_f16.bin.zst",
+        "sha256": "53e4deb9e10986ff293c77011aeffcfdd2f5c58e3668ecbf6d1913529d3fcfaa",
+        "compressed_bytes": 4736
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_1_1_1_u16.bin.zst",
+        "sha256": "d5d77a2a73427dd816edb84fdfd9b527223fb1843346168f34ad9d31da006c21",
+        "compressed_bytes": 65127
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b2_0_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_2_0_1_f16.bin.zst",
+        "sha256": "948050dd40bb1423a0cf27dc6b868d7858f725c09861a4fb418300fd6888b942",
+        "compressed_bytes": 6818
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_2_0_1_u16.bin.zst",
+        "sha256": "adb2c07172df12957c1e9f4f0ca92f85c60c10e3065d87b53491bfabddb358e7",
+        "compressed_bytes": 97518
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t1:b2_1_1",
+      "time_index": 1,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t1/b_2_1_1_f16.bin.zst",
+        "sha256": "ba6c1acb642599990402ff343f2dfc5829d1c80215151da60b1fbe7742c4a51f",
+        "compressed_bytes": 4258
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t1/b_2_1_1_u16.bin.zst",
+        "sha256": "eadf6ca329d81f20579aed557702484ad7b3c6b9d749e4fb59d993f80518b617",
+        "compressed_bytes": 51904
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b0_0_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_0_0_0_f16.bin.zst",
+        "sha256": "2946086f353de34e34226d4f191b628b2d684c2f9bf2b268abc4853381f49937",
+        "compressed_bytes": 34179
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_0_0_0_u16.bin.zst",
+        "sha256": "cc3e14e3bcf2b73733612c2db3d45834725507723334b0b6dfda86fea8c19852",
+        "compressed_bytes": 262940
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b0_1_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_0_1_0_f16.bin.zst",
+        "sha256": "d5b97c3200d62cf6cd2383022922ef1f13f6f97b3e87e17fdbad07fb8d2709f3",
+        "compressed_bytes": 17894
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_0_1_0_u16.bin.zst",
+        "sha256": "4a24fa96c13f5e17ca4b064281190836f58257643c558a9c1b28789c48c18807",
+        "compressed_bytes": 138039
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b1_0_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_1_0_0_f16.bin.zst",
+        "sha256": "06108dc2c2dbb47c11f56959352c6deed151945f10ebc811d7ca0e2b2b14068e",
+        "compressed_bytes": 28583
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_1_0_0_u16.bin.zst",
+        "sha256": "67bae858d4db85b786e0a56096bcaf26890143b7e944248600f1d72471a0a10c",
+        "compressed_bytes": 268817
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b1_1_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_1_1_0_f16.bin.zst",
+        "sha256": "9eb4bdbe6449d81360cec8072c79a9ec8948517ae548843599d2beeb43180cc9",
+        "compressed_bytes": 16563
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_1_1_0_u16.bin.zst",
+        "sha256": "ee146f98ac079268e3ab8d2cac65043d55c993da8db447b3bc3db5613e65a7ba",
+        "compressed_bytes": 143248
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b2_0_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_2_0_0_f16.bin.zst",
+        "sha256": "139b6f8cb6c1d074d128a05e550c105d67f74fc7d01780fb800471aa29961332",
+        "compressed_bytes": 20446
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_2_0_0_u16.bin.zst",
+        "sha256": "ecb89b627b45a0a78b2fabb3bdae041609af2e38bf59978d4a12cd6ec91306c4",
+        "compressed_bytes": 216047
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b2_1_0",
+      "time_index": 2,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_2_1_0_f16.bin.zst",
+        "sha256": "6b3cfb9f692af2ed3bf14e38312aff1644445209de14f679010d423f2ebde859",
+        "compressed_bytes": 10083
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_2_1_0_u16.bin.zst",
+        "sha256": "33d174da27ae33c8a20f40702c0d64e85d0797bdb042564c3ba9c1397606414d",
+        "compressed_bytes": 109746
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b0_0_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_0_0_1_f16.bin.zst",
+        "sha256": "4f6a178d20dc0fb99367f81445b43891d66abb9919f1e85699d88c3c5054f1ce",
+        "compressed_bytes": 8200
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_0_0_1_u16.bin.zst",
+        "sha256": "ee421a5dac9e56ad431bf3245b663b5ae706fe05b9b192f5daec3aee329f76f0",
+        "compressed_bytes": 107793
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b0_1_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_0_1_1_f16.bin.zst",
+        "sha256": "60a1471e80ddcb62fd8fa6c545bcb23e86e5551766d662d82855edd5e6f34284",
+        "compressed_bytes": 5871
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_0_1_1_u16.bin.zst",
+        "sha256": "6b4f808f3ab6126c5e09fd14d79987249bdd22166350323ec53e7453319515d2",
+        "compressed_bytes": 53973
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b1_0_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_1_0_1_f16.bin.zst",
+        "sha256": "67478f1aaee528125ab2542d5c91ca12ceb06eae3c6d6c42687b50ff4782eb9c",
+        "compressed_bytes": 8836
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_1_0_1_u16.bin.zst",
+        "sha256": "4b937cdcaae475c7ad1ddcc0154619c80e499804227e1698748f71a6131b94e5",
+        "compressed_bytes": 119381
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b1_1_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_1_1_1_f16.bin.zst",
+        "sha256": "dbb8df91321e7b711b1e592fbaaf249c3b968f4fec415651640b79da9ed82308",
+        "compressed_bytes": 4634
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_1_1_1_u16.bin.zst",
+        "sha256": "ddfe22307ba731fb133adf7880c739307e3b552fec79c1a558c6699435c38f07",
+        "compressed_bytes": 64935
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b2_0_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_2_0_1_f16.bin.zst",
+        "sha256": "bc349373b6926cee729f508d82a34ac129ca5defefc4e4597fa47e471e865b22",
+        "compressed_bytes": 6847
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_2_0_1_u16.bin.zst",
+        "sha256": "46a482d252a58aeb3ca9d9405423c7deb9e79f8f271c7b8d77adc9d46108ec94",
+        "compressed_bytes": 97431
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t2:b2_1_1",
+      "time_index": 2,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t2/b_2_1_1_f16.bin.zst",
+        "sha256": "5645dbe9e74de16d4c5e8982c8e8f5024e3c2928f1171e73198c9d39b8773772",
+        "compressed_bytes": 4296
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t2/b_2_1_1_u16.bin.zst",
+        "sha256": "07664b2c2895883eb568ecc98d721e744040ce91a02b9efede781ad694ab07de",
+        "compressed_bytes": 51823
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b0_0_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_0_0_0_f16.bin.zst",
+        "sha256": "a810bed79af5c6d54fd19c24a693e1d495a838e55bc17ee3a4ce37c117def38d",
+        "compressed_bytes": 35664
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_0_0_0_u16.bin.zst",
+        "sha256": "446e8d74c7556d46500f0a74cf2becd9a85fbbb94b49706cd6da720a18230137",
+        "compressed_bytes": 263132
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b0_1_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_0_1_0_f16.bin.zst",
+        "sha256": "6aa70c4c7d6b89636afdcbcba4abe217680c2c2c9aa550dc055321f4900c7772",
+        "compressed_bytes": 19516
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_0_1_0_u16.bin.zst",
+        "sha256": "6349368d54bf2fb5ff9af7ffda8ee11c0c385179ab2893b138cbf2f5d2a1954c",
+        "compressed_bytes": 138436
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b1_0_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_1_0_0_f16.bin.zst",
+        "sha256": "be0f9a1d1379b86c038d3ec11f167afe2b7cbdcf800f88810ec3eb52384253f6",
+        "compressed_bytes": 30658
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_1_0_0_u16.bin.zst",
+        "sha256": "b3b2532fa8c395a912c16c73a455dac00c791d7da27a2a24cc74de2c84dff6de",
+        "compressed_bytes": 268931
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b1_1_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_1_1_0_f16.bin.zst",
+        "sha256": "cc317fa968fd9c4919f058d7c8f5c0ff106672049bee27e391950acdd416b6f6",
+        "compressed_bytes": 17529
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_1_1_0_u16.bin.zst",
+        "sha256": "3f295c55468ab42bb9f21516bfa46d8960dfdcff075cd3cc1352f99bd34ca0e1",
+        "compressed_bytes": 143444
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b2_0_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_2_0_0_f16.bin.zst",
+        "sha256": "ea7085fb90200fee8078ce0c8a9f939534809dda3c411476564ada2c1956e373",
+        "compressed_bytes": 21145
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_2_0_0_u16.bin.zst",
+        "sha256": "872c53bf5e65e97ebf2d1802680a3c84ded07ec3e8c00e36a8393dbbbd496f28",
+        "compressed_bytes": 214916
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b2_1_0",
+      "time_index": 3,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_2_1_0_f16.bin.zst",
+        "sha256": "8ebfb1b51a754be979f12638660fa65ff26536ad17501e7155df4e1f6a7c417f",
+        "compressed_bytes": 9579
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_2_1_0_u16.bin.zst",
+        "sha256": "304cdbc7bb45c52f41c20164a22cc2cfa728df1c4706179eda493ff0ee1246bf",
+        "compressed_bytes": 109579
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b0_0_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_0_0_1_f16.bin.zst",
+        "sha256": "034b32253a841ed907e379005aa77db1a3e94e557305d9b1db92c2bd512835c0",
+        "compressed_bytes": 8332
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_0_0_1_u16.bin.zst",
+        "sha256": "393fb5e2ea5b72384c9be5a936427634db0837e1995d91252b00a1a3bd1826c9",
+        "compressed_bytes": 107597
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b0_1_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_0_1_1_f16.bin.zst",
+        "sha256": "4d4a5606b94276db89f9e047e32eac0a07f7731a63d992152b2f58caa7092772",
+        "compressed_bytes": 5736
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_0_1_1_u16.bin.zst",
+        "sha256": "a7d228381fadf7a2c700ab22011b6ec6b425801d324a035b61481f94d9cd6c8c",
+        "compressed_bytes": 54101
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b1_0_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_1_0_1_f16.bin.zst",
+        "sha256": "be69cd81a7e0faee070efafe158dd000a25239795cad312a5e9dec600a8754a2",
+        "compressed_bytes": 8918
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_1_0_1_u16.bin.zst",
+        "sha256": "cbf5fe8efaf98ae2c78123588e9d7fbf648e8bd5880fe926f4add0d3b938c820",
+        "compressed_bytes": 119315
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b1_1_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_1_1_1_f16.bin.zst",
+        "sha256": "31398678952b148ad543a2cdd11be1fd5f9f301ec2b979882fb9c58701bcbb5f",
+        "compressed_bytes": 4659
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_1_1_1_u16.bin.zst",
+        "sha256": "9106bda33d171c7ec4232afc5f4bf5d8b8256e08ef6f5fc350400a971510824c",
+        "compressed_bytes": 64817
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b2_0_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_2_0_1_f16.bin.zst",
+        "sha256": "b7e748f0959663a8c2950b2f884947f5ce9c51620b04e43995454afce3b1b84c",
+        "compressed_bytes": 6627
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_2_0_1_u16.bin.zst",
+        "sha256": "2fb6d8dcc9fccfe37100b2385fbfafae722bbd041655881e5a40ab9c7a52b48e",
+        "compressed_bytes": 97530
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t3:b2_1_1",
+      "time_index": 3,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t3/b_2_1_1_f16.bin.zst",
+        "sha256": "a80a47cc7b64b56b7451407a7a5ea5e7b6067601c1544dc26f7eb4a2080107f3",
+        "compressed_bytes": 4467
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t3/b_2_1_1_u16.bin.zst",
+        "sha256": "63c26d70f06f7d35b6c3010435c357a51a03b87643fd75e9cf4a226c6141dd1d",
+        "compressed_bytes": 51822
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b0_0_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_0_0_0_f16.bin.zst",
+        "sha256": "7125b865ad0c4285c01f2932b47015e04e68c174aebe7ee3e8c77001cac52c99",
+        "compressed_bytes": 36247
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_0_0_0_u16.bin.zst",
+        "sha256": "fd12493045211c4c0ffd3e8891f5aacb4b3b703b36d621fb438d16e986da993c",
+        "compressed_bytes": 263486
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b0_1_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_0_1_0_f16.bin.zst",
+        "sha256": "b421a287bc2431b54ff8e8619a97952fd368d7c0378aef1c02bd7d049ff1c2e5",
+        "compressed_bytes": 21139
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_0_1_0_u16.bin.zst",
+        "sha256": "fcbe0f940c2cb90c6cf7dcafcaed99969c9f185e8f1549cdd3dd0f1f1423c178",
+        "compressed_bytes": 138472
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b1_0_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_1_0_0_f16.bin.zst",
+        "sha256": "43b62c888c75c5df36224ffc72b3c5a3ff9478def2e244d95caaec2fdbaefef4",
+        "compressed_bytes": 31588
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_1_0_0_u16.bin.zst",
+        "sha256": "f0da24865961447051bec6c9ff41b15cf5146998655b0bed321ae07dc8ff1c37",
+        "compressed_bytes": 268972
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b1_1_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_1_1_0_f16.bin.zst",
+        "sha256": "d52e93ec8b2d229cfef8ee4a452acfaed8490a102f1aeddbdccaea2e9a8297a8",
+        "compressed_bytes": 18205
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_1_1_0_u16.bin.zst",
+        "sha256": "e4bd92dec2a9b6e885aceb07e9ee2246964902367423d1dcd0fb648deb895ff4",
+        "compressed_bytes": 143569
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b2_0_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_2_0_0_f16.bin.zst",
+        "sha256": "770fd7882f12080a55a82cba98badacedc2443a641b7cf1928ca7a5a8e764759",
+        "compressed_bytes": 22325
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_2_0_0_u16.bin.zst",
+        "sha256": "5d4d7de18b12501bdf42e503ce63a88de9d2498d3a88c284b75252f54fd8f2f8",
+        "compressed_bytes": 215116
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b2_1_0",
+      "time_index": 4,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_2_1_0_f16.bin.zst",
+        "sha256": "d224d9a31f56b9d6aa9b73722257e5d77dba1dff8933b9637b29c0753e7ab1fe",
+        "compressed_bytes": 10043
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_2_1_0_u16.bin.zst",
+        "sha256": "6c87aef7b7d62d88af5df34d8e465dea579bf9abccc2f1bf4263bbfceee42d07",
+        "compressed_bytes": 109712
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b0_0_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_0_0_1_f16.bin.zst",
+        "sha256": "5cae09bc38905b0bd0f2b578538c9e69d5396069ba0f11ca88220f7f51a19d5d",
+        "compressed_bytes": 7998
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_0_0_1_u16.bin.zst",
+        "sha256": "a3af0aa2cbdd18e46763e61574757f9ed90b577c09fe63f0613dd23ad646d578",
+        "compressed_bytes": 107315
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b0_1_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_0_1_1_f16.bin.zst",
+        "sha256": "aa833e86203aa6962fb161f455fc23ccf8b96832b9a177a54b7893eef1c8d3b9",
+        "compressed_bytes": 5682
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_0_1_1_u16.bin.zst",
+        "sha256": "8e59b543a639e964269b84951ba62a0771e788252ace80435828e8b0b24f821e",
+        "compressed_bytes": 54038
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b1_0_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_1_0_1_f16.bin.zst",
+        "sha256": "c4f27da0337435eda38278660827923b451205f6c49b685d7dda96eabba019d2",
+        "compressed_bytes": 8962
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_1_0_1_u16.bin.zst",
+        "sha256": "63fe98f767b79db61af81496cc1d49f3d0b97e73440617c60fc4428a0cd9295f",
+        "compressed_bytes": 117666
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b1_1_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_1_1_1_f16.bin.zst",
+        "sha256": "d3dae6409c90c8fb1ab9978b53f3625cf7cbcdf51a46d4aa160e0334df1c7d07",
+        "compressed_bytes": 4549
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_1_1_1_u16.bin.zst",
+        "sha256": "846e92be7e12421fe146b2efc73e15d41d0ef1bd19848d81462a9a5b862b947c",
+        "compressed_bytes": 64916
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b2_0_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_2_0_1_f16.bin.zst",
+        "sha256": "d06c8862eb71849f7bf4b5e0e408d4eb9f98a1328abacf13750fa8dc5fd65ba9",
+        "compressed_bytes": 6711
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_2_0_1_u16.bin.zst",
+        "sha256": "cfa66f1908f4bce0dd91c3fe22993a874507e35746d3476d63264bc72777ab2a",
+        "compressed_bytes": 97412
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t4:b2_1_1",
+      "time_index": 4,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t4/b_2_1_1_f16.bin.zst",
+        "sha256": "4c73da9fcd20c0eec1c9564686092ff0c327fc3340492a37e782ef74faa46b04",
+        "compressed_bytes": 4371
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t4/b_2_1_1_u16.bin.zst",
+        "sha256": "aadf624b1cb16942fc09fac296b10b951bb645924ffa28801a5fecefdf1ce30f",
+        "compressed_bytes": 51785
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b0_0_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_0_0_0_f16.bin.zst",
+        "sha256": "08d58cc7e3474a27c9b9be4fdd3887fd67baa1173c0dfb3bc0ba30506e58c50a",
+        "compressed_bytes": 34771
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_0_0_0_u16.bin.zst",
+        "sha256": "cd9d8afd0f17076f32ac8dae0f248cba90c590e7d5d3ece3502ce50633e3e591",
+        "compressed_bytes": 263650
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b0_1_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_0_1_0_f16.bin.zst",
+        "sha256": "ab59a4420206c0aa70740bf941eb500134edf6012426605146c73c6f28598103",
+        "compressed_bytes": 21535
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_0_1_0_u16.bin.zst",
+        "sha256": "5ef7c264f29e215e72b77654be7ffa38d3736e2f159c8ccd1e866cf84a324e59",
+        "compressed_bytes": 138497
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b1_0_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_1_0_0_f16.bin.zst",
+        "sha256": "e95f7e043a0e2b44f271d00b9013ad5f16298e4b95061bc143834ac99b251a74",
+        "compressed_bytes": 30206
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_1_0_0_u16.bin.zst",
+        "sha256": "537343002129a2a58b0812ad28b6d3a3fbdbec21e8bf0f52739951ad9635b492",
+        "compressed_bytes": 268967
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b1_1_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_1_1_0_f16.bin.zst",
+        "sha256": "afc86553b5f31f747e6523ae92c09749d79e4913257987baad556565c9908ad6",
+        "compressed_bytes": 18878
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_1_1_0_u16.bin.zst",
+        "sha256": "2ca69ba3ac6cdcfe2b989022e9f46bc8cb33615e02a67ef90e9031ad41cbc0cc",
+        "compressed_bytes": 143225
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b2_0_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_2_0_0_f16.bin.zst",
+        "sha256": "02ee8b076d48e6ba1476dba5c823a04a4d28301db6f01a00936250c91c37b963",
+        "compressed_bytes": 22358
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_2_0_0_u16.bin.zst",
+        "sha256": "4f6361648ae94e7f195a273759a34f23e1a9516e998c835a21465d15ebe0f680",
+        "compressed_bytes": 215496
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b2_1_0",
+      "time_index": 5,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_2_1_0_f16.bin.zst",
+        "sha256": "182f1d9f426f31e29f04884f8c22690d034b691a238a4a235adfd6680de1e844",
+        "compressed_bytes": 9498
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_2_1_0_u16.bin.zst",
+        "sha256": "001cb7f5773bba53cddb62384f5073b4a7c66033f839d1afafc3bde337e45026",
+        "compressed_bytes": 109811
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b0_0_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_0_0_1_f16.bin.zst",
+        "sha256": "289e20d35c8ac8cea6a1fd1918cd75ada68e052542d4cae7ba61d5eaedefb11a",
+        "compressed_bytes": 8049
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_0_0_1_u16.bin.zst",
+        "sha256": "e8b3cd75edadf1fcf7da08c3490807a26ce9e59691a0e3a04c6e3dba5543cf5b",
+        "compressed_bytes": 107300
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b0_1_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_0_1_1_f16.bin.zst",
+        "sha256": "1e7e6b84f94048e103b3fbf5402e88599788a9a519d477750bf579f4863b5702",
+        "compressed_bytes": 5690
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_0_1_1_u16.bin.zst",
+        "sha256": "5d184903f976e6d2ea1e4aa1fa2548027d3b397f8993a81e438c7886a1d28941",
+        "compressed_bytes": 54065
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b1_0_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_1_0_1_f16.bin.zst",
+        "sha256": "c7e0dee18ece158eb1645951342f9146fa0372b533ecc1555698084ee1b0dbfa",
+        "compressed_bytes": 8926
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_1_0_1_u16.bin.zst",
+        "sha256": "9c86187c855b4ac96265c17e8a08baf37a63db5a2f75db32c67d9e5ae1048af6",
+        "compressed_bytes": 119324
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b1_1_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_1_1_1_f16.bin.zst",
+        "sha256": "c5623288feddaece5bc84059fd93aba7aa6c4342cb13d01cbfb8199ec57e64fb",
+        "compressed_bytes": 4760
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_1_1_1_u16.bin.zst",
+        "sha256": "c5c6e1f1aaeca190f4badfd3b96b0a7450b43de7c2244f4e712922c4298b2d62",
+        "compressed_bytes": 64998
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b2_0_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_2_0_1_f16.bin.zst",
+        "sha256": "5afbfa1284a6611814060455d1c40ae8166b1ef59a882958b04a24d538f8cb62",
+        "compressed_bytes": 6814
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_2_0_1_u16.bin.zst",
+        "sha256": "d4ee052ba0721fe16c159c099a1593957ee62de8129a15cb0e889c687209fbf6",
+        "compressed_bytes": 97722
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t5:b2_1_1",
+      "time_index": 5,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t5/b_2_1_1_f16.bin.zst",
+        "sha256": "c4772f1836c1f90e2357c9fdace26170abf3014463f9bff05123dec5d5cffaa2",
+        "compressed_bytes": 4260
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t5/b_2_1_1_u16.bin.zst",
+        "sha256": "f3e302d37243ab11671f22748388c1d4ad578ea1e2f7f2f0bd1e3dd0ee498b5c",
+        "compressed_bytes": 51779
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b0_0_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_0_0_0_f16.bin.zst",
+        "sha256": "fc6d2ad199c1fbdeea9435f4e10533eca0cd6fa869e49743ebe75a726cf7aaef",
+        "compressed_bytes": 33813
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_0_0_0_u16.bin.zst",
+        "sha256": "152ed945fa343a452b97200092f19ad90f6d00bace7a46f0a7fa1a0c9c71c64c",
+        "compressed_bytes": 263622
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b0_1_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_0_1_0_f16.bin.zst",
+        "sha256": "fcbcab01003576b8f68177ff02fc7f7c2821a82f14dea7b3cb953136231fe2c2",
+        "compressed_bytes": 21030
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_0_1_0_u16.bin.zst",
+        "sha256": "4c479d54bd43137551aa4b96d46510c39afacc0fa0d6604930cdaf917db368cd",
+        "compressed_bytes": 138565
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b1_0_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_1_0_0_f16.bin.zst",
+        "sha256": "54f854c57a0e51bac40f70164e20fc2cae13d4c5a773feacdf8a3540c52a7d95",
+        "compressed_bytes": 29273
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_1_0_0_u16.bin.zst",
+        "sha256": "5251b717c40c192fa2cc05c6c2eb795e03f87c3d8e1ad717891f894efb4fbb98",
+        "compressed_bytes": 269162
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b1_1_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_1_1_0_f16.bin.zst",
+        "sha256": "87f2a85f532b44809d5365ca491153d079854de17aa0391f45dc4d833b07f6d0",
+        "compressed_bytes": 17517
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_1_1_0_u16.bin.zst",
+        "sha256": "2477b1be7a433f4f4e74f74a1155c49984dcb4da28d56a9382ece1c69607eaeb",
+        "compressed_bytes": 142924
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b2_0_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_2_0_0_f16.bin.zst",
+        "sha256": "322a0790e179691a928e9fa4106390d1ba6746fcc609e3b08d85deaedec261ff",
+        "compressed_bytes": 22248
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_2_0_0_u16.bin.zst",
+        "sha256": "d683d81b988a9af3c9ac9d00fa1c3e2baa61c9922e394cbb24136d081754e16d",
+        "compressed_bytes": 214310
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b2_1_0",
+      "time_index": 6,
+      "slab_index": 0,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_2_1_0_f16.bin.zst",
+        "sha256": "67e7d798ee3ed4770bd2b15d8bdb184afd309ef1fb4b4f3b8e3f9ec292b52bf8",
+        "compressed_bytes": 9934
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_2_1_0_u16.bin.zst",
+        "sha256": "c2d1d848afa85551c3545fbb82ae66bc1de7201b942a9dae8165a87471e641b0",
+        "compressed_bytes": 109905
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b0_0_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_0_0_1_f16.bin.zst",
+        "sha256": "bd2a7b31fb3230a7c8251f1c0b14a59c58c07ac872677320b36761295b637f44",
+        "compressed_bytes": 8152
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_0_0_1_u16.bin.zst",
+        "sha256": "b9ad10d622d7f5db97f50c812a1f0205ad81cb37d60c0006ebf1bb638aafd0fa",
+        "compressed_bytes": 107609
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b0_1_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 0,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_0_1_1_f16.bin.zst",
+        "sha256": "c5000798304bc3d5de37ba90b63a64626bf580a5c7a7ba5a0832f8a5e694d165",
+        "compressed_bytes": 5824
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_0_1_1_u16.bin.zst",
+        "sha256": "d8866248e925ed3cf2b100141ac40ec2ce371ea342c44ce62628a7f50d479271",
+        "compressed_bytes": 54134
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b1_0_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_1_0_1_f16.bin.zst",
+        "sha256": "5043209f77502bf3bd1f34d384b6f97c4ef8536794f2cf36a2c860c58a1078c7",
+        "compressed_bytes": 8929
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_1_0_1_u16.bin.zst",
+        "sha256": "1303411e9fcea8592b45d041fbc0d7404018cd9ee032c88dc19fa01c461d7374",
+        "compressed_bytes": 119419
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b1_1_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 1,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_1_1_1_f16.bin.zst",
+        "sha256": "775d45f33f7ed94a8dde7a2c6b4283d6f2869cb42464d6df8d2a07634e2485ad",
+        "compressed_bytes": 4895
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_1_1_1_u16.bin.zst",
+        "sha256": "4d03ad656ead669de0319488af88b9b394e8a22a9d34365f348350597633a091",
+        "compressed_bytes": 64843
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b2_0_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 0,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_2_0_1_f16.bin.zst",
+        "sha256": "1e5474bc077f10fe4003aed049b113a97c9d58950ffad56141bd089b04e66eee",
+        "compressed_bytes": 6809
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_2_0_1_u16.bin.zst",
+        "sha256": "11bdbc7e3a0198bb37145d7254b667507ba839025cfeb0022901829ea55c32a1",
+        "compressed_bytes": 97609
+      }
+    },
+    {
+      "brick_key": "vis_so:copernicus-phy-multivariable-20260824-20260830-v11dev:lod0:t6:b2_1_1",
+      "time_index": 6,
+      "slab_index": 1,
+      "lod": 0,
+      "bx": 2,
+      "by": 1,
+      "f16_payload": {
+        "storage_key": "lod0/t6/b_2_1_1_f16.bin.zst",
+        "sha256": "ff10b870b504804c82b57e16e9e3484b85ed8aa6bc9d3944dded2a2c08498bc9",
+        "compressed_bytes": 4255
+      },
+      "u16_payload": {
+        "storage_key": "lod0/t6/b_2_1_1_u16.bin.zst",
+        "sha256": "9a21a4e754eea617652eab04894804ef035389d9efe12e9858dc6da89e5c0817",
+        "compressed_bytes": 51945
+      }
+    }
+  ]
+}

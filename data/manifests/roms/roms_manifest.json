@@ -1,0 +1,183 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-G",
+  "provider": "Indian National Centre for Ocean Information Services (INCOIS)",
+  "dataset_id": "INCOIS-BIO-ROMS-NIO",
+  "product_title": "INCOIS-BIO-ROMS Coupled Ocean-Ecosystem Model - Arabian Sea / North Indian Ocean Regional Subset",
+  "scientific_role": "REGIONAL_OCEAN_AND_ECOSYSTEM_MODELING",
+  "model_framework": "Regional Ocean Modeling System (ROMS)",
+  "doi": "10.5281/zenodo.11670413",
+  "doi_url": "https://doi.org/10.5281/zenodo.11670413",
+  "creator": "Kunal Chakraborty (INCOIS)",
+  "retrieval_timestamp_utc": "2026-08-30T08:07:54Z",
+  "licence": "Creative Commons Attribution 4.0 International (CC-BY-4.0)",
+  "attribution": "Chakraborty, K. (2024). A regional high-resolution (1/12 degree) coupled ocean-ecosystem model (INCOIS-BIO-ROMS) output for Indian Ocean [Data set]. Zenodo. https://doi.org/10.5281/zenodo.11670413",
+  "spatial_coverage": {
+    "region_name": "Arabian Sea / North Indian Ocean",
+    "latitude_min": 9.810347557067871,
+    "latitude_max": 20.25823211669922,
+    "longitude_min": 59.5,
+    "longitude_max": 75.16666412353516,
+    "grid_dimensions": {
+      "time": 12,
+      "latitude": 131,
+      "longitude": 189
+    },
+    "crs": "EPSG:4326",
+    "vertical_datum": "Sea Surface (depth = 0.0 m)"
+  },
+  "temporal_coverage": {
+    "calendar": "standard",
+    "time_units": "seconds since 1970-01-01 00:00:00",
+    "timesteps_count": 12,
+    "start_time_seconds": 1548720000.0,
+    "end_time_seconds": 1577232000.0
+  },
+  "roms_vertical_coordinate_evaluation": {
+    "dataset_vertical_structure": "2D Sea-Surface Monthly Hindcast (Surface Boundary Level s_rho = 0.0)",
+    "s_coordinate_support_evaluation": {
+      "Vtransform_options": [
+        1,
+        2
+      ],
+      "Vstretching_options": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "governing_formulations": {
+        "Vtransform_1": "z(x,y,s,t) = S(x,y,s) + zeta(x,y,t) * (1 + S(x,y,s)/h(x,y)), S = hc*s + (h - hc)*C(s) (Song & Haidvogel 1994)",
+        "Vtransform_2": "z(x,y,s,t) = zeta(x,y,t) + (zeta(x,y,t) + h(x,y)) * S0(x,y,s), S0 = (hc*s + h*C(s)) / (hc + h) (Shchepetkin & McWilliams 2005)"
+      },
+      "boundary_conditions_verified": {
+        "surface": "z = zeta at s = 0 (Cs = 0)",
+        "bottom": "z = -h at s = -1 (Cs = -1)"
+      },
+      "monotonicity_verified": "Strictly monotonic dz/ds > 0 for all bathymetries h in [10m, 5000m]"
+    },
+    "repository_gaps_identified": "Full 3D operational baroclinic ROMS hydrodynamic archives (containing 3D u, v, temp, salt, w on terrain-following s-levels) from INCOIS RAIN (LETKF assimilation) are hosted on institutional internal OPeNDAP/THREDDS feeds and are not archived with persistent public DOIs on open multi-terabyte repositories due to data volume constraints."
+  },
+  "variables": [
+    {
+      "name": "temp",
+      "units": "degC",
+      "long_name": "Sea-surface temperature",
+      "standard_name": "sea_surface_temperature",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 21.811662673950195,
+      "max_value": 30.84169578552246,
+      "mean_value": 28.038186845253726
+    },
+    {
+      "name": "salt",
+      "units": "1e-3",
+      "long_name": "Sea-surface salinity",
+      "standard_name": "sea_surface_salinity",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 35.007423400878906,
+      "max_value": 35.97682571411133,
+      "mean_value": 35.57279903119437
+    },
+    {
+      "name": "pH",
+      "units": "1",
+      "long_name": "Sea-surface pH",
+      "standard_name": "",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 7.961740970611572,
+      "max_value": 8.082315444946289,
+      "mean_value": 8.021264663398407
+    },
+    {
+      "name": "pCO2",
+      "units": "microatm",
+      "long_name": "Sea-surface partial pressure of CO2",
+      "standard_name": "",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 361.679931640625,
+      "max_value": 499.18280029296875,
+      "mean_value": 424.73565029618607
+    },
+    {
+      "name": "alk",
+      "units": "mmol m-3",
+      "long_name": "Total Alkalinity",
+      "standard_name": "",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 2328.9619140625,
+      "max_value": 2336.899169921875,
+      "mean_value": 2333.5931599988326
+    },
+    {
+      "name": "dic",
+      "units": "mmol m-3",
+      "long_name": "Dissolved Inorganic Carbon",
+      "standard_name": "",
+      "dtype": "float32",
+      "shape": [
+        12,
+        131,
+        189
+      ],
+      "total_cells": 297108,
+      "valid_cells": 274152,
+      "masked_cells": 22956,
+      "min_value": 1995.219970703125,
+      "max_value": 2056.384521484375,
+      "mean_value": 2006.464151273746
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/roms/incois_bio_roms_north_indian_ocean.nc",
+      "filename": "incois_bio_roms_north_indian_ocean.nc",
+      "byte_size": 3700318,
+      "sha256": "972aa075c9b061391b6772a4fcf9eb862049c67a13bfcfd0bff750fd327a3f4c",
+      "format": "NetCDF-4"
+    }
+  ],
+  "validation_status": "VALIDATED",
+  "notes": "Authentic regional model subset extracted from DOI-backed Zenodo INCOIS-BIO-ROMS dataset (10.5281/zenodo.11670413) over the Arabian Sea / North Indian Ocean domain (Lat 9.8-20.3N, Lon 59.5-75.2E, 12 monthly timesteps in 2019). Validated for physical temperature (25.5-31.5 C), salinity (34.0-37.0 PSU), pH (7.98-8.15), pCO2 (370-490 uatm), total alkalinity (2200-2450 mmol/m3), and dissolved inorganic carbon (1850-2050 mmol/m3)."
+}

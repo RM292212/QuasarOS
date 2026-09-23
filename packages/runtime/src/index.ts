@@ -15,3 +15,5 @@ export * from './planning/index.ts';
 export * from './residency/index.ts';
 export * from './packet/index.ts';
 export * from './picking/index.ts';
+export * from './geology/index.ts';
+

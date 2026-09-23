@@ -1,0 +1,84 @@
+{
+  "supported_variables": [
+    {
+      "id": "thetao",
+      "name": "Sea Water Potential Temperature",
+      "units": "degrees_C",
+      "levels": 50,
+      "colormap": "thermal"
+    },
+    {
+      "id": "so",
+      "name": "Sea Water Salinity",
+      "units": "1e-3",
+      "levels": 50,
+      "colormap": "yl_gn_bu"
+    },
+    {
+      "id": "uo",
+      "name": "Eastward Velocity",
+      "units": "m s-1",
+      "levels": 50,
+      "colormap": "turbo"
+    },
+    {
+      "id": "vo",
+      "name": "Northward Velocity",
+      "units": "m s-1",
+      "levels": 50,
+      "colormap": "turbo"
+    },
+    {
+      "id": "zos",
+      "name": "Sea Surface Height Above Geoid",
+      "units": "m",
+      "levels": 1,
+      "colormap": "plasma"
+    }
+  ],
+  "timeline_days": [
+    {
+      "day": 0,
+      "date": "2026-08-24T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 1,
+      "date": "2026-08-25T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 2,
+      "date": "2026-08-26T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 3,
+      "date": "2026-08-27T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 4,
+      "date": "2026-08-28T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 5,
+      "date": "2026-08-29T00:00:00Z",
+      "status": "VERIFIED"
+    },
+    {
+      "day": 6,
+      "date": "2026-08-30T00:00:00Z",
+      "status": "VERIFIED"
+    }
+  ],
+  "bathymetry_source": "GEBCO 2023 Grid authoritative bathymetry",
+  "clipping_features": [
+    "longitude_range",
+    "latitude_range",
+    "depth_range",
+    "invert_clipping",
+    "reset_domain"
+  ]
+}

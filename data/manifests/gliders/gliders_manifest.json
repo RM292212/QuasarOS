@@ -1,0 +1,169 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01I",
+  "provider": "IOOS National Glider Data Assembly Center (NGDAC) / OceanGliders",
+  "dataset_id": "ru29-20180812T0220",
+  "product_title": "Rutgers Challenger Glider RU29 North Indian Ocean / Bay of Bengal Trajectory & Profiles",
+  "scientific_role": "IN_SITU_AUTONOMOUS_GLIDER_TRAJECTORY_PROFILES",
+  "source_url": "https://gliders.ioos.us/erddap/tabledap/ru29-20180812T0220.nc?trajectory,wmo_id,profile_id,time,latitude,longitude,depth,pressure,temperature,salinity,density,conductivity,u,v,temperature_qc,salinity_qc,pressure_qc,depth_qc,density_qc,conductivity_qc,qartod_temperature_primary_flag,qartod_salinity_primary_flag,qartod_pressure_primary_flag,qartod_density_primary_flag,qartod_conductivity_primary_flag,qartod_location_test_flag",
+  "erddap_tabledap_endpoint": "https://gliders.ioos.us/erddap/tabledap/ru29-20180812T0220",
+  "platform": {
+    "wmo_id": "2801900",
+    "glider_name": "RU29 Challenger Glider",
+    "glider_type": "Teledyne Webb Slocum G2 Glider",
+    "institutions": [
+      "Rutgers University Center for Ocean Observing Leadership (RU-COOL)",
+      "University of Western Australia (UWA)"
+    ]
+  },
+  "retrieval_timestamp_utc": "2026-08-30T07:36:48.001154+00:00",
+  "spatial_coverage": {
+    "region_name": "North Indian Ocean / Bay of Bengal / Sri Lanka Dome",
+    "latitude_min": 1.08758293910246,
+    "latitude_max": 8.66507005995675,
+    "longitude_min": 79.95183082938397,
+    "longitude_max": 82.98128027853652,
+    "crs": "EPSG:4326"
+  },
+  "vertical_coverage": {
+    "depth_min_m": 1.0099999904632568,
+    "depth_max_m": 965.0,
+    "pressure_min_dbar": 1.0099999904632568,
+    "pressure_max_dbar": 965.0,
+    "coordinate": "depth",
+    "positive": "down"
+  },
+  "temporal_coverage": {
+    "start_time_iso": "2018-08-12T02:36:01.372529+00:00",
+    "end_time_iso": "2018-11-01T14:55:49.208039+00:00",
+    "total_trajectory_points": 88038,
+    "unique_profiles_count": 951
+  },
+  "variables": [
+    {
+      "name": "depth",
+      "standard_name": "depth",
+      "long_name": "Depth below sea surface",
+      "units": "m",
+      "dtype": "float32",
+      "min": 1.0099999904632568,
+      "max": 965.0
+    },
+    {
+      "name": "pressure",
+      "standard_name": "sea_water_pressure",
+      "long_name": "Sea Water Pressure",
+      "units": "dbar",
+      "dtype": "float32",
+      "min": 1.0099999904632568,
+      "max": 965.0
+    },
+    {
+      "name": "temperature",
+      "standard_name": "sea_water_temperature",
+      "long_name": "Sea Water Temperature",
+      "units": "degree_Celsius",
+      "dtype": "float32",
+      "min": 6.573299884796143,
+      "max": 29.802499771118164,
+      "mean": 12.696846008300781,
+      "valid_count": 85769
+    },
+    {
+      "name": "salinity",
+      "standard_name": "sea_water_practical_salinity",
+      "long_name": "Sea Water Practical Salinity",
+      "units": "1",
+      "dtype": "float32",
+      "min": 33.64299392700195,
+      "max": 35.91156005859375,
+      "mean": 35.04045486450195,
+      "valid_count": 85550
+    },
+    {
+      "name": "density",
+      "standard_name": "sea_water_density",
+      "long_name": "Sea Water Density",
+      "units": "kg m-3",
+      "dtype": "float32",
+      "min": 1021.17431640625,
+      "max": 1031.796630859375,
+      "mean": 1028.1910400390625,
+      "valid_count": 85550
+    },
+    {
+      "name": "conductivity",
+      "standard_name": "sea_water_electrical_conductivity",
+      "long_name": "Sea Water Electrical Conductivity",
+      "units": "S m-1",
+      "dtype": "float32"
+    },
+    {
+      "name": "u",
+      "standard_name": "eastward_sea_water_velocity",
+      "long_name": "Depth-averaged Eastward Sea Water Velocity",
+      "units": "m s-1",
+      "dtype": "float64",
+      "min": null,
+      "max": null,
+      "mean": null
+    },
+    {
+      "name": "v",
+      "standard_name": "northward_sea_water_velocity",
+      "long_name": "Depth-averaged Northward Sea Water Velocity",
+      "units": "m s-1",
+      "dtype": "float64",
+      "min": null,
+      "max": null,
+      "mean": null
+    }
+  ],
+  "quality_control": {
+    "qc_framework": "QARTOD (Quality Assurance of Real-Time Oceanographic Data) & IOOS NGDAC Flags",
+    "qartod_primary_flags": [
+      "qartod_temperature_primary_flag",
+      "qartod_salinity_primary_flag",
+      "qartod_pressure_primary_flag",
+      "qartod_density_primary_flag",
+      "qartod_conductivity_primary_flag",
+      "qartod_location_test_flag"
+    ],
+    "variable_qc_flags": [
+      "temperature_qc",
+      "salinity_qc",
+      "pressure_qc",
+      "depth_qc",
+      "density_qc",
+      "conductivity_qc"
+    ],
+    "flag_meanings": {
+      "1": "PASS (Good data)",
+      "2": "NOT_EVALUATED (Unknown / Suspect)",
+      "3": "SUSPECT / WARNING",
+      "4": "FAIL (Bad data)",
+      "9": "MISSING_VALUE"
+    }
+  },
+  "files": [
+    {
+      "file_name": "ru29_20180812T0220_north_indian_ocean.nc",
+      "relative_path": "data/raw/gliders/ru29_20180812T0220_north_indian_ocean.nc",
+      "byte_size": 9264720,
+      "sha256": "3f762a21d8f34fedce0ce010c8d5f68d1a7b51cf38fb127a5121919ec420b060",
+      "format": "NetCDF-4"
+    },
+    {
+      "file_name": "ru29_20180812T0220_trajectory_summary.json",
+      "relative_path": "data/raw/gliders/ru29_20180812T0220_trajectory_summary.json",
+      "byte_size": 1884,
+      "sha256": "7bd7911c2703bc5c2c30a95d48041556d520832c24387ac09e99acd8492d8102",
+      "format": "JSON"
+    }
+  ],
+  "licence": "Creative Commons Attribution 4.0 International (CC-BY 4.0) / IOOS Data Management Policy",
+  "attribution": "Rutgers University Center for Ocean Observing Leadership (RU-COOL), University of Western Australia (UWA), and the IOOS National Glider Data Assembly Center (NGDAC).",
+  "citation": "Challenger Glider Mission RU29 (2018). High-resolution autonomous underwater glider transect across the Northern Equatorial Indian Ocean and Sri Lanka Dome. IOOS Glider DAC.",
+  "validation_status": "VALIDATED",
+  "notes": "Authoritative in-situ autonomous glider ground truth for QuasarOS (TASK-01I). Provides continuous high-resolution vertical profiling (0-965m depth) of temperature, salinity, density, and depth-averaged currents across the North Indian Ocean / Bay of Bengal / Sri Lanka Dome."
+}

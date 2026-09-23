@@ -1,0 +1,14 @@
+{
+  "audit_id": "baseline-yellow-blob-preservation",
+  "timestamp_utc": "2026-08-31T17:21:30Z",
+  "commit": "6307280152cdcaaa6af79f7d318850e1b0a8dfb1",
+  "failed_visual_description": "Uniform yellow opaque cube caused by hardcoded 256x1 colormap in Viewport, fixed [0,1]^3 clipping bypassing physical clipping controls, and high initial opacity accumulation.",
+  "paper_reference": "The Implementation of a WebGPU-Based Volume Rendering Framework for Interactive Visualization of Ocean Scalar Data (Yu et al., Appl. Sci. 2025, 15, 2782)",
+  "root_causes_identified": [
+    "Hardcoded fallback colormap generation in OceanVolumeViewport.tsx ignoring TransferFunctionModel",
+    "PhysicalClippingModel limits not propagated into packet.clippingBox (remained {0,1}^3)",
+    "VolumeQualityModel step size and opacity multiplier not dynamically driving shader uniforms",
+    "Z-axis coordinate orientation inversion between WebGL Y-up NDC and oceanographic depth conventions",
+    "Lack of 3D spatial wireframe bounding box, depth ticks, and compass gizmo rendering in the 3D canvas stage"
+  ]
+}

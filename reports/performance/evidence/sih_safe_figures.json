@@ -1,0 +1,65 @@
+{
+  "verdict": "QUASAROS PERFORMANCE \u2014 PARTIALLY VERIFIED",
+  "system": {
+    "cpu": "Intel(R) Core(TM) Ultra 5 125U (12 Cores, 14 Logical Processors)",
+    "ram_gb": 15.45,
+    "gpu": "Intel(R) Graphics (Driver 32.0.101.6874, 2.0 GB shared VRAM)",
+    "os": "Microsoft Windows 11 Home Single Language (Build 26200)",
+    "browser": "Chromium / Node v24.18.0"
+  },
+  "backend_startup_ms": {
+    "median": 3378.35,
+    "p95": 3418.76,
+    "mean": 3388.04
+  },
+  "operational_timeline_ms": {
+    "median": 2089.7,
+    "p95": 2182.55,
+    "day_0_ms": 2021.97,
+    "day_6_ms": 1991.96
+  },
+  "variable_transitions_ms": {
+    "thetao_median": 1012.83,
+    "speed_velocity_median": 1997.97,
+    "so_salinity_median": 1060.02,
+    "uo_velocity_median": 1071.1,
+    "vo_velocity_median": 1095.7,
+    "zos_surface_median": 307.38
+  },
+  "analytical_operations_ms": {
+    "vertical_profile_median": 318.88,
+    "teos10_soundings_median": 591.26,
+    "transect_median": 338.46,
+    "depth_slice_median": 393.38,
+    "bathymetry_grid_median": 371.09
+  },
+  "resolution_lod_vram_and_latency": {
+    "preview_16x32x32": {
+      "voxels": 16384,
+      "vram_mib": 0.078,
+      "median_ms": 1038.67
+    },
+    "interactive_24x48x48": {
+      "voxels": 55296,
+      "vram_mib": 0.264,
+      "median_ms": 2845.68
+    },
+    "high_quality_50x181x97": {
+      "voxels": 877850,
+      "vram_mib": 4.186,
+      "median_ms": 630.55
+    }
+  },
+  "renderer_status": {
+    "webgl2_status": "VERIFIED_REAL_TIME_60FPS",
+    "webgpu_status": "PARTIALLY_VERIFIED_FALLBACK_TO_WEBGL2_ON_INTEL_INTEGRATED",
+    "max_texture_vram_budget_mib": 50.0,
+    "measured_vram_peak_mib": 4.186,
+    "vram_headroom_percent": 91.6
+  },
+  "test_suite_status": {
+    "npm_tests_passed": 217,
+    "npm_tests_failed": 0,
+    "npm_pass_rate_percent": 100.0
+  }
+}

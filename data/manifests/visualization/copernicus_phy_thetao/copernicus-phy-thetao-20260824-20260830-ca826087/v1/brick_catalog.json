@@ -1,0 +1,4812 @@
+{
+  "bricks": [
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.762653350830078,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.599087715148926,
+        "payload_sha256": "e8884ebbd172aa6a39cc419c42c828ebe294df7e908b78be89ba8ce2b924384d",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 104986,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "77306967645596e515ed6af0a73c955e7b6b1fe9d24615e53faf632c1c999a00",
+        "storage_object_key": "lod0/t0/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 233369,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "4554e8549237e897ebcc67126120e78de9ea051c9997908d26e018092c2155c6",
+        "storage_object_key": "lod0/t0/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.1508846282959,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.912120819091797,
+        "payload_sha256": "b281bbfc92eedb46f07e51861f1f9260fd7bea82e171004d194668f30934503f",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 98690,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "f30945b673f9abc384e8ed8f89daba65dff45eb2000d2a2b3e3971bdfe12e8bf",
+        "storage_object_key": "lod0/t0/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 214748,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "b428677b2f77df2a2b61f830b28111afced819518b043c59cf70a5bb49576327",
+        "storage_object_key": "lod0/t0/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.361833572387695,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.842988014221191,
+        "payload_sha256": "1a501d15c052cc80a7cecbdcfd139679916fda1ef7d3020348bd32454ff71952",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 84373,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "8cf488618ba159eff40dba7f2be7f53782db27335532e4ae7c2b65904fb5edfb",
+        "storage_object_key": "lod0/t0/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 169880,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "6a2ff6cbc035964cd1f2c1687a7920134297a54e893e2bc380d910c2b4211b82",
+        "storage_object_key": "lod0/t0/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.687171936035156,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.557741165161133,
+        "payload_sha256": "669026a76012ffb8235de3d033c10537c4a38acc4a7619517d3bf2a4159e4d81",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 61069,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "147228d5ecd1d761be0723adbc1352de6c2b6a96f6e3c68ca744c00f6cf28cfe",
+        "storage_object_key": "lod0/t0/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 123267,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "3523033aeda3e2e2846a3eb3683b4723a42327929fe38fa039706453302a4bfe",
+        "storage_object_key": "lod0/t0/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.63229751586914,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 10.033059120178223,
+        "payload_sha256": "cfbd910f681a0bad06dc198b47fad2acf0bc30241125b918ca026c396d2fb5b7",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 53508,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "47f5893a92a013dbaa2e43915854323bc7e12b576f4797cde736c1ca3c5c8c75",
+        "storage_object_key": "lod0/t0/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 123952,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "02f61084f16ff4d635fa9ae2fc090fab2306e22ae61a1e9566dd6802bc51e5be",
+        "storage_object_key": "lod0/t0/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.43576431274414,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.957657814025879,
+        "payload_sha256": "efc1968445d6ab7bfcfe772dc21a2cf0ba07651333b43792fa59384820eb1f2c",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 48050,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "acac409bdcffb88cd8d55b9427b402080245429637bd195bc24087a3a420241a",
+        "storage_object_key": "lod0/t0/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t0:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 98939,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "48566bd07bcef2f6c2916b276eab026bb86954e09717fdee0bcb7d86398d3ca0",
+        "storage_object_key": "lod0/t0/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.706464767456055,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.584684371948242,
+        "payload_sha256": "1d599a9122592831469d822d9b5d996d612ff775307c2d3fa64721f7e408cceb",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 105094,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "954f7aa4a83b7bfd76c57dd16de3a0e6e64d2898d8bab5c4b5ba82cf562ed02c",
+        "storage_object_key": "lod0/t1/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 232296,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "c6dde3a0beac39aea87c7bae1e5d7c204104f99c67afb06a788ddc6471130626",
+        "storage_object_key": "lod0/t1/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.102378845214844,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.986734390258789,
+        "payload_sha256": "6641377ddd3be481172a158a0733913df2199c8eaa77bfde1129eb25eed42ea5",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 100528,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "97c7646c501bef6b0223bbd89250b23cfce1e0a88a4196127ce2c020836a4868",
+        "storage_object_key": "lod0/t1/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 216824,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "d7dedc7070df42e9b2ce47e5d7c1182da166c935826bcebecc218b1ab5222ec4",
+        "storage_object_key": "lod0/t1/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.301362991333008,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.830557823181152,
+        "payload_sha256": "929aa326758ba971c35baa62ce3d231b453acfdc9f8b4bb623d97b42ee9bcda9",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 81981,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "8f5a6f781a724913d0380f2eeca48b308b385c79e03c2ef094f6f8479c9d3294",
+        "storage_object_key": "lod0/t1/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 170604,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "64868334f71399c2bca746f961c353c01a390571ebb569279860aa88d368009b",
+        "storage_object_key": "lod0/t1/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.651439666748047,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.512435913085938,
+        "payload_sha256": "aa911a5676f5eec4552863cc379c9f9ab1123618f44205bc030129a5bfee13a3",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 59800,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "31e40fd2b41cec2fdd70b1e7160111a35e169abfac75283416f0a0967c88a559",
+        "storage_object_key": "lod0/t1/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 121892,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "aafcede62f983311bc648355b02d078a4f200db85e4cf374a62c25ba1cfebd90",
+        "storage_object_key": "lod0/t1/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.665802001953125,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 10.0357027053833,
+        "payload_sha256": "07a4815b55c08a2a2da1a8794e1c591ac4e18592782aef40d24580fdcdf75715",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 56975,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "00f8e7a2400644c406fa3f15e0f779af79e1baf0afb9679b95844968f6134cda",
+        "storage_object_key": "lod0/t1/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 125526,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "84aef3acd0d40b4c689535ba0d67b0573de7b6e8c6679a54fd45c1e6943b8438",
+        "storage_object_key": "lod0/t1/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.406335830688477,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.906848907470703,
+        "payload_sha256": "c65aa168ac5922e5492b5071f5bc332e71a101bec85df80c0738220fe029db47",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 47531,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "a5d0416fb0e6f7b235fa7161ee47a460420448e77d414479a21fc3291af53776",
+        "storage_object_key": "lod0/t1/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t1:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 99642,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "b311567e4f915909cb7cd4bc8c83f2e76c1f0a3ee634fdeba5fc3a2ccdefc95e",
+        "storage_object_key": "lod0/t1/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.71027374267578,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.58536148071289,
+        "payload_sha256": "faf1bb5e03bef858535c492b21db8b3b2a3b44a9ca2374d5dd96bf4c2724b80e",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 107074,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "11ee7a212aa9b73714fd0c6e4267a6f976665364b2a34008ac69476b2bbd4dd6",
+        "storage_object_key": "lod0/t2/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 231585,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "e187566a7b89d9a7a3af633c745199bd1d4159f16fd434b7ac25383cd62f9c66",
+        "storage_object_key": "lod0/t2/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.831050872802734,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 10.003540992736816,
+        "payload_sha256": "f1d2edc75da7b9f2b4173727ed7bec50bd6853ef2b8e50f44809713c8141471d",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 105032,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "98b9fc9abc5f68256ad90260ede58211dabc3fd9104db4727a68aee3c6666565",
+        "storage_object_key": "lod0/t2/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 217692,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "09e82c81a94d430e59e80496e10b4b35b3ea5cac6b90617eb262743c8288a72e",
+        "storage_object_key": "lod0/t2/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.248512268066406,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.841904640197754,
+        "payload_sha256": "dd95082546450e6a0da5c8ce99a55cdf9dbe57772ab90e395143effcf4b13d50",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 85851,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "5de39cab42a2fe3626cc1a4a2a3bb57d6b5564d02f7e57ce89d2c3e38e9184ee",
+        "storage_object_key": "lod0/t2/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 170924,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "13f028543467bad75c123d1844b001198b854e684de600a6fe73c09308dfadc3",
+        "storage_object_key": "lod0/t2/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.701520919799805,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.519006729125977,
+        "payload_sha256": "13ac113e33139838e15d295f8599ac3dc90bf1dc99d500c68c3bc4b6960c4487",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 60732,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "00ab8a862f657826edf26e06dac8011c538778c857c782927d0ed2f46912c5e6",
+        "storage_object_key": "lod0/t2/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 122607,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "7d3fc188b56d705f44b8e8af352ea5a456da2b766ad1127e9ef9feb95f782ae5",
+        "storage_object_key": "lod0/t2/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.682479858398438,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 10.007505416870117,
+        "payload_sha256": "ac99aca17b9fe5c2537ddbb33e6bebbb1897e0eb5deb9faca33293732d1e92e7",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 58487,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "9ed0c6ca98798db710efb2cb6ea14a6c3b90fa4864cac4e2e647b3070fd09052",
+        "storage_object_key": "lod0/t2/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 126334,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "196c820d1ac6309de89381046021e231fe25bf0cf0a496a5cad30d760aa7244f",
+        "storage_object_key": "lod0/t2/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.345247268676758,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.914813041687012,
+        "payload_sha256": "6a41d2dbe1bd4db00d4e2576defdc14b1dd8a042ddb2a679ed4e7920c22e6187",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 47908,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "c541357461d1875469e0384351a24a6957d199bf4eb0dcbf2dbc6a724576a87c",
+        "storage_object_key": "lod0/t2/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t2:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 100099,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "4d2bea210f1391e988075901000c14c2f15f9f0076fcbbb110a7ad57cd446acf",
+        "storage_object_key": "lod0/t2/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.72917938232422,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.651848793029785,
+        "payload_sha256": "36f84c2bd05c8ce59865b0041495c5feb160e3593171b383c1f1e84fc06ee9b4",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 108423,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "c223921ace06b1dca9ba9e20f77672757bcca8a9f9aa20cb0ce49a3008813039",
+        "storage_object_key": "lod0/t3/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 232157,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "84d5de6179f32be9657bf9ea40808900092a262c4311f9c4c4e10c6ef4904fc5",
+        "storage_object_key": "lod0/t3/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.838970184326172,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.988916397094727,
+        "payload_sha256": "48576073678a57d8013c7a81bc9f8795ede4b47a69052ca03a229564c3ce50f1",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 100313,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "fc69ac93f15e91069211cb6fe6457ce0f0d4280b6191aa1f6c66c8867cfbd434",
+        "storage_object_key": "lod0/t3/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 215073,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "0bdd76dee92a89b8bb24231212cd56256b6af1578c89121a3bbeffad2b8de971",
+        "storage_object_key": "lod0/t3/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.323284149169922,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.817622184753418,
+        "payload_sha256": "ea96579b5c05d24cf6546df317c2e5605e96efbd4ba39a9e780066ee0ab05b28",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 86643,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "693084dcb5c38a43d5026f14f0eb797a3731dff39171b49e1276bd86d143a5de",
+        "storage_object_key": "lod0/t3/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 170921,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "61f59148e1b68ded4da4b9db123139e9c88467e649b91fd4ed0638b19a8d2ddb",
+        "storage_object_key": "lod0/t3/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.73772430419922,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.57386302947998,
+        "payload_sha256": "65f8376c29ec6370839306ead7e7267b197aed601c5146367e148976471528ef",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 60432,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "8a16748b990e220b0301b82f7e60028cf5d6bb086484e25b629dd298a98ccb37",
+        "storage_object_key": "lod0/t3/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 122874,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "936b640aa0f63d826f70cb03987dbfdb133f059bbb36b3f3d8b1b4618c338657",
+        "storage_object_key": "lod0/t3/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.682018280029297,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.980331420898438,
+        "payload_sha256": "e65b325071913d555c95784ebefe92f0db212faf002acd94c6d9379842333607",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 54476,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "b197f8232d4cb871d70ae769db5ec4d74cd504b3b63bd2fea9a11d8b67a4fa23",
+        "storage_object_key": "lod0/t3/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 124265,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "a4525c73519ac722a123d208e72c510c33a42f97cb5636bab63a1ee539c57148",
+        "storage_object_key": "lod0/t3/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.36874008178711,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.894489288330078,
+        "payload_sha256": "a81ab0384b323b6518400271c9ce9d2023715957a3eccf6aa9ace092953edd4f",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 48100,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "aaa5c63f9b936cee3d6af6426bdf3a26c7117ee82213cd252cce70500e046068",
+        "storage_object_key": "lod0/t3/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t3:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 97987,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "61dcc37c395ae4f5e9159d5f512e8a584d23651870d5da91e81d6e04acce37f8",
+        "storage_object_key": "lod0/t3/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.85960578918457,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.647950172424316,
+        "payload_sha256": "eb6c68f57b8db1e2440750674c5eef8734c2379114ce8179050e6e8f31547e4e",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 108885,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "e09640c67d9d844fb136ec0cc8811509f7aa2105fbc482fc8f87751848ea0b35",
+        "storage_object_key": "lod0/t4/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 232375,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "3abdc597a8ccb5cb71e7566778fb1bc8a01f4bccddd9be4b2695ab831c86c1aa",
+        "storage_object_key": "lod0/t4/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.903175354003906,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 10.015961647033691,
+        "payload_sha256": "e10e591f65f02c87fe6ca69f563150d5446cf732b0d0e0d1fed211bec3e8ad2e",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 96499,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "fa8add1e649b3a123f71b46c40153b0267fb3c77175bf54ae5d3dda827bdf6db",
+        "storage_object_key": "lod0/t4/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 213575,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "7f4ca274479727876c24c9b6020a6e0162df732041ca1479bf5d33e89cc87f94",
+        "storage_object_key": "lod0/t4/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.304712295532227,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.817880630493164,
+        "payload_sha256": "a918a62c6333a951fec0c3b297adf9a7c9aa8af960e88d44c94e25eca300fad4",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 88648,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "ebc2502fff73ab3804127426b12367096fe99efe46662a57fd4aecd0354f43ec",
+        "storage_object_key": "lod0/t4/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 170999,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "482909b9a8a974bd80af0a5b2640da01c8b5ccb17b28dc8fd10fa6f3f4897acb",
+        "storage_object_key": "lod0/t4/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.879011154174805,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.598774909973145,
+        "payload_sha256": "f94560029ab78b15bf3d2145290a09c322b6606687d0baf869162d0cd38cc392",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 60510,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "082c97f7680c08d5807f7480a8afb96949d8982db7032fd55ca51795db5760e7",
+        "storage_object_key": "lod0/t4/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 122755,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "09b6a1906c7318ab75651c620e44d41cabeb6c8f1f7fe0b5a86e3e24b23ddc21",
+        "storage_object_key": "lod0/t4/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.65399932861328,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.952441215515137,
+        "payload_sha256": "97b875ca07fafbeca11743d5cdfff5a8c11654cab3104009be55d90ac967a8e6",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 54067,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "15a2b2cf07371c6ad38f41ccd419576e190980b357bdba21b1e2f32f3ff4125e",
+        "storage_object_key": "lod0/t4/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 123908,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "f9594f8c9840f52343102112006a643c0f0d05450efc3b34bc058b89e1890341",
+        "storage_object_key": "lod0/t4/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.365747451782227,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.886075019836426,
+        "payload_sha256": "abb5b4759a574a08f8ac0526bcaa06d63d1aa467fccdfa24e29b217f4c846fd6",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 48141,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "4744d4baee7a853ae673816a5b993746fffc3dccd79679beca2bc78af0d22637",
+        "storage_object_key": "lod0/t4/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t4:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 97206,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "2760fcd559560f34e72ee098fd3426095e854d9ce8ada57bed7de858c070950b",
+        "storage_object_key": "lod0/t4/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.98115348815918,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.582158088684082,
+        "payload_sha256": "3e7ce59f5d9494919132da94ee5c2d095b8154b0278c8f2db3ecfe1d5d5744ef",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 109683,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "dc4c7299f556accb80c9e6823a8fb5aeff9c30f934c2d910ed0dffa801528ded",
+        "storage_object_key": "lod0/t5/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 232930,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "2ada5052951b2c4c09ec3d7f9ecda9fe31899530b39552a899cd9df6650d1e0a",
+        "storage_object_key": "lod0/t5/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.93470573425293,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.978480339050293,
+        "payload_sha256": "400c88d57fa1ca83bddcd7ada6e01bc6e5e9ef748ad8debd1d4bd535d9313e25",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 94774,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "02908c9d646d4a9fd7236b5ec7a65347d2352567be631a717d5cb6b91b255cd0",
+        "storage_object_key": "lod0/t5/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 213729,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "949b7c847ecca248b5f654e4b442a4e220659631e0571b54fcbc215af8a433ff",
+        "storage_object_key": "lod0/t5/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.226150512695312,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.806931495666504,
+        "payload_sha256": "e991a8aacb306353b1b853bebe63a5b409fd6bb465be461946b388c95ea07305",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 88261,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "261d254fce45baf919fe34499f0f259540a5b2e310d05a8cbf53e5a0c479543d",
+        "storage_object_key": "lod0/t5/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 171202,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "743cfadea66cb7dc4d60be2a1756fb499a1cd278879bf4882d751f9133bbd9f1",
+        "storage_object_key": "lod0/t5/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.983488082885742,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.481109619140625,
+        "payload_sha256": "707f2c43a046775861662365f42017bf0b9ca899be5bc3f044fe2e2038044a3b",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 61304,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "3e323f431dbc3f2e97d45f1d977d67276e5514673e04333b838fc532b1e53795",
+        "storage_object_key": "lod0/t5/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 123001,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "e1183517a6d3ea8e523020b2d555f22fd2bd24582d84127d2f5a2857035cfafe",
+        "storage_object_key": "lod0/t5/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.75213050842285,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.989009857177734,
+        "payload_sha256": "d78b699c6c8caf3c42a8a9d9d0850f99912d78f79b6c5cb724f65f13eb725d18",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 54661,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "31ea24ed77871369c687c04e9620444b7414fddbbdca4308f2f2872a35b7a817",
+        "storage_object_key": "lod0/t5/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 124734,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "9b3f8aabc65c2f81bc2f94d03314ce7efb5df3c5e1d0427a5c293c637920f40e",
+        "storage_object_key": "lod0/t5/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.340436935424805,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.865562438964844,
+        "payload_sha256": "1a3fb0f58bc2e6410eb75a13e94b3db88dbfd8cfcd621615e3ade2c4418a6e3f",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 47581,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "32012e8f855280511e43dbe5e4ba202bc3a7ef3a0eb4b2ccac8a9ec6cacd6003",
+        "storage_object_key": "lod0/t5/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t5:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 97341,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "09721b09e7d754ad8ea8d380cad9283bd8871cac84a00c9925c9a27acd52f089",
+        "storage_object_key": "lod0/t5/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.851959228515625,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.589897155761719,
+        "payload_sha256": "2445aa80c2636a2f592f254d204c74760d69601c381da3304d61f26e11f18dce",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 85.25,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 110102,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "5515fbbd8de1d9c4c84f2df212a35993ffad76e0bdad2fee2789373a2035b112",
+        "storage_object_key": "lod0/t6/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 232107,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "701120f3e8c84c259976f017c020fbdb4f402b62e0579d2cc6c0764936a3a6f6",
+        "storage_object_key": "lod0/t6/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.87045669555664,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.918888092041016,
+        "payload_sha256": "0790ae21f19fb2f996e2e89b98b09c8c0f61fd1d977703ede239090efcedee16",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 85.25,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 96318,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "1b1e3922cef10fc7eaf1b15e57e1f11f190c8b5c13facb62727b64f06345f129",
+        "storage_object_key": "lod0/t6/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 213159,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "eb7ddfc68642c3000171c16b4bd177deef05d537c755c194f87e261671f9d5a4",
+        "storage_object_key": "lod0/t6/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          64,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.24357032775879,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.797213554382324,
+        "payload_sha256": "ef130669819fff20351a587ed14bb692e9e47850339e758e3a89a753520940e0",
+        "sample_origin": [
+          0,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 85.25,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 88601,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "da9d1fe2d593dd9edfe748a26139087146989264289513bc4d6a4f459815ad7d",
+        "storage_object_key": "lod0/t6/b_0_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx0:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 172843,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "2638f2f14245b6a7987faf68cc61e65afc44bf11093e921827c1c68b328dcf4e",
+        "storage_object_key": "lod0/t6/b_0_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.863338470458984,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.374712944030762,
+        "payload_sha256": "dbe782b3eefec5d72e4b2a6da79ab7cbdfff5441aa811d7a4061770c91dec58e",
+        "sample_origin": [
+          64,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 88.0,
+          "min_latitude": -3.0,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 60534,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "33e84aa31fb6cfb63eef78c56987c6fb8492983cc5ed07293209c001bba1c4e4",
+        "storage_object_key": "lod0/t6/b_1_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 122442,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "815059e68efeeef6c93a9975995b7824b55fef9c232b02fe83b93259c8104eef",
+        "storage_object_key": "lod0/t6/b_1_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.738786697387695,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.871882438659668,
+        "payload_sha256": "ab258baf1732d1d32a1e4ff3e48afc8a6616d65a02d89f7e9cffca6f47a11b49",
+        "sample_origin": [
+          64,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 7.583335876464844,
+          "max_longitude": 88.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 54910,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "148e9b2448289794c7eb9ed2a15cee899f3c8fa4c285cb172d5c6de5c66ce4b2",
+        "storage_object_key": "lod0/t6/b_1_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 124842,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "fe0ec7ba4f198be412230e2386f488cbcbe73914e0ebf994723f765004d21008",
+        "storage_object_key": "lod0/t6/b_1_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by2:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by2:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          33,
+          53,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.3471736907959,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.861241340637207,
+        "payload_sha256": "1148bfb1357fc256ca2f7c007bf8933b3e17a5f6a18494c0902ac6ef31340706",
+        "sample_origin": [
+          64,
+          128,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 12.0,
+          "max_longitude": 88.0,
+          "min_latitude": 7.6666717529296875,
+          "min_longitude": 85.33334350585938
+        }
+      },
+      "identity": {
+        "brick_index_x": 1,
+        "brick_index_y": 2,
+        "brick_index_z": 0,
+        "lod_level": 0,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 48561,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "6b4b0c49b37dfb3ef66198d4668936864e60a772aa8386dfc43d369e8bc74503",
+        "storage_object_key": "lod0/t6/b_1_2_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod0:t6:bx1:by2:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 98400,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "754b9f522ba441bdb837e16ac5e09296a839e1652ca18e0ca769af7e53a32805",
+        "storage_object_key": "lod0/t6/b_1_2_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.829811096191406,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.566765785217285,
+        "payload_sha256": "b0217f846927aee575850bbefef22ff295be503d4656a0e8114756766196606e",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 91281,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "e37901038f594899ced5b66dd4472d7cc58cc1d6eea53b528a00f6202fee2106",
+        "storage_object_key": "lod1/t0/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 177889,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "8fe6be3bfaff6386c328347020a396bba19ddcd150fa076388384b7078b46700",
+        "storage_object_key": "lod1/t0/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.246009826660156,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.84694766998291,
+        "payload_sha256": "48430fa8d942c7078708bc8b71e0943336361b6971278bf193d8a29a1fe6f4ae",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39577,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "7117a4e01eea5f49429f92a2f1dc073872dc4acdc86d16975d9320355885ac86",
+        "storage_object_key": "lod1/t0/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t0:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 70878,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "619afae60662a6e2f4ac9e3be844b3d6b2328517837994c7bbfb8bc062f6c386",
+        "storage_object_key": "lod1/t0/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.73779296875,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.526508331298828,
+        "payload_sha256": "8c617b525476919d94ae58b1fd7d3e62fcc7d75c3af28c4bc2b2a8be235c1f4d",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 92646,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "10a25af114bb5c4307f6e32d553219fd55c5aa24f12f9e5f5b0c866b044eb753",
+        "storage_object_key": "lod1/t1/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 177962,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "a6571fa0e50087b4f6150c81578283801e276b9e498e116146909ec583e6f932",
+        "storage_object_key": "lod1/t1/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.15414810180664,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.83327579498291,
+        "payload_sha256": "d1a459a92f9259ccd24ac579901fa53b900e4025bb503573e8b551975b230e9e",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 38366,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "644139c65deadb9caf6d9b11e17ad2bccc04a3af51d91844a175f91b5bc549a3",
+        "storage_object_key": "lod1/t1/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t1:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 70971,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "634f5e8910ffdaf1399ce6626f12daf380e91101be723919df5f1539ee2585b5",
+        "storage_object_key": "lod1/t1/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.69955062866211,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.529217720031738,
+        "payload_sha256": "eb5dc71c08c7b02b5b1f6b94f4186231d2c00fe6c0c67fb1f4e65ba94a09989b",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 95467,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "4de5ba053250ad4ea406423a5d10a818d62ab2138bd435cada3f11e742179db4",
+        "storage_object_key": "lod1/t2/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 178051,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "76b0a783f238f3ed05f77ae1afde70848f79f0af4a13b6849231428795048757",
+        "storage_object_key": "lod1/t2/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.024810791015625,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.844955444335938,
+        "payload_sha256": "2303044fd16a29b544a7c18a17c24565a64f08e0ae588c366369a51b7fe2486b",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39813,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "7ac9cd7e0b46d8d4a7fc085c6be2540ec76422928b9de6b678cd8032d86c4f11",
+        "storage_object_key": "lod1/t2/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t2:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 71551,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "26f321232b9566c43ab1c4bf36b99b87a391a99cf22336c08ed1b80343a3eeda",
+        "storage_object_key": "lod1/t2/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.80777931213379,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.585630416870117,
+        "payload_sha256": "e2c9f70103c60bbe0f37d741f5753d129b5bf107a61963cb377a08f1de9b8238",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 92354,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "eccd3ecac269271daa6a7f85ee1c00bbcc928982c3f2e32b9a6289356a5f9f04",
+        "storage_object_key": "lod1/t3/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 177135,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "4d2de4640c1bd4efcc73c47d97bd8c18804f81446d2d7cf44a5beb0bd4936a61",
+        "storage_object_key": "lod1/t3/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.16301727294922,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.823421478271484,
+        "payload_sha256": "2d9520914cafbc896fb73a3e6fe304ff9efd699fd4052455247862fd4f334790",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 40189,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "f849eaecbeac94aab52391596e128b57423e3ef1f719ef4b0d95908c2a5da1dc",
+        "storage_object_key": "lod1/t3/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t3:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 70771,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "816b6cc611c947f8ac88376d058b163a45f87e322495e14581c6b6e68072a990",
+        "storage_object_key": "lod1/t3/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.872459411621094,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.609941482543945,
+        "payload_sha256": "17225b989b1ac50236f748d1bd3476e1eaa96a08c9ba02cfeefb7dc3a623f015",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 91130,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "06c36a52e06bc9a1b583ea83e10bb520cef2e000680dc4688ef62b2f86c71b3c",
+        "storage_object_key": "lod1/t4/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 176700,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "5e6ae112f63c69415519ecb47c140d97215ae645f58857f1cb5701b037dba32e",
+        "storage_object_key": "lod1/t4/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.202964782714844,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.830072402954102,
+        "payload_sha256": "c80ef8d9dd58491a4ca915b600ad52d78a12bd3f684ed251ee2bd5775a3835fb",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 40715,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "c4409e52ccd0678b90ec5d2e93cee73348b2b36b0d71632cfe86af0c7b1b13fd",
+        "storage_object_key": "lod1/t4/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t4:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 70691,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "fd59e9a94216f00c517445c5dd776c32a5a6037e8c8b4920f0164b520604d44c",
+        "storage_object_key": "lod1/t4/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.966331481933594,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.492953300476074,
+        "payload_sha256": "5d801ef023fc773587ce1d9e4877720f457c23f329ddb29a5c38aa44efb80d76",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 91608,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "f2b2b0d17791a5a51b251fa5f90cc1ea6abd9cb7b9e4650882ec1fbbbf0c1635",
+        "storage_object_key": "lod1/t5/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 177433,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "5e5a5aa0eccb243a812b35ba0733c9bfbaae1af1261e599165bc4c8fd7bbbd26",
+        "storage_object_key": "lod1/t5/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.14324188232422,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.813840866088867,
+        "payload_sha256": "5c4b1c616c0a4fdae5aff471a1470514a22e4341fb53e816bff5c33b561e3736",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 40314,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "b44e55f109f747defcbcd6674f323a041c03606d106b65ac255505a0b0859a46",
+        "storage_object_key": "lod1/t5/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t5:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 70722,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "8b710222a68c6b05f78814b05bb9003ce7578a40727de6b69e3a5ef261e6a436",
+        "storage_object_key": "lod1/t5/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          64,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.853700637817383,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.377602577209473,
+        "payload_sha256": "d9c5cfb7b8f58482ccbb7945cb2088d544f13f0d59195b67e91d01dce8d7a085",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 2.25,
+          "max_longitude": 84.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 92076,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "6d4b1045c07ec8e4dbe9fa7f268ceb95c4c396ac6059551300ad1e4dee7d5f0c",
+        "storage_object_key": "lod1/t6/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 177190,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "3f27553510f6794b5d201a09575260aca5528911e658df4062aa78ecb186659b",
+        "storage_object_key": "lod1/t6/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by1:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          49,
+          27,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 30.126476287841797,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.802640914916992,
+        "payload_sha256": "dae959fe918d73bae968be6c8b697b92d44a63c8d5cbcd3c1617ecd712167f3c",
+        "sample_origin": [
+          0,
+          64,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 4.5,
+          "max_longitude": 84.0,
+          "min_latitude": 2.3333358764648438,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 1,
+        "brick_index_z": 0,
+        "lod_level": 1,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 40488,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "b86d3136e674d06f965b0566b425a1f30afebd7f529519ed4570058c8d79393f",
+        "storage_object_key": "lod1/t6/b_0_1_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod1:t6:bx0:by1:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 71192,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "c71ca996aebf64a13c7da18a54b455aa2cd3e8a9d6592f3014c1f975e78c5d2d",
+        "storage_object_key": "lod1/t6/b_0_1_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t0:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.971982955932617,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.602437973022461,
+        "payload_sha256": "1c8e7c3a77e00901ab7520f019181a240f42b780a95bbe87938bc9181d60d66c",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 0,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 38642,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "bf2714a8cd4b3cf2bbd4282776d1e82dba6042e96849de534e7562dda1eda5c0",
+        "storage_object_key": "lod2/t0/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t0:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64813,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "53628e0b22048395b5e4bb785229be030a13b1c50279103bb4045380e461bd55",
+        "storage_object_key": "lod2/t0/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t1:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.983230590820312,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.575828552246094,
+        "payload_sha256": "dedf9f4f02dbdebda52d2161972949adb52625b9ec0e8934d3c1668a44c91898",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 1,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 38852,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "2da129ba5a233a81702a5012c912387e0ab1776631e0bad37cd9118b66bd0583",
+        "storage_object_key": "lod2/t1/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t1:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64902,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "f0bcc972ce307e763125f479b1a18b2ea93b24eef3eec610fe0cea3dabd33b43",
+        "storage_object_key": "lod2/t1/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t2:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.89445686340332,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.545330047607422,
+        "payload_sha256": "327bf7452cdd399c66322a0081b177f5211646479125c385c22262a10efdb9c0",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 2,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 40108,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "21b75811de9f55f69a1e94b783c74a484f79c79282d813a0df60c85d1edeb788",
+        "storage_object_key": "lod2/t2/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t2:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64936,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "4204c07fa4dceeaece33f7da466b2c2fa729637f68b79b69d0b2f3a33382bdc1",
+        "storage_object_key": "lod2/t2/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t3:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.96504020690918,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.608261108398438,
+        "payload_sha256": "a2ca144c1cebcd986fac3567ef2d7cb516dd7771d6b175589dc5e4d9d0233010",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 3,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39171,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "8b6d9232cdd8534833c07ad18177c77c2ca6c2b5607c205ff8bc6e18decda454",
+        "storage_object_key": "lod2/t3/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t3:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64648,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "4facd64530e4a8c674cc5c841d7a56770441777260f5538987a0c74475f86272",
+        "storage_object_key": "lod2/t3/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t4:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.993032455444336,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.632617950439453,
+        "payload_sha256": "1336b6bdbf6e80155524a5fe990d6dd8c7b3ed10bbd457ab843883d4f5fd1ec1",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 4,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39095,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "f41e8fca2fe5d5f2dc367a2cc3b63eae1a65dfc8ff0be429ce21e1747abb0ed1",
+        "storage_object_key": "lod2/t4/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t4:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64549,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "39904ed16adc6ffe1036ef38152c6c421cf69a356f6aa7ed41796d81bd0b1ed7",
+        "storage_object_key": "lod2/t4/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t5:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.947471618652344,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.508673667907715,
+        "payload_sha256": "7c2cd7c52479e16fbf0ba870fb054ed54a586398b4d6b3a4ca331cb22114d4ea",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 5,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39158,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "2963919f26df947a48639e0be2fa44904041b997c77c8c70ef606865ba982621",
+        "storage_object_key": "lod2/t5/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t5:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 65012,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "2a512d8863b665989138c402e2a3e5d91258c8a5aea404bfe3b13ef335878e7a",
+        "storage_object_key": "lod2/t5/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    },
+    {
+      "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t6:bx0:by0:bz0:sea_water_potential_temperature",
+      "geometry": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "halo_padding": [
+          1,
+          1,
+          0
+        ],
+        "interior_valid_shape": [
+          25,
+          46,
+          31
+        ],
+        "is_empty_or_masked": false,
+        "max_depth_m": 453.9377136230469,
+        "max_value": 29.948593139648438,
+        "min_depth_m": 0.49402499198913574,
+        "min_value": 9.407166481018066,
+        "payload_sha256": "299206cf6e398b5ca616794d836e508ac49cef0cdb3835095f9d372cc3c82053",
+        "sample_origin": [
+          0,
+          0,
+          0
+        ],
+        "sample_shape": [
+          66,
+          66,
+          32
+        ],
+        "spatial_bounds": {
+          "max_latitude": 0.75,
+          "max_longitude": 82.0,
+          "min_latitude": -3.0,
+          "min_longitude": 80.0
+        }
+      },
+      "identity": {
+        "brick_index_x": 0,
+        "brick_index_y": 0,
+        "brick_index_z": 0,
+        "lod_level": 2,
+        "product_version": "v1",
+        "timestep_index": 6,
+        "variable_id": "sea_water_potential_temperature",
+        "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+      },
+      "payload_f16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 39366,
+        "compression_codec": "zstd",
+        "quantization": null,
+        "sample_format": "r16float",
+        "sha256_checksum": "b4fc9f0a464e6c36857651b7ffa327563ad2231250b1a2ff68e62e03d9bf8708",
+        "storage_object_key": "lod2/t6/b_0_0_0_f16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      },
+      "payload_u16": {
+        "brick_key": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087:v1:lod2:t6:bx0:by0:bz0:sea_water_potential_temperature",
+        "compressed_bytes_length": 64594,
+        "compression_codec": "zstd",
+        "quantization": {
+          "add_offset": 9.374712944030762,
+          "is_eligible_for_exact_query": false,
+          "quantized_data_type": "uint16",
+          "reserved_missing_code": 65535,
+          "scale_factor": 0.00032024781988520363,
+          "theoretical_max_quantization_error": 0.00016012390994260182,
+          "unquantized_data_type": "float32"
+        },
+        "sample_format": "r16uint",
+        "sha256_checksum": "c466792b93e24dae3503d796dfa44778b7741d94fba618c6c94172904fd81fd2",
+        "storage_object_key": "lod2/t6/b_0_0_0_u16.bin.zst",
+        "uncompressed_bytes_length": 278784
+      }
+    }
+  ],
+  "manifest_sha256": "211c0ec92ba7c49b7cd6c7a7686bdc25f0235f41881e235f8a84697c7112d9f3",
+  "product_version": "v1",
+  "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "storage_summary": {
+    "budget_utilization_pct": 8.48,
+    "f16_payload_files_count": 63,
+    "f16_total_compressed_bytes": 4398512,
+    "f16_total_compressed_mib": 4.1947,
+    "storage_budget_compliant": true,
+    "storage_budget_limit_mib": 150.0,
+    "total_bricks": 63,
+    "total_compressed_bytes": 13342107,
+    "total_compressed_mib": 12.724,
+    "total_payload_files": 126,
+    "u16_payload_files_count": 63,
+    "u16_total_compressed_bytes": 8943595,
+    "u16_total_compressed_mib": 8.5293
+  },
+  "total_bricks": 63,
+  "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087"
+}

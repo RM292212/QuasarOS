@@ -1,0 +1,51 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01E",
+  "provider": "GEBCO / NOAA ERDDAP",
+  "dataset_id": "GEBCO_2020",
+  "product_title": "GEBCO 2020 Grid - Regional North Indian Ocean Elevation Subset",
+  "scientific_role": "BATHYMETRY",
+  "source_url": "https://upwell.pfeg.noaa.gov/erddap/griddap/GEBCO_2020.nc?elevation[(0.0):24:(30.0)][(40.0):24:(100.0)]",
+  "source_erddap_endpoint": "https://upwell.pfeg.noaa.gov/erddap/griddap/GEBCO_2020",
+  "retrieval_timestamp_utc": "2026-08-30T07:25:30Z",
+  "spatial_coverage": {
+    "region_name": "North Indian Ocean",
+    "latitude_min": 0.0020833333333314386,
+    "latitude_max": 30.00208333333333,
+    "longitude_min": 40.00208333333333,
+    "longitude_max": 100.0020833333333,
+    "grid_dimensions": {
+      "latitude": 301,
+      "longitude": 601
+    },
+    "grid_spacing_degrees": 0.1,
+    "grid_stride_index": 24,
+    "crs": "EPSG:4326",
+    "vertical_datum": "Mean Sea Level (MSL) / Reference Ellipsoid"
+  },
+  "variables": [
+    {
+      "name": "elevation",
+      "standard_name": "height_above_reference_ellipsoid",
+      "long_name": "Elevation relative to sea level",
+      "units": "m",
+      "dtype": "int16",
+      "min_value": -5533.0,
+      "max_value": 7401.0,
+      "mean_value": -1270.5418875517548,
+      "plausible_ocean_depths_confirmed": true
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/gebco/gebco_2020_north_indian_ocean.nc",
+      "byte_size": 373776,
+      "sha256": "d9f6639d05cbf1946a609d2abf4466bef08ef4d4302fc91e899cc1f276c76ad7",
+      "format": "NetCDF-4/Classic"
+    }
+  ],
+  "licence": "GEBCO Open Access / Free Redistribution with Attribution",
+  "attribution": "GEBCO Compilation Group (2020) GEBCO 2020 Grid (doi:10.5285/a29c5465-b138-234d-e053-6c86abc040b9); Served by NOAA ERDDAP",
+  "validation_status": "VALIDATED",
+  "notes": "Regional bathymetry & topography subset for QuasarOS volume rendering boundary / seafloor terrain clipping in the North Indian Ocean domain (Lat 0-30N, Lon 40-100E)."
+}

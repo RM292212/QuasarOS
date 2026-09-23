@@ -1,0 +1,36 @@
+{
+  "task_id": "TASK-03S-E",
+  "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+  "parity_check_time_utc": "2026-08-30T13:05:13.212063+00:00",
+  "max_absolute_error_degc": 0.0,
+  "parity_passed": true,
+  "validity_mask_consistent": true,
+  "validity_mask_semantics": {
+    "VALID": 0,
+    "SOURCE_MISSING": 1
+  },
+  "nc_nan_count": 190925,
+  "zarr_invalid_count": 190925,
+  "zarr_shape": [
+    7,
+    31,
+    181,
+    97
+  ],
+  "nc_shape": [
+    7,
+    31,
+    181,
+    97
+  ],
+  "zarr_timestamps": [
+    "2026-08-24T00:00:00Z",
+    "2026-08-25T00:00:00Z",
+    "2026-08-26T00:00:00Z",
+    "2026-08-27T00:00:00Z",
+    "2026-08-28T00:00:00Z",
+    "2026-08-29T00:00:00Z",
+    "2026-08-30T00:00:00Z"
+  ],
+  "distinct_from_historical_2025": true
+}

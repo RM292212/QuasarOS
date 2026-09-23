@@ -1,0 +1,163 @@
+{
+  "schema_version": "2.0.0",
+  "task_id": "TASK-09A",
+  "task_title": "WebGL2 Architecture and Capability Preflight",
+  "status": "APPROVED",
+  "evaluated_at_utc": "2026-08-30T22:35:00Z",
+  "baseline": {
+    "active_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087",
+    "product_version": "v1",
+    "target_variable": "sea_water_potential_temperature",
+    "canonical_units": "degree_Celsius",
+    "grid": {
+      "allocated_shape": [66, 66, 32],
+      "interior_valid_shape": [64, 64, 31],
+      "halo_padding": [1, 1, 0],
+      "depth_levels_count": 31,
+      "depth_min_m": 0.49402499198913574,
+      "depth_max_m": 453.9377136230469,
+      "uses_non_uniform_lut": true
+    },
+    "spatial_extents": {
+      "longitude_min_deg": 80.0,
+      "longitude_max_deg": 88.0,
+      "latitude_min_deg": -3.0,
+      "latitude_max_deg": 12.0
+    },
+    "scalar_domain": {
+      "min_value": 9.3747,
+      "max_value": 30.3618
+    }
+  },
+  "package_architecture": {
+    "package_name": "@quasar/renderer-webgl2",
+    "location": "packages/renderer-webgl2/",
+    "dependencies": {
+      "@quasar/client": "workspace:*",
+      "@quasar/runtime": "workspace:*"
+    },
+    "modules": [
+      {
+        "name": "context",
+        "path": "src/context/",
+        "responsibility": "WebGL2RenderingContext acquisition, extension detection (OES_texture_float_linear, EXT_color_buffer_half_float), capability profiling, and context loss handling."
+      },
+      {
+        "name": "resources",
+        "path": "src/resources/",
+        "responsibility": "3D texture allocation (gl.texStorage3D/gl.texSubImage3D), 1D Depth LUT texture/UBO management, colormap transfer function texture, pixel unpack alignment, and memory tracking under 50 MiB limit."
+      },
+      {
+        "name": "shaders",
+        "path": "src/shaders/",
+        "responsibility": "GLSL ES 3.00 volume raymarching shader programs, Smits-Kay ray-AABB slab intersection, Beer-Lambert step-size opacity correction, transfer function evaluation, and empty-space skipping."
+      },
+      {
+        "name": "pipeline",
+        "path": "src/pipeline/",
+        "responsibility": "VAO management, uniform buffer updates, framebuffer management, viewport binding, and draw call orchestration for volume raymarching."
+      },
+      {
+        "name": "picking",
+        "path": "src/picking/",
+        "responsibility": "Single-pixel picking pass via gl.readPixels to offscreen FBO, returning normalized volume coordinates [u, v, w] and scalar values for ProvisionalPickMapper reconciliation."
+      }
+    ]
+  },
+  "webgl2_capability_audit": {
+    "texture_formats": {
+      "r16f": {
+        "internal_format": "gl.R16F",
+        "format": "gl.RED",
+        "type": "gl.HALF_FLOAT",
+        "glsl_sampler": "sampler3D",
+        "bytes_per_voxel": 2,
+        "native_linear_filtering_extension": "OES_texture_float_linear",
+        "fallback_filtering_mode": "manual_glsl_trilinear_interpolation",
+        "role": "Primary scientific scalar volume texture for half-float temperature data. Hardware filtered when OES_texture_float_linear is available; software trilinear interpolation in GLSL ES 3.00 fallback path."
+      },
+      "r16ui": {
+        "internal_format": "gl.R16UI",
+        "format": "gl.RED_INTEGER",
+        "type": "gl.UNSIGNED_SHORT",
+        "glsl_sampler": "usampler3D",
+        "bytes_per_voxel": 2,
+        "native_linear_filtering_extension": null,
+        "fallback_filtering_mode": "in_shader_affine_scale_offset_dequantization_and_trilinear_interpolation",
+        "role": "Quantized 16-bit unsigned integer scalar texture ([0, 65534] valid, 65535 reserved missing). In-shader affine de-quantization (scalar = float(raw) * scale + offset) with manual 8-tap trilinear interpolation."
+      },
+      "r8ui": {
+        "internal_format": "gl.R8UI",
+        "format": "gl.RED_INTEGER",
+        "type": "gl.UNSIGNED_BYTE",
+        "glsl_sampler": "usampler3D",
+        "bytes_per_voxel": 1,
+        "native_linear_filtering_extension": null,
+        "fallback_filtering_mode": "nearest_texel_fetch",
+        "role": "Categorical validity mask (1u = valid ocean water, 0u = masked/land/nodata). Nearest point-sampled in GLSL ES 3.00 for empty-space skipping before transfer function evaluation."
+      },
+      "transfer_function": {
+        "internal_format": "gl.RGBA8",
+        "format": "gl.RGBA",
+        "type": "gl.UNSIGNED_BYTE",
+        "glsl_sampler": "sampler2D",
+        "dimensions": [256, 1],
+        "filtering": "gl.LINEAR",
+        "wrap": "gl.CLAMP_TO_EDGE",
+        "role": "256x1 RGBA transfer function lookup texture mapping normalized physical scalar [0, 1] to color and opacity."
+      },
+      "depth_lut": {
+        "internal_format": "gl.R32F",
+        "format": "gl.RED",
+        "type": "gl.FLOAT",
+        "glsl_sampler": "sampler2D",
+        "dimensions": [31, 1],
+        "alternative_storage": "uniform_buffer_object",
+        "filtering": "gl.NEAREST",
+        "role": "1D depth LUT (or uniform array) holding 31 non-uniform Copernicus standard vertical depth levels (0.494m to 453.938m) for piecewise linear vertical coordinate reconstruction."
+      }
+    },
+    "memory_alignment_and_limits": {
+      "unpack_alignment": 4,
+      "max_3d_texture_size_limit": 2048,
+      "max_texture_memory_budget_bytes": 52428800,
+      "max_buffer_memory_budget_bytes": 10485760
+    }
+  },
+  "glsl_es_300_raymarching_architecture": {
+    "version": "#version 300 es",
+    "precision": "precision highp float; precision highp int; precision highp sampler3D; precision highp usampler3D;",
+    "volume_space": "Normalized volume coordinates [u, v, w] in [0, 1]^3",
+    "aabb_intersection": "Smits-Kay ray-AABB slab intersection returning tNear and tFar clipped to camera near plane (tNear = max(0.0, tNear))",
+    "analytical_clipping": {
+      "plane_count": 6,
+      "uniform_bounds": "vec3 uClipMin, vec3 uClipMax in [0, 1]^3",
+      "evaluation": "Slab intersection interval clamped against [uClipMin, uClipMax]"
+    },
+    "depth_lut_interpolation": {
+      "algorithm": "Piecewise continuous linear interpolation across 31 discrete Copernicus levels",
+      "index_formula": "continuousIndex = clamp(w * float(depthCount - 1), 0.0, float(depthCount - 1)); frac = continuousIndex - floor(continuousIndex);"
+    },
+    "empty_space_skipping": {
+      "mask_format": "r8ui point sampled via texelFetch",
+      "semantics": "maskVal == 0u -> skip TF evaluation and accumulate no opacity; maskVal == 1u -> valid ocean sample (including physical 0.0°C)"
+    },
+    "compositing": {
+      "order": "Front-to-back compositing",
+      "beer_lambert_opacity_correction": "alphaCorr = 1.0 - pow(max(0.0, 1.0 - alphaSample), dt / uRefStepSize)",
+      "color_accumulation": "accumColor += (1.0 - accumAlpha) * alphaCorr * sampleColor.rgb",
+      "alpha_accumulation": "accumAlpha += (1.0 - accumAlpha) * alphaCorr",
+      "early_ray_termination_threshold": 0.95
+    }
+  },
+  "webgl2_picking_architecture": {
+    "readback_method": "gl.readPixels from offscreen RGBA32F or RGBA8 Framebuffer (1x1 pixel picking pass at cursor NDC)",
+    "payload_mapping": "Normalized [u, v, w] + provisionalScalarValue",
+    "runtime_integration": {
+      "target_mapper": "@quasar/runtime ProvisionalPickMapper",
+      "output_contracts": ["ProvisionalRenderPickResponse", "ReconcilePickRequest"],
+      "selection_method": "trilinear_interpolation"
+    }
+  }
+}

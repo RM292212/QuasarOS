@@ -1,0 +1,263 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-D",
+  "provider": "Indian National Centre for Ocean Information Services (INCOIS), MoES, Govt. of India",
+  "dataset_id": "INCOIS_RSMC_NIO_WW3_OPERATIONAL",
+  "product_title": "INCOIS WAVEWATCH III Operational Ocean State Forecast - North Indian Ocean Regional Wave Subset",
+  "scientific_role": "OPERATIONAL_WAVE_FORECAST_AND_INTERCOMPARISON",
+  "source_catalog_url": "https://incois.gov.in/thredds/catalog/osf/ww3/catalog.xml",
+  "source_opendap_url": "https://incois.gov.in/thredds/dodsC/osf/ww3/rsmc_nio_ww3_20260829.nc",
+  "source_fileserver_url": "https://incois.gov.in/thredds/fileServer/osf/ww3/rsmc_nio_ww3_20260829.nc",
+  "generating_model": "INCOIS RSMC WAVEWATCH III (WW3 V6.07) Multi-Grid Wave Model, ECMWF forcing with in-situ and satellite wave data assimilation",
+  "institution": "Indian National Centre for Ocean Information Services (INCOIS), Hyderabad, Telangana, India",
+  "retrieval_timestamp_utc": "2026-08-30T08:02:59Z",
+  "conventions": "CF-1.6, ACDD-1.3",
+  "spatial_coverage": {
+    "region_name": "North Indian Ocean (Arabian Sea, Bay of Bengal, Equatorial Indian Ocean)",
+    "latitude_min": 2.7755575615628914e-16,
+    "latitude_max": 29.0,
+    "latitude_resolution_deg": 0.1,
+    "longitude_min": 40.0,
+    "longitude_max": 100.0,
+    "longitude_resolution_deg": 0.1,
+    "grid_dimensions": {
+      "time": 56,
+      "latitude": 291,
+      "longitude": 601
+    },
+    "crs": "EPSG:4326",
+    "vertical_datum": "Sea Surface (depth = 0.0 m)"
+  },
+  "temporal_coverage": {
+    "start_datetime_utc": "2026-08-30T00:00:00Z",
+    "end_datetime_utc": "2026-09-05T21:00:00Z",
+    "time_steps_count": 56,
+    "time_step_interval_hours": 3.0,
+    "calendar": "standard",
+    "time_units": "seconds since 1970-01-01T00:00:00Z"
+  },
+  "access_audit": {
+    "incois_erddap_status": "EXAMINED - 17 active datasets hosted (Argo, ASCAT, QuickSCAT, OCM-2, TMI, etc.); gridded wave models not exposed on ERDDAP",
+    "incois_las_status": "EXAMINED - 52 datasets across 13 categories (Argo, GODAS, IGORA, Microwave, BIO-ROMS, etc.); wave forecast models not exposed on LAS",
+    "incois_thredds_status": "OPERATIONAL - Full gridded operational WAVEWATCH III & SWAN NetCDF streams hosted with OPeNDAP and HTTPServer access",
+    "download_method": "Direct OPeNDAP hyperslab subsetting from official INCOIS TDS"
+  },
+  "variables": [
+    {
+      "name": "HS",
+      "canonical_identifier": "swh",
+      "standard_name": "sea_surface_wave_significant_height",
+      "long_name": "Significant Wave Height",
+      "units": "m",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        0.0,
+        30.0
+      ],
+      "min_value": 0.00481003150343895,
+      "max_value": 4.291893482208252,
+      "mean_value": 2.140331983566284,
+      "std": 0.6933523416519165,
+      "total_cells": 9793896,
+      "valid_cells": 5346544,
+      "masked_land_cells": 4447352
+    },
+    {
+      "name": "PWP",
+      "canonical_identifier": "perpw",
+      "standard_name": "sea_surface_wave_period_at_variance_spectral_density_maximum",
+      "long_name": "Peak Wave Period",
+      "units": "s",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        0.0,
+        40.0
+      ],
+      "min_value": 2.0903628932657212,
+      "max_value": 21.11481702541906,
+      "mean_value": 11.676793691264926,
+      "std": 3.369300216543333,
+      "total_cells": 9793896,
+      "valid_cells": 5325339,
+      "masked_land_cells": 4468557
+    },
+    {
+      "name": "MWD",
+      "canonical_identifier": "mwd",
+      "standard_name": "sea_surface_wave_mean_from_direction",
+      "long_name": "Mean Wave Direction",
+      "units": "degree",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        0.0,
+        360.0
+      ],
+      "min_value": 0.05020022392272949,
+      "max_value": 359.8469950936056,
+      "mean_value": 207.94574870524002,
+      "std": 32.24351765247461,
+      "total_cells": 9793896,
+      "valid_cells": 5346544,
+      "masked_land_cells": 4447352
+    },
+    {
+      "name": "PWD",
+      "canonical_identifier": "dirpw",
+      "standard_name": "sea_surface_wave_from_direction_at_variance_spectral_density_maximum",
+      "long_name": "Principle Wave Direction",
+      "units": "degree",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        0.0,
+        360.0
+      ],
+      "min_value": 0.2930727871981844,
+      "max_value": 359.9382028796456,
+      "mean_value": 201.46748632857012,
+      "std": 33.11869207597959,
+      "total_cells": 9793896,
+      "valid_cells": 5325339,
+      "masked_land_cells": 4468557
+    },
+    {
+      "name": "T02",
+      "canonical_identifier": "tz",
+      "standard_name": "sea_surface_wave_mean_period_from_variance_spectral_density_second_frequency_moment",
+      "long_name": "Mean Zero-Crossing Wave Period Tz",
+      "units": "s",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        0.0,
+        40.0
+      ],
+      "min_value": 1.46071195602417,
+      "max_value": 13.868446350097656,
+      "mean_value": 6.42295503616333,
+      "std": 1.4445688724517822,
+      "total_cells": 9793896,
+      "valid_cells": 5346544,
+      "masked_land_cells": 4447352
+    },
+    {
+      "name": "UWND",
+      "canonical_identifier": "uwnd",
+      "standard_name": "eastward_wind",
+      "long_name": "10m Eastward Wind Speed",
+      "units": "m s-1",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        -100.0,
+        100.0
+      ],
+      "min_value": -8.529998779296875,
+      "max_value": 13.480000495910645,
+      "mean_value": 4.122737407684326,
+      "std": 3.5258841514587402,
+      "total_cells": 9793896,
+      "valid_cells": 5346544,
+      "masked_land_cells": 4447352
+    },
+    {
+      "name": "VWND",
+      "canonical_identifier": "vwnd",
+      "standard_name": "northward_wind",
+      "long_name": "10m Northward Wind Speed",
+      "units": "m s-1",
+      "dtype": "float32",
+      "dimensions": [
+        "time",
+        "latitude",
+        "longitude"
+      ],
+      "shape": [
+        56,
+        291,
+        601
+      ],
+      "valid_range": [
+        -100.0,
+        100.0
+      ],
+      "min_value": -11.269998550415039,
+      "max_value": 16.579999923706055,
+      "mean_value": 3.9787709712982178,
+      "std": 3.3171374797821045,
+      "total_cells": 9793896,
+      "valid_cells": 5346544,
+      "masked_land_cells": 4447352
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/incois/waves/incois_ww3_nio_20260830_20260905.nc",
+      "filename": "incois_ww3_nio_20260830_20260905.nc",
+      "byte_size": 99382977,
+      "sha256": "71b8377d7a4a02c1f8fd74d2ed6906b5335005b30d41e7d9d74a1400eaf36031",
+      "format": "NetCDF-4"
+    }
+  ],
+  "licence": "INCOIS Open Access / Free Redistribution with Attribution",
+  "attribution": "Indian National Centre for Ocean Information Services (INCOIS), MoES, Hyderabad, India; https://incois.gov.in",
+  "validation_status": "VALIDATED",
+  "notes": "Operational INCOIS WAVEWATCH III (WW3 V6.07) North Indian Ocean high-resolution regional wave forecast subset (0.1 deg, 291x601 spatial grid, 56 3-hourly timesteps). Variables include Significant Wave Height (HS: 0.005m to 4.29m), Peak Wave Period (PWP: 2.09s to 20.51s), Mean Wave Direction (MWD: 0.21 deg to 358.9 deg), Principle Wave Direction (PWD), Zero-Crossing Wave Period (T02), and 10m Wind Velocity (UWND, VWND). Validated for physical finite bounds and CF compliance."
+}

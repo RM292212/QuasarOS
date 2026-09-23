@@ -1,0 +1,116 @@
+{
+  "registry_id": "REG-VR03-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "updated_at_utc": "2026-08-31T15:15:00Z",
+  "total_registered_agents": 12,
+  "agents": [
+    {
+      "agent_id": "orchestrator_1",
+      "name": "Program Orchestrator",
+      "archetype": "orchestrator",
+      "roles": ["leader", "coordinator", "synthesizer"],
+      "working_directory": ".agents/orchestrator_1/",
+      "scope_and_responsibilities": "Oversees end-to-end execution of VISUALIZATION-REMEDIATION-03 milestone across Waves V0 through VR8; manages task dispatch, phase transitions, and final release sign-off.",
+      "status": "ACTIVE"
+    },
+    {
+      "agent_id": "spec_miner_paper",
+      "name": "Research Paper Spec Miner",
+      "archetype": "specialist",
+      "roles": ["researcher", "specialist"],
+      "working_directory": ".agents/spec_miner_paper/",
+      "scope_and_responsibilities": "Mines technical and mathematical requirements from research paper 'The Implementation of a WebGPU-Based Volume Render'; produced comprehensive research_spec.md.",
+      "status": "COMPLETED"
+    },
+    {
+      "agent_id": "explorer_backend",
+      "name": "Backend & Scientific Data Explorer",
+      "archetype": "implementer",
+      "roles": ["investigator", "backend_specialist"],
+      "working_directory": ".agents/explorer_backend/",
+      "scope_and_responsibilities": "Explored FastAPI service architecture, NetCDF-4 Copernicus datasets, TEOS-10 thermodynamic soundings, and coordinate resolver bugs.",
+      "status": "COMPLETED"
+    },
+    {
+      "agent_id": "explorer_frontend",
+      "name": "Frontend & Renderer Explorer",
+      "archetype": "implementer",
+      "roles": ["investigator", "frontend_specialist"],
+      "working_directory": ".agents/explorer_frontend/",
+      "scope_and_responsibilities": "Investigated React 18/Vite SPA structure, canvas viewport bypass, timeline state machine, and floating panel collision layout.",
+      "status": "COMPLETED"
+    },
+    {
+      "agent_id": "worker_wave_v0_vr1",
+      "name": "Wave V0 & VR1 Implementation Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "qa", "specialist"],
+      "working_directory": ".agents/worker_wave_v0_vr1/",
+      "scope_and_responsibilities": "Authored comprehensive 7-day forensic baseline logs, Master Root Cause Hypothesis Matrix (H1-H10), paper methodology analysis, and subagent registry.",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "agent_id": "worker_wave_vr2",
+      "name": "Wave VR2 Data Integrity Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "qa"],
+      "working_directory": ".agents/worker_wave_vr2/",
+      "scope_and_responsibilities": "Remediates backend coordinate bounds, NetCDF handle lifecycle, multivariable ingestion, and exact query endpoints.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "worker_wave_vr3",
+      "name": "Wave VR3 Volume Renderer Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "specialist"],
+      "working_directory": ".agents/worker_wave_vr3/",
+      "scope_and_responsibilities": "Rebuilds WebGPU raymarching renderer (with WebGL2 fallback), integrating ERT 0.98, empty space skipping 1.5x, trilinear interpolation, and dynamic transfer functions.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "worker_wave_vr4",
+      "name": "Wave VR4 Bathymetry & Geological Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "specialist"],
+      "working_directory": ".agents/worker_wave_vr4/",
+      "scope_and_responsibilities": "Integrates GEBCO 2026 bathymetric seafloor mesh, seabed voxel clipping, coordinate axes, depth ticks, and orientation gizmo.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "worker_wave_vr5",
+      "name": "Wave VR5 Playback & State Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "qa"],
+      "working_directory": ".agents/worker_wave_vr5/",
+      "scope_and_responsibilities": "Builds deterministic 7-day timeline playback state machine, double-buffered staging texture swaps, and live API hook connections.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "worker_wave_vr6",
+      "name": "Wave VR6 UI/UX & Accessibility Worker",
+      "archetype": "implementer",
+      "roles": ["implementer", "specialist"],
+      "working_directory": ".agents/worker_wave_vr6/",
+      "scope_and_responsibilities": "Eliminates all panel collisions, builds responsive tabbed/collapsible sidebar drawer, and enforces WCAG 2.1 AA accessibility standards.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "worker_wave_vr7_vr8",
+      "name": "Wave VR7 & VR8 QA & Operations Worker",
+      "archetype": "implementer",
+      "roles": ["qa", "specialist"],
+      "working_directory": ".agents/worker_wave_vr7_vr8/",
+      "scope_and_responsibilities": "Executes performance benchmarking, fixes automated test suites, generates SHA-256 evidence manifests, and produces operator manuals.",
+      "status": "PENDING"
+    },
+    {
+      "agent_id": "teamwork_preview_auditor",
+      "name": "Forensic Quality Auditor",
+      "archetype": "auditor",
+      "roles": ["auditor", "qa"],
+      "working_directory": ".agents/sentinel/",
+      "scope_and_responsibilities": "Conducts independent verification and anti-cheating audit across all deliverables, ensuring zero mock data and genuine compliance.",
+      "status": "ACTIVE"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "ValidationCheckResult": {
+      "description": "Result of an individual scientific, coordinate, or metadata check.",
+      "properties": {
+        "check_name": {
+          "description": "Machine-readable name of the validation check.",
+          "title": "Check Name",
+          "type": "string"
+        },
+        "message": {
+          "description": "Human-readable diagnostics explaining the check result.",
+          "title": "Message",
+          "type": "string"
+        },
+        "passed": {
+          "description": "True if check passed; False if failed.",
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "severity": {
+          "default": "INFO",
+          "description": "Severity level if check triggered.",
+          "enum": [
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "timestamp_utc": {
+          "description": "ISO 8601 UTC timestamp when check executed.",
+          "title": "Timestamp Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "check_name",
+        "passed",
+        "message",
+        "timestamp_utc"
+      ],
+      "title": "ValidationCheckResult",
+      "type": "object"
+    },
+    "ValidationState": {
+      "description": "Lifecycle validation status of a dataset or canonical product.",
+      "enum": [
+        "valid",
+        "valid_with_warnings",
+        "invalid",
+        "catalog_only",
+        "discovery_only",
+        "blocked"
+      ],
+      "title": "ValidationState",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Comprehensive validation report certifying contract compliance.",
+  "properties": {
+    "checks": {
+      "description": "Detailed list of check results.",
+      "items": {
+        "$ref": "#/$defs/ValidationCheckResult"
+      },
+      "title": "Checks",
+      "type": "array"
+    },
+    "state": {
+      "$ref": "#/$defs/ValidationState",
+      "description": "Overall validation state certification."
+    },
+    "validated_at_utc": {
+      "description": "ISO 8601 UTC timestamp of certification.",
+      "title": "Validated At Utc",
+      "type": "string"
+    },
+    "validator_version": {
+      "default": "1.0.0",
+      "description": "Version of validation engine executing rules.",
+      "title": "Validator Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "state",
+    "validated_at_utc"
+  ],
+  "title": "ValidationReport",
+  "type": "object"
+}

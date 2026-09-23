@@ -1,0 +1,13 @@
+{
+  "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "snapshot_id": "copernicus-phy-thetao-20260824-20260830-5d4781ba",
+  "start_datetime": "2026-08-24T00:00:00",
+  "end_datetime": "2026-08-30T00:00:00",
+  "variables": [
+    "thetao"
+  ],
+  "sha256": "5d4781bac3e01f89d7d54758abda674202f0e95d5c317c43ce2cc996c4cde28f",
+  "download_time_utc": "2026-08-30T12:41:51.863725",
+  "file_path": "data/raw/copernicus/physical\\copernicus-phy-thetao-20260824-20260830-5d4781ba\\dataset.nc"
+}

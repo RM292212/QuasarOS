@@ -1,0 +1,41 @@
+{
+  "audit_id": "EVID-UI-COLLISION-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:18:00Z",
+  "tested_resolutions": [
+    { "width": 1366, "height": 768, "aspect": "16:9", "status": "FAIL_SEVERE_OVERLAP" },
+    { "width": 1920, "height": 1080, "aspect": "16:9", "status": "FAIL_MODERATE_COLLISION" },
+    { "width": 2560, "height": 1440, "aspect": "16:9", "status": "PASS_WITH_OCCLUSION" }
+  ],
+  "layout_structure": {
+    "root_container": "apps/web/src/App.tsx:188-310",
+    "left_container": "absolute top-4 left-4 z-20 w-80 (TransferFunctionLegendControls)",
+    "right_container": "absolute top-4 right-4 z-20 flex flex-col gap-3 w-80 max-h-[calc(100vh-140px)] overflow-y-auto",
+    "bottom_container": "TimelineController (fixed height 56px border-t)"
+  },
+  "identified_collisions": [
+    {
+      "collision_id": "COL-01",
+      "panels_involved": ["TransferFunctionLegendControls", "OceanVolumeViewport Floating HUD"],
+      "resolution": "1366x768",
+      "description": "Left scientific controls panel (width 320px) completely covers the top-left 3D viewport telemetry HUD (top-4 left-4 min-w-[300px]), making FPS, variable range, and bounds invisible."
+    },
+    {
+      "collision_id": "COL-02",
+      "panels_involved": ["TransectDraw", "HorizontalSlice", "TSDiagram", "PickReconciliationPanel", "VerticalProfileChart", "ObservationComparisonPanel", "Teos10SoundingsPanel"],
+      "resolution": "1366x768 & 1920x1080",
+      "description": "Seven analytical panels stacked in a single vertical column exceed 1800px total height, causing severe vertical truncation and forcing inner scrollbars that interfere with canvas interaction."
+    },
+    {
+      "collision_id": "COL-03",
+      "panels_involved": ["Right Panels Container", "TimelineController"],
+      "resolution": "1366x768",
+      "description": "Bottom of the right floating container collides with the timeline controller scrubber bar, obscuring the day 7 timeline scrubber tick."
+    }
+  ],
+  "accessibility_audit_wcag21_aa": {
+    "focus_management": "Partial (TimelineController has tabIndex=0, but floating panels lack unified keyboard trap boundaries)",
+    "contrast_ratios": "Slate-900 on Slate-950 borders have contrast ratio < 3.0:1 in secondary headers",
+    "screen_reader_landmarks": "Header, Main, and Timeline region landmarks present; inner canvas lacks aria-live telemetry region."
+  }
+}

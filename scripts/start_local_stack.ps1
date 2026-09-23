@@ -3,7 +3,7 @@
 # and starts Frontend (Vite on 127.0.0.1:5173) ONLY after backend readiness succeeds.
 
 param(
-    [int]$TimeoutSeconds = 45,
+    [int]$TimeoutSeconds = 90,
     [switch]$NoBrowser
 )
 
@@ -77,7 +77,7 @@ while ($elapsed -lt $TimeoutSeconds) {
     $roundedSec = [Math]::Round($elapsed, 1)
 
     try {
-        $res = Invoke-RestMethod -Uri "http://127.0.0.1:8000/health/ready" -Method Get -TimeoutSec 3 -ErrorAction Stop
+        $res = Invoke-RestMethod -Uri "http://127.0.0.1:8000/health/ready" -Method Get -TimeoutSec 10 -ErrorAction Stop
         if ($res.status -eq "ok" -or $res.integrityVerified -eq $true) {
             $isReady = $true
             Log-Message "  [OK] Backend is READY (elapsed: ${roundedSec}s)!" "Green"

@@ -1,0 +1,153 @@
+{
+  "days": [
+    {
+      "day_index": 0,
+      "date": "2026-08-24",
+      "runs": 5,
+      "min_ms": 1798.68,
+      "median_ms": 2021.97,
+      "mean_ms": 1987.62,
+      "p95_ms": 2093.66,
+      "max_ms": 2093.66,
+      "std_ms": 117.48,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.00010161353566218168,
+      "max_val": 1.055389404296875,
+      "sha256": "7dc93f5238c4163d8ad7b4a78059b9323f5e6cc756c96d895e6c5ed77f858c8b"
+    },
+    {
+      "day_index": 1,
+      "date": "2026-08-25",
+      "runs": 5,
+      "min_ms": 1829.06,
+      "median_ms": 2153.79,
+      "mean_ms": 2111.24,
+      "p95_ms": 2267.51,
+      "max_ms": 2267.51,
+      "std_ms": 166.41,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0008956282981671393,
+      "max_val": 1.1598438024520874,
+      "sha256": "179e91a5e938ac51a60395080c7c6806e79023318e418ccf479392e2485b7f9e"
+    },
+    {
+      "day_index": 2,
+      "date": "2026-08-26",
+      "runs": 5,
+      "min_ms": 1996.06,
+      "median_ms": 2127.71,
+      "mean_ms": 2107.62,
+      "p95_ms": 2182.55,
+      "max_ms": 2182.55,
+      "std_ms": 75.89,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0006020501023158431,
+      "max_val": 1.1777769327163696,
+      "sha256": "0934cc79a70e8d5ec4ab7dd445322b983381cb4cf8a01839af0f77884ff742a6"
+    },
+    {
+      "day_index": 3,
+      "date": "2026-08-27",
+      "runs": 5,
+      "min_ms": 1783.22,
+      "median_ms": 2106.99,
+      "mean_ms": 2029.99,
+      "p95_ms": 2169.31,
+      "max_ms": 2169.31,
+      "std_ms": 163.18,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0004021158383693546,
+      "max_val": 1.1491779088974,
+      "sha256": "1f9e46535b243dd08aac0c5859cc34bba4b4ea19dae8d2e8b3f696db7a3dac94"
+    },
+    {
+      "day_index": 4,
+      "date": "2026-08-28",
+      "runs": 5,
+      "min_ms": 1832.72,
+      "median_ms": 2122.47,
+      "mean_ms": 2061.34,
+      "p95_ms": 2167.41,
+      "max_ms": 2167.41,
+      "std_ms": 138.76,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0006931499228812754,
+      "max_val": 0.9913696050643921,
+      "sha256": "3b8e0949064fbfefa5d01fb2a20726172fe2a6d3b4098bf52cc6039f9ccca730"
+    },
+    {
+      "day_index": 5,
+      "date": "2026-08-29",
+      "runs": 5,
+      "min_ms": 1945.53,
+      "median_ms": 2089.7,
+      "mean_ms": 2071.24,
+      "p95_ms": 2166.69,
+      "max_ms": 2166.69,
+      "std_ms": 91.67,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0003238373319618404,
+      "max_val": 0.9203267693519592,
+      "sha256": "cd11970a8de0033ad328381a3ec71fb6fe743358670a7c345e096fe09e47bf24"
+    },
+    {
+      "day_index": 6,
+      "date": "2026-08-30",
+      "runs": 5,
+      "min_ms": 1847.68,
+      "median_ms": 1991.96,
+      "mean_ms": 1980.11,
+      "p95_ms": 2106.51,
+      "max_ms": 2106.51,
+      "std_ms": 98.06,
+      "shape": [
+        16,
+        32,
+        32
+      ],
+      "valid_cells": 14900,
+      "total_cells": 16384,
+      "min_val": 0.0005420162342488766,
+      "max_val": 0.9454401135444641,
+      "sha256": "9e56617c76040d2fb5a8ebd6d4f54b2d3ec1faa6c5c42c78e15a2109fc3e11af"
+    }
+  ],
+  "overall_median_ms": 2089.7,
+  "overall_p95_ms": 2182.55
+}

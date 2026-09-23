@@ -12,12 +12,13 @@ Changes from hotfix:
 """
 
 import uuid
+import json
 import logging
 import traceback
 from datetime import datetime, timezone
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Header, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -25,6 +26,7 @@ from quasar_services.analysis.analysis_engine import (
     ScientificAnalysisEngine,
     _ALLOWED_VARIABLES,
     _SURFACE_ONLY_VARIABLES,
+    _netcdf_io_lock,
 )
 
 logger = logging.getLogger(__name__)
@@ -86,21 +88,21 @@ def _internal_error(request_id: str) -> JSONResponse:
 # ---------------------------------------------------------------------------
 
 class PointTimeseriesRequest(BaseModel):
-    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos")
+    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos, speed")
     latitude: float = Field(..., ge=-90.0, le=90.0)
     longitude: float = Field(..., ge=-180.0, le=180.0)
     depth_m: Optional[float] = Field(None, ge=0.0, le=6000.0)
 
 
 class VerticalProfileRequest(BaseModel):
-    variable: str = Field(..., description="Variable: thetao, so, uo, vo")
+    variable: str = Field(..., description="Variable: thetao, so, uo, vo, speed")
     time_index: int = Field(0, ge=0, le=6)
     latitude: float = Field(..., ge=-90.0, le=90.0)
     longitude: float = Field(..., ge=-180.0, le=180.0)
 
 
 class TransectRequest(BaseModel):
-    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos")
+    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos, speed")
     time_index: int = Field(0, ge=0, le=6)
     start_latitude: float = Field(..., ge=-90.0, le=90.0)
     start_longitude: float = Field(..., ge=-180.0, le=180.0)
@@ -110,7 +112,7 @@ class TransectRequest(BaseModel):
 
 
 class SliceRequest(BaseModel):
-    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos")
+    variable: str = Field(..., description="Variable: thetao, so, uo, vo, zos, speed")
     time_index: int = Field(0, ge=0, le=6)
     depth_m: float = Field(0.494, ge=0.0, le=6000.0)
 
@@ -152,26 +154,75 @@ async def get_teos10(
         return _internal_error(request_id)
 
 
-@router.get("/volume-grid")
+@router.get("/volume-grid", response_model=None)
 def get_volume_grid(
-    variable: str = Query("thetao", description="Variable: thetao, so, uo, vo, zos"),
+    variable: str = Query("thetao", description="Variable: thetao, so, uo, vo, zos, speed"),
     time_index: int = Query(0, ge=0, le=6),
     depth_levels: int = Query(16, ge=1, le=50),
     lat_res: int = Query(32, ge=2, le=181),
     lon_res: int = Query(32, ge=2, le=97),
+    min_lon: Optional[float] = Query(None, ge=-180.0, le=180.0),
+    max_lon: Optional[float] = Query(None, ge=-180.0, le=180.0),
+    min_lat: Optional[float] = Query(None, ge=-90.0, le=90.0),
+    max_lat: Optional[float] = Query(None, ge=-90.0, le=90.0),
+    format: Optional[str] = Query("json", description="Output format: 'json' or 'binary' (Float32Array octet-stream)"),
+    traceparent: Optional[str] = Header(None, description="W3C Traceparent Header"),
     engine: ScientificAnalysisEngine = Depends(get_engine),
-) -> Dict[str, Any]:
+) -> Union[Dict[str, Any], Response]:
     """
-    Return a resampled 3-D scalar grid for volume rendering.
-
-    The grid is an approximate/resampled visualization product backed by the
-    authoritative native NetCDF-4 source.  Point and profile queries remain
-    the authoritative source for exact scientific values.
+    Return a resampled 3-D scalar grid for volume rendering with spatial bounding box subsetting.
+    Supports binary streaming (Float32Array) for ultra-fast browser rendering and low latency.
     """
     request_id = str(uuid.uuid4())
+    trace_id = traceparent.split("-")[1] if (traceparent and len(traceparent.split("-")) >= 2) else request_id
     try:
-        result = engine.get_volume_slice_grid(variable, time_index, depth_levels, lat_res, lon_res)
+        result = engine.get_volume_slice_grid(
+            variable=variable,
+            time_index=time_index,
+            depth_levels=depth_levels,
+            lat_res=lat_res,
+            lon_res=lon_res,
+            min_lon=min_lon,
+            max_lon=max_lon,
+            min_lat=min_lat,
+            max_lat=max_lat,
+            return_numpy=(format == "binary"),
+        )
         result["request_id"] = request_id
+        result["trace_id"] = trace_id
+
+        if format == "binary":
+            # Direct binary memory view without Python float allocations
+            numpy_arr = result.get("numpy_array")
+            if numpy_arr is not None:
+                raw_bytes = numpy_arr.tobytes()
+            else:
+                import numpy as np
+                raw_bytes = np.array(result["data"], dtype=np.float32).tobytes()
+
+            meta = {
+                "variable": result["variable"],
+                "units": result["units"],
+                "time_index": result["time_index"],
+                "timestamp_iso": result["timestamp_iso"],
+                "shape": result["shape"],
+                "depth_m": result["depth_m"],
+                "min_val": result["min_val"],
+                "max_val": result["max_val"],
+                "is_surface_only": result["is_surface_only"],
+                "bounds": result["bounds"],
+                "request_id": request_id,
+                "trace_id": trace_id,
+            }
+
+            headers = {
+                "x-volume-metadata": json.dumps(meta),
+                "Content-Type": "application/octet-stream",
+                "x-request-id": request_id,
+                "x-trace-id": trace_id,
+            }
+            return Response(content=raw_bytes, media_type="application/octet-stream", headers=headers)
+
         return result
     except ValueError as exc:
         raise HTTPException(
@@ -202,7 +253,36 @@ def get_volume_grid(
         )
 
 
+@router.post("/timeseries")
+@router.post("/point-timeseries")
+async def get_point_timeseries(
+    req: PointTimeseriesRequest,
+    engine: ScientificAnalysisEngine = Depends(get_engine),
+):
+    request_id = str(uuid.uuid4())
+    try:
+        if req.variable not in _ALLOWED_VARIABLES:
+            return _validation_error(f"Variable '{req.variable}' not in allowlist", request_id)
+        result = engine.query_point_timeseries(
+            req.variable,
+            req.latitude,
+            req.longitude,
+            req.depth_m,
+        )
+        result["request_id"] = request_id
+        return result
+    except ValueError as exc:
+        return _validation_error(str(exc), request_id)
+    except FileNotFoundError as exc:
+        logger.error("[%s] %s", request_id, exc)
+        return _unavailable_error("Scientific data source not accessible.", request_id)
+    except Exception as exc:
+        logger.error("[%s] %s\n%s", request_id, exc, traceback.format_exc())
+        return _internal_error(request_id)
+
+
 @router.post("/profile")
+@router.post("/vertical-profile")
 async def get_profile(
     req: VerticalProfileRequest,
     engine: ScientificAnalysisEngine = Depends(get_engine),
@@ -211,11 +291,19 @@ async def get_profile(
     try:
         if req.variable not in _ALLOWED_VARIABLES:
             return _validation_error(f"Variable '{req.variable}' not in allowlist", request_id)
-        return engine.compute_transect(
-            [{"latitude": req.latitude, "longitude": req.longitude}],
+        result = engine.query_vertical_profile(
             req.variable,
             req.time_index,
+            req.latitude,
+            req.longitude,
         )
+        result["samples"] = [
+            {"depth_m": d, "value": v}
+            for d, v in zip(result["depth_levels_m"], result["values"])
+        ]
+        result["soundings"] = result["samples"]
+        result["request_id"] = request_id
+        return result
     except ValueError as exc:
         return _validation_error(str(exc), request_id)
     except FileNotFoundError as exc:
@@ -266,6 +354,87 @@ async def get_slice(
         return _internal_error(request_id)
 
 
+@router.get("/bathymetry-grid")
+def get_bathymetry_grid(
+    min_lon: float = Query(60.0, ge=40.0, le=100.0),
+    max_lon: float = Query(68.0, ge=40.0, le=100.0),
+    min_lat: float = Query(0.0, ge=0.0, le=30.0),
+    max_lat: float = Query(15.0, ge=0.0, le=30.0),
+    lat_res: int = Query(32, ge=2, le=301),
+    lon_res: int = Query(32, ge=2, le=601),
+    engine: ScientificAnalysisEngine = Depends(get_engine),
+) -> Dict[str, Any]:
+    """
+    Return resampled GEBCO bathymetry heightfield grid for the 3D scene and sub-seafloor clipping.
+    """
+    request_id = str(uuid.uuid4())
+    try:
+        result = engine.get_bathymetry_grid(min_lon, max_lon, min_lat, max_lat, lat_res, lon_res)
+        result["request_id"] = request_id
+        return result
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=_make_error("VALIDATION_ERROR", str(exc), request_id),
+        )
+    except FileNotFoundError as exc:
+        logger.error("[%s] Bathymetry data source not found: %s", request_id, exc)
+        raise HTTPException(
+            status_code=503,
+            detail=_make_error(
+                "DATA_SOURCE_UNAVAILABLE",
+                "GEBCO Bathymetry dataset not accessible.",
+                request_id,
+                retryable=True,
+            ),
+        )
+    except Exception as exc:
+        logger.error("[%s] Unexpected error in bathymetry-grid: %s\n%s",
+                     request_id, exc, traceback.format_exc())
+        raise HTTPException(
+            status_code=500,
+            detail=_make_error(
+                "INTERNAL_ERROR",
+                "An unexpected error occurred. Refer to request_id for server logs.",
+                request_id,
+            ),
+        )
+
+
+@router.get("/coastlines")
+def get_coastlines(
+    min_lon: float = Query(40.0, ge=-180.0, le=180.0),
+    max_lon: float = Query(100.0, ge=-180.0, le=180.0),
+    min_lat: float = Query(0.0, ge=-90.0, le=90.0),
+    max_lat: float = Query(30.0, ge=-90.0, le=90.0),
+    engine: ScientificAnalysisEngine = Depends(get_engine),
+) -> Dict[str, Any]:
+    """
+    Return vector polyline coastline coordinates for the Arabian Sea / North Indian Ocean.
+    """
+    request_id = str(uuid.uuid4())
+    try:
+        result = engine.get_coastlines(min_lon, max_lon, min_lat, max_lat)
+        result["request_id"] = request_id
+        return result
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=_make_error("VALIDATION_ERROR", str(exc), request_id),
+        )
+    except Exception as exc:
+        logger.error("[%s] Unexpected error in coastlines: %s\n%s",
+                     request_id, exc, traceback.format_exc())
+        raise HTTPException(
+            status_code=500,
+            detail=_make_error(
+                "INTERNAL_ERROR",
+                "An unexpected error occurred. Refer to request_id for server logs.",
+                request_id,
+            ),
+        )
+
+
 @router.get("/essential-data-probe")
 async def probe_essential_data(engine: ScientificAnalysisEngine = Depends(get_engine)):
     """
@@ -275,3 +444,4 @@ async def probe_essential_data(engine: ScientificAnalysisEngine = Depends(get_en
     result = engine.probe_essential_data()
     status_code = 200 if result.get("status") == "ok" else 503
     return JSONResponse(status_code=status_code, content=result)
+

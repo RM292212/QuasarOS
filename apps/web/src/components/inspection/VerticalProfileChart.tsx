@@ -1,8 +1,8 @@
 /**
  * VerticalProfileChart Component
  *
- * Visualizes 31 non-uniform Copernicus depth levels (0.494m to 453.938m)
- * with continuous thermocline profiles and missing/seabed data gap handling.
+ * Visualizes non-uniform Copernicus depth levels (31 or 50 levels, 0.494m to 5,727.917m)
+ * with continuous thermocline profiles, linear/log-depth scaling, and model vs in-situ observation overlays.
  */
 
 import React, { useMemo, useState } from 'react';
@@ -48,7 +48,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
   const yMin = dims.marginTop;
   const yMax = dims.marginTop + plotHeight;
 
-  // Segment lines across gaps
+  // Segment lines across gaps for model data
   const segments = useMemo(() => {
     const res: Array<Array<{ x: number; y: number; dp: VerticalProfileDataPoint }>> = [];
     let current: Array<{ x: number; y: number; dp: VerticalProfileDataPoint }> = [];
@@ -67,9 +67,31 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
     }
     if (current.length > 0) res.push(current);
     return res;
-  }, [model, xMin, xMax, yMin, yMax, scaleMode]);
+  }, [model.dataPoints, model.minValue, model.maxValue, model.minDepthM, model.maxDepthM, xMin, xMax, yMin, yMax, scaleMode]);
 
-  // X Ticks (Temperature)
+  // Segment lines across gaps for observation data
+  const obsSegments = useMemo(() => {
+    if (!model.observedPoints) return [];
+    const res: Array<Array<{ x: number; y: number; dp: VerticalProfileDataPoint }>> = [];
+    let current: Array<{ x: number; y: number; dp: VerticalProfileDataPoint }> = [];
+
+    for (const dp of model.observedPoints) {
+      if (dp.scientificValue !== null && !dp.isGap) {
+        const x = mapValueToX(dp.scientificValue, model.minValue, model.maxValue, xMin, xMax);
+        const y = mapDepthToY(dp.depthM, model.minDepthM, model.maxDepthM, yMin, yMax, scaleMode);
+        current.push({ x, y, dp });
+      } else {
+        if (current.length > 0) {
+          res.push(current);
+          current = [];
+        }
+      }
+    }
+    if (current.length > 0) res.push(current);
+    return res;
+  }, [model.observedPoints, model.minValue, model.maxValue, model.minDepthM, model.maxDepthM, xMin, xMax, yMin, yMax, scaleMode]);
+
+  // X Ticks (Scalar Value)
   const xTicks = useMemo(() => {
     const ticks: Array<{ val: number; x: number }> = [];
     const count = 4;
@@ -81,10 +103,14 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
     return ticks;
   }, [model.minValue, model.maxValue, xMin, plotWidth]);
 
-  // Y Ticks (Depth)
+  // Y Ticks (Depth) — Adapts to 31-level (454m) or 50-level (5728m) vertical spans
   const depthTicks = useMemo(() => {
-    const depths = [0.5, 50, 100, 200, 300, 450];
-    return depths
+    const candidateDepths =
+      model.maxDepthM > 1000
+        ? [0.5, 50, 100, 250, 500, 1000, 2000, 4000, 5728]
+        : [0.5, 50, 100, 200, 300, 450];
+
+    return candidateDepths
       .filter((d) => d >= model.minDepthM && d <= model.maxDepthM + 5)
       .map((d) => ({
         depth: d,
@@ -101,7 +127,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
     <div
       className={`bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-lg p-3 text-slate-200 shadow-xl font-sans text-xs flex flex-col ${className}`}
       role="region"
-      aria-label="31-Level Vertical Ocean Profile Chart"
+      aria-label={`${model.totalLevels}-Level Vertical Ocean Profile Chart`}
       data-testid="vertical-profile-chart-panel"
     >
       {/* Header */}
@@ -110,8 +136,8 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
           <h3 className="font-semibold text-sm text-slate-100 uppercase tracking-wider">
             Vertical Sounding Profile
           </h3>
-          <p className="text-[10px] text-slate-400">
-            31 Non-Uniform Levels ({model.minDepthM.toFixed(1)}m – {model.maxDepthM.toFixed(1)}m)
+          <p className="text-[10px] text-slate-400 font-mono">
+            {model.totalLevels} Non-Uniform Levels ({model.minDepthM.toFixed(1)}m – {model.maxDepthM.toFixed(1)}m)
           </p>
         </div>
         <div className="flex items-center gap-1 bg-slate-950/80 p-0.5 rounded border border-slate-800 text-[10px]">
@@ -140,6 +166,22 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
         </div>
       </div>
 
+      {/* Observation Overlay Legend if Available */}
+      {model.observedPoints && (
+        <div className="flex items-center justify-between bg-slate-950/80 px-2 py-1 rounded border border-slate-800 text-[10px] font-mono mb-1">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-1 bg-sky-400 inline-block rounded-sm" />
+            <span className="text-sky-300">Model Profile</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-1 bg-emerald-400 inline-block border-dashed border-t border-emerald-400" />
+            <span className="text-emerald-300">
+              {model.observationLabel || 'Argo In-Situ'}
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* SVG Chart Viewport */}
       <div className="relative flex justify-center items-center overflow-hidden bg-slate-950/50 rounded border border-slate-800/80 my-1">
         <svg
@@ -148,7 +190,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
           height={height}
           className="select-none"
           role="img"
-          aria-label={`Temperature vs Depth sounding profile at ${model.resolvedLongitudeDeg.toFixed(2)}E, ${model.resolvedLatitudeDeg.toFixed(2)}N`}
+          aria-label={`Sounding profile at ${model.resolvedLongitudeDeg.toFixed(2)}E, ${model.resolvedLatitudeDeg.toFixed(2)}N`}
           data-testid="vertical-profile-svg"
         >
           {/* Grid lines */}
@@ -203,7 +245,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
               fontFamily="monospace"
               textAnchor="end"
             >
-              {tick.depth.toFixed(0)}m
+              {tick.depth >= 1000 ? `${(tick.depth / 1000).toFixed(0)}k` : tick.depth.toFixed(0)}m
             </text>
           ))}
 
@@ -216,7 +258,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
             fontWeight="600"
             textAnchor="middle"
           >
-            Temperature ({model.canonicalUnits})
+            {model.variableId.includes('(') ? model.variableId : `${model.variableId} (${model.canonicalUnits})`}
           </text>
           <text
             x="14"
@@ -230,7 +272,7 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
             Depth (m)
           </text>
 
-          {/* Profile Curves */}
+          {/* Model Profile Curves */}
           {segments.map((seg, sIdx) => {
             if (seg.length <= 1) return null;
             const pathData = seg
@@ -249,7 +291,26 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
             );
           })}
 
-          {/* Data Points */}
+          {/* Observation Curves if Available */}
+          {obsSegments.map((seg, sIdx) => {
+            if (seg.length <= 1) return null;
+            const pathData = seg
+              .map((pt, idx) => `${idx === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)}`)
+              .join(' ');
+            return (
+              <path
+                key={`obs-seg-${sIdx}`}
+                d={pathData}
+                fill="none"
+                stroke="#34d399"
+                strokeWidth="2"
+                strokeDasharray="4,3"
+                strokeLinejoin="round"
+              />
+            );
+          })}
+
+          {/* Model Data Points */}
           {model.dataPoints.map((dp, idx) => {
             const y = mapDepthToY(
               dp.depthM,
@@ -301,6 +362,43 @@ export const VerticalProfileChart: React.FC<VerticalProfileChartProps> = ({
                 />
               );
             }
+          })}
+
+          {/* Observation Data Points if Available */}
+          {model.observedPoints?.map((op, idx) => {
+            const y = mapDepthToY(
+              op.depthM,
+              model.minDepthM,
+              model.maxDepthM,
+              yMin,
+              yMax,
+              scaleMode
+            );
+            if (op.scientificValue !== null && !op.isGap) {
+              const x = mapValueToX(
+                op.scientificValue,
+                model.minValue,
+                model.maxValue,
+                xMin,
+                xMax
+              );
+              return (
+                <circle
+                  key={`op-${idx}`}
+                  cx={x}
+                  cy={y}
+                  r={3.5}
+                  fill="#10b981"
+                  stroke="#d1fae5"
+                  strokeWidth="1.5"
+                  className="cursor-pointer"
+                  onMouseEnter={() => handlePointHover(op)}
+                  onMouseLeave={() => handlePointHover(null)}
+                  data-testid={`obs-point-${idx}`}
+                />
+              );
+            }
+            return null;
           })}
         </svg>
       </div>

@@ -1,0 +1,59 @@
+{
+  "audit_id": "EVID-BACKEND-API-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:18:00Z",
+  "service_name": "QuasarOS Scientific Ocean Services (FastAPI)",
+  "test_suite_status": {
+    "total_backend_tests": 374,
+    "passed": 374,
+    "failed": 0,
+    "coverage_areas": ["TEOS-10 GSW", "ARGO Collocation", "Catalog Services", "Volume Grid Slicing", "Pick Reconciliation"]
+  },
+  "endpoints": [
+    {
+      "path": "/health/live",
+      "method": "GET",
+      "status": "OPERATIONAL",
+      "description": "Liveness probe returning 200 OK when uvicorn event loop is active.",
+      "tested_latency_ms": 1.2
+    },
+    {
+      "path": "/health/ready",
+      "method": "GET",
+      "status": "OPERATIONAL",
+      "description": "Readiness probe verifying catalog load and active NetCDF file accessibility.",
+      "tested_latency_ms": 2.8
+    },
+    {
+      "path": "/api/v1/analysis/volume-grid",
+      "method": "GET",
+      "status": "OPERATIONAL_WITH_COORDINATE_GAP",
+      "description": "Extracts 3D/2D resampled scalar grid from Copernicus NetCDF assets.",
+      "observed_behavior": "Returns 16x32x32 array with NaN sentinels mapped to -999.0; linear depth sampling disconnect.",
+      "tested_latency_ms": 42.1
+    },
+    {
+      "path": "/api/v1/analysis/teos10-soundings",
+      "method": "POST",
+      "status": "OPERATIONAL_WITH_BOUNDS_DISCONNECT",
+      "description": "Calculates TEOS-10 thermodynamic properties (Absolute Salinity, Conservative Temp, Sound Speed, MLD) via GSW.",
+      "observed_behavior": "Correctly computes TEOS-10 thermodynamic profiles in [60, 68]°E domain, but frontend hardcodes [80, 88]°E guard.",
+      "tested_latency_ms": 18.5
+    },
+    {
+      "path": "/api/v1/queries/reconcile-pick",
+      "method": "POST",
+      "status": "OPERATIONAL_WITH_LIFECYCLE_RISK",
+      "description": "Reconciles provisional GPU raymarch pick against float32 NetCDF ground truth.",
+      "observed_behavior": "Functional, but ExactQueryEngine holds persistent netCDF4.Dataset handle.",
+      "tested_latency_ms": 8.4
+    },
+    {
+      "path": "/api/v1/observations/collocate",
+      "method": "POST",
+      "status": "OPERATIONAL",
+      "description": "Collocates simulated ARGO float profiles against model forecasts.",
+      "tested_latency_ms": 14.2
+    }
+  ]
+}

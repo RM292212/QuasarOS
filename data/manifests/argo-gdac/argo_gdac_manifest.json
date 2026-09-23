@@ -1,0 +1,409 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01G",
+  "product_title": "Argo GDAC Physical & BGC Profiles (North Indian Ocean)",
+  "provider": "Argo Global Data Assembly Centre (Argo GDAC)",
+  "dac_nodes": [
+    "CORIOLIS (IFREMER, Brest, France)",
+    "INCOIS (Indian National Centre for Ocean Information Services, Hyderabad, India)"
+  ],
+  "dataset_id": "argo_gdac_north_indian_ocean",
+  "source_index_urls": [
+    "https://data-argo.ifremer.fr/ar_index_global_prof.txt",
+    "https://data-argo.ifremer.fr/argo_synthetic-profile_index.txt"
+  ],
+  "source_data_base_url": "https://data-argo.ifremer.fr/dac/",
+  "retrieval_timestamp_utc": "2026-08-30T07:29:14Z",
+  "spatial_coverage": {
+    "region_name": "North Indian Ocean (Arabian Sea, Bay of Bengal, Equatorial Indian Ocean)",
+    "latitude_min": 0.0,
+    "latitude_max": 30.0,
+    "longitude_min": 40.0,
+    "longitude_max": 100.0
+  },
+  "profiles_count": 3,
+  "profiles": [
+    {
+      "file_name": "D1902669_012.nc",
+      "relative_path": "data/raw/argo-gdac/D1902669_012.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/incois/1902669/profiles/D1902669_012.nc",
+      "gdac_relative_path": "incois/1902669/profiles/D1902669_012.nc",
+      "dac": "IN",
+      "category": "Core Physical Profile (Delayed Mode)",
+      "wmo_platform_code": "1902669",
+      "cycle_number": 12,
+      "direction": "A",
+      "data_mode": "D",
+      "profile_date_utc": "2024-01-07T14:10:12Z",
+      "julian_day": 27034.590428240597,
+      "latitude": 13.316666666666666,
+      "longitude": 86.81666666666666,
+      "project_name": "Argo INDIA",
+      "pi_name": "M Ravichandran",
+      "netcdf_format": "NETCDF3_CLASSIC",
+      "dimensions": {
+        "N_PROF": 1,
+        "N_LEVELS": 103,
+        "N_CALIB": 1,
+        "STRING2": 2,
+        "STRING4": 4,
+        "STRING8": 8,
+        "STRING16": 16,
+        "STRING32": 32,
+        "STRING64": 64,
+        "STRING256": 256,
+        "DATE_TIME": 14,
+        "N_PARAM": 3,
+        "N_HISTORY": 7
+      },
+      "scientific_variables": [
+        "PRES",
+        "TEMP",
+        "PSAL",
+        "PRES_ADJUSTED",
+        "TEMP_ADJUSTED",
+        "PSAL_ADJUSTED"
+      ],
+      "scientific_variable_ranges": {
+        "PRES": {
+          "min": 0.4000000059604645,
+          "max": 2002.800048828125,
+          "units": "decibar",
+          "valid_count": 103
+        },
+        "TEMP": {
+          "min": 2.8239998817443848,
+          "max": 28.83099937438965,
+          "units": "degree_Celsius",
+          "valid_count": 103
+        },
+        "PSAL": {
+          "min": 32.832000732421875,
+          "max": 35.03499984741211,
+          "units": "psu",
+          "valid_count": 103
+        },
+        "PRES_ADJUSTED": {
+          "min": 0.4000000059604645,
+          "max": 2002.800048828125,
+          "units": "decibar",
+          "valid_count": 103
+        },
+        "TEMP_ADJUSTED": {
+          "min": 2.8239998817443848,
+          "max": 28.83099937438965,
+          "units": "degree_Celsius",
+          "valid_count": 103
+        },
+        "PSAL_ADJUSTED": {
+          "min": 32.832000732421875,
+          "max": 35.03499984741211,
+          "units": "psu",
+          "valid_count": 103
+        }
+      },
+      "qc_variables": [
+        "JULD_QC",
+        "POSITION_QC",
+        "PROFILE_PRES_QC",
+        "PROFILE_TEMP_QC",
+        "PROFILE_PSAL_QC",
+        "PRES_QC",
+        "PRES_ADJUSTED_QC",
+        "TEMP_QC",
+        "TEMP_ADJUSTED_QC",
+        "PSAL_QC",
+        "PSAL_ADJUSTED_QC",
+        "HISTORY_QCTEST"
+      ],
+      "profile_qc_flags": {
+        "PROFILE_PRES_QC": "A",
+        "PROFILE_TEMP_QC": "A",
+        "PROFILE_PSAL_QC": "A"
+      },
+      "byte_size": 22408,
+      "sha256": "1c4592fce455fa56a92680fc9dc0ba7eec9754921953f65edf42d0104f682759",
+      "validation_status": "VALIDATED"
+    },
+    {
+      "file_name": "R1902581_050.nc",
+      "relative_path": "data/raw/argo-gdac/R1902581_050.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/coriolis/1902581/profiles/R1902581_050.nc",
+      "gdac_relative_path": "coriolis/1902581/profiles/R1902581_050.nc",
+      "dac": "IF",
+      "category": "Core Physical Profile (Real-Time)",
+      "wmo_platform_code": "1902581",
+      "cycle_number": 50,
+      "direction": "A",
+      "data_mode": "R",
+      "profile_date_utc": "2024-11-30T17:49:30Z",
+      "julian_day": 27362.742708333335,
+      "latitude": 1.8272333333333335,
+      "longitude": 76.82979,
+      "project_name": "CORIOLIS",
+      "pi_name": "Christine COATANOAN",
+      "netcdf_format": "NETCDF3_CLASSIC",
+      "dimensions": {
+        "DATE_TIME": 14,
+        "STRING256": 256,
+        "STRING64": 64,
+        "STRING32": 32,
+        "STRING16": 16,
+        "STRING8": 8,
+        "STRING4": 4,
+        "STRING2": 2,
+        "N_PROF": 2,
+        "N_PARAM": 4,
+        "N_LEVELS": 999,
+        "N_HISTORY": 3,
+        "N_CALIB": 1
+      },
+      "scientific_variables": [
+        "PRES",
+        "TEMP",
+        "PSAL",
+        "PRES_ADJUSTED",
+        "TEMP_ADJUSTED",
+        "PSAL_ADJUSTED"
+      ],
+      "scientific_variable_ranges": {
+        "PRES": {
+          "min": 0.0,
+          "max": 1991.800048828125,
+          "units": "decibar",
+          "valid_count": 1002
+        },
+        "TEMP": {
+          "min": 3.0399999618530273,
+          "max": 29.365999221801758,
+          "units": "degree_Celsius",
+          "valid_count": 1002
+        },
+        "PSAL": {
+          "min": 34.790000915527344,
+          "max": 35.79899978637695,
+          "units": "psu",
+          "valid_count": 1002
+        }
+      },
+      "qc_variables": [
+        "JULD_QC",
+        "POSITION_QC",
+        "PROFILE_MTIME_QC",
+        "PROFILE_PRES_QC",
+        "PROFILE_TEMP_QC",
+        "PROFILE_PSAL_QC",
+        "MTIME_QC",
+        "PRES_QC",
+        "PRES_ADJUSTED_QC",
+        "TEMP_QC",
+        "TEMP_ADJUSTED_QC",
+        "PSAL_QC",
+        "PSAL_ADJUSTED_QC",
+        "HISTORY_QCTEST"
+      ],
+      "profile_qc_flags": {
+        "PROFILE_PRES_QC": "AA",
+        "PROFILE_TEMP_QC": "AD",
+        "PROFILE_PSAL_QC": "AF"
+      },
+      "byte_size": 125492,
+      "sha256": "79e9ba4e25a38017c4eb21b9bc5741178735dadc1f1ff68feffb5fd9345f4a88",
+      "validation_status": "VALIDATED"
+    },
+    {
+      "file_name": "SR1902594_001.nc",
+      "relative_path": "data/raw/argo-gdac/SR1902594_001.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/coriolis/1902594/profiles/SR1902594_001.nc",
+      "gdac_relative_path": "coriolis/1902594/profiles/SR1902594_001.nc",
+      "dac": "IF",
+      "category": "Biogeochemical (BGC) Synthetic Profile",
+      "wmo_platform_code": "1902594",
+      "cycle_number": 1,
+      "direction": "A",
+      "data_mode": "R",
+      "profile_date_utc": "2023-06-16T15:35:13Z",
+      "julian_day": 26829.649456018517,
+      "latitude": 5.3590405,
+      "longitude": 80.06887583333334,
+      "project_name": "NAOS",
+      "pi_name": "Vincent TAILLANDIER",
+      "netcdf_format": "NETCDF4_CLASSIC",
+      "dimensions": {
+        "DATE_TIME": 14,
+        "STRING256": 256,
+        "STRING64": 64,
+        "STRING32": 32,
+        "STRING8": 8,
+        "STRING4": 4,
+        "STRING2": 2,
+        "N_PROF": 1,
+        "N_PARAM": 12,
+        "N_LEVELS": 1335,
+        "N_CALIB": 2
+      },
+      "scientific_variables": [
+        "PRES",
+        "TEMP",
+        "PSAL",
+        "PRES_ADJUSTED",
+        "TEMP_ADJUSTED",
+        "PSAL_ADJUSTED",
+        "DOXY",
+        "CHLA",
+        "BBP700",
+        "CDOM",
+        "DOWNWELLING_PAR"
+      ],
+      "scientific_variable_ranges": {
+        "PRES": {
+          "min": 0.09000000357627869,
+          "max": 1000.489990234375,
+          "units": "decibar",
+          "valid_count": 1332
+        },
+        "TEMP": {
+          "min": 6.768700122833252,
+          "max": 29.40049934387207,
+          "units": "degree_Celsius",
+          "valid_count": 1335
+        },
+        "PSAL": {
+          "min": 34.053001403808594,
+          "max": 35.17399978637695,
+          "units": "psu",
+          "valid_count": 1335
+        },
+        "DOXY": {
+          "min": 11.880085945129395,
+          "max": 186.54652404785156,
+          "units": "micromole/kg",
+          "valid_count": 233
+        },
+        "CHLA": {
+          "min": 0.015697499737143517,
+          "max": 1.3456532955169678,
+          "units": "mg/m3",
+          "valid_count": 1107
+        },
+        "BBP700": {
+          "min": 0.00018873860244639218,
+          "max": 0.003199829952791333,
+          "units": "m-1",
+          "valid_count": 1107
+        },
+        "CDOM": {
+          "min": -0.543969988822937,
+          "max": 0.3885500133037567,
+          "units": "ppb",
+          "valid_count": 1107
+        },
+        "DOWNWELLING_PAR": {
+          "min": -0.004957366734743118,
+          "max": 0.16581210494041443,
+          "units": "microMoleQuanta/m^2/sec",
+          "valid_count": 387
+        }
+      },
+      "qc_variables": [
+        "JULD_QC",
+        "POSITION_QC",
+        "PROFILE_PRES_QC",
+        "PROFILE_TEMP_QC",
+        "PROFILE_PSAL_QC",
+        "PROFILE_DOXY_QC",
+        "PROFILE_DOWN_IRRADIANCE380_QC",
+        "PROFILE_DOWN_IRRADIANCE412_QC",
+        "PROFILE_DOWN_IRRADIANCE490_QC",
+        "PROFILE_DOWNWELLING_PAR_QC",
+        "PROFILE_CHLA_QC",
+        "PROFILE_CHLA_FLUORESCENCE_QC",
+        "PROFILE_BBP700_QC",
+        "PROFILE_CDOM_QC",
+        "PRES_QC",
+        "PRES_ADJUSTED_QC",
+        "TEMP_QC",
+        "TEMP_ADJUSTED_QC",
+        "PSAL_QC",
+        "PSAL_ADJUSTED_QC",
+        "DOXY_QC",
+        "DOXY_ADJUSTED_QC",
+        "DOWN_IRRADIANCE380_QC",
+        "DOWN_IRRADIANCE380_ADJUSTED_QC",
+        "DOWN_IRRADIANCE412_QC",
+        "DOWN_IRRADIANCE412_ADJUSTED_QC",
+        "DOWN_IRRADIANCE490_QC",
+        "DOWN_IRRADIANCE490_ADJUSTED_QC",
+        "DOWNWELLING_PAR_QC",
+        "DOWNWELLING_PAR_ADJUSTED_QC",
+        "CHLA_QC",
+        "CHLA_ADJUSTED_QC",
+        "CHLA_FLUORESCENCE_QC",
+        "CHLA_FLUORESCENCE_ADJUSTED_QC",
+        "BBP700_QC",
+        "BBP700_ADJUSTED_QC",
+        "CDOM_QC",
+        "CDOM_ADJUSTED_QC"
+      ],
+      "profile_qc_flags": {
+        "PROFILE_PRES_QC": "A",
+        "PROFILE_TEMP_QC": "B",
+        "PROFILE_PSAL_QC": "B",
+        "PROFILE_DOXY_QC": "A",
+        "PROFILE_CHLA_QC": "A"
+      },
+      "byte_size": 509039,
+      "sha256": "90ae10f8088b95017843a18857d4114b0c6057fdb3b9d381e2c4222a17ddc527",
+      "validation_status": "VALIDATED"
+    }
+  ],
+  "files": [
+    {
+      "file_name": "ar_index_north_indian_ocean_prof.txt",
+      "relative_path": "data/raw/argo-gdac/ar_index_north_indian_ocean_prof.txt",
+      "description": "Core Argo Profile Index (North Indian Ocean 0-30N, 40-100E Subset)",
+      "source_url": "https://data-argo.ifremer.fr/ar_index_global_prof.txt",
+      "byte_size": 13589939,
+      "sha256": "454557e19dba35267cc8b17be1f5bc1fde307bcd1f78ced4bf8e130f7e18e356",
+      "format": "text/csv"
+    },
+    {
+      "file_name": "argo_synthetic_north_indian_ocean_prof.txt",
+      "relative_path": "data/raw/argo-gdac/argo_synthetic_north_indian_ocean_prof.txt",
+      "description": "Synthetic BGC Argo Profile Index (North Indian Ocean 0-30N, 40-100E Subset)",
+      "source_url": "https://data-argo.ifremer.fr/argo_synthetic-profile_index.txt",
+      "byte_size": 2414814,
+      "sha256": "3255e83c8f62edaf14b8eaf6e9d4e9ae568a05fe6133b23117cb9a509607f6ee",
+      "format": "text/csv"
+    },
+    {
+      "file_name": "D1902669_012.nc",
+      "relative_path": "data/raw/argo-gdac/D1902669_012.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/incois/1902669/profiles/D1902669_012.nc",
+      "byte_size": 22408,
+      "sha256": "1c4592fce455fa56a92680fc9dc0ba7eec9754921953f65edf42d0104f682759",
+      "format": "NetCDF-Argo-Profile"
+    },
+    {
+      "file_name": "R1902581_050.nc",
+      "relative_path": "data/raw/argo-gdac/R1902581_050.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/coriolis/1902581/profiles/R1902581_050.nc",
+      "byte_size": 125492,
+      "sha256": "79e9ba4e25a38017c4eb21b9bc5741178735dadc1f1ff68feffb5fd9345f4a88",
+      "format": "NetCDF-Argo-Profile"
+    },
+    {
+      "file_name": "SR1902594_001.nc",
+      "relative_path": "data/raw/argo-gdac/SR1902594_001.nc",
+      "gdac_source_url": "https://data-argo.ifremer.fr/dac/coriolis/1902594/profiles/SR1902594_001.nc",
+      "byte_size": 509039,
+      "sha256": "90ae10f8088b95017843a18857d4114b0c6057fdb3b9d381e2c4222a17ddc527",
+      "format": "NetCDF-Argo-Profile"
+    }
+  ],
+  "licence": "Argo Data Management Policy (Open Access, CC-BY 4.0 compatible)",
+  "attribution": "Argo GDAC (IFREMER / Coriolis / INCOIS). These data were collected and made freely available by the International Argo Program and the national programs that contribute to it (https://argo.ucsd.edu, https://www.ocean-ops.org).",
+  "citation": "Argo (2026). Argo float data and metadata from Global Data Assembly Centre (Argo GDAC). SEANOE. https://doi.org/10.17882/42182",
+  "validation_status": "VALIDATED",
+  "notes": "Authoritative in-situ ocean profile ground truth for QuasarOceanScope (TASK-01G). Encompasses delayed-mode physical profile (D1902669_012), real-time physical profile (R1902581_050), and synthetic multi-parameter biogeochemical profile (SR1902594_001) in the North Indian Ocean."
+}

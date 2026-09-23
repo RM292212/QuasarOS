@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Differential geometry metrics for horizontal grid cells (cell widths dx, dy, areas, Coriolis f).",
+  "properties": {
+    "coriolis_parameter_variable": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "f",
+      "description": "Variable name of Coriolis parameter f = 2*omega*sin(phi) (1/s).",
+      "title": "Coriolis Parameter Variable"
+    },
+    "dx_max_meters": {
+      "description": "Maximum horizontal grid cell width in meters.",
+      "exclusiveMinimum": 0.0,
+      "title": "Dx Max Meters",
+      "type": "number"
+    },
+    "dx_min_meters": {
+      "description": "Minimum horizontal grid cell width in meters.",
+      "exclusiveMinimum": 0.0,
+      "title": "Dx Min Meters",
+      "type": "number"
+    },
+    "dy_max_meters": {
+      "description": "Maximum horizontal grid cell height in meters.",
+      "exclusiveMinimum": 0.0,
+      "title": "Dy Max Meters",
+      "type": "number"
+    },
+    "dy_min_meters": {
+      "description": "Minimum horizontal grid cell height in meters.",
+      "exclusiveMinimum": 0.0,
+      "title": "Dy Min Meters",
+      "type": "number"
+    }
+  },
+  "required": [
+    "dx_min_meters",
+    "dx_max_meters",
+    "dy_min_meters",
+    "dy_max_meters"
+  ],
+  "title": "GridMetricsContract",
+  "type": "object"
+}

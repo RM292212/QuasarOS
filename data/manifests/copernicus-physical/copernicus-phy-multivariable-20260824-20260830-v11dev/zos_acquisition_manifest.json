@@ -1,0 +1,18 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "variable": "zos",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "dataset_id": "cmems_mod_glo_phy_anfc_0.083deg_P1D-m",
+  "standard_name": "sea_surface_height_above_geoid",
+  "long_name": "Sea surface height",
+  "units": "m",
+  "has_depth": false,
+  "source_file": {
+    "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/zos/copernicus_phy_zos_20260824_20260830.nc",
+    "byte_size": 512512,
+    "sha256": "3a329f8b571ec902220bc98e47748d310da70a9c88e7b951b3c4e39baab3d2a5"
+  },
+  "canonical_zarr_path": "data/canonical/copernicus_phy_zos/copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "authority": "authoritative native-source value under ADR-0005"
+}

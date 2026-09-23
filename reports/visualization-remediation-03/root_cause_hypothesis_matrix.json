@@ -1,0 +1,184 @@
+{
+  "matrix_id": "RCHM-VR03-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:12:00Z",
+  "total_hypotheses": 10,
+  "verified_count": 10,
+  "hypotheses": [
+    {
+      "hypothesis_id": "H1",
+      "title": "Architectural Viewport Renderer Bypass",
+      "category": "Renderer / Architecture",
+      "target_files": [
+        "apps/web/src/components/viewport/OceanVolumeViewport.tsx:45-280",
+        "packages/renderer-webgpu/src/pipeline/raymarching_renderer.ts:1-200",
+        "packages/renderer-webgl2/src/pipeline/raymarching_renderer.ts:1-200"
+      ],
+      "problem_statement": "OceanVolumeViewport.tsx directly instantiates an ad-hoc WebGL2 canvas context inside a React useEffect hook and compiles local inline shaders, completely bypassing @quasar/renderer-webgpu, @quasar/renderer-webgl2, and @quasar/runtime packages.",
+      "test_method": "Static code analysis of OceanVolumeViewport.tsx and runtime tracing of canvas context initialization.",
+      "expected_behavior": "OceanVolumeViewport should instantiate WebGPURaymarchingRenderer with automatic WebGL2RaymarchingRenderer fallback, utilizing the modular runtime pipeline, LOD manager, and depth LUT buffers.",
+      "actual_behavior": "Canvas context is hardcoded to gl = canvas.getContext('webgl2'); none of the package renderers are imported or invoked.",
+      "evidence_chain": "OceanVolumeViewport.tsx line 45: `const gl = canvas.getContext('webgl2', { alpha: false, antialias: true });` creates local WebGL2 context; lines 98-168 define inline shaders; zero imports of @quasar/renderer-* in viewport.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR3",
+      "remediation_strategy": "Refactor OceanVolumeViewport.tsx to instantiate WebGPURaymarchingRenderer / WebGL2RaymarchingRenderer from workspace packages, wiring active canvas and resize observers."
+    },
+    {
+      "hypothesis_id": "H2",
+      "title": "Dual-Generation Spatial Bounds Disconnect",
+      "category": "Data / Coordinates",
+      "target_files": [
+        "packages/services/src/quasar_services/query/coordinate_resolver.py:41-44",
+        "apps/web/src/context/app_store.ts:133-138",
+        "apps/web/src/components/analysis/Teos10SoundingsPanel.tsx:18-21",
+        "packages/services/src/quasar_services/analysis/analysis_engine.py:46-84"
+      ],
+      "problem_statement": "Legacy dataset copernicus-phy-thetao spans [80, 88]°E and [-3, 12]°N (31 levels). Multivariable dataset copernicus-phy-multivariable spans [60, 68]°E and [0, 15]°N (50 levels). Hardcoded bounds [80, 88]°E in coordinate_resolver.py, app_store.ts, and Teos10SoundingsPanel.tsx cause out-of-bounds rejection and edge clamping when querying the Arabian Sea multivariable dataset.",
+      "test_method": "Coordinate validation and query execution against /api/v1/analysis/teos10-soundings with lon=64.0 and lon=84.0.",
+      "expected_behavior": "Spatial bounds in frontend store and query resolver dynamically match the active multivariable dataset domain [60, 68]°E, [0, 15]°N with 50 levels.",
+      "actual_behavior": "Frontend rejects Arabian Sea coordinates (e.g. 64°E) with validation error message; backend clamps 84°E to 68°E boundary.",
+      "evidence_chain": "coordinate_resolver.py line 41: `MIN_LON = 80.0, MAX_LON = 88.0`; app_store.ts line 133: `minLon: 80.0, maxLon: 88.0`; Teos10SoundingsPanel.tsx line 20: `LON_MIN = 80.0, LON_MAX = 88.0`.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR2",
+      "remediation_strategy": "Synchronize all spatial coordinate models, resolvers, and UI guards to the authoritative multivariable domain [60, 68]°E, [0, 15]°N, 50 depth levels [0.494m .. 5727.917m]."
+    },
+    {
+      "hypothesis_id": "H3",
+      "title": "Vertical Depth Coordinate Non-Uniformity and LUT Bypass",
+      "category": "Renderer / Scientific Accuracy",
+      "target_files": [
+        "apps/web/src/components/viewport/OceanVolumeViewport.tsx:49,142-163",
+        "packages/renderer-webgpu/src/shaders/volume_raymarch.wgsl.ts:110-125",
+        "packages/renderer-webgl2/src/shaders/volume_raymarch.glsl.ts:113-128"
+      ],
+      "problem_statement": "Copernicus ocean depth levels are highly non-uniform (0.494m, 1.54m ... 5727.9m). Baseline viewport raymarching samples texture linearly along z in [0, 1], compressing the upper mixed layer (0-100m) and expanding abyssal depths unrealistically.",
+      "test_method": "Shader raymarch step analysis and visual inspection of depth gradient compression.",
+      "expected_behavior": "Shader should evaluate depth through a Depth LUT storage buffer or uniform array, mapping normalized coordinate w to non-uniform physical ocean depth.",
+      "actual_behavior": "Baseline shader uses texture(uVolumeTex, p) with linear p.z without depth transformation.",
+      "evidence_chain": "OceanVolumeViewport.tsx line 153: `float s = texture(uVolumeTex, p).r;` evaluates linear p directly; WGSL/GLSL package shaders define evaluateNormalizedDepthToPhysical() but are not used by the viewport.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR3",
+      "remediation_strategy": "Bind Depth LUT uniform buffer containing 50 Copernicus depth levels to the raymarching pipeline, enforcing physical vertical scaling and vertical exaggeration controls."
+    },
+    {
+      "hypothesis_id": "H4",
+      "title": "Persistent NetCDF Handle Invalidation & Resource Leaks",
+      "category": "Backend / Storage",
+      "target_files": [
+        "packages/services/src/quasar_services/query/query_engine.py:88-106,130-134"
+      ],
+      "problem_statement": "ExactQueryEngine maintains a persistent open netCDF4.Dataset handle in self._nc_dataset. On Windows OS, persistent file handles lock underlying .nc files, risking handle invalidation and memory leaks under rapid concurrency.",
+      "test_method": "Backend query concurrency stress testing and file lock analysis.",
+      "expected_behavior": "NetCDF datasets should be opened per-request inside context managers or immutable coordinate indices should be cached in memory.",
+      "actual_behavior": "self._nc_dataset remains open across the entire lifespan of ExactQueryEngine.",
+      "evidence_chain": "query_engine.py line 89: `self._nc_dataset = netCDF4.Dataset(self.dataset_path, 'r')` held open permanently.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR2",
+      "remediation_strategy": "Adopt context manager lifecycle or thread-safe NetCDF connection pooling matching ScientificAnalysisEngine."
+    },
+    {
+      "hypothesis_id": "H5",
+      "title": "Perpetual PROBING and Health Probe State Stalls",
+      "category": "Frontend / State Management",
+      "target_files": [
+        "apps/web/src/components/shell/Header.tsx:20-77",
+        "apps/web/src/context/app_store.ts:107-160",
+        "packages/runtime/src/session/snapshot_session.ts:80-130"
+      ],
+      "problem_statement": "Application can get stuck in 'checking' / 'PROBING' state if health polling encounters transient errors or if initial snapshot session fails to transition from PROBING to READY/PLAYING.",
+      "test_method": "State machine transition tracing and mock health polling failure injection.",
+      "expected_behavior": "Deterministic FSM transitions: CHECKING -> HEALTHY/DEGRADED/OFFLINE; session state transitions: PROBING -> READY -> PLAYING with timeout recovery.",
+      "actual_behavior": "If health probe fails on initial mount, state remains 'checking' indefinitely without graceful offline fallback.",
+      "evidence_chain": "Header.tsx line 25 starts with currentDelayMs = 2000, but if first fetch hangs, no timeout abort triggers before backoff kicks in.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR5",
+      "remediation_strategy": "Implement deterministic session state machine with bounded timeouts and clear visual fallback transitions in Header and TimelineController."
+    },
+    {
+      "hypothesis_id": "H6",
+      "title": "Panel Collision, Viewport Occlusion, and Non-Responsive UI Layout",
+      "category": "UI / Layout / A11y",
+      "target_files": [
+        "apps/web/src/App.tsx:219-298",
+        "apps/web/src/components/controls/TransferFunctionLegendControls.tsx:1-120"
+      ],
+      "problem_statement": "Multiple floating panels (TransferFunctionLegendControls, TransectDraw, HorizontalSlice, TSDiagram, PickReconciliationPanel, VerticalProfileChart, ObservationComparisonPanel, Teos10SoundingsPanel) are positioned absolutely over the canvas without responsive layout grouping, overlapping each other on standard viewports (1366x768 to 1920x1080).",
+      "test_method": "Viewport layout inspection at 1366x768, 1920x1080, and 2560x1440 resolutions.",
+      "expected_behavior": "Collapsible sidebar drawer or docking tabs with zero panel collision, responsive scrolling, and accessible WCAG 2.1 AA keyboard navigation.",
+      "actual_behavior": "Panels stack in a monolithic right-side column with max-h-[calc(100vh-140px)] overflow, obscuring viewport controls and colormap legend.",
+      "evidence_chain": "App.tsx line 229: `absolute top-4 right-4 z-20 flex flex-col gap-3 w-80` stacks 7 heavy analytical panels vertically.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR6",
+      "remediation_strategy": "Implement a tabbed/collapsible scientific analytical sidebar and responsive floating HUD with non-overlapping docked containers."
+    },
+    {
+      "hypothesis_id": "H7",
+      "title": "1D/2D Transfer Function and Wet-Mask Texture Format Mismatch",
+      "category": "Renderer / Shaders",
+      "target_files": [
+        "apps/web/src/components/viewport/OceanVolumeViewport.tsx:122-140",
+        "packages/renderer-webgpu/src/shaders/volume_raymarch.wgsl.ts:149-156",
+        "packages/renderer-webgl2/src/shaders/volume_raymarch.glsl.ts:76-81"
+      ],
+      "problem_statement": "Baseline viewport uses a hardcoded 4-point linear gradient formula in GLSL. Missing 256x1 RGBA transfer function texture upload, 2D gradient transfer function, and discrete r8uint wet mask texture causes land cells to blend with background as murky colors.",
+      "test_method": "Shader visual verification of land cells and ocean boundary opacity.",
+      "expected_behavior": "256x1 RGBA colormap texture lookup with dynamic range ROI thresholding and discrete wet-mask rejection clipping land voxels to completely transparent.",
+      "actual_behavior": "Land voxels (-999.0) mapped to 0 produce muddy dark blue rendering inside the volume cube.",
+      "evidence_chain": "OceanVolumeViewport.tsx line 79: `texData[i] = 0; // Land / Missing mask` combined with evaluateTransferFunction(0.005) returning vec4(0.0) leaves black volume voxels in bounding box.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR3",
+      "remediation_strategy": "Implement dynamic RGBA8 transfer function texture uploading and discrete uint32 wet mask texture sampling with empty space skipping."
+    },
+    {
+      "hypothesis_id": "H8",
+      "title": "Hardcoded Synthetic Mock Models in Production UI",
+      "category": "Frontend / Data Integrity",
+      "target_files": [
+        "apps/web/src/App.tsx:72-186"
+      ],
+      "problem_statement": "App.tsx hardcodes synthetic mock data for Pick Reconciliation, Vertical Profile Chart (samples computed via 29.5 - Math.sqrt(depth)*0.92), and ARGO comparison rather than fetching live authoritative data from backend endpoints.",
+      "test_method": "Inspection of App.tsx state bindings and network query interception.",
+      "expected_behavior": "UI panels dynamically query /api/v1/queries/reconcile-pick, /api/v1/queries/vertical-profile, and /api/v1/observations/collocate.",
+      "actual_behavior": "Static mock objects are created with useMemo and never update when clicking the viewport or changing timesteps.",
+      "evidence_chain": "App.tsx lines 159: `scientific_value: 29.5 - Math.sqrt(depth) * 0.92` hardcodes a synthetic algebraic formula.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR5",
+      "remediation_strategy": "Wire live API hooks (useExactValueQuery, useVerticalProfileQuery, useReconcilePick) from @quasar/client to analytical UI panels."
+    },
+    {
+      "hypothesis_id": "H9",
+      "title": "Test Suite Path Resolution & Missing Environment Dependencies",
+      "category": "Testing / Tooling",
+      "target_files": [
+        "packages/runtime/test/failure_injection.test.ts:365-396",
+        "packages/runtime/test/integration.test.ts:51",
+        "tests/test_integrated_contract_validation.py:40"
+      ],
+      "problem_statement": "packages/runtime tests fail due to hardcoded C:\\Users\\Ranji\\data\\ paths and failure_injection.test.ts scanning root src/ instead of packages/runtime/src. Python test_integrated_contract_validation.py fails due to missing jsonschema dependency in .venv.",
+      "test_method": "Execution of npm test and pytest test discovery.",
+      "expected_behavior": "All Node.js and Python test suites execute cleanly and resolve relative workspace fixtures.",
+      "actual_behavior": "npm test reports 4 test failures (ENOENT on hardcoded paths); pytest fails on test_integrated_contract_validation.py if jsonschema is absent.",
+      "evidence_chain": "npm test output: `Error: ENOENT: no such file or directory, open 'C:\\Users\\Ranji\\data\\visualization\\...'` and `scandir 'C:\\Users\\Ranji\\Downloads\\ocanscope3d\\src'`.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR7",
+      "remediation_strategy": "Fix path resolution in packages/runtime/test to use path.resolve(__dirname, '../../data') and target packages/runtime/src; make jsonschema import conditional or add requirement."
+    },
+    {
+      "hypothesis_id": "H10",
+      "title": "Timeline Playback Atomic Swap and Frame Latency Jitter",
+      "category": "Renderer / Timeline",
+      "target_files": [
+        "apps/web/src/components/viewport/OceanVolumeViewport.tsx:88-96",
+        "apps/web/src/components/shell/TimelineController.tsx:21-41"
+      ],
+      "problem_statement": "TimelineController triggers timestep changes that cause full texture recreation and potential frame dropping due to synchronous GPU texture upload without double-buffered staging.",
+      "test_method": "Frame rate and latency monitoring during 7-day automated playback loop.",
+      "expected_behavior": "Seamless 60 FPS playback with background worker data fetching, staging texture upload, and atomic bind group pointer swap.",
+      "actual_behavior": "Direct gl.texImage3D call blocks render thread on each frame transition.",
+      "evidence_chain": "OceanVolumeViewport.tsx line 88 calls gl.createTexture() on every data fetch instead of reusing existing texture allocations.",
+      "verification_status": "VERIFIED ROOT CAUSE",
+      "remediation_wave": "VR5",
+      "remediation_strategy": "Implement double-buffered staging textures and texture pool reuse in WebGPURaymarchingRenderer / WebGL2RaymarchingRenderer."
+    }
+  ]
+}

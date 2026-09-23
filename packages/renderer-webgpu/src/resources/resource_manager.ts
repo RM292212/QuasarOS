@@ -185,8 +185,15 @@ export class GPUResourceManager {
         rgbaData[i * 4 + 3] = val;
       }
     } else {
+      // Helper to extract scalar and RGB
+      const getNorm = (cp: any) => cp.normalized_scalar ?? cp.normalized_position ?? 0;
+      const getRGB = (cp: any): [number, number, number] => {
+        if (Array.isArray(cp.color)) return [cp.color[0], cp.color[1], cp.color[2]];
+        return [cp.red ?? 0, cp.green ?? 0, cp.blue ?? 0];
+      };
+
       // Linear piecewise interpolation of color and opacity
-      const sorted = [...controlPoints].sort((a, b) => a.normalized_scalar - b.normalized_scalar);
+      const sorted = [...controlPoints].sort((a, b) => getNorm(a) - getNorm(b));
 
       for (let i = 0; i < lutSize; i++) {
         const norm = i / (lutSize - 1);
@@ -195,8 +202,8 @@ export class GPUResourceManager {
 
         for (let cpIdx = 0; cpIdx < sorted.length - 1; cpIdx++) {
           if (
-            norm >= sorted[cpIdx].normalized_scalar &&
-            norm <= sorted[cpIdx + 1].normalized_scalar
+            norm >= getNorm(sorted[cpIdx]) &&
+            norm <= getNorm(sorted[cpIdx + 1])
           ) {
             lower = sorted[cpIdx];
             upper = sorted[cpIdx + 1];
@@ -204,13 +211,18 @@ export class GPUResourceManager {
           }
         }
 
-        const span = upper.normalized_scalar - lower.normalized_scalar;
-        const factor = span > 1e-6 ? (norm - lower.normalized_scalar) / span : 0;
+        const lowerNorm = getNorm(lower);
+        const upperNorm = getNorm(upper);
+        const span = upperNorm - lowerNorm;
+        const factor = span > 1e-6 ? (norm - lowerNorm) / span : 0;
+
+        const lowerColor = getRGB(lower);
+        const upperColor = getRGB(upper);
 
         // RGBA interpolation
-        const r = lower.color[0] + factor * (upper.color[0] - lower.color[0]);
-        const g = lower.color[1] + factor * (upper.color[1] - lower.color[1]);
-        const b = lower.color[2] + factor * (upper.color[2] - lower.color[2]);
+        const r = lowerColor[0] + factor * (upperColor[0] - lowerColor[0]);
+        const g = lowerColor[1] + factor * (upperColor[1] - lowerColor[1]);
+        const b = lowerColor[2] + factor * (upperColor[2] - lowerColor[2]);
         const a = lower.opacity + factor * (upper.opacity - lower.opacity);
 
         rgbaData[i * 4 + 0] = Math.max(0, Math.min(255, Math.round(r * 255)));
@@ -233,7 +245,7 @@ export class GPUResourceManager {
       texture = this.device.createTexture({
         label: id,
         size: [lutSize, 1, 1],
-        dimension: '1d',
+        dimension: '2d',
         format: 'rgba8unorm',
         usage:
           GPUTextureUsageFlags.TEXTURE_BINDING |
@@ -242,7 +254,7 @@ export class GPUResourceManager {
     } catch (err: unknown) {
       this.budgetTracker.recordTextureDeallocated(textureSizeInBytes);
       throw new GPUResourceAllocationError(
-        `Failed to create 1D TF LUT GPUTexture '${id}': ${err instanceof Error ? err.message : String(err)}`
+        `Failed to create 2D TF LUT GPUTexture '${id}': ${err instanceof Error ? err.message : String(err)}`
       );
     }
 
@@ -270,7 +282,7 @@ export class GPUResourceManager {
 
     const view = texture.createView({
       label: `${id}_view`,
-      dimension: '1d',
+      dimension: '2d',
     });
 
     const allocated: GPUAllocatedTexture = {

@@ -123,19 +123,51 @@ fn evaluateNormalizedDepthToPhysical(w: vec3<f32>) -> f32 {
   return mix(zLower, zUpper, frac);
 }
 
+// Software 8-tap trilinear interpolation for quantized uint scalar textures
+fn sampleTrilinearUint(coord: vec3<f32>) -> f32 {
+  let dims = vec3<f32>(textureDimensions(scalarTextureUint, 0));
+  let pos = coord * dims - vec3<f32>(0.5);
+  let i0 = floor(pos);
+  let f = fract(pos);
+  let c000 = vec3<i32>(clamp(i0, vec3<f32>(0.0), dims - vec3<f32>(1.0)));
+  let cMax = vec3<i32>(dims - vec3<f32>(1.0));
+
+  let c100 = clamp(c000 + vec3<i32>(1, 0, 0), vec3<i32>(0), cMax);
+  let c010 = clamp(c000 + vec3<i32>(0, 1, 0), vec3<i32>(0), cMax);
+  let c110 = clamp(c000 + vec3<i32>(1, 1, 0), vec3<i32>(0), cMax);
+  let c001 = clamp(c000 + vec3<i32>(0, 0, 1), vec3<i32>(0), cMax);
+  let c101 = clamp(c000 + vec3<i32>(1, 0, 1), vec3<i32>(0), cMax);
+  let c011 = clamp(c000 + vec3<i32>(0, 1, 1), vec3<i32>(0), cMax);
+  let c111 = clamp(c000 + vec3<i32>(1, 1, 1), vec3<i32>(0), cMax);
+
+  let v000 = f32(textureLoad(scalarTextureUint, c000, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v100 = f32(textureLoad(scalarTextureUint, c100, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v010 = f32(textureLoad(scalarTextureUint, c010, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v110 = f32(textureLoad(scalarTextureUint, c110, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v001 = f32(textureLoad(scalarTextureUint, c001, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v101 = f32(textureLoad(scalarTextureUint, c101, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v011 = f32(textureLoad(scalarTextureUint, c011, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+  let v111 = f32(textureLoad(scalarTextureUint, c111, 0).r) * uniforms.scalarScale + uniforms.scalarOffset;
+
+  let v00 = mix(v000, v100, f.x);
+  let v10 = mix(v010, v110, f.x);
+  let v01 = mix(v001, v101, f.x);
+  let v11 = mix(v011, v111, f.x);
+
+  let v0 = mix(v00, v10, f.y);
+  let v1 = mix(v01, v11, f.y);
+
+  return mix(v0, v1, f.z);
+}
+
 // Fetch scalar value at normalized coordinate [0, 1]^3
 fn sampleScalar(coord: vec3<f32>) -> f32 {
   if (uniforms.isFloatScalar == 1u) {
     // Continuous hardware trilinear interpolation for float textures
-    let sampleVal = textureSampleLevel(scalarTexture, linearSampler, coord, 0.0).r;
-    return sampleVal;
+    return textureSampleLevel(scalarTexture, linearSampler, coord, 0.0).r;
   } else {
-    // Point-sampled quantized uint texture with uniform scale/offset decoding
-    let dims = vec3<f32>(textureDimensions(scalarTextureUint, 0));
-    let texCoord = vec3<i32>(clamp(coord * dims, vec3<f32>(0.0), dims - vec3<f32>(1.0)));
-    let rawUint = textureLoad(scalarTextureUint, texCoord, 0).r;
-    let decoded = f32(rawUint) * uniforms.scalarScale + uniforms.scalarOffset;
-    return decoded;
+    // Software 8-tap trilinear interpolation with scale/offset decoding
+    return sampleTrilinearUint(coord);
   }
 }
 
@@ -148,6 +180,9 @@ fn sampleValidityMask(coord: vec3<f32>) -> u32 {
 
 // Evaluate Transfer Function LUT (256x1 RGBA)
 fn sampleTransferFunction(scalarValue: f32) -> vec4<f32> {
+  if (scalarValue < uniforms.scalarMin || scalarValue > uniforms.scalarMax) {
+    return vec4<f32>(0.0, 0.0, 0.0, 0.0);
+  }
   let range = uniforms.scalarMax - uniforms.scalarMin;
   let normalizedScalar = clamp((scalarValue - uniforms.scalarMin) / max(range, 1e-6), 0.0, 1.0);
   let uv = vec2<f32>(normalizedScalar, 0.5);
@@ -182,7 +217,6 @@ fn fs_main(input: VertexOutput) -> @location(0) vec4<f32> {
   let dtRef = max(uniforms.referenceStepSize, 1e-6);
   let tNear = intersect.tNear;
   let tFar = intersect.tFar;
-  let totalDist = tFar - tNear;
 
   var accumulatedColor = vec4<f32>(0.0, 0.0, 0.0, 0.0);
   var currentT = tNear;
@@ -199,12 +233,12 @@ fn fs_main(input: VertexOutput) -> @location(0) vec4<f32> {
       continue;
     }
 
-    // Check categorical empty-space skipping via validity mask
+    // Check categorical empty-space skipping via validity mask (0u = land / nodata)
     if (uniforms.useValidityMask == 1u) {
       let maskVal = sampleValidityMask(currentPos);
       if (maskVal == 0u) {
-        // Invalid sample / land / missing value -> skip TF lookup
-        currentT += dt;
+        // Adaptive Empty-Space Leaping (1.5x step expansion)
+        currentT += dt * 1.5;
         stepCount += 1u;
         continue;
       }
@@ -213,26 +247,41 @@ fn fs_main(input: VertexOutput) -> @location(0) vec4<f32> {
     // Sample scalar field
     let scalarValue = sampleScalar(currentPos);
 
+    // Sentinel check: if missing/fill value (e.g. <= -900.0)
+    if (scalarValue <= -900.0) {
+      // Adaptive Empty-Space Leaping (1.5x step expansion)
+      currentT += dt * 1.5;
+      stepCount += 1u;
+      continue;
+    }
+
     // Evaluate transfer function
     let sampleColor = sampleTransferFunction(scalarValue);
 
-    // Step-size-corrected opacity: alpha_corr = 1.0 - (1.0 - alpha)^(dt / dt_ref)
+    // Beer-Lambert step-size opacity correction: A_i = 1 - (1 - A_sample)^(dt / dt_ref)
     let sampleAlpha = clamp(sampleColor.a, 0.0, 1.0);
     let alphaCorr = 1.0 - pow(max(1.0 - sampleAlpha, 0.0), dt / dtRef);
 
-    if (alphaCorr > 0.001) {
-      // Front-to-back accumulation
-      let weight = (1.0 - accumulatedColor.a) * alphaCorr;
-      accumulatedColor = vec4<f32>(
-        accumulatedColor.rgb + sampleColor.rgb * weight,
-        accumulatedColor.a + weight
-      );
+    // If alpha is negligible (|dA| < epsilon), leap with 1.5x step
+    if (alphaCorr <= 0.001) {
+      currentT += dt * 1.5;
+      stepCount += 1u;
+      continue;
+    }
 
-      // Early Ray Termination
-      if (accumulatedColor.a >= uniforms.earlyTerminationAlpha) {
-        accumulatedColor.a = 1.0;
-        break;
-      }
+    // Discrete front-to-back alpha compositing:
+    // C_dst = C_dst + (1 - A_dst) * C_src * A_src
+    // A_dst = A_dst + (1 - A_dst) * A_src
+    let weight = (1.0 - accumulatedColor.a) * alphaCorr;
+    accumulatedColor = vec4<f32>(
+      accumulatedColor.rgb + sampleColor.rgb * weight,
+      accumulatedColor.a + weight
+    );
+
+    // Early Ray Termination (accumulated opacity >= earlyTerminationAlpha, threshold >= 0.98)
+    if (accumulatedColor.a >= uniforms.earlyTerminationAlpha) {
+      accumulatedColor.a = 1.0;
+      break;
     }
 
     currentT += dt;
@@ -243,6 +292,8 @@ fn fs_main(input: VertexOutput) -> @location(0) vec4<f32> {
     discard;
   }
 
-  return accumulatedColor;
+  // Un-premultiply RGB so that pipeline srcFactor 'src-alpha' blends correctly with target
+  let straightColor = clamp(accumulatedColor.rgb / max(accumulatedColor.a, 1e-5), vec3<f32>(0.0), vec3<f32>(1.0));
+  return vec4<f32>(straightColor, accumulatedColor.a);
 }
 `;

@@ -1,0 +1,57 @@
+{
+  "catalog_schema_version": "1.0.0",
+  "updated_at_utc": "2026-09-04T18:59:37.869444+00:00",
+  "active_operational_snapshot": {
+    "snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "dataset": "copernicus_phy_thetao",
+    "temporal_classification": "OPERATIONAL_CURRENT_SNAPSHOT",
+    "start_date": "2026-08-24",
+    "end_date": "2026-08-30",
+    "latest_valid_time": "2026-08-30T00:00:00Z",
+    "raw_nc_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+    "canonical_zarr_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087",
+    "acquisition_manifest": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/acquisition_manifest.json",
+    "validation_manifest": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/validation_report.json",
+    "parity_manifest": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/parity_validation_report.json",
+    "source_sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+    "shape": [
+      7,
+      31,
+      181,
+      97
+    ],
+    "temperature_range_degc": [
+      9.3747,
+      30.3618
+    ],
+    "visualization_product_id": "vis_copernicus_phy_thetao_copernicus-phy-thetao-20260824-20260830-ca826087",
+    "visualization_product_path": "data/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1",
+    "visualization_manifest": "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+    "visualization_manifest_sha256": "211c0ec92ba7c49b7cd6c7a7686bdc25f0235f41881e235f8a84697c7112d9f3",
+    "total_visualization_bricks": 63,
+    "visualization_lod_levels": 3,
+    "visualization_storage_bytes": 13342107,
+    "visualization_storage_mib": 12.724
+  },
+  "historical_validation_baseline": {
+    "snapshot_id": "v1",
+    "dataset": "copernicus_phy_thetao",
+    "temporal_classification": "HISTORICAL_SEVEN_DAY_VALIDATION_SNAPSHOT",
+    "start_date": "2025-04-20",
+    "end_date": "2025-04-26",
+    "canonical_zarr_path": "data/canonical/copernicus_phy_thetao/v1",
+    "source_sha256": "6b4ce3f47a77add27541ed836870dba9bcd6a2c34d258e6787a542e660627281",
+    "shape": [
+      7,
+      31,
+      181,
+      97
+    ],
+    "temperature_range_degc": [
+      9.55,
+      31.85
+    ],
+    "immutable": true,
+    "purpose": "regression_testing, historical_validation, argo_collocation, pipeline_reproducibility"
+  }
+}

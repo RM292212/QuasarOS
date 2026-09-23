@@ -1,0 +1,120 @@
+﻿{
+  "schema_version": "1.0",
+  "task": "TASK-12A",
+  "note": "All figures are ESTIMATES based on v1.0.0 confirmed dimensions and extrapolation to full depth (~50 levels). All estimates must be verified against actual downloaded data in TASK-12B.",
+  "v1_reference_shape": {
+    "time": 7, "depth": 31, "lat": 181, "lon": 97,
+    "total_voxels": 3809869, "valid_ocean_voxels": 3618944
+  },
+  "full_depth_extrapolation": {
+    "depth_levels_estimated": 50,
+    "depth_levels_confirmed": "REQUIRES_VERIFICATION from TASK-12B download",
+    "lat": 181, "lon": 97,
+    "estimated_total_voxels_per_timestep": 879350,
+    "estimated_valid_fraction": 0.95,
+    "note": "The valid ocean fraction may differ at deeper levels where land mask eliminates fewer cells"
+  },
+  "variables": {
+    "thetao_fulldepth": {
+      "shape_note": "7 x ~50 x 181 x 97 ESTIMATED",
+      "native_netcdf4_bytes": 24600000,
+      "native_netcdf4_human": "~23.5 MiB per 7-day file (ESTIMATE)",
+      "canonical_zarr_bytes": 25000000,
+      "canonical_zarr_human": "~24 MiB lossless (ESTIMATE)",
+      "vis_bricks_f16_lod0_bytes": 12000000,
+      "vis_bricks_u16_lod0_bytes": 12000000,
+      "vis_bricks_all_lods_bytes": 19000000,
+      "vis_bricks_all_lods_human": "~18 MiB (LOD 0+1+2 F16+U16 ESTIMATE)",
+      "browser_cache_bytes": 12000000,
+      "gpu_texture_bytes": 12000000,
+      "variable_total_estimate_bytes": 93000000,
+      "variable_total_human": "~89 MiB total ESTIMATE"
+    },
+    "so": {
+      "shape_note": "7 x ~50 x 181 x 97 ESTIMATED",
+      "native_netcdf4_bytes": 24600000,
+      "vis_bricks_all_lods_bytes": 19000000,
+      "browser_cache_bytes": 12000000,
+      "gpu_texture_bytes": 12000000,
+      "variable_total_estimate_bytes": 93000000,
+      "variable_total_human": "~89 MiB total ESTIMATE"
+    },
+    "uo": {
+      "shape_note": "7 x ~50 x 181 x 97 ESTIMATED",
+      "native_netcdf4_bytes": 24600000,
+      "vis_bricks_all_lods_bytes": 19000000,
+      "browser_cache_bytes": 12000000,
+      "gpu_texture_bytes": 12000000,
+      "variable_total_estimate_bytes": 93000000,
+      "variable_total_human": "~89 MiB total ESTIMATE"
+    },
+    "vo": {
+      "shape_note": "7 x ~50 x 181 x 97 ESTIMATED",
+      "native_netcdf4_bytes": 24600000,
+      "vis_bricks_all_lods_bytes": 19000000,
+      "browser_cache_bytes": 12000000,
+      "gpu_texture_bytes": 12000000,
+      "variable_total_estimate_bytes": 93000000,
+      "variable_total_human": "~89 MiB total ESTIMATE"
+    },
+    "zos": {
+      "shape_note": "7 x 181 x 97 (2D surface, no depth dimension)",
+      "native_netcdf4_bytes": 493000,
+      "vis_product_f16_bytes": 250000,
+      "vis_product_u16_bytes": 250000,
+      "browser_cache_bytes": 250000,
+      "gpu_texture_bytes": 250000,
+      "variable_total_estimate_bytes": 1740000,
+      "variable_total_human": "~1.7 MiB total ESTIMATE (tiny relative to 3D variables)"
+    }
+  },
+  "combined_5_variable_total": {
+    "estimate_bytes": 373740000,
+    "estimate_human": "~357 MiB total across all 5 variables (ESTIMATE)",
+    "gpu_concurrent_2_variable_max_bytes": 24000000,
+    "gpu_concurrent_2_variable_human": "~23 MiB for 2 variables within 50 MiB GPU ceiling",
+    "memory_budget_note": "The existing 50.0 MiB in-memory LRU and 50.0 MiB GPU texture ceilings CANNOT hold all 5 full-depth variables simultaneously. Multi-variable memory arbitration is required in TASK-12D. At most 2 full-depth 3D variables can be resident simultaneously at LOD 0 within budget.",
+    "recommended_simultaneous_variables": 2,
+    "browser_warning_threshold_variables": 3
+  },
+  "brick_vertical_strategy_candidates": {
+    "strategy_A": {
+      "id": "64x64x32_two_vertical_slabs",
+      "brick_core": [64, 64, 32],
+      "sample_shape": [66, 66, 32],
+      "vertical_slabs_for_50_levels": 2,
+      "bricks_per_lod0_timestep_estimate": 6,
+      "request_count_per_timestep": 6,
+      "gpu_texture_size_bytes": 12288000,
+      "pros": ["Reuses v1.0.0 brick infrastructure exactly", "Proven working implementation", "Small per-brick payload", "Fits within 50 MiB GPU ceiling for 2 slabs"],
+      "cons": ["Two streaming requests per timestep for deep profiles", "Slab boundary must not produce visual seam or interpolation artifact"],
+      "recommended": true,
+      "justification": "Minimal change from v1.0.0 architecture. Slab seam handling is a known problem with a documented solution (halo voxels at slab boundaries). Fewer risks than changing brick depth size."
+    },
+    "strategy_B": {
+      "id": "64x64x64_single_slab",
+      "brick_core": [64, 64, 64],
+      "sample_shape": [66, 66, 66],
+      "vertical_slabs_for_50_levels": 1,
+      "bricks_per_lod0_timestep_estimate": 3,
+      "gpu_texture_size_bytes": 25000000,
+      "pros": ["Single slab: no seam", "Fewer requests"],
+      "cons": ["50 levels < 64: vertical dimension is padded/wasted", "GPU texture 25 MiB per variable limits simultaneous variables to 2 within 50 MiB ceiling", "Requires changes to shader depth LUT indexing"],
+      "recommended": false,
+      "justification": "Wastes GPU memory on empty vertical padding. Not better than strategy A for <64 levels."
+    },
+    "strategy_C": {
+      "id": "64x64x16_multi_slab",
+      "brick_core": [64, 64, 16],
+      "sample_shape": [66, 66, 16],
+      "vertical_slabs_for_50_levels": 4,
+      "bricks_per_lod0_timestep_estimate": 12,
+      "gpu_texture_size_bytes": 6000000,
+      "pros": ["Smaller per-brick GPU footprint", "More granular residency"],
+      "cons": ["4x more streaming requests", "4 slab seams to manage", "Higher request overhead", "More complex scheduler"],
+      "recommended": false,
+      "justification": "Request overhead outweighs granularity benefit for this domain size."
+    }
+  },
+  "recommended_strategy": "strategy_A: 64x64x32 core with 2 vertical slabs for ~50 levels. Must add halo voxels at the vertical slab boundary to prevent interpolation seams."
+}

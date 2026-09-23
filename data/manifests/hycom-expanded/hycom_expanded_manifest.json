@@ -1,0 +1,274 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01X-F",
+  "provider": "HYCOM / FNMOC (Fleet Numerical Meteorology and Oceanography Center)",
+  "dataset_group": "ESPC-D-V02 Expanded Physical Fields",
+  "product_title": "HYCOM ESPC-D-V02 Expanded Physical Fields (Salinity, U/V Currents, SSH) 7-Day Regional Subset",
+  "generating_model": "ESPC-D V02: HYCOM 2.2.99, CICE 5.1.2, expt_03.1",
+  "institution": "Fleet Numerical Meteorology and Oceanography Center (FNMOC)",
+  "retrieval_timestamp_utc": "2026-08-30T08:01:13.855326+00:00",
+  "spatial_coverage": {
+    "region_name": "Arabian Sea / North Indian Ocean",
+    "latitude_min": 5.0,
+    "latitude_max": 7.480000019073486,
+    "longitude_min": 65.0400390625,
+    "longitude_max": 70.0,
+    "grid_dimensions": {
+      "time": 7,
+      "depth_3d": 32,
+      "latitude": 63,
+      "longitude": 63
+    },
+    "vertical_coverage_3d": {
+      "depth_levels_count": 32,
+      "depth_min_m": 0.0,
+      "depth_max_m": 900.0,
+      "depth_levels_m": [
+        0.0,
+        2.0,
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0,
+        15.0,
+        20.0,
+        25.0,
+        30.0,
+        35.0,
+        40.0,
+        45.0,
+        50.0,
+        60.0,
+        70.0,
+        80.0,
+        90.0,
+        100.0,
+        125.0,
+        150.0,
+        200.0,
+        250.0,
+        300.0,
+        350.0,
+        400.0,
+        500.0,
+        600.0,
+        700.0,
+        800.0,
+        900.0
+      ],
+      "positive": "down"
+    },
+    "crs": "EPSG:4326",
+    "grid_name": "glby0.08"
+  },
+  "temporal_coverage": {
+    "time_units": "hours since 2000-01-01 00:00:00",
+    "calendar": "standard",
+    "timesteps_count": 7,
+    "timestep_interval_hours": 24.0,
+    "start_time_iso": "2026-08-23T09:00:00+00:00",
+    "end_time_iso": "2026-08-29T09:00:00+00:00",
+    "time_values": [
+      233553.0,
+      233577.0,
+      233601.0,
+      233625.0,
+      233649.0,
+      233673.0,
+      233697.0
+    ],
+    "iso_timestamps": [
+      "2026-08-23T09:00:00+00:00",
+      "2026-08-24T09:00:00+00:00",
+      "2026-08-25T09:00:00+00:00",
+      "2026-08-26T09:00:00+00:00",
+      "2026-08-27T09:00:00+00:00",
+      "2026-08-28T09:00:00+00:00",
+      "2026-08-29T09:00:00+00:00"
+    ]
+  },
+  "variables": [
+    {
+      "name": "salinity",
+      "standard_name": "sea_water_salinity",
+      "long_name": "Salinity",
+      "units": "psu",
+      "dtype": "int16",
+      "scale_factor": 0.001,
+      "add_offset": 20.0,
+      "fill_value": -30000,
+      "missing_value": -30000,
+      "navo_code": 16,
+      "dimensions": {
+        "time": 7,
+        "depth": 32,
+        "lat": 63,
+        "lon": 63
+      },
+      "statistics": {
+        "min": 34.69900131225586,
+        "max": 36.46600341796875,
+        "mean": 35.650394439697266,
+        "total_cells": 889056,
+        "valid_cells": 889056,
+        "physical_bounds_confirmed": true
+      }
+    },
+    {
+      "name": "water_u",
+      "standard_name": "eastward_sea_water_velocity",
+      "long_name": "Eastward Water Velocity",
+      "units": "m/s",
+      "dtype": "int16",
+      "scale_factor": 0.001,
+      "add_offset": 0.0,
+      "fill_value": -30000,
+      "missing_value": -30000,
+      "navo_code": 17,
+      "dimensions": {
+        "time": 7,
+        "depth": 32,
+        "lat": 63,
+        "lon": 63
+      },
+      "statistics": {
+        "min": -0.445000022649765,
+        "max": 0.5830000042915344,
+        "mean": 0.01829053834080696,
+        "total_cells": 889056,
+        "valid_cells": 889056,
+        "physical_bounds_confirmed": true
+      }
+    },
+    {
+      "name": "water_v",
+      "standard_name": "northward_sea_water_velocity",
+      "long_name": "Northward Water Velocity",
+      "units": "m/s",
+      "dtype": "int16",
+      "scale_factor": 0.001,
+      "add_offset": 0.0,
+      "fill_value": -30000,
+      "missing_value": -30000,
+      "navo_code": 18,
+      "dimensions": {
+        "time": 7,
+        "depth": 32,
+        "lat": 63,
+        "lon": 63
+      },
+      "statistics": {
+        "min": -0.6500000357627869,
+        "max": 0.359000027179718,
+        "mean": -0.04292023554444313,
+        "total_cells": 889056,
+        "valid_cells": 889056,
+        "physical_bounds_confirmed": true
+      }
+    },
+    {
+      "name": "surf_el",
+      "standard_name": "sea_surface_elevation",
+      "long_name": "Water Surface Elevation",
+      "units": "m",
+      "dtype": "int16",
+      "scale_factor": 0.001,
+      "add_offset": 0.0,
+      "fill_value": -30000,
+      "missing_value": -30000,
+      "navo_code": 32,
+      "dimensions": {
+        "time": 7,
+        "lat": 63,
+        "lon": 63
+      },
+      "statistics": {
+        "min": 0.3970000147819519,
+        "max": 0.6300000548362732,
+        "mean": 0.5049464702606201,
+        "total_cells": 27783,
+        "valid_cells": 27783,
+        "physical_bounds_confirmed": true
+      }
+    }
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/hycom/expanded-physical/hycom_espc_d_v02_salinity3d_7day.nc",
+      "filename": "hycom_espc_d_v02_salinity3d_7day.nc",
+      "variable_name": "salinity",
+      "scientific_role": "3D_OCEAN_CIRCULATION_MODEL_SALINITY",
+      "byte_size": 1804238,
+      "sha256": "91451632c5be5732179d6e5fe76efb6377d621321fa828583e761cfad1b2ffb7",
+      "format": "NetCDF-4",
+      "opendap_url": "https://tds.hycom.org/thredds/dodsC/ESPC-D-V02/s3z"
+    },
+    {
+      "relative_path": "data/raw/hycom/expanded-physical/hycom_espc_d_v02_water_u3d_7day.nc",
+      "filename": "hycom_espc_d_v02_water_u3d_7day.nc",
+      "variable_name": "water_u",
+      "scientific_role": "3D_OCEAN_CIRCULATION_MODEL_EASTWARD_VELOCITY",
+      "byte_size": 1804261,
+      "sha256": "819e569238a1311569e5cdc02420477b4034ad0c6a1867c0a939431eb6a2efcd",
+      "format": "NetCDF-4",
+      "opendap_url": "https://tds.hycom.org/thredds/dodsC/ESPC-D-V02/u3z"
+    },
+    {
+      "relative_path": "data/raw/hycom/expanded-physical/hycom_espc_d_v02_water_v3d_7day.nc",
+      "filename": "hycom_espc_d_v02_water_v3d_7day.nc",
+      "variable_name": "water_v",
+      "scientific_role": "3D_OCEAN_CIRCULATION_MODEL_NORTHWARD_VELOCITY",
+      "byte_size": 1804263,
+      "sha256": "85a06be939fdc758d215a4128e6ff423c1eea18b39428a4c41b9146f8311cff7",
+      "format": "NetCDF-4",
+      "opendap_url": "https://tds.hycom.org/thredds/dodsC/ESPC-D-V02/v3z"
+    },
+    {
+      "relative_path": "data/raw/hycom/expanded-physical/hycom_espc_d_v02_ssh_7day.nc",
+      "filename": "hycom_espc_d_v02_ssh_7day.nc",
+      "variable_name": "surf_el",
+      "scientific_role": "2D_OCEAN_SURFACE_ELEVATION",
+      "byte_size": 78564,
+      "sha256": "ac6e38389b08680c968d816b36fceaa37b56aafd3d974824c5ed3d4e190438aa",
+      "format": "NetCDF-4",
+      "opendap_url": "https://tds.hycom.org/thredds/dodsC/ESPC-D-V02/ssh"
+    }
+  ],
+  "historical_baseline": {
+    "baseline_task_id": "TASK-01H",
+    "baseline_product": "HYCOM ESPC-D-V02 3D Water Temperature 7-Day Regional Subset",
+    "baseline_files": [
+      {
+        "relative_path": "data/raw/hycom/hycom_espc_d_v02_temp3d_7day.nc",
+        "byte_size": 1802987,
+        "sha256": "a763811d5fd6c7560c9484c9d4fe0d76c7f0c0285b7b29b1835fe58521c58eee",
+        "format": "NetCDF-4"
+      }
+    ],
+    "baseline_variables": [
+      {
+        "name": "water_temp",
+        "standard_name": "sea_water_temperature",
+        "long_name": "Water Temperature",
+        "units": "degC",
+        "dtype": "int16",
+        "scale_factor": 0.001,
+        "add_offset": 20.0,
+        "fill_value": -30000,
+        "missing_value": -30000,
+        "min_value_celsius": 7.46299934387207,
+        "max_value_celsius": 30.58700180053711,
+        "mean_value_celsius": 22.125629425048828,
+        "total_cells": 889056,
+        "valid_cells": 889056,
+        "plausible_ocean_temperatures_confirmed": true
+      }
+    ],
+    "alignment_status": "IDENTICAL_TEMPORAL_AND_SPATIAL_COORDINATES_CONFIRMED"
+  },
+  "licence": "Approved for public release; distribution unlimited.",
+  "attribution": "HYCOM Consortium / Fleet Numerical Meteorology and Oceanography Center (FNMOC); Naval Research Laboratory",
+  "validation_status": "VALIDATED",
+  "notes": "Expanded physical parameters (salinity, eastward velocity u, northward velocity v, sea surface height ssh) from HYCOM ESPC-D-V02 for QuasarOS 3D vector fields, isosurfaces, and hydrodynamic analysis in the Arabian Sea / North Indian Ocean (Lat 5.0-7.48N, Lon 65.04-70.0E, top 32 depth levels, 7-day daily time series)."
+}

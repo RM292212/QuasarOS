@@ -1,0 +1,18 @@
+{
+  "manifest_schema_version": "1.1.0",
+  "family_id": "copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "variable": "vo",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+  "standard_name": "northward_sea_water_velocity",
+  "long_name": "Northward velocity",
+  "units": "m s-1",
+  "has_depth": true,
+  "source_file": {
+    "relative_path": "data/raw/copernicus/physical/copernicus-phy-multivariable-20260824-20260830-v11dev/vo/copernicus_phy_vo_20260824_20260830.nc",
+    "byte_size": 24603646,
+    "sha256": "47a84e0908c1bef39f6c72c323c8fa7a84089aefff4bf9b1b838c7fd1321a74f"
+  },
+  "canonical_zarr_path": "data/canonical/copernicus_phy_vo/copernicus-phy-multivariable-20260824-20260830-v11dev",
+  "authority": "authoritative native-source value under ADR-0005"
+}

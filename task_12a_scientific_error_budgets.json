@@ -1,0 +1,75 @@
+﻿{
+  "schema_version": "1.0",
+  "task": "TASK-12A",
+  "authority": "ADR-0005: Native NetCDF-4 Float32 is the sole scientific authority. Visualization bricks are approximate rendering products.",
+  "uint16_missing_code": 65535,
+  "uint16_valid_quantization_range": "0 to 65534 inclusive",
+  "variables": {
+    "thetao_fulldepth": {
+      "physical_range_degrees_C": {"min": -2.0, "max": 40.0},
+      "float16_max_quantization_error_degrees_C": 0.0078125,
+      "float16_acceptable": true,
+      "float16_justification": "0.0078125 C is well within the 0.01 C accepted uncertainty for NWP ocean analysis products and is invisible at oceanographic scales.",
+      "uint16_affine_scale": 0.000640640640,
+      "uint16_max_quantization_error_degrees_C": 0.000320320,
+      "uint16_acceptable": true,
+      "float32_required": false,
+      "valid_zero_risk": "LOW: 0.0 C is a valid ocean temperature in polar regions. Uint16 code for 0.0 C with offset=-2.0 is 3124 (well away from 65535).",
+      "missing_code_collision_risk": "NONE: Valid thetao maps to [0, 65533] at worst; 65534 is reserved margin; 65535 is missing.",
+      "validity_mask_semantics": "0=valid_ocean, 1=source_missing_or_fill, 2=land"
+    },
+    "so": {
+      "physical_range": {"min": 0.0, "max": 42.0, "units": "per provider metadata (exact string REQUIRES_VERIFICATION)"},
+      "float16_max_error": 0.00390625,
+      "float16_acceptable": true,
+      "float16_justification": "0.004 salinity units is below the noise floor of any operationally relevant salinity gradient.",
+      "uint16_affine_scale_estimate": 0.000640640,
+      "uint16_max_error_estimate": 0.000320,
+      "uint16_acceptable": true,
+      "float32_required": false,
+      "valid_zero_risk": "MEDIUM: Salinity of 0.0 is physically valid in freshwater-dominated coastal zones. Uint16 code for 0.0 with offset=0.0 is 0. This is SAFE (0 != 65535). Confirm offset is set to 0.0 or negative to ensure 0.0 maps away from 65535.",
+      "quantization_domain_note": "Must cover [0.0, 42.0] safely. Recommended scale = 42.0/65534 = 0.000641. Missing code 65535 is safe as valid range [0,42] maps to [0, 65533].",
+      "validity_mask_semantics": "0=valid_ocean, 1=source_missing_or_fill, 2=land"
+    },
+    "uo": {
+      "physical_range_m_per_s": {"min": -4.0, "max": 4.0, "note": "Typical CMEMS global surface currents; deep currents may be smaller. Exact range REQUIRES_VERIFICATION from actual data."},
+      "float16_max_error_m_per_s": 0.000976563,
+      "float16_acceptable": true,
+      "float16_justification": "Sub-millimeter-per-second precision is far below any meaningful current detection threshold.",
+      "uint16_affine_note": "Symmetric range requires offset. Recommended: offset=-4.0, scale=8.0/65534=0.0001221. Then u=0.0 maps to 32767 (safe, far from 65535).",
+      "uint16_acceptable": true,
+      "float32_required": false,
+      "valid_zero_risk": "HIGH: Exactly 0.0 m/s is physically common (quiescent deep water, calm surface). With offset=-4.0 and scale 0.000122, u=0.0 maps to Uint16 code 32767. This is SAFE. Must verify offset is correctly applied.",
+      "missing_code_collision_risk": "NONE with symmetric offset. Valid range maps to [0, 65534]; 65535 reserved.",
+      "vector_safety_rule": "If EITHER uo OR vo has validity_mask != 0 at a grid cell, BOTH components are treated as invalid for any vector computation. No partial vectors.",
+      "validity_mask_semantics": "0=valid_ocean, 1=source_missing_or_fill, 2=land. Must be IDENTICAL mask for uo and vo at every grid cell."
+    },
+    "vo": {
+      "physical_range_m_per_s": {"min": -4.0, "max": 4.0, "note": "Same range policy as uo."},
+      "float16_max_error_m_per_s": 0.000976563,
+      "float16_acceptable": true,
+      "uint16_affine_note": "Same symmetric quantization policy as uo. Must use identical scale and offset as uo to enable joint rendering.",
+      "float32_required": false,
+      "valid_zero_risk": "Same as uo: HIGH concern, safely handled with symmetric offset.",
+      "validity_mask_semantics": "Must be bitwise-identical to uo validity mask per grid cell."
+    },
+    "zos": {
+      "physical_range_m": {"min": -2.0, "max": 2.0, "note": "Typical SSH anomaly range for this domain. Exact range REQUIRES_VERIFICATION."},
+      "float16_max_error_m": 0.000244141,
+      "float16_acceptable": true,
+      "float16_justification": "Sub-millimeter SSH precision is sufficient for all visualization and inspection purposes.",
+      "uint16_affine_note": "Symmetric range. Recommended: offset=-2.0, scale=4.0/65534=0.0000610. zos=0.0 maps to 32767 (safe).",
+      "float32_required": false,
+      "valid_zero_risk": "HIGH: SSH anomaly of 0.0 m is common. Safely handled with symmetric offset.",
+      "field_type_note": "zos is 2D (time x lat x lon only). Its Uint16 missing code (65535) represents masked land cells in the 2D surface mask. No depth dimension.",
+      "validity_mask_semantics": "0=valid_ocean_surface, 1=source_missing_or_fill, 2=land"
+    }
+  },
+  "global_rules": [
+    "Uint16 code 65535 is reserved as the missing value sentinel across ALL variables. No valid quantized value may map to 65535.",
+    "Float16 NaN represents missing/invalid in Float16 bricks. No valid physical value should round to NaN.",
+    "Valid physical zero MUST NOT be treated as missing. Validity comes from the validity_mask field, not from checking if the value equals zero.",
+    "Error statistics (max, MAE, RMSE, p50, p90, p95, p99, p99.9) must be measured per-variable, per-depth, per-timestamp in TASK-12C.",
+    "Approximate visualization bricks are NOT the authority for scientific analysis. All exact queries must use native NetCDF-4 sources."
+  ]
+}

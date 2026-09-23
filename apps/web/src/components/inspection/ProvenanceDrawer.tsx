@@ -8,6 +8,7 @@
 import React, { useState } from 'react';
 import type { ProvenanceMetadataModel } from './types.ts';
 import { COPERNICUS_THETAO_PROVENANCE_BASELINE, formatProvenanceMarkdown } from './ProvenanceLogic.ts';
+import { useAppStore } from '../../context/app_store.ts';
 
 export interface ProvenanceDrawerProps {
   provenance?: ProvenanceMetadataModel;
@@ -23,11 +24,34 @@ export const ProvenanceDrawer: React.FC<ProvenanceDrawerProps> = ({
   className = '',
 }) => {
   const [copied, setCopied] = useState(false);
+  const {
+    timestepIndex,
+    timesteps,
+    currentDateIso,
+    referenceTimeUtc,
+    forecastLeadHours,
+    productCycle,
+  } = useAppStore();
+
+  const activeValidDate = (timesteps && timesteps[timestepIndex]) || currentDateIso || '2026-08-30';
+  const activeValidTimeUtc = `${activeValidDate}T00:00:00Z`;
+  const activeRefTimeUtc = referenceTimeUtc || '2026-08-24T00:00:00Z';
+  const activeLeadHours = forecastLeadHours !== undefined ? forecastLeadHours : timestepIndex * 24;
+  const activeCycle = productCycle || '20260824_00Z (7-Day Physical Ocean Forecast)';
 
   if (!isOpen) return null;
 
   const handleCopyMarkdown = () => {
-    const md = formatProvenanceMarkdown(provenance);
+    const baseMd = formatProvenanceMarkdown(provenance);
+    const temporalBlock = [
+      `## Operational Temporal Domain`,
+      `- **Valid Time (UTC):** \`${activeValidTimeUtc}\``,
+      `- **Reference Time (UTC):** \`${activeRefTimeUtc}\``,
+      `- **Product Cycle:** \`${activeCycle}\``,
+      `- **Forecast Lead Time:** \`+${activeLeadHours}h\``,
+      ``,
+    ].join('\n');
+    const md = baseMd.replace('## Spatiotemporal Domain', `${temporalBlock}## Spatiotemporal Domain`);
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(md);
       setCopied(true);
@@ -106,6 +130,34 @@ export const ProvenanceDrawer: React.FC<ProvenanceDrawerProps> = ({
 
               <dt className="text-slate-500 col-span-1">Provider:</dt>
               <dd className="text-slate-300 col-span-2 font-sans">{provenance.provider}</dd>
+            </dl>
+          </section>
+
+          {/* Temporal Domain & Operational Cycle */}
+          <section className="bg-slate-950/60 rounded-lg p-3 border border-slate-800">
+            <h3 className="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">
+              Temporal Domain & Operational Cycle
+            </h3>
+            <dl className="grid grid-cols-3 gap-y-2 text-xs font-mono">
+              <dt className="text-slate-500 col-span-1">Valid Time (UTC):</dt>
+              <dd className="text-slate-200 col-span-2 break-all font-bold text-sky-300" data-testid="prov-valid-time">
+                {activeValidTimeUtc}
+              </dd>
+
+              <dt className="text-slate-500 col-span-1">Reference Time:</dt>
+              <dd className="text-slate-200 col-span-2 break-all" data-testid="prov-reference-time">
+                {activeRefTimeUtc}
+              </dd>
+
+              <dt className="text-slate-500 col-span-1">Product Cycle:</dt>
+              <dd className="text-slate-200 col-span-2 break-all" data-testid="prov-product-cycle">
+                {activeCycle}
+              </dd>
+
+              <dt className="text-slate-500 col-span-1">Forecast Lead:</dt>
+              <dd className="text-emerald-300 col-span-2 font-bold" data-testid="prov-lead-time">
+                +{activeLeadHours}h (+{activeLeadHours / 24} days)
+              </dd>
             </dl>
           </section>
 

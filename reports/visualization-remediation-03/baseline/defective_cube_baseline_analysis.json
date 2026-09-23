@@ -1,0 +1,81 @@
+{
+  "baseline_id": "BASE-V0-CUBE-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:10:00Z",
+  "investigation_scope": "Baseline Volume Viewport & Defective Rotating Cube Render Analysis",
+  "source_component": "apps/web/src/components/viewport/OceanVolumeViewport.tsx",
+  "architectural_status": "BYPASS_UNINTEGRATED",
+  "renderer_bypass": {
+    "webgpu_package": "@quasar/renderer-webgpu",
+    "webgl2_package": "@quasar/renderer-webgl2",
+    "runtime_package": "@quasar/runtime",
+    "status": "COMPLETELY_BYPASSED",
+    "details": "OceanVolumeViewport.tsx instantiates an inline WebGL2 context directly inside a React useEffect hook, bypassing the modular WebGPU/WebGL2 pipeline, residency management, LOD brick stream, and coordinate transformers."
+  },
+  "render_pipeline_breakdown": {
+    "canvas_context": "WebGL2 (alpha: false, antialias: true)",
+    "geometry": {
+      "type": "Static Axis-Aligned Bounding Box (AABB)",
+      "vertex_count": 8,
+      "triangle_count": 12,
+      "bounds": "[-0.5, 0.5]^3 centered at origin",
+      "rotation_animation": "Continuous auto-orbit (angleY += 0.002 per frame) + mouse drag"
+    },
+    "data_feed": {
+      "endpoint": "GET /api/v1/analysis/volume-grid",
+      "default_parameters": {
+        "variable": "thetao",
+        "time_index": 6,
+        "depth_levels": 16,
+        "lat_res": 32,
+        "lon_res": 32
+      },
+      "texture_format": "gl.R8 (UNSIGNED_BYTE)",
+      "texture_dimensions": [32, 32, 16],
+      "quantization_method": "Linear normalization to 1..255 with 0 reserved for land sentinel (-999.0)"
+    },
+    "raymarching_shader_mechanics": {
+      "max_steps": 96,
+      "fixed_step_size": 0.012,
+      "ray_origin_calculation": "vLocalPos + 0.5",
+      "ray_direction_calculation": "normalize(vLocalPos - uCamPos)",
+      "early_ray_termination_threshold": 0.95,
+      "colormap": "Hardcoded 4-segment linear piecewise RGB gradient in GLSL",
+      "depth_handling": "Linear uniform UVW mapping across non-uniform Copernicus depth levels (0.494m to 5727.9m)",
+      "bathymetry_integration": "None (No GEBCO elevation mesh, no seafloor depth clipping)",
+      "wet_mask_integration": "Sentinel value <= -900.0 mapped to alpha 0.0 (no discrete uint validity mask buffer)"
+    }
+  },
+  "defects_and_pathologies": [
+    {
+      "id": "DEF-01",
+      "title": "Standalone Inline Viewport Bypasses Package Architecture",
+      "severity": "CRITICAL",
+      "description": "The viewport is an ad-hoc 358-line React component creating its own WebGL2 canvas context and compiling inline shaders, completely ignoring @quasar/renderer-webgpu and @quasar/renderer-webgl2."
+    },
+    {
+      "id": "DEF-02",
+      "title": "Distorted Perspective Ray Reconstruction",
+      "severity": "HIGH",
+      "description": "Ray direction is calculated as normalize(vLocalPos - uCamPos) on the bounding box vertex surface rather than unprojecting clip-space NDC coordinates through inverse(ViewProjection), causing perspective warping and shearing during camera pitch/yaw."
+    },
+    {
+      "id": "DEF-03",
+      "title": "Non-Uniform Vertical Depth Distortion",
+      "severity": "HIGH",
+      "description": "Sampling 16 depth levels with linear texture coordinates stretches shallow ocean mixed layer (top 100m) into a tiny sliver while expanding abyssal depths (1000m-5700m) across 80% of the volume height, violating scientific vertical scaling."
+    },
+    {
+      "id": "DEF-04",
+      "title": "Missing Bathymetry & Coastline Geological Bed",
+      "severity": "HIGH",
+      "description": "No GEBCO 2026 bathymetric terrain mesh is loaded or rendered. The ocean volume floats in empty space as an ungrounded cube without seabed boundaries or continent outlines."
+    },
+    {
+      "id": "DEF-05",
+      "title": "Hardcoded Synthetic UI Data & Disconnected Soundings",
+      "severity": "HIGH",
+      "description": "App.tsx renders hardcoded synthetic formula mock objects for Pick Reconciliation, Vertical Profile Chart (29.5 - sqrt(depth)*0.92), and ARGO comparison, rather than consuming real backend queries."
+    }
+  ]
+}

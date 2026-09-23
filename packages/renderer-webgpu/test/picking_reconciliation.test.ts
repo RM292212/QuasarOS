@@ -93,7 +93,6 @@ class MockGPUDevice {
   }
 
   createCommandEncoder(descriptor: any) {
-    const dev = this;
     return {
       beginComputePass: () => ({
         setPipeline: () => {},
@@ -102,8 +101,8 @@ class MockGPUDevice {
         end: () => {},
       }),
       copyBufferToBuffer: (src: any, srcOffset: number, dst: any, dstOffset: number, size: number) => {
-        if (dev.storageBufferRef && dev.stagingBufferRef) {
-          dev.stagingBufferRef.setBufferData(dev.storageBufferRef.getMappedRange());
+        if (this.storageBufferRef && this.stagingBufferRef) {
+          this.stagingBufferRef.setBufferData(this.storageBufferRef.getMappedRange());
         }
       },
       finish: () => ({ label: 'CommandBuffer' }),

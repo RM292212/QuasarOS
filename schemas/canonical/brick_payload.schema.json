@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "CompressionCodec": {
+      "description": "Approved binary compression codecs for sub-volume brick payloads.",
+      "enum": [
+        "raw",
+        "zstd",
+        "blosc",
+        "lz4"
+      ],
+      "title": "CompressionCodec",
+      "type": "string"
+    },
+    "QuantizationContract": {
+      "description": "Metadata governing linear integer quantization for GPU texture memory packing.\nEnforces documented error bounds and strictly flags data as non-authoritative.",
+      "properties": {
+        "add_offset": {
+          "description": "Additive offset applied during quantization.",
+          "title": "Add Offset",
+          "type": "number"
+        },
+        "is_eligible_for_exact_query": {
+          "default": false,
+          "description": "MANDATORY FALSE: Quantized render textures must NEVER be queried as authoritative scientific values.",
+          "title": "Is Eligible For Exact Query",
+          "type": "boolean"
+        },
+        "quantized_data_type": {
+          "default": "uint16",
+          "description": "Quantized integer type (e.g. 'uint8', 'uint16', 'uint32').",
+          "title": "Quantized Data Type",
+          "type": "string"
+        },
+        "reserved_missing_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 65535,
+          "description": "Dedicated discrete integer code reserved for missing / masked / invalid samples.",
+          "title": "Reserved Missing Code"
+        },
+        "scale_factor": {
+          "description": "Multiplicative scale factor applied during quantization: float_val = int_val * scale_factor + add_offset.",
+          "title": "Scale Factor",
+          "type": "number"
+        },
+        "theoretical_max_quantization_error": {
+          "description": "Maximum absolute error introduced by quantization: 0.5 * scale_factor.",
+          "title": "Theoretical Max Quantization Error",
+          "type": "number"
+        },
+        "unquantized_data_type": {
+          "default": "float32",
+          "description": "Source unquantized floating point type.",
+          "title": "Unquantized Data Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scale_factor",
+        "add_offset",
+        "theoretical_max_quantization_error"
+      ],
+      "title": "QuantizationContract",
+      "type": "object"
+    },
+    "TextureSampleFormat": {
+      "description": "GPU texture and buffer storage sample formats.",
+      "enum": [
+        "r16float",
+        "r32float",
+        "rgba8unorm",
+        "r8unorm",
+        "r16unorm",
+        "r16uint"
+      ],
+      "title": "TextureSampleFormat",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Describes the binary payload encoding, compression, and stable storage location.\nZero signed tokens/credentials permitted in storage keys.",
+  "properties": {
+    "brick_key": {
+      "description": "Deterministic brick composite key.",
+      "title": "Brick Key",
+      "type": "string"
+    },
+    "compressed_bytes_length": {
+      "description": "Byte size of compressed stored asset.",
+      "exclusiveMinimum": 0,
+      "title": "Compressed Bytes Length",
+      "type": "integer"
+    },
+    "compression_codec": {
+      "$ref": "#/$defs/CompressionCodec",
+      "default": "zstd",
+      "description": "Compression codec applied to the payload."
+    },
+    "quantization": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/QuantizationContract"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Quantization metadata if texture values are integer quantized."
+    },
+    "sample_format": {
+      "$ref": "#/$defs/TextureSampleFormat",
+      "default": "r16float",
+      "description": "GPU texture buffer format."
+    },
+    "sha256_checksum": {
+      "description": "SHA-256 hash of the stored compressed asset.",
+      "title": "Sha256 Checksum",
+      "type": "string"
+    },
+    "storage_object_key": {
+      "description": "Relative storage path or stable object key (e.g. 'volumes/copernicus_thetao/v1/lod0/b_0_0_0.zst').",
+      "title": "Storage Object Key",
+      "type": "string"
+    },
+    "uncompressed_bytes_length": {
+      "description": "Byte size of uncompressed sample array.",
+      "exclusiveMinimum": 0,
+      "title": "Uncompressed Bytes Length",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "brick_key",
+    "storage_object_key",
+    "uncompressed_bytes_length",
+    "compressed_bytes_length",
+    "sha256_checksum"
+  ],
+  "title": "BrickPayloadContract",
+  "type": "object"
+}

@@ -1,0 +1,427 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01C",
+  "provider": "Copernicus Marine Service (E.U. Copernicus Programme)",
+  "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "product_title": "Global Ocean Physics Analysis and Forecast",
+  "source_url": "https://data.marine.copernicus.eu/product/GLOBAL_ANALYSISFORECAST_PHY_001_024",
+  "retrieval_timestamp_utc": "2026-08-30T07:38:55.736183+00:00",
+  "geographic_bounds": {
+    "minimum_longitude": 80.0,
+    "maximum_longitude": 88.0,
+    "minimum_latitude": -3.0,
+    "maximum_latitude": 12.0,
+    "region_description": "Northern Indian Ocean / Bay of Bengal / Arabian Sea Gateway"
+  },
+  "vertical_bounds": {
+    "minimum_depth_meters": 0.49,
+    "maximum_depth_meters": 500.0,
+    "coordinate_name": "depth",
+    "vertical_datum": "sea_surface"
+  },
+  "temporal_bounds": {
+    "start_datetime_utc": "2025-04-20T00:00:00",
+    "end_datetime_utc": "2025-04-26T23:59:59",
+    "time_steps_count": 7,
+    "temporal_resolution": "P1D (Daily Mean)"
+  },
+  "model_variables": [
+    "uo",
+    "vo",
+    "thetao",
+    "so",
+    "zos",
+    "mlotst"
+  ],
+  "files": [
+    {
+      "relative_path": "data/raw/copernicus/physical/copernicus_phy_cur_20250420_20250426.nc",
+      "filename": "copernicus_phy_cur_20250420_20250426.nc",
+      "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_P1D-m",
+      "variables": [
+        "uo",
+        "vo"
+      ],
+      "byte_size": 30505982,
+      "sha256": "bdc585a2884d15b7ee9013ca0e330e607b7bd5948e0117cc8a2df8d8a8f79a86",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "depth": 31,
+        "latitude": 181,
+        "longitude": 97,
+        "time": 7
+      },
+      "variables_metadata": {
+        "depth": {
+          "dimensions": [
+            "depth"
+          ],
+          "shape": [
+            31
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "standard_name": "depth",
+          "long_name": "Depth",
+          "fill_value": null
+        },
+        "latitude": {
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            181
+          ],
+          "dtype": "float32",
+          "units": "degrees_north",
+          "standard_name": "latitude",
+          "long_name": "Latitude",
+          "fill_value": null
+        },
+        "longitude": {
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            97
+          ],
+          "dtype": "float32",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "long_name": "Longitude",
+          "fill_value": null
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            7
+          ],
+          "dtype": "float32",
+          "units": "hours since 1950-01-01",
+          "standard_name": "time",
+          "long_name": "Time",
+          "fill_value": null
+        },
+        "uo": {
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            31,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "standard_name": "eastward_sea_water_velocity",
+          "long_name": "Eastward velocity",
+          "fill_value": 9.969209968386869e+36
+        },
+        "vo": {
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            31,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "standard_name": "northward_sea_water_velocity",
+          "long_name": "Northward velocity",
+          "fill_value": 9.969209968386869e+36
+        }
+      }
+    },
+    {
+      "relative_path": "data/raw/copernicus/physical/copernicus_phy_thetao_20250420_20250426.nc",
+      "filename": "copernicus_phy_thetao_20250420_20250426.nc",
+      "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "dataset_id": "cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m",
+      "variables": [
+        "thetao"
+      ],
+      "byte_size": 15263241,
+      "sha256": "6b4ce3f47a77add27541ed836870dba9bcd6a2c34d258e6787a542e660627281",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "depth": 31,
+        "latitude": 181,
+        "longitude": 97,
+        "time": 7
+      },
+      "variables_metadata": {
+        "depth": {
+          "dimensions": [
+            "depth"
+          ],
+          "shape": [
+            31
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "standard_name": "depth",
+          "long_name": "Depth",
+          "fill_value": null
+        },
+        "latitude": {
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            181
+          ],
+          "dtype": "float32",
+          "units": "degrees_north",
+          "standard_name": "latitude",
+          "long_name": "Latitude",
+          "fill_value": null
+        },
+        "longitude": {
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            97
+          ],
+          "dtype": "float32",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "long_name": "Longitude",
+          "fill_value": null
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            7
+          ],
+          "dtype": "float32",
+          "units": "hours since 1950-01-01",
+          "standard_name": "time",
+          "long_name": "Time",
+          "fill_value": null
+        },
+        "thetao": {
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            31,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "degrees_C",
+          "standard_name": "sea_water_potential_temperature",
+          "long_name": "Temperature",
+          "fill_value": 9.969209968386869e+36
+        }
+      }
+    },
+    {
+      "relative_path": "data/raw/copernicus/physical/copernicus_phy_so_20250420_20250426.nc",
+      "filename": "copernicus_phy_so_20250420_20250426.nc",
+      "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "dataset_id": "cmems_mod_glo_phy-so_anfc_0.083deg_P1D-m",
+      "variables": [
+        "so"
+      ],
+      "byte_size": 15263241,
+      "sha256": "db6acd0587ed8401cc4562fb0fae7a5ddaac5a6d87acbd2c3f2112b859701926",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "depth": 31,
+        "latitude": 181,
+        "longitude": 97,
+        "time": 7
+      },
+      "variables_metadata": {
+        "depth": {
+          "dimensions": [
+            "depth"
+          ],
+          "shape": [
+            31
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "standard_name": "depth",
+          "long_name": "Depth",
+          "fill_value": null
+        },
+        "latitude": {
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            181
+          ],
+          "dtype": "float32",
+          "units": "degrees_north",
+          "standard_name": "latitude",
+          "long_name": "Latitude",
+          "fill_value": null
+        },
+        "longitude": {
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            97
+          ],
+          "dtype": "float32",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "long_name": "Longitude",
+          "fill_value": null
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            7
+          ],
+          "dtype": "float32",
+          "units": "hours since 1950-01-01",
+          "standard_name": "time",
+          "long_name": "Time",
+          "fill_value": null
+        },
+        "so": {
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            31,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "1e-3",
+          "standard_name": "sea_water_salinity",
+          "long_name": "Salinity",
+          "fill_value": 9.969209968386869e+36
+        }
+      }
+    },
+    {
+      "relative_path": "data/raw/copernicus/physical/copernicus_phy_surf_20250420_20250426.nc",
+      "filename": "copernicus_phy_surf_20250420_20250426.nc",
+      "product_id": "GLOBAL_ANALYSISFORECAST_PHY_001_024",
+      "dataset_id": "cmems_mod_glo_phy_anfc_0.083deg_P1D-m",
+      "variables": [
+        "zos",
+        "mlotst"
+      ],
+      "byte_size": 1006668,
+      "sha256": "77b78e312115e54936a7b27dc0e4ab341a461a4ef967e03d7ba68a43dc063bb2",
+      "format": "NetCDF-4",
+      "dimensions": {
+        "time": 7,
+        "latitude": 181,
+        "longitude": 97
+      },
+      "variables_metadata": {
+        "zos": {
+          "dimensions": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "standard_name": "sea_surface_height_above_geoid",
+          "long_name": "Sea surface height",
+          "fill_value": 9.969209968386869e+36
+        },
+        "mlotst": {
+          "dimensions": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            7,
+            181,
+            97
+          ],
+          "dtype": "float32",
+          "units": "m",
+          "standard_name": "ocean_mixed_layer_thickness_defined_by_sigma_theta",
+          "long_name": "Mixed Layer Depth (|dT| = 0.01 wrt 10m)",
+          "fill_value": 9.969209968386869e+36
+        },
+        "latitude": {
+          "dimensions": [
+            "latitude"
+          ],
+          "shape": [
+            181
+          ],
+          "dtype": "float32",
+          "units": "degrees_north",
+          "standard_name": "latitude",
+          "long_name": "Latitude",
+          "fill_value": null
+        },
+        "longitude": {
+          "dimensions": [
+            "longitude"
+          ],
+          "shape": [
+            97
+          ],
+          "dtype": "float32",
+          "units": "degrees_east",
+          "standard_name": "longitude",
+          "long_name": "Longitude",
+          "fill_value": null
+        },
+        "time": {
+          "dimensions": [
+            "time"
+          ],
+          "shape": [
+            7
+          ],
+          "dtype": "float32",
+          "units": "hours since 1950-01-01",
+          "standard_name": "time",
+          "long_name": "Time",
+          "fill_value": null
+        }
+      }
+    }
+  ],
+  "licence": "Copernicus Sentinel Data / E.U. Open Data Policy",
+  "attribution": "E.U. Copernicus Marine Service Information; https://doi.org/10.48670/moi-00016",
+  "validation_status": "VALIDATED"
+}

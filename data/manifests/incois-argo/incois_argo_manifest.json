@@ -1,0 +1,35 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "task_id": "TASK-01B",
+  "provider": "INCOIS",
+  "dataset_id": "Indian_ARGO_Floats",
+  "source_url": "https://erddap.incois.gov.in/erddap/tabledap/Indian_ARGO_Floats",
+  "retrieval_timestamp_utc": "2026-08-30T07:22:32Z",
+  "platform_number": "7902250",
+  "cycle_number": 12,
+  "time": "2025-04-23T13:28:00Z",
+  "latitude": -1.7322816666666667,
+  "longitude": 85.17659333333333,
+  "variables": [
+    "PRES",
+    "TEMP",
+    "PSAL"
+  ],
+  "qc_fields": [
+    "PRES_QC",
+    "TEMP_QC",
+    "PSAL_QC"
+  ],
+  "levels_count": 91,
+  "files": [
+    {
+      "relative_path": "data\\raw\\incois\\argo\\incois_argo_7902250_c012.json",
+      "byte_size": 11715,
+      "sha256": "a4583da8a27c8fd054714d4d6df881eea53db33dce60d77cdceb8ea36451db5d",
+      "format": "JSON-tabledap"
+    }
+  ],
+  "licence": "INCOIS Open Access / Attribution Required",
+  "attribution": "Indian National Centre for Ocean Information Services (INCOIS)",
+  "validation_status": "VALIDATED"
+}

@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "PhysicalDimension": {
+      "description": "Authoritative physical dimensions in oceanography.",
+      "enum": [
+        "temperature",
+        "practical_salinity",
+        "absolute_salinity",
+        "velocity",
+        "speed",
+        "length",
+        "depth",
+        "pressure",
+        "angle_degrees",
+        "time",
+        "density",
+        "mass_concentration",
+        "molar_concentration",
+        "dimensionless",
+        "frequency",
+        "wave_period",
+        "area_per_second"
+      ],
+      "title": "PhysicalDimension",
+      "type": "string"
+    },
+    "UnitConversionClassification": {
+      "description": "Mathematical classification of unit conversions.\n- identity: Exact 1:1 match (e.g. 'm s-1' to 'm/s', 'degree_Celsius' to 'degrees_C')\n- linear: Simple scale factor $y = c \\cdot x$ (e.g. 'm' to 'km', 'seconds' to 'hours')\n- affine: Scale and offset $y = c \\cdot x + b$ (e.g. 'degree_Celsius' to 'kelvin')\n- context_dependent: Requires geospatial/thermodynamic context (e.g. TEOS-10 SA from SP, depth from pressure)\n- not_convertible: Incompatible physical dimensions (e.g. 'm' to 'degree_Celsius')\n- unknown: Unregistered or unverified unit conversion",
+      "enum": [
+        "identity",
+        "linear",
+        "affine",
+        "context_dependent",
+        "not_convertible",
+        "unknown"
+      ],
+      "title": "UnitConversionClassification",
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Authoritative unit contract for a canonical variable.",
+  "properties": {
+    "cf_unit": {
+      "description": "CF-compliant standard unit representation (e.g. 'degrees_C', 'm s-1', 'decibar', '1').",
+      "title": "Cf Unit",
+      "type": "string"
+    },
+    "conversion_classification": {
+      "$ref": "#/$defs/UnitConversionClassification",
+      "default": "identity",
+      "description": "Conversion class relative to raw provider unit."
+    },
+    "physical_dimension": {
+      "$ref": "#/$defs/PhysicalDimension",
+      "description": "Physical dimension of the variable."
+    },
+    "safeguard_notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Scientific advisory regarding conversion limits (e.g. TEOS-10 requirements).",
+      "title": "Safeguard Notes"
+    },
+    "unit_string": {
+      "description": "Standard canonical unit string (e.g. 'degree_Celsius', 'm s-1', 'dbar', '1e-3').",
+      "title": "Unit String",
+      "type": "string"
+    }
+  },
+  "required": [
+    "unit_string",
+    "cf_unit",
+    "physical_dimension"
+  ],
+  "title": "CanonicalUnitContract",
+  "type": "object"
+}

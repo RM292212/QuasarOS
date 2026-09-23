@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "TASK-05A",
+  "task_title": "Catalog, Authority, and Service Preflight",
+  "status": "APPROVED",
+  "generated_at_utc": "2026-08-30T14:35:00Z",
+  "governing_rules": [
+    "AGENTS.md",
+    "docs/INDEX.md",
+    "docs/Arc.md",
+    "docs/Tech.md",
+    "docs/02-architecture/APIContracts.md",
+    "docs/02-architecture/DataModeling.md",
+    "docs/02-architecture/ErrorModel.md",
+    "docs/03-science-data/CoordinateSystems.md",
+    "docs/03-science-data/VerticalCoordinates.md",
+    "docs/03-science-data/MissingDataAndMasks.md"
+  ],
+  "cryptographic_integrity_reconciliation": {
+    "terminology_standard": "Cryptographically checksummed using SHA-256 (NIST FIPS 180-4). Loose statements such as 'cryptographically signed' are reconciled to 'cryptographically checksummed using SHA-256'.",
+    "reconciliation_summary": "All repository-relative asset paths from TASK-01 through TASK-04 are verified bitwise on disk against their recorded SHA-256 digests."
+  },
+  "asset_catalog": {
+    "raw_netcdf": {
+      "path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+      "exists": true,
+      "sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+      "verified": true,
+      "authority_status": "authoritative_exact_truth"
+    },
+    "canonical_zarr_active": {
+      "path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087",
+      "exists": true,
+      "file_count": 11,
+      "authority_status": "lossless_processing_representation"
+    },
+    "canonical_zarr_historical": {
+      "path": "data/canonical/copernicus_phy_thetao/v1",
+      "exists": true,
+      "file_count": 11,
+      "authority_status": "lossless_processing_representation"
+    },
+    "visualization_bricks_directory": {
+      "path": "data/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1",
+      "exists": true,
+      "total_bricks": 63,
+      "total_payload_files": 126,
+      "total_compressed_bytes": 13342107,
+      "authority_status": "approximate_gpu_visualization_payload"
+    },
+    "companion_manifests": {
+      "acquisition_manifest": {
+        "path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/acquisition_manifest.json",
+        "sha256": "0861401c53c9c03ec66362c69a1e6935e5d22cfffb11dc50d2217b53204dbd73",
+        "verified": true
+      },
+      "validation_manifest": {
+        "path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/validation_report.json",
+        "sha256": "c1f44251d58e3f589b51651ae7f003c44ef0b1764abc61510bc79d8a71c9d248",
+        "verified": true
+      },
+      "parity_manifest": {
+        "path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/parity_validation_report.json",
+        "sha256": "047409f5f0085ea545ab1d07d69f32bcb2506d201081c9043e86cc74d5aa9df9",
+        "verified": true
+      },
+      "visualization_manifest_canonical": {
+        "path": "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+        "sha256": "78644572a8478a100377bb5032c26b7f5163217fe1203868265d814285deda59",
+        "verified": true
+      },
+      "visualization_manifest_product_copy": {
+        "path": "data/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+        "sha256": "78644572a8478a100377bb5032c26b7f5163217fe1203868265d814285deda59",
+        "verified": true
+      },
+      "active_snapshot_catalog": {
+        "path": "data/manifests/active_snapshot_catalog.json",
+        "sha256": "e4d67295bd0d1d3c809fdc05748eb2e59ea9608e3874bb6d48f960a39bc33230",
+        "verified": true
+      }
+    }
+  },
+  "authority_matrix_adr_0005": {
+    "tiers": [
+      {
+        "tier": "Tier 1: Native Scientific Source of Truth",
+        "target": "Raw Provider NetCDF-4 / GRIB2 / GDAC Profiles",
+        "format": "NetCDF-4 (HDF5-backed) / ASCII / WMO BUFR",
+        "role": "Immutable baseline authoritative source of truth for all exact queries, scientific collocations, and regulatory compliance.",
+        "exact_query_eligible": true,
+        "precision": "Full floating point (float32/float64 natively stored in provider array)",
+        "governing_contract": "ExactValueQueryResponse"
+      },
+      {
+        "tier": "Tier 2: Lossless Processing Representation",
+        "target": "Canonical Zarr Array Stores",
+        "format": "Zarr v2/v3 (Lossless blosc/zstd / uncompressed numeric arrays with categorical mask)",
+        "role": "High-throughput processing representation used for pipeline decimation, spatial partitioning, profiling, and fast array slicing. Non-authoritative for scientific truth under strict ADR-0005, but bitwise lossless to source arrays.",
+        "exact_query_eligible": false,
+        "precision": "Lossless IEEE-754 float32 / categorical uint8 mask",
+        "governing_contract": "CanonicalDataset"
+      },
+      {
+        "tier": "Tier 3: Approximate GPU Visualization Payloads",
+        "target": "Visualization Volume Bricks & LOD Decimations",
+        "format": "r16float / r16uint Zstandard compressed binary payloads",
+        "role": "Interactive 3D raymarching in WebGPU/WebGL2 Volume Lab viewports. Approximate visual textures.",
+        "exact_query_eligible": false,
+        "precision": "Quantized / downsampled float16 or uint16 (max error ~0.00781 deg C f16, ~0.00016 deg C u16)",
+        "governing_contract": "ProvisionalRenderPickResponse",
+        "safeguard": "QuantizationContract.is_eligible_for_exact_query = False"
+      }
+    ]
+  },
+  "exact_query_resolution_semantics": {
+    "vertical_resolution": {
+      "strategy": "Non-uniform depth Look-Up Table (LUT) with exact binary search (bisect_left / bisect_right).",
+      "reported_fields": [
+        "requested_vertical_target_value",
+        "resolved_depth_m",
+        "depth_delta_m",
+        "vertical_level_index"
+      ],
+      "native_depth_bounds_m": [0.49402499198913574, 453.9377136230469],
+      "total_depth_levels": 31
+    },
+    "horizontal_resolution": {
+      "strategy": "Dual-mode: Nearest native grid node (default) or bilinear interpolation across 4 surrounding nodes.",
+      "reported_fields": [
+        "requested_latitude_deg",
+        "requested_longitude_deg",
+        "resolved_latitude_deg",
+        "resolved_longitude_deg",
+        "horizontal_distance_delta_km",
+        "grid_index_evaluated"
+      ],
+      "spatial_domain": {
+        "min_latitude": -3.0,
+        "max_latitude": 12.0,
+        "min_longitude": 80.0,
+        "max_longitude": 88.0,
+        "resolution_deg": 0.08333333333333333
+      }
+    },
+    "temporal_resolution": {
+      "strategy": "Exact UTC ISO-8601 matching with fallback to nearest available daily timestep within valid temporal window.",
+      "reported_fields": [
+        "requested_target_time_utc",
+        "resolved_time_utc",
+        "timestep_index",
+        "temporal_delta_seconds"
+      ]
+    },
+    "missing_value_safeguards": {
+      "policy": "Missing values, fill values, land masks, below-seabed voxels, and QC-rejected cells are NEVER converted to physical zero (0.0 deg C).",
+      "categorical_states": [
+        "VALID (0)",
+        "SOURCE_MISSING (1)",
+        "LAND (2)",
+        "BELOW_SEABED (3)",
+        "OUTSIDE_DOMAIN (4)",
+        "QC_REJECTED (5)",
+        "TEMPORALLY_UNAVAILABLE (6)",
+        "NOT_OBSERVED (7)",
+        "PROCESSING_FAILED (8)"
+      ],
+      "response_behavior": "When value_state != VALID, scientific_value is null/None and value_state is explicitly populated."
+    },
+    "provisional_render_pick_reconciliation": {
+      "workflow": "Client performs raycast hover -> receives ProvisionalRenderPickResponse (response_type='approximate_render_sample') -> on user click/detail request -> client calls POST /api/v1/queries/value with world ray hit position -> service maps world coordinate to geodetic lat/lon/depth -> executes authoritative exact query -> returns ExactValueQueryResponse (response_type='authoritative_scientific_value')."
+    }
+  },
+  "service_endpoint_inventory": {
+    "catalog_endpoints": [
+      {
+        "method": "GET",
+        "path": "/api/v1/catalog",
+        "summary": "List all active and historical dataset snapshots, variables, temporal classifications, and product identifiers."
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/datasets/{datasetId}",
+        "summary": "Retrieve complete metadata, spatial bounding box, depth profile LUT, time axis, and coordinate transforms for a specific dataset."
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/datasets/{datasetId}/variables",
+        "summary": "Retrieve all canonical scientific variables, CF standard names, canonical units, and valid numerical ranges for a dataset."
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/datasets/{datasetId}/times",
+        "summary": "Retrieve temporal axis coverage, available timesteps, time semantics (observation time, forecast lead time), and valid intervals."
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/render-manifests/{id}",
+        "summary": "Retrieve multiresolution volume rendering manifest, brick geometry, LOD levels, quantization scale/offset, and brick URL templates."
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/capabilities",
+        "summary": "Retrieve server capabilities, supported coordinate spaces, selection methods, render backends (WebGPU/WebGL2), and resource limits."
+      }
+    ],
+    "authoritative_query_endpoints": [
+      {
+        "method": "POST",
+        "path": "/api/v1/queries/value",
+        "summary": "Execute an authoritative exact-value point query against native NetCDF arrays, resolving geodetic coordinates, depth LUT, and exact numerical value."
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/queries/profile",
+        "summary": "Execute an authoritative vertical profile query extracting an exact 1D column cast across all vertical depth levels at a target lat/lon and timestep."
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/queries/reconcile-pick",
+        "summary": "Reconcile a provisional GPU raymarch pick by translating world 3D ray hit coordinates to geodetic coordinates and evaluating native NetCDF truth."
+      }
+    ]
+  },
+  "downstream_execution_plan": {
+    "task_05b": {
+      "title": "Catalog & Manifest Service Implementation",
+      "target_package": "packages/services (quasar_services)",
+      "deliverables": [
+        "FastAPI service routing under /api/v1/catalog, /api/v1/datasets, /api/v1/render-manifests, /api/v1/capabilities",
+        "Catalog repository loader parsing active_snapshot_catalog.json and visualization manifests",
+        "Path traversal security guards and response envelopes",
+        "Automated unit & integration test suite"
+      ]
+    },
+    "task_05c": {
+      "title": "Authoritative Exact-Value & Vertical Profile Query Engine",
+      "target_package": "packages/services (quasar_services)",
+      "deliverables": [
+        "ExactQueryEngine resolving queries directly from raw NetCDF (Tier 1)",
+        "Depth LUT binary search and geodetic coordinate mapping algorithms",
+        "Missing value and categorical mask resolver",
+        "POST /api/v1/queries/value and POST /api/v1/queries/profile endpoints",
+        "Automated unit & scientific validation test suite"
+      ]
+    },
+    "task_05d": {
+      "title": "End-to-End Integration & Conformance Validation",
+      "target_package": "tests",
+      "deliverables": [
+        "End-to-end API conformance testing across all endpoints",
+        "Provisional pick reconciliation validation",
+        "Failure-injection tests (out-of-bounds, corrupted files, invalid coordinates)",
+        "Full test suite verification"
+      ]
+    }
+  }
+}

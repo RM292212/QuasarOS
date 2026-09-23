@@ -1,0 +1,190 @@
+{
+  "release_candidate": {
+    "version": "v1.0.0",
+    "build_id": "quasar-v1.0.0-release-01a",
+    "release_target": "RELEASE-01A (Release Engineering & Reproducibility Freeze)",
+    "operational_snapshot_id": "copernicus-phy-thetao-20260824-20260830-ca826087",
+    "timestamp_iso": "2026-08-30T23:25:00+05:30",
+    "reproducibility_status": "FROZEN_VALIDATED",
+    "clean_build_audit": {
+      "secrets_detected": 0,
+      "credentials_detected": 0,
+      "local_paths_in_production_bundles": 0,
+      "debug_authority_bypasses": 0,
+      "status": "PASS"
+    }
+  },
+  "deployable_packages": {
+    "@quasar/web": {
+      "role": "Application Shell UI & Visualization Workspace",
+      "package_path": "apps/web",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "package_manifest_sha256": "ed0627ea5e3fec195a0bd054b94d316044440ad5585a294a05da2548a163fee8",
+      "package_manifest_bytes": 1122,
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*",
+        "@quasar/renderer-webgpu": "workspace:*",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "zustand": "^4.5.5",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^2.5.2"
+      },
+      "dev_dependencies": {
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@types/node": "^22.5.4",
+        "typescript": "^5.5.4",
+        "vite": "^5.4.3",
+        "@vitejs/plugin-react": "^4.3.1",
+        "tailwindcss": "^3.4.10",
+        "postcss": "^8.4.45",
+        "autoprefixer": "^10.4.20"
+      }
+    },
+    "@quasar/client": {
+      "role": "Typed Catalog, Discovery & NetCDF Source Query Client",
+      "package_path": "packages/client",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "package_manifest_sha256": "1bcbd45521df935403a6c94bb964e33088d67cf3149ed058ad7115b11a90321f",
+      "package_manifest_bytes": 590,
+      "runtime_dependencies": {
+        "fzstd": "^0.1.1"
+      },
+      "dev_dependencies": {}
+    },
+    "@quasar/runtime": {
+      "role": "Scientific Coordinate, Temporal & Session Runtime Engine",
+      "package_path": "packages/runtime",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "package_manifest_sha256": "41664950abb7193afb9890735638fdbc6def61e979169f3fd770a513e5c77df0",
+      "package_manifest_bytes": 697,
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*"
+      },
+      "dev_dependencies": {}
+    },
+    "@quasar/renderer-webgpu": {
+      "role": "WebGPU WGSL Adaptive Raymarching Volume Renderer",
+      "package_path": "packages/renderer-webgpu",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "package_manifest_sha256": "8e12136bbca00f276e4f5e22803da16f01bab2fb541bc33c95816547266d531b",
+      "package_manifest_bytes": 766,
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*"
+      },
+      "dev_dependencies": {
+        "@webgpu/types": "^0.1.40"
+      }
+    },
+    "@quasar/renderer-webgl2": {
+      "role": "WebGL2 GLSL ES 3.00 Volume Raymarching Renderer",
+      "package_path": "packages/renderer-webgl2",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "package_manifest_sha256": "c774716c77b47d642591dbd4c4f16b0e4f3687f748e07d3f9be0947331ab955e",
+      "package_manifest_bytes": 713,
+      "runtime_dependencies": {
+        "@quasar/client": "workspace:*",
+        "@quasar/runtime": "workspace:*"
+      },
+      "dev_dependencies": {}
+    }
+  },
+  "cryptographic_trust_chain": {
+    "1_active_snapshot_catalog": {
+      "relative_path": "data/manifests/active_snapshot_catalog.json",
+      "role": "Operational Snapshot Registry & Active Discovery Root",
+      "sha256": "590b130c7efae36f1ce6da49731344c8ae955723078b67fcec41ef112a44f040",
+      "byte_size": 2693
+    },
+    "2_raw_netcdf_source": {
+      "relative_path": "data/raw/copernicus/physical/copernicus-phy-thetao-20260824-20260830-ca826087/copernicus_phy_thetao_20260824_20260830.nc",
+      "role": "Authoritative Native Float32 Oceanographic NetCDF-4 Dataset",
+      "sha256": "ca8260876715bebea2da013b532bef0014692d345555c5e6fd175809bded158c",
+      "byte_size": 15263238
+    },
+    "3_acquisition_manifest": {
+      "relative_path": "data/manifests/copernicus-physical/copernicus-phy-thetao-20260824-20260830-ca826087/acquisition_manifest.json",
+      "role": "Copernicus Marine Data Store Provenance & Verification Manifest",
+      "sha256": "0861401c53c9c03ec66362c69a1e6935e5d22cfffb11dc50d2217b53204dbd73",
+      "byte_size": 2175
+    },
+    "4_canonical_zarr_metadata": {
+      "relative_path": "data/canonical/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/.zattrs",
+      "role": "Canonical Zarr-3 Array Attributes & CF Metadata",
+      "sha256": "440212181e3465c2ed0f2a431c00e67826a93f2f7f67dbccc103e39b9a8f5e8d",
+      "byte_size": 9563
+    },
+    "5_visualization_manifest": {
+      "relative_path": "data/manifests/visualization/copernicus_phy_thetao/copernicus-phy-thetao-20260824-20260830-ca826087/v1/visualization_manifest.json",
+      "role": "Multiresolution Octree & Brick Payload Manifest",
+      "sha256": "eb2cc8141555776f9ac421481cf909367a35b3d7204e0599b3d646ec21de19f9",
+      "byte_size": 194070
+    }
+  },
+  "software_bill_of_materials": [
+    {
+      "component": "fzstd",
+      "version": "^0.1.1",
+      "type": "Runtime Decompressor",
+      "license": "MIT",
+      "declared_in": "packages/client/package.json",
+      "purpose": "High-performance streaming Zstandard decompression for 3D binary brick payloads in web worker/main thread."
+    },
+    {
+      "component": "react",
+      "version": "^18.3.1",
+      "type": "UI Framework",
+      "license": "MIT",
+      "declared_in": "apps/web/package.json",
+      "purpose": "Declarative UI rendering shell, controls, and accessibility trees."
+    },
+    {
+      "component": "react-dom",
+      "version": "^18.3.1",
+      "type": "DOM Renderer",
+      "license": "MIT",
+      "declared_in": "apps/web/package.json",
+      "purpose": "React DOM mounting and reconciliation engine."
+    },
+    {
+      "component": "zustand",
+      "version": "^4.5.5",
+      "type": "State Management",
+      "license": "MIT",
+      "declared_in": "apps/web/package.json",
+      "purpose": "Single canonical state-management store for camera, slice, and inspection UI state."
+    },
+    {
+      "component": "clsx",
+      "version": "^2.1.1",
+      "type": "Utility",
+      "license": "MIT",
+      "declared_in": "apps/web/package.json",
+      "purpose": "Conditional CSS class name composition."
+    },
+    {
+      "component": "tailwind-merge",
+      "version": "^2.5.2",
+      "type": "Utility",
+      "license": "MIT",
+      "declared_in": "apps/web/package.json",
+      "purpose": "Safe Tailwind CSS utility class merging."
+    },
+    {
+      "component": "@webgpu/types",
+      "version": "^0.1.40",
+      "type": "Type Definitions",
+      "license": "BSD-3-Clause",
+      "declared_in": "packages/renderer-webgpu/package.json",
+      "purpose": "TypeScript type definitions for WebGPU API specifications."
+    }
+  ]
+}

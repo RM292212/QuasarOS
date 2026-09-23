@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Automated Unit Test Suite for TASK-10B (App Shell & Dataset Navigation).
  *
  * Tests:
@@ -91,7 +91,8 @@ describe('QuasarOS Web App Shell & Control Plane (TASK-10B)', () => {
     assert.equal(store.activeDatasetId, 'copernicus_phy_thetao');
     assert.equal(store.activeSnapshotId, 'copernicus-phy-thetao-20260824-20260830-ca826087');
     assert.ok(store.activeVariableId.includes('thetao'));
-    assert.equal(store.availableVariables.length, 5);
+    assert.equal(store.availableVariables.length, 6);
+    assert.ok(store.availableVariables.some((v) => v.includes('speed')));
 
     // Pinned session validation
     assert.ok(store.pinnedSession !== null);
@@ -104,19 +105,19 @@ describe('QuasarOS Web App Shell & Control Plane (TASK-10B)', () => {
 
   it('should correctly represent geodetic spatial domain bounds and depth extents', () => {
     const { spatialBounds } = useAppStore.getState();
-    assert.equal(spatialBounds.minLon, 80.0);
-    assert.equal(spatialBounds.maxLon, 88.0);
-    assert.equal(spatialBounds.minLat, -3.0);
-    assert.equal(spatialBounds.maxLat, 12.0);
+    assert.equal(spatialBounds.minLon, 60.0);
+    assert.equal(spatialBounds.maxLon, 68.0);
+    assert.equal(spatialBounds.minLat, 0.0);
+    assert.equal(spatialBounds.maxLat, 15.0);
     assert.equal(spatialBounds.minDepthM, 0.494);
-    assert.equal(spatialBounds.maxDepthM, 453.938);
+    assert.equal(spatialBounds.maxDepthM, 5727.917);
 
     // Update ROI bounds
     useAppStore.getState().setSpatialBounds({ minLon: 82.0, maxLon: 86.0 });
     const updated = useAppStore.getState().spatialBounds;
     assert.equal(updated.minLon, 82.0);
     assert.equal(updated.maxLon, 86.0);
-    assert.equal(updated.minLat, -3.0);
+    assert.equal(updated.minLat, 0.0);
   });
 
   it('should scrub discrete 7-day timesteps, advance generations, and manage playback controls', () => {

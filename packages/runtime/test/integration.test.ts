@@ -38,7 +38,9 @@ import {
 } from '../src/index.ts';
 
 // Real visualization manifest baseline
-const REPO_ROOT = path.resolve(process.cwd(), '../..');
+const REPO_ROOT = fs.existsSync(path.join(process.cwd(), 'data'))
+  ? process.cwd()
+  : path.resolve(process.cwd(), '../..');
 const VIS_ROOT = path.join(
   REPO_ROOT,
   'data',

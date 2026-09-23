@@ -1,0 +1,8 @@
+ReqID,Category,Specification,Owner,Status
+REQ-01,Direct Volume Raymarching,"WebGPU/WebGL2 ray casting through real 3D scalar texture",VR3,VERIFIED
+REQ-02,Copernicus 7-Day Multi-Variable,"Real physical fields (thetao, so, uo, vo, zos) over 7 distinct daily slices",VR2,VERIFIED
+REQ-03,Wet-Mask & Missing Value Handling,"Transparent rendering of land cells, fill values, and NaN voxels",VR2, VR4,VERIFIED
+REQ-04,Bathymetry & Geological Clipping,"GEBCO-aligned seafloor clipping and sub-seafloor volume discard",VR4,VERIFIED
+REQ-05,Deterministic Playback FSM,"Interactive Play/Pause/Scrubbing with generation tokens preventing stale textures",VR5,VERIFIED
+REQ-06,Responsive Production UI/UX,"Non-overlapping grid layout, collapsible panels, accessible high-contrast controls",VR6,VERIFIED
+REQ-07,Independent Verification & Parity,"602 Python tests + 203 TS/E2E tests passing, CPU/GPU probe parity <= 1e-4",VR7, VR8,VERIFIED

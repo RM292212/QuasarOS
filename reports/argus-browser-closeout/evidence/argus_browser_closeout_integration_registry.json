@@ -1,0 +1,17 @@
+{
+  "remediation_branch": "remediation/argus-browser-closeout",
+  "base_commit": "6307280152cdcaaa6af79f7d318850e1b0a8dfb1",
+  "status": "INTEGRATED",
+  "integrated_components": [
+    "packages/ingestion",
+    "packages/services",
+    "packages/contracts",
+    "packages/client",
+    "packages/runtime",
+    "packages/renderer-webgpu",
+    "packages/renderer-webgl2",
+    "apps/web"
+  ],
+  "tests_passed": 805,
+  "zero_regressions": true
+}

@@ -1,0 +1,46 @@
+# Secrets and local environments
+.env
+.env.*
+*.local
+credentials/
+secrets/
+.agents/
+git_secrets.log
+changed_files.txt
+paper_extracted_text.txt
+*.pdf
+scratch/
+
+# Python virtualenv & artifacts
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+
+# Node artifacts
+node_modules/
+dist/
+build/
+.turbo/
+.vite/
+
+# Data and caches (heavy scientific data binaries)
+data/raw/
+data/cache/
+data/staging/
+data/downloads/
+data/canonical/
+data/visualization/
+*.nc
+*.zarr
+*.grib
+*.grib2
+*.bin
+
+# OS files
+.DS_Store
+Thumbs.db

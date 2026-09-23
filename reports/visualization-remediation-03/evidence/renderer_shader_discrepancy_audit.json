@@ -1,0 +1,55 @@
+{
+  "audit_id": "EVID-SHADER-DISCREPANCY-01",
+  "milestone": "VISUALIZATION-REMEDIATION-03",
+  "generated_at_utc": "2026-08-31T15:18:00Z",
+  "comparison_targets": {
+    "baseline_inline": "apps/web/src/components/viewport/OceanVolumeViewport.tsx:98-168",
+    "webgpu_package": "packages/renderer-webgpu/src/shaders/volume_raymarch.wgsl.ts",
+    "webgl2_package": "packages/renderer-webgl2/src/shaders/volume_raymarch.glsl.ts",
+    "research_spec": ".agents/spec_miner_paper/research_spec.md"
+  },
+  "discrepancies": [
+    {
+      "feature": "Vertex Ray Generation",
+      "baseline_viewport": "Local cube vertex offset: rayStart = vLocalPos + 0.5; rayDir = normalize(vLocalPos - uCamPos)",
+      "package_shaders": "Fullscreen quad/triangle + unproject NDC through inverseViewProjection matrix",
+      "research_spec_compliance": "Package shaders comply with Smits-Kay ray AABB unprojection; baseline violates perspective invariance.",
+      "severity": "CRITICAL"
+    },
+    {
+      "feature": "Early Ray Termination (ERT)",
+      "baseline_viewport": "Hardcoded 0.95 threshold: if (accum.a >= 0.95) break;",
+      "package_shaders": "Configurable earlyTerminationAlpha (default 0.98/0.99) with full 1.0 clamping",
+      "research_spec_compliance": "Paper specifies tau = 0.98 threshold.",
+      "severity": "MEDIUM"
+    },
+    {
+      "feature": "Adaptive Empty Space Skipping",
+      "baseline_viewport": "None (advances by fixed dt = 0.012 regardless of land or void cells)",
+      "package_shaders": "Checks sampleValidityMask == 0u, scales step size by 1.5x dt",
+      "research_spec_compliance": "Paper Eq. 5 specifies 1.5x empty-space leaping in void/land zones.",
+      "severity": "HIGH"
+    },
+    {
+      "feature": "Depth Coordinate Mapping",
+      "baseline_viewport": "Linear uniform sampling along z: texture(uVolumeTex, p).r",
+      "package_shaders": "Piecewise-linear Depth LUT sampling: evaluateNormalizedDepthToPhysical(w)",
+      "research_spec_compliance": "Paper specifies Depth LUT / spline resampling for non-uniform vertical depths.",
+      "severity": "CRITICAL"
+    },
+    {
+      "feature": "Transfer Function Architecture",
+      "baseline_viewport": "Hardcoded 4-point RGB gradient formula in GLSL",
+      "package_shaders": "256x1 RGBA LUT texture sampling (textureSampleLevel) with scalarMin/scalarMax normalization",
+      "research_spec_compliance": "Paper specifies 1D/2D Transfer Function texture LUT with dynamic range thresholding.",
+      "severity": "HIGH"
+    },
+    {
+      "feature": "Opacity Step-Size Correction",
+      "baseline_viewport": "None (direct alpha accumulation: accum.a += (1.0 - accum.a) * col.a)",
+      "package_shaders": "Beer-Lambert correction: alphaCorr = 1.0 - pow(1.0 - alpha, dt / dtRef)",
+      "research_spec_compliance": "Paper specifies step-size opacity correction for energy conservation.",
+      "severity": "HIGH"
+    }
+  ]
+}
